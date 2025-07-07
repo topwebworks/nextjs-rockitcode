@@ -2,8 +2,6 @@
 
 import { IconButton } from "@/components/icon-button";
 import { ModularNavigation } from "@/components/modular-navigation";
-import { getNavigationSections } from "@/data/navigation";
-import type { Module } from "@/data/lessons";
 import { SidebarIcon } from "@/icons/sidebar-icon";
 import {
   CloseButton,
@@ -12,13 +10,12 @@ import {
   DialogPanel,
 } from "@headlessui/react";
 import { clsx } from "clsx";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import type React from "react";
 import { createContext, useContext, useState } from "react";
 import { Navbar } from "./navbar";
+import type { NavigationSection } from "@/data/navigation";
 
-export const SidebarContext = createContext<{
+export const ModularSidebarContext = createContext<{
   isSidebarOpen: boolean;
   setIsSidebarOpen: (isSidebarOpen: boolean) => void;
   isMobileDialogOpen: boolean;
@@ -30,63 +27,14 @@ export const SidebarContext = createContext<{
   setIsMobileDialogOpen: () => {},
 });
 
-function CourseNavigation({
-  modules,
-  onNavigate,
-  className,
-}: {
-  modules: Module[];
-  onNavigate?: () => void;
-  className?: string;
-}) {
-  let pathname = usePathname();
-
-  return (
-    <div className={clsx(className, "space-y-8")}>
-      {modules.map((module) => (
-        <div key={module.id}>
-          <h2 className="text-base/7 font-semibold text-pretty text-gray-950 sm:text-sm/6 dark:text-white">
-            {module.title}
-          </h2>
-          <ul className="mt-4 flex flex-col gap-4 border-l border-gray-950/10 text-base/7 text-gray-700 sm:mt-3 sm:gap-3 sm:text-sm/6 dark:border-white/10 dark:text-gray-400">
-            {module.lessons.map((lesson) => (
-              <li
-                key={lesson.id}
-                className={clsx(
-                  "-ml-px flex border-l border-transparent pl-4",
-                  "hover:text-gray-950 hover:not-has-aria-[current=page]:border-gray-400 dark:hover:text-white",
-                  "has-aria-[current=page]:border-gray-950 dark:has-aria-[current=page]:border-white",
-                )}
-              >
-                <Link
-                  href={`/${lesson.id}`}
-                  aria-current={
-                    `/${lesson.id}` === pathname ? "page" : undefined
-                  }
-                  className="aria-[current=page]:font-medium aria-[current=page]:text-gray-950 dark:aria-[current=page]:text-white"
-                  onClick={onNavigate}
-                >
-                  {lesson.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function MobileNavigation({
   open,
   onClose,
-  modules,
-  useModular = true,
+  sections,
 }: {
   open: boolean;
   onClose: () => void;
-  modules: Module[];
-  useModular?: boolean;
+  sections: NavigationSection[];
 }) {
   return (
     <Dialog open={open} onClose={onClose} className="xl:hidden">
@@ -99,37 +47,34 @@ function MobileNavigation({
             </CloseButton>
           </div>
         </div>
-        {useModular ? (
-          <ModularNavigation
-            onNavigate={onClose}
-            className="px-4 pb-4 sm:px-6"
-          />
-        ) : (
-          <CourseNavigation
-            modules={modules}
-            onNavigate={onClose}
-            className="px-4 pb-4 sm:px-6"
-          />
-        )}
+        <ModularNavigation
+          sections={sections}
+          onNavigate={onClose}
+          className="px-4 pb-4 sm:px-6"
+        />
       </DialogPanel>
     </Dialog>
   );
 }
 
-export function SidebarLayout({
-  modules,
-  children,
-  useModular = true,
-}: {
-  modules: Module[];
+interface ModularSidebarLayoutProps {
   children: React.ReactNode;
-  useModular?: boolean;
-}) {
-  let [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  let [isMobileDialogOpen, setIsMobileDialogOpen] = useState(false);
+  sections?: NavigationSection[];
+  title?: string;
+  description?: string;
+}
+
+export function ModularSidebarLayout({
+  children,
+  sections,
+  title = "RockitCode",
+  description = "Learn to code with interactive courses",
+}: ModularSidebarLayoutProps) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobileDialogOpen, setIsMobileDialogOpen] = useState(false);
 
   return (
-    <SidebarContext.Provider
+    <ModularSidebarContext.Provider
       value={{
         isSidebarOpen,
         setIsSidebarOpen,
@@ -142,18 +87,24 @@ export function SidebarLayout({
         className="group"
       >
         <aside className="fixed inset-y-0 left-0 w-2xs overflow-y-auto border-r border-gray-950/10 group-data-sidebar-collapsed:hidden max-xl:hidden dark:border-white/10">
-          <nav aria-label="Course" className="px-6 py-4">
-            <div className="sticky top-4 flex h-6">
+          <nav aria-label="Main navigation" className="px-6 py-4">
+            <div className="sticky top-4 flex h-6 items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-semibold text-gray-950 dark:text-white">
+                  {title}
+                </span>
+              </div>
               <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                 <SidebarIcon className="shrink-0 stroke-gray-950 dark:stroke-white" />
               </IconButton>
             </div>
-            <div className="mt-3">
-              {useModular ? (
-                <ModularNavigation className="max-xl:hidden" />
-              ) : (
-                <CourseNavigation modules={modules} className="max-xl:hidden" />
-              )}
+            {description && (
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                {description}
+              </p>
+            )}
+            <div className="mt-6">
+              <ModularNavigation sections={sections} className="max-xl:hidden" />
             </div>
           </nav>
         </aside>
@@ -161,31 +112,30 @@ export function SidebarLayout({
         <MobileNavigation
           open={isMobileDialogOpen}
           onClose={() => setIsMobileDialogOpen(false)}
-          modules={modules}
-          useModular={useModular}
+          sections={sections || []}
         />
         
         <div className="xl:not-group-data-sidebar-collapsed:ml-(--container-2xs)">
           {children}
         </div>
       </div>
-    </SidebarContext.Provider>
+    </ModularSidebarContext.Provider>
   );
 }
 
-export function SidebarLayoutContent({
+export function ModularSidebarLayoutContent({
   breadcrumbs,
   children,
 }: {
   breadcrumbs: React.ReactNode;
   children: React.ReactNode;
 }) {
-  let {
+  const {
     isSidebarOpen,
     setIsSidebarOpen,
     isMobileDialogOpen,
     setIsMobileDialogOpen,
-  } = useContext(SidebarContext);
+  } = useContext(ModularSidebarContext);
 
   return (
     <>

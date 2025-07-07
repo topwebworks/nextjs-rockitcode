@@ -7,5 +7,6 @@ export default function CourseLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <SidebarLayout modules={getModules()}>{children}</SidebarLayout>;
+  // Use the modular navigation by default, but keep the old modules available for backward compatibility
+  return <SidebarLayout modules={getModules()} useModular={true}>{children}</SidebarLayout>;
 }
