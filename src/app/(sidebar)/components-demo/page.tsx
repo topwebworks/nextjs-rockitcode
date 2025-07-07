@@ -1,3 +1,5 @@
+"use client"
+
 import { PageSection } from '@/components/page-section'
 import { 
   CodeDisplay, 
@@ -18,15 +20,9 @@ import {
   Breadcrumbs, 
   BreadcrumbSeparator 
 } from '@/components/breadcrumbs'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'RockitCode Components Demo - Interactive Learning Components',
-  description: 'Explore all the modular, scalable components that power the RockitCode learning platform.',
-}
 
 export default function ComponentsDemo() {
-  // Sample progress items
+  // Sample progress items - now created in client component
   const progressItems = [
     createProgressItem('intro', 'Introduction to Components', 'lesson', { estimatedMinutes: 15, isRequired: true }),
     createProgressItem('code-display', 'Code Display Component', 'lesson', { estimatedMinutes: 10, isRequired: true }),

@@ -84,9 +84,10 @@ export function CodeDisplay({
                         {(i + 1).toString().padStart(2, ' ')}
                       </span>
                     )}
-                    {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({ token, key })} />
-                    ))}
+                    {line.map((token, index) => {
+                      const { key: tokenKey, ...tokenProps } = getTokenProps({ token, key: index });
+                      return <span key={index} {...tokenProps} />;
+                    })}
                   </div>
                 )
               })}
