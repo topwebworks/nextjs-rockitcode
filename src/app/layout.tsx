@@ -26,8 +26,29 @@ export default function RootLayout({
         InterVariable.variable,
         "scroll-pt-16 font-sans antialiased dark:bg-gray-950",
       )}
+      suppressHydrationWarning
     >
-      <body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const savedTheme = localStorage.getItem('theme');
+                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  
+                  if (savedTheme === 'dark' || (!savedTheme && systemTheme)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="bg-white dark:bg-gray-950 text-gray-950 dark:text-white">
         <RockitSessionProvider>
           <div className="isolate">{children}</div>
         </RockitSessionProvider>

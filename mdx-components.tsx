@@ -5,6 +5,7 @@ import React, { ReactNode } from "react";
 import { createHighlighter, Highlighter } from "shiki";
 import theme from "./src/app/syntax-theme.json";
 import { YouTubeEmbed } from "./src/components/rockitcode/youtube-embed";
+import { HTMLPlayground } from "./src/components/rockitcode/html-playground";
 
 function getTextContent(node: ReactNode): string {
   if (typeof node === "string") return node;
@@ -114,7 +115,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
               width={width}
               height={height}
               src={lightSrc}
-              className="dark:hidden"
+              className="dark:hidden block"
               unoptimized // SVGs don't need optimization
             />
             <Image
@@ -149,6 +150,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return <CodeBlock code={code} lang={lang} />;
     },
     YouTubeEmbed,
+    HTMLPlayground,
     ...components,
   };
 }

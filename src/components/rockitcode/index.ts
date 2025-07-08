@@ -8,6 +8,8 @@ export type { CodeDisplayProps, SupportedLanguage } from './code-display'
 export { YouTubeEmbed, YouTubeThumbnail, createYouTubeEmbed, extractYouTubeVideoId } from './youtube-embed'
 export type { YouTubeEmbedProps } from './youtube-embed'
 
+export { HTMLPlayground } from './html-playground'
+
 export { ProgressTracker, createProgressItem, getProgressStats } from './progress-tracker'
 export type { ProgressItem, ProgressTrackerProps } from './progress-tracker'
 

@@ -141,7 +141,7 @@ export function SidebarLayout({
         data-sidebar-collapsed={isSidebarOpen ? undefined : ""}
         className="group"
       >
-        <aside className="fixed inset-y-0 left-0 w-2xs overflow-y-auto border-r border-gray-950/10 group-data-sidebar-collapsed:hidden max-xl:hidden dark:border-white/10">
+        <aside className="fixed inset-y-0 left-0 w-2xs overflow-y-auto border-r border-gray-950/10 bg-white group-data-sidebar-collapsed:hidden max-xl:hidden dark:border-white/10 dark:bg-gray-950">
           <nav aria-label="Course" className="px-6 py-4">
             <div className="sticky top-4 flex h-6">
               <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
@@ -208,7 +208,7 @@ export function SidebarLayoutContent({
           <div className="min-w-0">{breadcrumbs}</div>
         </div>
       </Navbar>
-      <main className="px-4 sm:px-6">{children}</main>
+      <main className="px-4 sm:px-6 bg-white dark:bg-gray-950">{children}</main>
     </>
   );
 }
