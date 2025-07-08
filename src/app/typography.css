@@ -2,6 +2,7 @@
   color: var(--color-gray-700);
   font-size: var(--text-sm);
   line-height: --spacing(7);
+  max-width: 65ch; /* Typical prose line length */
 
   @variant dark {
     color: var(--color-gray-400);
@@ -121,6 +122,8 @@
   img {
     border-radius: var(--radius-lg);
     border: --alpha(var(--color-gray-950) / 10%) solid 1px;
+    max-width: 100%;
+    height: auto;
 
     @variant dark {
       border: --alpha(var(--color-white) / 10%) solid 1px;
@@ -150,5 +153,18 @@
     &::after {
       content: "`";
     }
+  }
+
+  /* Custom components within prose */
+  .html-playground,
+  [data-component="HTMLPlayground"] {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: --spacing(8) 0;
+  }
+
+  /* Ensure all wide content is constrained */
+  > * {
+    max-width: 100%;
   }
 }

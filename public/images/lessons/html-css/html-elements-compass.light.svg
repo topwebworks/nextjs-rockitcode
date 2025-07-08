@@ -1,13 +1,188 @@
-<svg width="2000" height="990" xmlns="http://www.w3.org/2000/svg">
+<svg width="800" height="1200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    <!-- Clean background -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f8fafc;stop-opacity:1" />
     </linearGradient>
+    
+    <!-- Single accent color -->
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Element backgrounds -->
+    <linearGradient id="elementBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f1f5f9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Text styles -->
+    <style>
+      .title-text { font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-weight: 600; fill: #0f172a; }
+      .subtitle-text { font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-weight: 400; fill: #64748b; }
+      .label-text { font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace; font-weight: 500; fill: white; }
+      .code-text { font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace; font-weight: 400; fill: #334155; }
+      .example-text { font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-weight: 400; fill: #0f172a; }
+    </style>
   </defs>
   
-  <!-- Clean white background -->
-  <rect width="2000" height="990" fill="white"/>
+  <!-- Background -->
+  <rect width="800" height="1200" fill="url(#bgGradient)"/>
+  
+  <!-- Title -->
+  <text x="400" y="50" class="title-text" font-size="32" text-anchor="middle">
+    HTML Elements Guide
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="400" y="80" class="subtitle-text" font-size="16" text-anchor="middle">
+    The essential building blocks of web pages
+  </text>
+  
+  <!-- H1 Element -->
+  <rect x="100" y="120" width="600" height="120" rx="8" 
+        fill="url(#elementBg)" stroke="#cbd5e1" stroke-width="1"/>
+  
+  <rect x="120" y="140" width="60" height="24" rx="4" fill="url(#accentGradient)"/>
+  <text x="150" y="157" class="label-text" font-size="12" text-anchor="middle">
+    &lt;h1&gt;
+  </text>
+  
+  <text x="200" y="157" class="code-text" font-size="14">
+    &lt;h1&gt;Main Page Title&lt;/h1&gt;
+  </text>
+  <text x="120" y="185" class="subtitle-text" font-size="12">
+    Large heading - most important text on the page
+  </text>
+  <text x="120" y="215" class="example-text" font-size="24" font-weight="600">
+    Main Page Title
+  </text>
+  
+  <!-- P Element -->
+  <rect x="100" y="260" width="600" height="120" rx="8" 
+        fill="url(#elementBg)" stroke="#cbd5e1" stroke-width="1"/>
+  
+  <rect x="120" y="280" width="40" height="24" rx="4" fill="url(#accentGradient)"/>
+  <text x="140" y="297" class="label-text" font-size="12" text-anchor="middle">
+    &lt;p&gt;
+  </text>
+  
+  <text x="180" y="297" class="code-text" font-size="14">
+    &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+  </text>
+  <text x="120" y="325" class="subtitle-text" font-size="12">
+    Paragraph - regular body text content
+  </text>
+  <text x="120" y="355" class="example-text" font-size="16">
+    This is a paragraph of text.
+  </text>
+  
+  <!-- A Element -->
+  <rect x="100" y="400" width="600" height="120" rx="8" 
+        fill="url(#elementBg)" stroke="#cbd5e1" stroke-width="1"/>
+  
+  <rect x="120" y="420" width="40" height="24" rx="4" fill="url(#accentGradient)"/>
+  <text x="140" y="437" class="label-text" font-size="12" text-anchor="middle">
+    &lt;a&gt;
+  </text>
+  
+  <text x="180" y="437" class="code-text" font-size="14">
+    &lt;a href="https://example.com"&gt;Click here&lt;/a&gt;
+  </text>
+  <text x="120" y="465" class="subtitle-text" font-size="12">
+    Link - clickable text that takes you to another page
+  </text>
+  <text x="120" y="495" class="example-text" font-size="16" fill="#3b82f6" text-decoration="underline">
+    Click here
+  </text>
+  
+  <!-- IMG Element -->
+  <rect x="100" y="540" width="600" height="120" rx="8" 
+        fill="url(#elementBg)" stroke="#cbd5e1" stroke-width="1"/>
+  
+  <rect x="120" y="560" width="60" height="24" rx="4" fill="url(#accentGradient)"/>
+  <text x="150" y="577" class="label-text" font-size="12" text-anchor="middle">
+    &lt;img&gt;
+  </text>
+  
+  <text x="200" y="577" class="code-text" font-size="14">
+    &lt;img src="photo.jpg" alt="A beautiful sunset"&gt;
+  </text>
+  <text x="120" y="605" class="subtitle-text" font-size="12">
+    Image - displays pictures on your web page
+  </text>
+  
+  <!-- Example image placeholder -->
+  <rect x="120" y="620" width="60" height="30" rx="4" 
+        fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/>
+  <text x="150" y="640" class="subtitle-text" font-size="12" text-anchor="middle" fill="#4338ca">
+    🖼️ Image
+  </text>
+  
+  <!-- DIV Element -->
+  <rect x="100" y="680" width="600" height="120" rx="8" 
+        fill="url(#elementBg)" stroke="#cbd5e1" stroke-width="1"/>
+  
+  <rect x="120" y="700" width="50" height="24" rx="4" fill="url(#accentGradient)"/>
+  <text x="145" y="717" class="label-text" font-size="12" text-anchor="middle">
+    &lt;div&gt;
+  </text>
+  
+  <text x="190" y="717" class="code-text" font-size="14">
+    &lt;div&gt;Container for other elements&lt;/div&gt;
+  </text>
+  <text x="120" y="745" class="subtitle-text" font-size="12">
+    Division - invisible container that groups other elements
+  </text>
+  <rect x="120" y="760" width="300" height="25" rx="4" 
+        fill="white" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="125" y="777" class="subtitle-text" font-size="12" fill="#64748b">
+    Container for other elements
+  </text>
+  
+  <!-- UL/LI Element -->
+  <rect x="100" y="820" width="600" height="160" rx="8" 
+        fill="url(#elementBg)" stroke="#cbd5e1" stroke-width="1"/>
+  
+  <rect x="120" y="840" width="50" height="24" rx="4" fill="url(#accentGradient)"/>
+  <text x="145" y="857" class="label-text" font-size="12" text-anchor="middle">
+    &lt;ul&gt;
+  </text>
+  
+  <text x="190" y="857" class="code-text" font-size="14">
+    &lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;/ul&gt;
+  </text>
+  <text x="120" y="885" class="subtitle-text" font-size="12">
+    Unordered list - creates bullet points
+  </text>
+  
+  <!-- Example list -->
+  <text x="140" y="915" class="example-text" font-size="16">
+    • Item 1
+  </text>
+  <text x="140" y="940" class="example-text" font-size="16">
+    • Item 2
+  </text>
+  <text x="140" y="965" class="example-text" font-size="16">
+    • Item 3
+  </text>
+  
+  <!-- Summary box -->
+  <rect x="100" y="1000" width="600" height="120" rx="8" 
+        fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  
+  <text x="400" y="1030" class="title-text" font-size="18" text-anchor="middle" fill="#92400e">
+    Remember: Elements = Building Blocks
+  </text>
+  <text x="400" y="1055" class="subtitle-text" font-size="14" text-anchor="middle" fill="#92400e">
+    Each HTML element has a specific purpose
+  </text>
+  <text x="400" y="1080" class="subtitle-text" font-size="14" text-anchor="middle" fill="#92400e">
+    Combine them to build amazing web pages!
+  </text>
+</svg>
   
   <!-- Grid layout for HTML elements -->
   

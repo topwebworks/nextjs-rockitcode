@@ -68,7 +68,7 @@ export default async function LessonPage({ params }: Props) {
         </div>
         <div className="mx-auto flex max-w-2xl gap-x-10 py-10 sm:py-14 lg:max-w-5xl">
           <div className="w-full flex-1">
-            <div id="content" className="prose prose-slate dark:prose-invert max-w-none">
+            <div id="content" className="prose">
               <Content />
             </div>
             <div className="mt-16 border-t border-gray-200 pt-8 dark:border-white/10">

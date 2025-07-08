@@ -6,6 +6,7 @@ import { createHighlighter, Highlighter } from "shiki";
 import theme from "./src/app/syntax-theme.json";
 import { YouTubeEmbed } from "./src/components/rockitcode/youtube-embed";
 import { HTMLPlayground } from "./src/components/rockitcode/html-playground";
+import { ImageLightbox } from "./src/components/image-lightbox";
 
 function getTextContent(node: ReactNode): string {
   if (typeof node === "string") return node;
@@ -26,10 +27,13 @@ function getTextContent(node: ReactNode): string {
 }
 
 function generateId(text: string) {
-  return text
+  const id = text
     .toLowerCase()
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9-]/g, "");
+  
+  // Return a fallback if the ID is empty
+  return id || "heading";
 }
 
 let highlighter: Highlighter | null = null;
@@ -109,23 +113,19 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         
         return (
           <>
-            <Image
-              {...props}
-              alt={alt}
-              width={width}
-              height={height}
+            <ImageLightbox
               src={lightSrc}
-              className="dark:hidden block"
-              unoptimized // SVGs don't need optimization
-            />
-            <Image
-              {...props}
               alt={alt}
               width={width}
               height={height}
+              className="border border-gray-950/10 dark:border-white/10 dark:hidden"
+            />
+            <ImageLightbox
               src={darkSrc}
-              className="hidden dark:block"
-              unoptimized // SVGs don't need optimization
+              alt={alt}
+              width={width}
+              height={height}
+              className="border border-gray-950/10 dark:border-white/10 hidden dark:block"
             />
           </>
         );

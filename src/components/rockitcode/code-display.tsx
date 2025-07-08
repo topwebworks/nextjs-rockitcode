@@ -68,7 +68,7 @@ export function CodeDisplay({
               style={style}
             >
               {tokens.map((line, i) => {
-                const lineProps = getLineProps({ line, key: i })
+                const { key: lineKey, ...lineProps } = getLineProps({ line, key: i })
                 const isHighlighted = highlightLines.includes(i + 1)
                 
                 return (
