@@ -1,20 +1,168 @@
-# Your First HTML Page
+# What is HTML? Building Your First Web Page
 
-Welcome to your first HTML lesson! In this lesson, you'll learn how to create your very first web page using HTML.
+Learn the fundamentals of HTML and create your very first web page from scratch.
 
-## What You'll Learn
+In this lesson, you'll discover the building blocks of the web and create your first HTML document. HTML is the foundation of every website you see, and by the end of this lesson, you'll have built your own web page from scratch.
 
-- What HTML is and why it's important
-- How to create basic HTML structure
-- How to add text content to web pages
-- How to view your HTML page in a browser
+## Understanding HTML: The Building Blocks of the Web
 
-## Getting Started
+HTML stands for **HyperText Markup Language**. Think of it as the skeleton or foundation of every website you visit. Just like how a house needs a strong foundation and framework before you can add walls, paint, and decorations, every website needs HTML before you can add styling (CSS) and interactivity (JavaScript).
 
-HTML (HyperText Markup Language) is the standard language for creating web pages. Think of it as the skeleton of every website you see!
+![HTML Structure|2000x990](/images/lessons/html-css/html-structure-compass.{scheme}.svg)
 
-Let's start by creating a simple "Hello World" web page.
+### HTML Works Like Building Blocks
 
-## Your First Challenge
+Imagine you're playing with LEGO blocks. Each LEGO piece has a specific purpose - some are foundations, some are walls, some are roofs. HTML works the same way! Each HTML **element** is like a LEGO block that serves a specific purpose on your web page.
 
-Try creating your first HTML page with a heading and paragraph!
+Every HTML element is wrapped in **tags** that tell the browser what type of content it is. For example:
+- `<h1>` creates a large heading
+- `<p>` creates a paragraph
+- `<img>` displays an image
+- `<a>` creates a clickable link
+
+![HTML Elements Guide|2000x990](/images/lessons/html-css/html-elements-compass.{scheme}.svg)
+
+## Your First HTML Document Structure
+
+Every HTML document follows the same basic structure. Think of it like a template that tells the web browser how to display your content:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Web Page</title>
+</head>
+<body>
+    <h1>Welcome to My Website!</h1>
+    <p>This is my very first web page. I'm learning HTML!</p>
+</body>
+</html>
+```
+
+Let's break down what each part does:
+
+- `<!DOCTYPE html>` - Tells the browser this is an HTML5 document
+- `<html>` - The root element that contains everything
+- `<head>` - Contains information about the page (like the title)
+- `<title>` - What appears in the browser tab
+- `<body>` - Contains all the visible content on your page
+- `<h1>` - A large heading (like a chapter title)
+- `<p>` - A paragraph of text
+
+## Try It Yourself: Build Your First Web Page
+
+Now it's time to put your knowledge into practice! Follow these steps to create your very first HTML web page.
+
+### Your Mission: Create an "About Me" Page
+
+You're going to build a simple personal webpage that introduces you to the world. This will be your first step into web development!
+
+### Step 1: Set Up Your HTML Foundation
+
+Start with the basic HTML template:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Me - [Your Name]</title>
+</head>
+<body>
+    <!-- Your content will go here -->
+</body>
+</html>
+```
+
+### Step 2: Add a Main Heading
+
+Inside the `<body>` section, add your name as the main heading:
+
+```html
+<h1>Hi, I'm [Your Name]!</h1>
+```
+
+### Step 3: Add Some Paragraphs
+
+Add 2-3 paragraphs about yourself. Here's an example:
+
+```html
+<p>Welcome to my first web page! I'm learning how to code with HTML.</p>
+
+<p>I'm excited to discover how websites are built and create my own amazing projects.</p>
+
+<p>This is just the beginning of my coding journey!</p>
+```
+
+### Step 4: Add Some Subheadings
+
+Use `<h2>` for section headings:
+
+```html
+<h2>My Favorite Things</h2>
+<p>I love pizza, video games, and learning new things!</p>
+
+<h2>My Goals</h2>
+<p>I want to become a great web developer and build cool websites.</p>
+```
+
+## Complete Example: Your Finished Page
+
+Here's what your complete HTML file should look like:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Me - Alex Smith</title>
+</head>
+<body>
+    <h1>Hi, I'm Alex Smith!</h1>
+    
+    <p>Welcome to my first web page! I'm learning how to code with HTML.</p>
+    
+    <p>I'm excited to discover how websites are built and create my own amazing projects.</p>
+    
+    <p>This is just the beginning of my coding journey!</p>
+    
+    <h2>My Favorite Things</h2>
+    <p>I love pizza, video games, and learning new things!</p>
+    
+    <h2>My Goals</h2>
+    <p>I want to become a great web developer and build cool websites.</p>
+</body>
+</html>
+```
+
+## Interactive Playground
+
+Try out your HTML code in this live playground. You can edit the code and see the results instantly!
+
+<iframe src="/codepen-examples/html-basics-playground.html" title="HTML Basics Playground" className="w-full h-96 border border-gray-200 dark:border-gray-800 rounded-lg" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+
+## 🎉 Congratulations! You Did It!
+
+You've just built your very first web page using HTML! This is a huge milestone in your coding journey. 
+
+### What You've Mastered
+
+- ✅ **HTML Document Structure**: You understand how `<html>`, `<head>`, and `<body>` work together
+- ✅ **Essential HTML Elements**: You can use headings (`<h1>`, `<h2>`) and paragraphs (`<p>`) 
+- ✅ **Real Web Development**: You created an actual web page that works in any browser
+- ✅ **Foundation Skills**: You have the building blocks to create any website
+
+### Your Next Adventure
+
+In the next lesson, you'll discover how to make your web pages beautiful with **CSS styling**. You'll learn to add colors, fonts, layouts, and make your pages look professional and modern.
+
+But first, take a moment to celebrate this achievement! You've taken your first real step into the world of web development.
+
+### Challenge Yourself
+
+Before moving on, try adding these elements to your page:
+
+1. **Add a new section**: Create an `<h2>` heading called "My Hobbies"
+2. **List your interests**: Add 3-4 paragraphs describing things you enjoy
+3. **Get creative with your title**: Change the `<title>` tag to something unique
+4. **Experiment**: Try adding more headings and content - see what happens!
+
+Remember: The best way to learn HTML is by experimenting. Every web developer started exactly where you are right now. Keep building, keep learning, and most importantly - have fun with it!

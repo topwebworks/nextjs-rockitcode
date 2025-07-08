@@ -1,0 +1,38 @@
+<svg width="500" height="350" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="500" height="350" fill="#f1f5f9"/>
+  
+  <!-- Title -->
+  <text x="250" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#0f172a">HTML Elements Guide</text>
+  
+  <!-- H1 Example -->
+  <rect x="20" y="50" width="460" height="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="5"/>
+  <text x="30" y="70" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e40af">&lt;h1&gt;This is a Big Heading&lt;/h1&gt;</text>
+  <text x="400" y="85" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Biggest heading</text>
+  
+  <!-- H2 Example -->
+  <rect x="20" y="100" width="460" height="35" fill="#dcfce7" stroke="#22c55e" stroke-width="2" rx="5"/>
+  <text x="30" y="120" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#166534">&lt;h2&gt;This is a Medium Heading&lt;/h2&gt;</text>
+  <text x="400" y="130" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Medium heading</text>
+  
+  <!-- H3 Example -->
+  <rect x="20" y="145" width="460" height="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="5"/>
+  <text x="30" y="165" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#92400e">&lt;h3&gt;This is a Smaller Heading&lt;/h3&gt;</text>
+  <text x="400" y="170" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Smaller heading</text>
+  
+  <!-- Paragraph Example -->
+  <rect x="20" y="185" width="460" height="50" fill="#fce7f3" stroke="#ec4899" stroke-width="2" rx="5"/>
+  <text x="30" y="205" font-family="Arial, sans-serif" font-size="11" fill="#be185d">&lt;p&gt;This is a paragraph of text. Most of your</text>
+  <text x="30" y="220" font-family="Arial, sans-serif" font-size="11" fill="#be185d">content will go inside paragraph tags.&lt;/p&gt;</text>
+  <text x="400" y="230" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Regular text</text>
+  
+  <!-- Line Break Example -->
+  <rect x="20" y="245" width="460" height="40" fill="#f3e8ff" stroke="#a855f7" stroke-width="2" rx="5"/>
+  <text x="30" y="265" font-family="Arial, sans-serif" font-size="11" fill="#7c3aed">Line one&lt;br&gt;Line two</text>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Line break</text>
+  
+  <!-- Tips section -->
+  <rect x="20" y="295" width="460" height="40" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="5"/>
+  <text x="30" y="310" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#dc2626">💡 Pro Tip:</text>
+  <text x="30" y="325" font-family="Arial, sans-serif" font-size="10" fill="#dc2626">Always close your tags! Every &lt;tag&gt; needs a &lt;/tag&gt;</text>
+</svg>

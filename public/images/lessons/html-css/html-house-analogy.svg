@@ -1,0 +1,79 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="300" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e293b">HTML is Like Building a House! 🏠</text>
+  
+  <!-- House outline -->
+  <rect x="200" y="100" width="200" height="150" fill="#fef3c7" stroke="#f59e0b" stroke-width="3" rx="5"/>
+  
+  <!-- Roof -->
+  <polygon points="180,100 300,50 420,100" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+  
+  <!-- Door -->
+  <rect x="270" y="180" width="60" height="70" fill="#92400e" stroke="#78350f" stroke-width="2"/>
+  <circle cx="320" cy="215" r="3" fill="#fbbf24"/>
+  
+  <!-- Windows -->
+  <rect x="220" y="130" width="40" height="30" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="340" y="130" width="40" height="30" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/>
+  
+  <!-- HTML Structure Labels -->
+  <rect x="50" y="80" width="120" height="180" fill="#ffffff" stroke="#6b7280" stroke-width="1" rx="5"/>
+  <text x="110" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1f2937">HTML Structure</text>
+  
+  <text x="60" y="120" font-family="Arial, sans-serif" font-size="12" fill="#374151">🏗️ &lt;html&gt;</text>
+  <text x="70" y="135" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Foundation</text>
+  
+  <text x="60" y="155" font-family="Arial, sans-serif" font-size="12" fill="#374151">📋 &lt;head&gt;</text>
+  <text x="70" y="170" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Blueprint/Plans</text>
+  
+  <text x="60" y="190" font-family="Arial, sans-serif" font-size="12" fill="#374151">🏠 &lt;body&gt;</text>
+  <text x="70" y="205" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Rooms to live in</text>
+  
+  <text x="60" y="225" font-family="Arial, sans-serif" font-size="12" fill="#374151">🚪 &lt;h1&gt;</text>
+  <text x="70" y="240" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Main entrance</text>
+  
+  <text x="60" y="255" font-family="Arial, sans-serif" font-size="12" fill="#374151">🪟 &lt;p&gt;</text>
+  <text x="70" y="270" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Windows (content)</text>
+  
+  <!-- Arrows connecting concepts -->
+  <path d="M 170 150 L 190 120" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowblue)"/>
+  <path d="M 170 190 L 190 180" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowgreen)"/>
+  <path d="M 170 230 L 190 215" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowyellow)"/>
+  
+  <!-- Web Browser Window -->
+  <rect x="450" y="80" width="140" height="180" fill="#ffffff" stroke="#6b7280" stroke-width="2" rx="5"/>
+  <rect x="450" y="80" width="140" height="25" fill="#e5e7eb" stroke="#6b7280" stroke-width="1"/>
+  <text x="520" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#374151">Browser Window</text>
+  
+  <!-- What visitors see -->
+  <text x="460" y="125" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1f2937">Welcome!</text>
+  <text x="460" y="145" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Hi, I'm learning HTML</text>
+  <text x="460" y="160" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">with RockitCode!</text>
+  
+  <text x="460" y="185" font-family="Arial, sans-serif" font-size="10" fill="#374151">This is what visitors</text>
+  <text x="460" y="200" font-family="Arial, sans-serif" font-size="10" fill="#374151">see when they visit</text>
+  <text x="460" y="215" font-family="Arial, sans-serif" font-size="10" fill="#374151">your website!</text>
+  
+  <!-- Bottom explanation -->
+  <rect x="50" y="300" width="500" height="80" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="5"/>
+  <text x="60" y="320" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#dc2626">🎯 Key Concept:</text>
+  <text x="60" y="340" font-family="Arial, sans-serif" font-size="11" fill="#991b1b">HTML provides the structure (like building a house), CSS makes it look pretty</text>
+  <text x="60" y="355" font-family="Arial, sans-serif" font-size="11" fill="#991b1b">(like painting and decorating), and JavaScript makes it interactive (like adding</text>
+  <text x="60" y="370" font-family="Arial, sans-serif" font-size="11" fill="#991b1b">smart home features). We'll start with HTML - the foundation!</text>
+  
+  <!-- Arrow marker definitions -->
+  <defs>
+    <marker id="arrowblue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrowgreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowyellow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+    </marker>
+  </defs>
+</svg>

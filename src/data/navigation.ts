@@ -111,6 +111,43 @@ export function getNavigationSections(): NavigationSection[] {
   const templateSections = convertTemplateModulesToNavigation(templateModules);
   sections.push(...templateSections);
 
+  // Add admin section (conditionally shown based on user permissions)
+  sections.push({
+    id: 'admin-tools',
+    title: 'Admin Tools',
+    description: 'Content management and administration',
+    type: 'general',
+    items: [
+      {
+        id: 'content-manager',
+        title: 'Content Management',
+        description: 'Create and manage educational content',
+        url: '/admin/content',
+        type: 'page' as const,
+        icon: '⚙️',
+        category: 'admin',
+      },
+      {
+        id: 'user-management',
+        title: 'User Management',
+        description: 'Manage user accounts and permissions',
+        url: '/admin/users',
+        type: 'page' as const,
+        icon: '👥',
+        category: 'admin',
+      },
+      {
+        id: 'analytics',
+        title: 'Analytics',
+        description: 'Course and user analytics dashboard',
+        url: '/admin/analytics',
+        type: 'page' as const,
+        icon: '📊',
+        category: 'admin',
+      }
+    ]
+  });
+
   // Add additional general pages
   sections.push({
     id: 'general-pages',

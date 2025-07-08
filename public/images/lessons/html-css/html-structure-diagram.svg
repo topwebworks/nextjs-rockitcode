@@ -1,0 +1,45 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="200" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e293b">HTML Structure Explained</text>
+  
+  <!-- HTML Container -->
+  <rect x="50" y="50" width="300" height="200" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="5"/>
+  <text x="60" y="70" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e40af">&lt;html&gt;</text>
+  
+  <!-- Head Section -->
+  <rect x="70" y="80" width="120" height="60" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="3"/>
+  <text x="80" y="100" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#92400e">&lt;head&gt;</text>
+  <text x="80" y="120" font-family="Arial, sans-serif" font-size="10" fill="#92400e">Page Information</text>
+  
+  <!-- Body Section -->
+  <rect x="210" y="80" width="120" height="150" fill="#dcfce7" stroke="#22c55e" stroke-width="2" rx="3"/>
+  <text x="220" y="100" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#166534">&lt;body&gt;</text>
+  <text x="220" y="120" font-family="Arial, sans-serif" font-size="10" fill="#166534">Visible Content</text>
+  
+  <!-- Content inside body -->
+  <rect x="220" y="130" width="100" height="25" fill="#fecaca" stroke="#ef4444" stroke-width="1" rx="2"/>
+  <text x="225" y="145" font-family="Arial, sans-serif" font-size="9" fill="#b91c1c">&lt;h1&gt; Heading</text>
+  
+  <rect x="220" y="165" width="100" height="25" fill="#fed7aa" stroke="#f97316" stroke-width="1" rx="2"/>
+  <text x="225" y="180" font-family="Arial, sans-serif" font-size="9" fill="#c2410c">&lt;p&gt; Paragraph</text>
+  
+  <rect x="220" y="200" width="100" height="25" fill="#fde68a" stroke="#eab308" stroke-width="1" rx="2"/>
+  <text x="225" y="215" font-family="Arial, sans-serif" font-size="9" fill="#a16207">&lt;p&gt; Paragraph</text>
+  
+  <!-- Arrows and labels -->
+  <path d="M 130 110 L 200 110" stroke="#6b7280" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <text x="155" y="105" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Page Info</text>
+  
+  <path d="M 270 250 L 270 280" stroke="#6b7280" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <text x="220" y="295" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">What users see</text>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
+  </defs>
+</svg>

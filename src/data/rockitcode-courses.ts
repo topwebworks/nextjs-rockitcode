@@ -33,6 +33,12 @@ export type RockitLesson = {
     duration: number;
     thumbnail: string;
   } | null;
+  images?: {
+    src: string;
+    alt: string;
+    title: string;
+    caption?: string;
+  }[];
   codeExamples: {
     title: string;
     language: string;
@@ -143,78 +149,229 @@ const rockitCourses: RockitCourse[] = [
     milestones: [
       {
         id: "html-css-milestone-1",
-        title: "Web Foundations",
-        description: "Learn HTML structure and basic CSS styling",
+        title: "🚀 Web Foundations - Your First Steps",
+        description: "Start your web development journey! Learn HTML structure, add your first styling with CSS, and build real web pages you can show off to friends and family.",
         order: 1,
         isPaid: false, // FREE milestone
         lessons: [
           {
             id: "html-basics",
-            title: "HTML Structure & Elements",
-            description: "Understanding the skeleton of web pages",
+            title: "What is HTML? Building Your First Web Page",
+            description: "Discover how websites are built! Learn what HTML is, why it's important, and create your very first web page step-by-step.",
             order: 1,
-            estimatedMinutes: 45,
+            estimatedMinutes: 30,
             video: {
-              youtubeId: "UB1O30fR-EE", // Placeholder - replace with actual YouTube video
-              duration: 2700, // 45 minutes in seconds
+              youtubeId: "UB1O30fR-EE", // Will be replaced with actual educational video
+              duration: 1800, // 30 minutes in seconds
               thumbnail: "https://img.youtube.com/vi/UB1O30fR-EE/maxresdefault.jpg"
             },
+            images: [
+              {
+                src: "/images/lessons/html-css/html-house-analogy.svg",
+                alt: "HTML Structure explained using house building analogy",
+                title: "HTML is Like Building a House! 🏠",
+                caption: "Understanding HTML structure through a familiar analogy"
+              },
+              {
+                src: "/images/lessons/html-css/html-structure-diagram.svg",
+                alt: "Visual diagram showing HTML document structure",
+                title: "HTML Document Structure",
+                caption: "How HTML, head, and body elements work together"
+              },
+              {
+                src: "/images/lessons/html-css/html-elements-guide.svg",
+                alt: "Guide to common HTML elements with examples",
+                title: "HTML Elements Reference Guide",
+                caption: "The most important HTML elements you'll use every day"
+              }
+            ],
             codeExamples: [
               {
-                title: "Basic HTML Document",
+                title: "🌟 Your Very First Web Page",
                 language: "html",
                 code: `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Web Page</title>
+    <title>My First Web Page - I'm Learning HTML!</title>
 </head>
 <body>
-    <h1>Welcome to RockitCode!</h1>
-    <p>This is your first HTML document.</p>
+    <h1>🚀 Welcome to My First Web Page!</h1>
+    <p>Hi there! My name is [Your Name] and I'm learning to code with RockitCode!</p>
+    <p>This is my very first HTML document. Pretty cool, right? 😎</p>
 </body>
 </html>`,
-                explanation: "Every HTML document starts with this basic structure. The DOCTYPE tells the browser this is HTML5."
+                explanation: "This is a complete HTML document! Every web page you've ever visited starts with code like this. Let's break down what each part does: 💡 <!DOCTYPE html> tells the browser 'Hey, this is HTML5!' 💡 <html> is like a container that holds everything 💡 <head> contains information about the page 💡 <body> contains what people actually see on the page"
+              },
+              {
+                title: "🏗️ HTML Structure Explained",
+                language: "html",
+                code: `<!-- This is the blueprint of EVERY web page! -->
+<!DOCTYPE html>           <!-- Step 1: Tell browser this is HTML -->
+<html lang="en">          <!-- Step 2: Start the HTML container -->
+<head>                    <!-- Step 3: Information about the page -->
+    <title>Page Title</title>  <!-- What shows in browser tab -->
+</head>
+<body>                    <!-- Step 4: What visitors see -->
+    <h1>Main Heading</h1>     <!-- Big title -->
+    <p>A paragraph of text</p> <!-- Regular text -->
+</body>                   <!-- Step 5: Close the body -->
+</html>                   <!-- Step 6: Close the HTML container -->`,
+                explanation: "Think of HTML like building a house: 🏠 DOCTYPE = building permit 🏠 <html> = the foundation 🏠 <head> = the blueprint/plans 🏠 <body> = the rooms people live in Each 'tag' (like <h1>) has an opening and closing version (</h1>). They work like parentheses!"
+              },
+              {
+                title: "🎯 Common HTML Elements You'll Use Every Day",
+                language: "html",
+                code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HTML Elements Demo</title>
+</head>
+<body>
+    <!-- Headings: From biggest (h1) to smallest (h6) -->
+    <h1>This is a Big Heading (h1)</h1>
+    <h2>This is a Medium Heading (h2)</h2>
+    <h3>This is a Smaller Heading (h3)</h3>
+    
+    <!-- Paragraphs: For regular text -->
+    <p>This is a paragraph. Most of your text will go in paragraphs!</p>
+    <p>Each paragraph tag creates a new block of text with space around it.</p>
+    
+    <!-- Line breaks: For when you need a new line -->
+    <p>Sometimes you want text on one line<br>
+    and more text on the next line without a full paragraph break!</p>
+    
+    <!-- Comments: Notes that don't show on the webpage -->
+    <!-- This is a comment - visitors can't see this! -->
+</body>
+</html>`,
+                explanation: "These are the HTML elements you'll use most often: 📝 <h1> to <h6> = Headings (like titles and subtitles) 📝 <p> = Paragraphs (most of your text) 📝 <br> = Line break (forces text to next line) 📝 <!-- --> = Comments (notes for you, invisible to visitors) Pro tip: Use headings in order (h1, then h2, then h3...) like an outline!"
               }
             ],
             exercises: [
               {
-                title: "Create Your First Page",
-                description: "Build a simple HTML page about yourself with a heading and paragraph.",
+                title: "🎮 Exercise 1: Create Your Personal Introduction Page",
+                description: "Time to build your first web page! Create a simple page that introduces yourself. Include your name, age, favorite hobby, and what you want to learn about coding. Use different heading sizes and paragraphs to organize your content.",
                 starterCode: `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
 </head>
 <body>
-    <!-- Add your content here -->
+    <!-- 
+    Your mission:
+    1. Add a big heading (h1) with your name
+    2. Add a smaller heading (h2) that says "About Me"  
+    3. Add 2-3 paragraphs about yourself
+    4. Include your age, favorite hobby, and coding goals
+    5. Don't forget to have fun! 😊
+    -->
+    
 </body>
 </html>`,
                 solution: `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
 </head>
 <body>
-    <h1>About Me</h1>
-    <p>Hi! I'm learning HTML with RockitCode.</p>
+    <h1>Hi, I'm Alex! 👋</h1>
+    
+    <h2>About Me</h2>
+    
+    <p>I'm 15 years old and I love playing video games and skateboarding. 
+    I've always wondered how websites and apps are made, so I decided to learn coding!</p>
+    
+    <p>My goal is to build my own website where I can share my skateboarding videos 
+    and maybe even create a simple game. I'm super excited to start this journey with RockitCode!</p>
+    
+    <p>Fun fact: My favorite video game is Minecraft because you get to build 
+    things from scratch - kind of like coding! 🎮</p>
 </body>
 </html>`,
                 hints: [
-                  "Use an <h1> tag for your main heading",
-                  "Use a <p> tag for your paragraph",
-                  "Remember to close all your tags!"
+                  "🔍 Remember: Every tag that opens (like <h1>) must close (</h1>)",
+                  "💡 Use <h1> for your name since it's the most important heading",
+                  "📝 Put each separate thought in its own <p> paragraph",
+                  "✨ Add emojis to make your page more fun and personal!",
+                  "🧪 Try using <h2> or <h3> for section headings like 'About Me' or 'My Goals'"
+                ]
+              },
+              {
+                title: "🏆 Exercise 2: Build a 'My Favorite Things' Page",
+                description: "Practice using headings and paragraphs by creating a page about your favorite things! Include sections for your favorite movie, food, color, and book/game. This will help you master HTML structure!",
+                starterCode: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorite Things</title>
+</head>
+<body>
+    <!-- 
+    Your challenge:
+    1. Add a main heading (h1) "My Favorite Things"
+    2. Create 4 sections using h2 headings:
+       - My Favorite Movie
+       - My Favorite Food  
+       - My Favorite Color
+       - My Favorite Book/Game
+    3. Under each heading, add a paragraph explaining why you like it
+    4. Make it personal and fun!
+    -->
+    
+</body>
+</html>`,
+                solution: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorite Things</title>
+</head>
+<body>
+    <h1>🌟 My Favorite Things</h1>
+    
+    <h2>🎬 My Favorite Movie</h2>
+    <p>My favorite movie is Spider-Man: Into the Spider-Verse! I love the amazing 
+    animation style and how it shows that anyone can be a hero. The graphics look 
+    like a comic book come to life!</p>
+    
+    <h2>🍕 My Favorite Food</h2>
+    <p>Pizza will always be my #1 favorite food! Especially pepperoni pizza with 
+    extra cheese. It's perfect for movie nights, study sessions, or just because 
+    it's Tuesday. 😋</p>
+    
+    <h2>🎨 My Favorite Color</h2>
+    <p>I love the color blue because it reminds me of the ocean and clear skies. 
+    It's calming but also vibrant at the same time. Plus, it's the color of my 
+    favorite superhero's costume!</p>
+    
+    <h2>🎮 My Favorite Game</h2>
+    <p>Right now I'm obsessed with Terraria! I love how you can build anything 
+    you imagine and explore infinite worlds. It's like Minecraft but with more 
+    adventure and boss battles!</p>
+</body>
+</html>`,
+                hints: [
+                  "🎯 Use h1 for your main title, then h2 for each category",
+                  "📖 Each favorite thing should get its own paragraph explaining why you like it",
+                  "🎨 Add emojis to your headings to make them more visually appealing",
+                  "💭 Be specific! Instead of 'I like pizza', explain WHY you like it",
+                  "🔄 Save your work and preview it in a browser to see how it looks!"
                 ]
               }
             ],
             embeds: [
               {
                 type: "codepen",
-                url: "https://codepen.io/pen?template=zYqQGpg", // Placeholder
-                title: "HTML Basics Practice"
+                url: "/codepen-examples/html-basics-playground.html",
+                title: "🚀 HTML Basics Playground - Try It Live!"
               }
             ]
           },

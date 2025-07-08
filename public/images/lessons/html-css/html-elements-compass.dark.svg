@@ -1,0 +1,331 @@
+<svg width="2000" height="990" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient for dark mode -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#34d399;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fb7185;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f43f5e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="2000" height="1200" fill="url(#bgGradient)"/>
+  
+  <!-- Title -->
+  <text x="1000" y="80" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="56" font-weight="700" 
+        fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+    HTML Elements Reference Guide
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="1000" y="150" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" 
+        fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+    The most important HTML elements you'll use every day
+  </text>
+  
+  <!-- Element cards arranged in a grid -->
+  
+  <!-- Row 1: Headings -->
+  <g>
+    <!-- h1 element -->
+    <rect x="150" y="250" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="170" y="270" width="50" height="40" rx="8" ry="8" 
+          fill="url(#blueGradient)"/>
+    <text x="195" y="295" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      h1
+    </text>
+    <text x="300" y="295" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Main Heading
+    </text>
+    <text x="290" y="330" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;h1&gt;Welcome to My Site&lt;/h1&gt;
+    </text>
+    <text x="290" y="370" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Largest heading - use once per page
+    </text>
+  </g>
+  
+  <!-- h2 element -->
+  <g>
+    <rect x="480" y="250" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="500" y="270" width="50" height="40" rx="8" ry="8" 
+          fill="url(#purpleGradient)"/>
+    <text x="525" y="295" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      h2
+    </text>
+    <text x="630" y="295" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Section Heading
+    </text>
+    <text x="620" y="330" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;h2&gt;About Me&lt;/h2&gt;
+    </text>
+    <text x="620" y="370" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Second-level heading for sections
+    </text>
+  </g>
+  
+  <!-- p element -->
+  <g>
+    <rect x="810" y="250" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="830" y="270" width="50" height="40" rx="8" ry="8" 
+          fill="url(#greenGradient)"/>
+    <text x="855" y="295" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      p
+    </text>
+    <text x="960" y="295" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Paragraph
+    </text>
+    <text x="950" y="330" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;p&gt;This is a paragraph.&lt;/p&gt;
+    </text>
+    <text x="950" y="370" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Regular text content
+    </text>
+  </g>
+  
+  <!-- a element -->
+  <g>
+    <rect x="1140" y="250" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="1160" y="270" width="50" height="40" rx="8" ry="8" 
+          fill="url(#orangeGradient)"/>
+    <text x="1185" y="295" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      a
+    </text>
+    <text x="1290" y="295" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Link
+    </text>
+    <text x="1280" y="330" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;a href="..."&gt;Click here&lt;/a&gt;
+    </text>
+    <text x="1280" y="370" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Clickable links to other pages
+    </text>
+  </g>
+  
+  <!-- img element -->
+  <g>
+    <rect x="1470" y="250" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="1490" y="270" width="50" height="40" rx="8" ry="8" 
+          fill="url(#redGradient)"/>
+    <text x="1515" y="295" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      img
+    </text>
+    <text x="1620" y="295" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Image
+    </text>
+    <text x="1610" y="330" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;img src="..." alt="..."&gt;
+    </text>
+    <text x="1610" y="370" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Display pictures and graphics
+    </text>
+  </g>
+  
+  <!-- Row 2: Lists and structure -->
+  
+  <!-- ul element -->
+  <g>
+    <rect x="315" y="480" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="335" y="500" width="50" height="40" rx="8" ry="8" 
+          fill="url(#blueGradient)"/>
+    <text x="360" y="525" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      ul
+    </text>
+    <text x="465" y="525" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Unordered List
+    </text>
+    <text x="455" y="560" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;/ul&gt;
+    </text>
+    <text x="455" y="600" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Bullet point lists
+    </text>
+  </g>
+  
+  <!-- div element -->
+  <g>
+    <rect x="645" y="480" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="665" y="500" width="50" height="40" rx="8" ry="8" 
+          fill="url(#purpleGradient)"/>
+    <text x="690" y="525" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      div
+    </text>
+    <text x="795" y="525" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Container
+    </text>
+    <text x="785" y="560" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;div&gt;Group content&lt;/div&gt;
+    </text>
+    <text x="785" y="600" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Groups other elements together
+    </text>
+  </g>
+  
+  <!-- span element -->
+  <g>
+    <rect x="975" y="480" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="995" y="500" width="50" height="40" rx="8" ry="8" 
+          fill="url(#greenGradient)"/>
+    <text x="1020" y="525" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      span
+    </text>
+    <text x="1125" y="525" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Inline Container
+    </text>
+    <text x="1115" y="560" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;span&gt;Highlight&lt;/span&gt;
+    </text>
+    <text x="1115" y="600" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Style parts of text
+    </text>
+  </g>
+  
+  <!-- Row 3: Document structure -->
+  
+  <!-- html element -->
+  <g>
+    <rect x="480" y="720" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="500" y="740" width="60" height="40" rx="8" ry="8" 
+          fill="url(#orangeGradient)"/>
+    <text x="530" y="765" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      html
+    </text>
+    <text x="630" y="765" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Document Root
+    </text>
+    <text x="620" y="800" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;html&gt;...&lt;/html&gt;
+    </text>
+    <text x="620" y="840" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Contains the entire document
+    </text>
+  </g>
+  
+  <!-- head element -->
+  <g>
+    <rect x="810" y="720" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="830" y="740" width="60" height="40" rx="8" ry="8" 
+          fill="url(#redGradient)"/>
+    <text x="860" y="765" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      head
+    </text>
+    <text x="960" y="765" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Document Info
+    </text>
+    <text x="950" y="800" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;head&gt;...&lt;/head&gt;
+    </text>
+    <text x="950" y="840" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Metadata and page settings
+    </text>
+  </g>
+  
+  <!-- body element -->
+  <g>
+    <rect x="1140" y="720" width="280" height="180" rx="15" ry="15" 
+          fill="url(#cardBg)" stroke="#475569" stroke-width="2"/>
+    <rect x="1160" y="740" width="60" height="40" rx="8" ry="8" 
+          fill="url(#blueGradient)"/>
+    <text x="1190" y="765" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" 
+          fill="white" text-anchor="middle" dominant-baseline="middle">
+      body
+    </text>
+    <text x="1290" y="765" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" 
+          fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle">
+      Visible Content
+    </text>
+    <text x="1280" y="800" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" 
+          fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">
+      &lt;body&gt;...&lt;/body&gt;
+    </text>
+    <text x="1280" y="840" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" 
+          fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+      Everything users see
+    </text>
+  </g>
+  
+  <!-- Bottom note -->
+  <text x="1000" y="1000" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="24" font-weight="500" 
+        fill="#64748b" text-anchor="middle" dominant-baseline="middle">
+    Start with these elements - they're the building blocks of every web page!
+  </text>
+  
+  <!-- Bottom emoji decoration -->
+  <text x="1000" y="1040" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="32" 
+        text-anchor="middle" dominant-baseline="middle">
+    🧱 ⚡ 🎨
+  </text>
+</svg>
