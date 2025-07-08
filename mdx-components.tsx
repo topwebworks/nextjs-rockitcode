@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { ReactNode } from "react";
 import { createHighlighter, Highlighter } from "shiki";
 import theme from "./src/app/syntax-theme.json";
+import { YouTubeEmbed } from "./src/components/rockitcode/youtube-embed";
 
 function getTextContent(node: ReactNode): string {
   if (typeof node === "string") return node;
@@ -86,13 +87,25 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return <h4 id={id}>{children}</h4>;
     },
     img: ({ alt, ...props }) => {
-      let schemePlaceholder = encodeURIComponent("{scheme}");
+      let schemePlaceholder = "{scheme}";
+      let urlEncodedPlaceholder = "%7Bscheme%7D";
       let width, height;
+      
       if (IMAGE_DIMENSION_REGEX.test(alt)) {
         [width, height] = alt.split("|")[1].split("x").map(Number);
         alt = alt.split("|")[0];
       }
-      if (props.src.includes(schemePlaceholder)) {
+      
+      // Handle both encoded and unencoded scheme placeholders
+      let src = props.src;
+      if (src && src.includes(urlEncodedPlaceholder)) {
+        src = src.replace(urlEncodedPlaceholder, schemePlaceholder);
+      }
+      
+      if (src && src.includes(schemePlaceholder)) {
+        const lightSrc = src.replace(schemePlaceholder, "light");
+        const darkSrc = src.replace(schemePlaceholder, "dark");
+        
         return (
           <>
             <Image
@@ -100,21 +113,31 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
               alt={alt}
               width={width}
               height={height}
-              src={props.src.replace(schemePlaceholder, "light")}
+              src={lightSrc}
               className="dark:hidden"
+              unoptimized // SVGs don't need optimization
             />
             <Image
               {...props}
               alt={alt}
               width={width}
               height={height}
-              src={props.src.replace(schemePlaceholder, "dark")}
-              className="not-dark:hidden"
+              src={darkSrc}
+              className="hidden dark:block"
+              unoptimized // SVGs don't need optimization
             />
           </>
         );
       } else {
-        return <Image {...props} alt={alt} width={width} height={height} />;
+        return (
+          <Image 
+            {...props} 
+            alt={alt} 
+            width={width} 
+            height={height}
+            unoptimized={props.src?.endsWith('.svg')} // Don't optimize SVGs
+          />
+        );
       }
     },
     async pre(props) {
@@ -125,6 +148,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
       return <CodeBlock code={code} lang={lang} />;
     },
+    YouTubeEmbed,
     ...components,
   };
 }

@@ -1,68 +1,202 @@
-<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background gradient -->
+<svg width="2000" height="990" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="h1Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#b91c1c;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="h2Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ea580c;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#c2410c;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="h3Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="pGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
     </linearGradient>
   </defs>
   
-  <!-- Background -->
-  <rect width="2000" height="1200" fill="url(#bgGradient)"/>
+  <!-- Clean white background -->
+  <rect width="2000" height="990" fill="white"/>
   
-  <!-- Main container -->
-  <rect x="100" y="100" width="1800" height="1000" fill="white" rx="16" stroke="#e2e8f0" stroke-width="2"/>
+  <!-- Grid layout for HTML elements -->
   
-  <!-- Title -->
-  <text x="1000" y="200" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="48" font-weight="700" fill="#1e293b">HTML Elements Reference</text>
-  <text x="1000" y="240" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="400" fill="#64748b">Essential building blocks for web pages</text>
+  <!-- Row 1: Document structure -->
+  <rect x="100" y="100" width="450" height="200" rx="12" 
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="130" y="130" width="80" height="40" rx="6" fill="url(#accent)"/>
+  <text x="170" y="155" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="20" font-weight="600" fill="white" text-anchor="middle">
+    &lt;html&gt;
+  </text>
+  <text x="325" y="155" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="24" font-weight="600" fill="#374151" text-anchor="middle">
+    Document Root
+  </text>
+  <text x="325" y="190" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">
+    Contains the entire webpage
+  </text>
+  <text x="325" y="220" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#9ca3af" text-anchor="middle">
+    &lt;html&gt;...&lt;/html&gt;
+  </text>
   
-  <!-- H1 Example -->
-  <rect x="200" y="320" width="1600" height="120" fill="url(#h1Gradient)" rx="12" stroke="#b91c1c" stroke-width="2"/>
-  <text x="240" y="370" font-family="Monaco, Consolas, monospace" font-size="32" font-weight="600" fill="white">&lt;h1&gt;This is the Main Heading&lt;/h1&gt;</text>
-  <text x="240" y="410" font-family="Inter, system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.9)">Largest heading • Used for page titles • Only one per page</text>
+  <rect x="600" y="100" width="450" height="200" rx="12" 
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="630" y="130" width="80" height="40" rx="6" fill="url(#accent)"/>
+  <text x="670" y="155" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="20" font-weight="600" fill="white" text-anchor="middle">
+    &lt;head&gt;
+  </text>
+  <text x="825" y="155" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="24" font-weight="600" fill="#374151" text-anchor="middle">
+    Document Info
+  </text>
+  <text x="825" y="190" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">
+    Page title, CSS, meta tags
+  </text>
+  <text x="825" y="220" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#9ca3af" text-anchor="middle">
+    &lt;head&gt;...&lt;/head&gt;
+  </text>
   
-  <!-- H2 Example -->
-  <rect x="200" y="460" width="1600" height="100" fill="url(#h2Gradient)" rx="12" stroke="#c2410c" stroke-width="2"/>
-  <text x="240" y="505" font-family="Monaco, Consolas, monospace" font-size="28" font-weight="600" fill="white">&lt;h2&gt;This is a Section Heading&lt;/h2&gt;</text>
-  <text x="240" y="540" font-family="Inter, system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.9)">Second level heading • Used for main sections</text>
+  <rect x="1100" y="100" width="450" height="200" rx="12" 
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="1130" y="130" width="80" height="40" rx="6" fill="url(#accent)"/>
+  <text x="1170" y="155" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="20" font-weight="600" fill="white" text-anchor="middle">
+    &lt;body&gt;
+  </text>
+  <text x="1325" y="155" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="24" font-weight="600" fill="#374151" text-anchor="middle">
+    Visible Content
+  </text>
+  <text x="1325" y="190" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">
+    Everything users see
+  </text>
+  <text x="1325" y="220" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#9ca3af" text-anchor="middle">
+    &lt;body&gt;...&lt;/body&gt;
+  </text>
   
-  <!-- H3 Example -->
-  <rect x="200" y="580" width="1600" height="80" fill="url(#h3Gradient)" rx="12" stroke="#d97706" stroke-width="2"/>
-  <text x="240" y="620" font-family="Monaco, Consolas, monospace" font-size="24" font-weight="600" fill="white">&lt;h3&gt;This is a Subsection Heading&lt;/h3&gt;</text>
-  <text x="240" y="645" font-family="Inter, system-ui, sans-serif" font-size="16" fill="rgba(255,255,255,0.9)">Third level heading • Used for subsections</text>
+  <!-- Row 2: Text elements -->
+  <rect x="100" y="350" width="450" height="200" rx="12" 
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="130" y="380" width="60" height="40" rx="6" fill="url(#accent)"/>
+  <text x="160" y="405" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="20" font-weight="600" fill="white" text-anchor="middle">
+    &lt;h1&gt;
+  </text>
+  <text x="325" y="405" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="24" font-weight="600" fill="#374151" text-anchor="middle">
+    Main Heading
+  </text>
+  <text x="325" y="440" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">
+    Largest heading on the page
+  </text>
+  <text x="325" y="470" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#9ca3af" text-anchor="middle">
+    &lt;h1&gt;Welcome!&lt;/h1&gt;
+  </text>
   
-  <!-- Paragraph Example -->
-  <rect x="200" y="680" width="1600" height="120" fill="url(#pGradient)" rx="12" stroke="#7c3aed" stroke-width="2"/>
-  <text x="240" y="720" font-family="Monaco, Consolas, monospace" font-size="20" font-weight="600" fill="white">&lt;p&gt;This is a paragraph of text. Most of your content</text>
-  <text x="240" y="750" font-family="Monaco, Consolas, monospace" font-size="20" font-weight="600" fill="white">will be written inside paragraph tags.&lt;/p&gt;</text>
-  <text x="240" y="780" font-family="Inter, system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.9)">Regular text content • Most common element • Automatic spacing</text>
+  <rect x="600" y="350" width="450" height="200" rx="12" 
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="630" y="380" width="60" height="40" rx="6" fill="url(#accent)"/>
+  <text x="660" y="405" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="20" font-weight="600" fill="white" text-anchor="middle">
+    &lt;h2&gt;
+  </text>
+  <text x="825" y="405" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="24" font-weight="600" fill="#374151" text-anchor="middle">
+    Section Heading
+  </text>
+  <text x="825" y="440" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">
+    Organizes content sections
+  </text>
+  <text x="825" y="470" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#9ca3af" text-anchor="middle">
+    &lt;h2&gt;About Me&lt;/h2&gt;
+  </text>
   
-  <!-- Best Practices Box -->
-  <rect x="200" y="840" width="1600" height="120" fill="#f1f5f9" rx="12" stroke="#cbd5e1" stroke-width="2"/>
-  <text x="240" y="880" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="700" fill="#1e293b">💡 Best Practices</text>
-  <text x="240" y="910" font-family="Inter, system-ui, sans-serif" font-size="18" fill="#475569">• Use headings in order: h1, then h2, then h3 (like an outline)</text>
-  <text x="240" y="935" font-family="Inter, system-ui, sans-serif" font-size="18" fill="#475569">• Every opening tag needs a closing tag: &lt;p&gt; must have &lt;/p&gt;</text>
+  <rect x="1100" y="350" width="450" height="200" rx="12" 
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="1130" y="380" width="60" height="40" rx="6" fill="url(#accent)"/>
+  <text x="1160" y="405" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="20" font-weight="600" fill="white" text-anchor="middle">
+    &lt;p&gt;
+  </text>
+  <text x="1325" y="405" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="24" font-weight="600" fill="#374151" text-anchor="middle">
+    Paragraph
+  </text>
+  <text x="1325" y="440" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">
+    Regular text content
+  </text>
+  <text x="1325" y="470" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#9ca3af" text-anchor="middle">
+    &lt;p&gt;Hello world!&lt;/p&gt;
+  </text>
   
-  <!-- Size indicators -->
-  <text x="1650" y="385" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#475569">LARGEST</text>
-  <text x="1680" y="515" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#475569">LARGE</text>
-  <text x="1670" y="625" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#475569">MEDIUM</text>
-  <text x="1660" y="745" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#475569">REGULAR</text>
+  <!-- Row 3: Interactive elements -->
+  <rect x="100" y="600" width="450" height="200" rx="12" 
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="130" y="630" width="60" height="40" rx="6" fill="url(#accent)"/>
+  <text x="160" y="655" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="20" font-weight="600" fill="white" text-anchor="middle">
+    &lt;a&gt;
+  </text>
+  <text x="325" y="655" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="24" font-weight="600" fill="#374151" text-anchor="middle">
+    Link
+  </text>
+  <text x="325" y="690" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">
+    Clickable links to other pages
+  </text>
+  <text x="325" y="720" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#9ca3af" text-anchor="middle">
+    &lt;a href="..."&gt;Click here&lt;/a&gt;
+  </text>
+  
+  <rect x="600" y="600" width="450" height="200" rx="12" 
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="630" y="630" width="70" height="40" rx="6" fill="url(#accent)"/>
+  <text x="665" y="655" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="20" font-weight="600" fill="white" text-anchor="middle">
+    &lt;img&gt;
+  </text>
+  <text x="825" y="655" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="24" font-weight="600" fill="#374151" text-anchor="middle">
+    Image
+  </text>
+  <text x="825" y="690" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">
+    Display pictures and graphics
+  </text>
+  <text x="825" y="720" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#9ca3af" text-anchor="middle">
+    &lt;img src="..." alt="..."&gt;
+  </text>
+  
+  <rect x="1100" y="600" width="450" height="200" rx="12" 
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="1130" y="630" width="70" height="40" rx="6" fill="url(#accent)"/>
+  <text x="1165" y="655" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="20" font-weight="600" fill="white" text-anchor="middle">
+    &lt;div&gt;
+  </text>
+  <text x="1325" y="655" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="24" font-weight="600" fill="#374151" text-anchor="middle">
+    Container
+  </text>
+  <text x="1325" y="690" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">
+    Groups elements together
+  </text>
+  <text x="1325" y="720" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="16" font-weight="400" fill="#9ca3af" text-anchor="middle">
+    &lt;div&gt;...&lt;/div&gt;
+  </text>
+  
+  <!-- Bottom note -->
+  <text x="1000" y="880" font-family="Inter, -apple-system, system-ui, sans-serif" 
+        font-size="20" font-weight="500" fill="#64748b" text-anchor="middle">
+    These are the essential HTML elements you'll use to build every web page
+  </text>
 </svg>

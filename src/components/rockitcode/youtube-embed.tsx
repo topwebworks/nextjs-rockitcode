@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import YouTube, { YouTubeProps } from 'react-youtube'
+import { clsx } from 'clsx'
 import { CirclePlayIcon } from '../../icons/circle-play-icon'
 
 export interface YouTubeEmbedProps {
@@ -38,6 +39,9 @@ export function YouTubeEmbed({
   const [isReady, setIsReady] = useState(false)
   const [player, setPlayer] = useState<any>(null)
   const [progress, setProgress] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isOffscreen, setIsOffscreen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   // Calculate height based on aspect ratio if not provided
   const calculatedHeight = height || (aspectRatio === '16:9' ? '56.25%' : '75%')
@@ -59,6 +63,25 @@ export function YouTubeEmbed({
     }
   }
 
+  // Intersection Observer for picture-in-picture effect
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsOffscreen(!entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Trigger when video is mostly out of view
+    );
+
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   const onReady = (event: any) => {
     setPlayer(event.target)
     setIsReady(true)
@@ -66,6 +89,12 @@ export function YouTubeEmbed({
 
   const onStateChange = (event: any) => {
     // YouTube player states: -1 (unstarted), 0 (ended), 1 (playing), 2 (paused), 3 (buffering), 5 (cued)
+    if (event.data === 1) {
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
+    
     if (event.data === 0) {
       onComplete?.()
     }
@@ -89,7 +118,13 @@ export function YouTubeEmbed({
   }, [player, isReady, onProgress])
 
   return (
-    <div className={`rockitcode-youtube-embed ${className}`}>
+    <div 
+      ref={containerRef}
+      className={clsx(
+        "group aspect-video w-full rounded-2xl bg-zinc-100 dark:bg-zinc-800",
+        className
+      )}
+    >
       {title && (
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
@@ -104,10 +139,10 @@ export function YouTubeEmbed({
       )}
       
       <div 
-        className="relative overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800"
+        className="relative overflow-hidden rounded-lg"
         style={{ 
-          paddingBottom: typeof calculatedHeight === 'string' ? calculatedHeight : `${calculatedHeight}px`,
-          height: typeof calculatedHeight === 'number' ? `${calculatedHeight}px` : 0
+          paddingBottom: isOffscreen && isPlaying ? '0' : (typeof calculatedHeight === 'string' ? calculatedHeight : `${calculatedHeight}px`),
+          height: (isOffscreen && isPlaying) ? 'auto' : (typeof calculatedHeight === 'number' ? `${calculatedHeight}px` : 0)
         }}
       >
         <YouTube
@@ -115,8 +150,25 @@ export function YouTubeEmbed({
           opts={opts}
           onReady={onReady}
           onStateChange={onStateChange}
-          className="absolute inset-0 h-full w-full"
-          iframeClassName="w-full h-full"
+          data-offscreen={isOffscreen ? "" : undefined}
+          data-playing={isPlaying ? "" : undefined}
+          className={clsx(
+            "absolute inset-0 h-full w-full",
+            // Picture-in-picture styles when offscreen and playing
+            "data-[offscreen]:data-[playing]:fixed",
+            "data-[offscreen]:data-[playing]:right-4", 
+            "data-[offscreen]:data-[playing]:bottom-4",
+            "data-[offscreen]:data-[playing]:z-50",
+            "data-[offscreen]:data-[playing]:w-80",
+            "data-[offscreen]:data-[playing]:h-auto",
+            "data-[offscreen]:data-[playing]:aspect-video",
+            "data-[offscreen]:data-[playing]:shadow-2xl",
+            "data-[offscreen]:data-[playing]:border",
+            "data-[offscreen]:data-[playing]:border-zinc-200",
+            "dark:data-[offscreen]:data-[playing]:border-zinc-700",
+            "data-[offscreen]:data-[playing]:rounded-lg"
+          )}
+          iframeClassName="w-full h-full rounded-inherit"
         />
       </div>
 
