@@ -7,6 +7,7 @@ import {
   DropdownMenu,
 } from "@/components/dropdown";
 import { IconButton } from "@/components/icon-button";
+import { AuthButton } from "@/components/rockitcode/auth-button";
 import { ChevronDownIcon } from "@/icons/chevron-down-icon";
 import { CloseIcon } from "@/icons/close-icon";
 import { MenuIcon } from "@/icons/menu-icon";
@@ -17,6 +18,7 @@ import {
   DialogPanel,
 } from "@headlessui/react";
 import { clsx } from "clsx";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import type React from "react";
 import { useState } from "react";
@@ -43,6 +45,8 @@ function MobileNavigation({
   open: boolean;
   onClose: () => void;
 }) {
+  const { data: session } = useSession();
+
   return (
     <Dialog open={open} onClose={onClose} className="lg:hidden">
       <DialogBackdrop className="fixed inset-0 bg-gray-950/25" />
@@ -70,22 +74,60 @@ function MobileNavigation({
                 </CloseButton>
               ))}
             </div>
-            <div className="mt-6 flex flex-col gap-y-2">
-              <h3 className="px-4 py-1 text-sm/7 text-gray-500">Account</h3>
-              {[
-                ["Settings", "#"],
-                ["Support", "#"],
-                ["Sign out", "/login"],
-              ].map(([title, href], index) => (
-                <CloseButton
-                  as={Link}
-                  key={index}
-                  href={href}
-                  className="rounded-md px-4 py-1 text-sm/7 font-semibold text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
-                >
-                  {title}
-                </CloseButton>
-              ))}
+            
+            {/* Mobile Authentication */}
+            <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
+              {session ? (
+                <div className="space-y-3">
+                  <div className="px-4">
+                    <div className="flex items-center gap-3">
+                      {session.user.image && (
+                        <img
+                          src={session.user.image}
+                          alt={session.user.name || 'User avatar'}
+                          className="h-8 w-8 rounded-full border border-gray-200 dark:border-gray-700"
+                        />
+                      )}
+                      <div>
+                        <p className="text-sm font-medium text-gray-900 dark:text-white">
+                          {session.user.name}
+                        </p>
+                        {session.user.login && (
+                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                            @{session.user.login}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-y-1">
+                    <CloseButton
+                      as={Link}
+                      href="/dashboard"
+                      className="rounded-md px-4 py-1 text-sm/7 font-semibold text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
+                    >
+                      Dashboard
+                    </CloseButton>
+                    <CloseButton
+                      as={Link}
+                      href="/settings"
+                      className="rounded-md px-4 py-1 text-sm/7 font-semibold text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
+                    >
+                      Settings
+                    </CloseButton>
+                    <button
+                      onClick={() => signOut({ callbackUrl: '/login' })}
+                      className="rounded-md px-4 py-1 text-left text-sm/7 font-semibold text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
+                    >
+                      Sign out
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="px-4">
+                  <AuthButton variant="primary" size="sm" className="w-full justify-center" />
+                </div>
+              )}
             </div>
           </div>
         </DialogPanel>
@@ -96,6 +138,7 @@ function MobileNavigation({
 
 function SiteNavigation() {
   let [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <nav className="flex items-center">
@@ -106,21 +149,36 @@ function SiteNavigation() {
         open={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
       />
-      <div className="flex gap-x-6 text-sm/6 text-gray-950 max-lg:hidden dark:text-white">
+      <div className="flex items-center gap-x-6 text-sm/6 text-gray-950 max-lg:hidden dark:text-white">
         <Link href="/">Course</Link>
         <Link href="/interviews">Interviews</Link>
         <Link href="/resources">Resources</Link>
-        <Dropdown>
-          <DropdownButton className="inline-flex items-center gap-x-2 focus:not-data-focus:outline-none">
-            Account
-            <ChevronDownIcon className="stroke-gray-950 dark:stroke-white" />
-          </DropdownButton>
-          <DropdownMenu anchor="bottom end">
-            <DropdownItem href="#">Settings</DropdownItem>
-            <DropdownItem href="#">Support</DropdownItem>
-            <DropdownItem href="/login">Sign out</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+        
+        {session ? (
+          <Dropdown>
+            <DropdownButton className="inline-flex items-center gap-x-2 focus:not-data-focus:outline-none">
+              <div className="flex items-center gap-2">
+                {session.user.image && (
+                  <img
+                    src={session.user.image}
+                    alt={session.user.name || 'User avatar'}
+                    className="h-6 w-6 rounded-full border border-gray-200 dark:border-gray-700"
+                  />
+                )}
+                <span className="max-w-24 truncate">{session.user.name}</span>
+              </div>
+              <ChevronDownIcon className="stroke-gray-950 dark:stroke-white" />
+            </DropdownButton>
+            <DropdownMenu anchor="bottom end">
+              <DropdownItem href="/dashboard">Dashboard</DropdownItem>
+              <DropdownItem href="/settings">Settings</DropdownItem>
+              <DropdownItem href="/support">Support</DropdownItem>
+              <DropdownItem href="/api/auth/signout">Sign out</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        ) : (
+          <AuthButton variant="primary" size="sm" />
+        )}
       </div>
     </nav>
   );

@@ -11,7 +11,9 @@ import {
   EXERCISE_TEMPLATES,
   LessonContent,
   createLessonSection,
-  SECTION_TEMPLATES
+  SECTION_TEMPLATES,
+  AuthButton,
+  AuthStatus
 } from '@/components/rockitcode'
 import { SidebarLayoutContent } from '@/components/sidebar-layout'
 import { 
@@ -257,6 +259,79 @@ greetUser('Developer')`}
       </div>,
       'code',
       { estimatedMinutes: 20 }
+    ),
+
+    createLessonSection(
+      'authentication-demo',
+      'Authentication Components',
+      <div className="space-y-4">
+        <p>Integrate authentication seamlessly with our ready-to-use components:</p>
+        
+        <div className="space-y-4">
+          <div>
+            <h4 className="text-lg font-semibold mb-2">AuthButton Component</h4>
+            <CodeDisplay
+              code={`import { AuthButton } from '@/components/rockitcode'
+
+function LoginPage() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-4xl font-bold mb-8">Welcome Back!</h1>
+      <AuthButton
+        provider="google"
+        onLoginSuccess={(user) => console.log('Login successful:', user)}
+        onLoginFailure={(error) => console.log('Login failed:', error)}
+        className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-colors"
+      >
+        Login with Google
+      </AuthButton>
+    </div>
+  )
+}
+
+export default LoginPage`}
+              language="javascript"
+              title="AuthButton Component Demo"
+              showLineNumbers={true}
+              allowCopy={true}
+              maxHeight="400px"
+            />
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold mb-2">AuthStatus Component</h4>
+            <CodeDisplay
+              code={`import { AuthStatus } from '@/components/rockitcode'
+
+function UserProfile() {
+  return (
+    <div className="p-6 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-4">User Profile</h2>
+      <AuthStatus
+        loggedInComponent={<p className="text-green-600">You are logged in!</p>}
+        loggedOutComponent={<p className="text-red-600">You are not logged in.</p>}
+        className="text-center"
+      />
+    </div>
+  )
+}
+
+export default UserProfile`}
+              language="javascript"
+              title="AuthStatus Component Demo"
+              showLineNumbers={true}
+              allowCopy={true}
+              maxHeight="400px"
+            />
+          </div>
+        </div>
+
+        <p className="text-zinc-600 dark:text-zinc-400">
+          The Authentication components are designed to be flexible and easy to use, providing essential functionality for user management.
+        </p>
+      </div>,
+      'text',
+      { estimatedMinutes: 15 }
     )
   ]
 
@@ -280,6 +355,30 @@ greetUser('Developer')`}
             Modular, scalable, and efficient components powering the next generation of online learning
           </p>
         </div>
+
+        {/* Authentication Demo */}
+        <PageSection title="🔐 Authentication System">
+          <div className="space-y-6">
+            <p className="text-zinc-600 dark:text-zinc-400">
+              Live authentication demo using GitHub OAuth. Try signing in and see how the components adapt:
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-4 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700">
+                <h4 className="text-lg font-semibold mb-3">Authentication Status</h4>
+                <AuthStatus showLoginPrompt={true} />
+              </div>
+              
+              <div className="p-4 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700">
+                <h4 className="text-lg font-semibold mb-3">Authentication Button</h4>
+                <div className="space-y-3">
+                  <AuthButton variant="primary" size="md" showAvatar={true} />
+                  <AuthButton variant="outline" size="sm" showAvatar={false} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </PageSection>
 
         {/* Progress Tracker Demo */}
         <PageSection title="📊 Progress Tracking System">

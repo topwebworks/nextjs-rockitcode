@@ -2,6 +2,7 @@ import { clsx } from "clsx";
 import { GeistMono } from "geist/font/mono";
 import localFont from "next/font/local";
 import type React from "react";
+import { RockitSessionProvider } from '@/components/rockitcode/session-provider'
 import "./globals.css";
 
 const InterVariable = localFont({
@@ -27,7 +28,9 @@ export default function RootLayout({
       )}
     >
       <body>
-        <div className="isolate">{children}</div>
+        <RockitSessionProvider>
+          <div className="isolate">{children}</div>
+        </RockitSessionProvider>
       </body>
     </html>
   );

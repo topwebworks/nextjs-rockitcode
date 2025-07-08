@@ -23,5 +23,9 @@ export { RockitLessonRenderer } from './lesson-renderer'
 
 export { LessonNavigation } from './lesson-navigation'
 
+// Authentication Components
+export { RockitSessionProvider } from './session-provider'
+export { AuthButton, AuthStatus } from './auth-button'
+
 // Helper functions and utilities
 export { type RockitCourse, type RockitMilestone } from '../../data/rockitcode-courses'
