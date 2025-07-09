@@ -1,6 +1,6 @@
-# Compass
+# RockitCode Learning Platform
 
-Compass is a [Tailwind Plus](https://tailwindcss.com/plus) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+RockitCode is a modern, block-based learning platform built with [Next.js](https://nextjs.org) and [Tailwind CSS](https://tailwindcss.com). It leverages [Tailwind UI Plus](https://tailwindcss.com/plus) components as a foundation for creating an engaging, accessible, and mobile-first coding education experience.
 
 ## Getting started
 

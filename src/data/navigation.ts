@@ -165,11 +165,11 @@ export function getNavigationSections(): NavigationSection[] {
       },
       {
         id: 'interviews',
-        title: 'Developer Interviews',
-        description: 'Learn from experienced developers',
+        title: 'Developer Stories',
+        description: 'Success stories from our graduates',
         url: '/interviews',
         type: 'page' as const,
-        icon: '🎙️',
+        icon: '�',
       },
       {
         id: 'resources',

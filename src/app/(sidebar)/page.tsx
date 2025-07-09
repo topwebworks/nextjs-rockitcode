@@ -8,7 +8,7 @@ import { ContentLink } from "@/components/content-link";
 import { Logo } from "@/components/logo";
 import { PageSection } from "@/components/page-section";
 import { SidebarLayoutContent } from "@/components/sidebar-layout";
-import { getModules, type Module } from "@/data/lessons";
+import { lessons, getModules, type Module } from "@/data/lessons";
 import { getRockitCourses } from "@/data/rockitcode-courses";
 import { BookIcon } from "@/icons/book-icon";
 import { ClockIcon } from "@/icons/clock-icon";
@@ -31,14 +31,9 @@ function formatDuration(seconds: number): string {
 }
 
 export default async function Page() {
-  let modules = await getModules();
+  let modules = getModules();
   let rockitCourses = getRockitCourses();
-  let lessons = modules.flatMap(({ lessons }) => lessons);
-  let duration = lessons.reduce(
-    (sum, { video }) => sum + (video?.duration ?? 0),
-    0,
-  );
-
+  
   // Calculate RockitCode course stats
   let totalRockitLessons = rockitCourses.reduce((sum, course) => 
     sum + course.milestones.reduce((milestoneSum, milestone) => 
@@ -213,13 +208,13 @@ export default async function Page() {
                     Explore More Learning Materials
                   </h2>
                   <p className="mt-4 text-base/7 text-gray-700 sm:text-sm/7 dark:text-gray-400">
-                    Dive deeper with additional resources, developer interviews, and comprehensive guides.
+                    Dive deeper with additional resources, developer success stories, and comprehensive guides.
                   </p>
 
                   <div className="mt-6 space-y-4">
                     <ContentLink
-                      title="Developer Interviews"
-                      description="Learn from experienced developers about their coding journey"
+                      title="Developer Stories"
+                      description="Success stories from RockitCode graduates who landed dream jobs"
                       href="/interviews"
                       type="video"
                     />
@@ -238,43 +233,6 @@ export default async function Page() {
                   </div>
                 </div>
               </PageSection>
-
-              {/* Template Content (for backward compatibility) */}
-              {modules.length > 0 && (
-                <PageSection
-                  id="template-content"
-                  title="🧭 Additional Learning Modules"
-                >
-                  <div className="max-w-2xl">
-                    <h2 className="text-2xl/7 font-medium tracking-tight text-pretty text-gray-950 dark:text-white">
-                      Foundational Learning Concepts
-                    </h2>
-                    <p className="mt-4 text-base/7 text-gray-700 sm:text-sm/7 dark:text-gray-400">
-                      Explore additional learning modules covering essential concepts and methodologies.
-                    </p>
-
-                    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {modules.slice(0, 4).map((module: Module) => (
-                        <Link
-                          key={module.id}
-                          href={`/${module.lessons[0]?.id || module.id}`}
-                          className="group block p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all dark:border-gray-700 dark:hover:border-gray-600"
-                        >
-                          <h3 className="font-medium text-gray-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                            {module.title}
-                          </h3>
-                          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
-                            {module.description}
-                          </p>
-                          <div className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-                            {module.lessons.length} lessons
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </PageSection>
-              )}
             </div>
           </div>
         </div>

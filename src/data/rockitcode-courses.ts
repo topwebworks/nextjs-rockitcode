@@ -423,20 +423,355 @@ p {
         ]
       },
       {
-        id: "html-css-milestone-2",
+        id: "html-css-milestone-setup",
+        title: "🚀 Developer Environment Setup - Go Pro!",
+        description: "Set up professional coding tools like the pros use. VSCode, GitHub, and your first live website - all free!",
+        order: 2,
+        isPaid: false, // FREE milestone - critical for student success
+        lessons: [
+          {
+            id: "why-professional-tools",
+            title: "Why Do Developers Use Special Tools?",
+            description: "Discover why professional developers use code editors, version control, and other tools that make coding 10x easier and more fun!",
+            order: 1,
+            estimatedMinutes: 15,
+            video: {
+              youtubeId: "dQw4w9WgXcQ", // Placeholder - will be replaced with actual educational video
+              duration: 900, // 15 minutes
+              thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/setup/coding-tools-analogy.svg",
+                alt: "Professional coding tools explained through analogies",
+                title: "Coding Tools Are Like Professional Equipment",
+                caption: "Just like a chef has professional knives, developers have professional tools"
+              }
+            ],
+            codeExamples: [], // No code needed - this is conceptual
+            exercises: [],
+            embeds: []
+          },
+          {
+            id: "vscode-setup",
+            title: "Set Up VSCode - Your Coding Superpower",
+            description: "Install and configure Visual Studio Code with all the extensions you need. We'll walk through every single step together!",
+            order: 2,
+            estimatedMinutes: 25,
+            video: {
+              youtubeId: "dQw4w9WgXcQ", // Placeholder
+              duration: 1500, // 25 minutes
+              thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/setup/vscode-interface-guide.svg",
+                alt: "VSCode interface walkthrough for beginners",
+                title: "Your New Coding Home",
+                caption: "A guided tour of the VSCode interface"
+              }
+            ],
+            codeExamples: [
+              {
+                title: "🎉 Your First Local HTML File",
+                language: "html",
+                code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Setup!</title>
+</head>
+<body>
+    <h1>🚀 I'm coding with professional tools!</h1>
+    <p>This HTML file is on MY computer, created with VSCode!</p>
+    <p>I can edit it, save it, and see changes instantly.</p>
+    
+    <!-- Try changing this text and saving the file! -->
+    <h2>What I love about coding so far:</h2>
+    <ul>
+        <li>It's creative and fun!</li>
+        <li>I can build things people will actually use</li>
+        <li>There's always something new to learn</li>
+    </ul>
+</body>
+</html>`,
+                explanation: "This is your first HTML file created in VSCode! Notice how the editor gives you colors, auto-completion, and catches typos automatically."
+              }
+            ],
+            exercises: [
+              {
+                title: "🛠️ Exercise: Set Up Your Coding Environment",
+                description: "Follow our step-by-step guide to install VSCode, configure it with helpful extensions, and create your first local HTML file. We'll test everything to make sure it works perfectly!",
+                starterCode: "", // No starter code - this is setup
+                solution: "", // No solution - this is about following instructions
+                hints: [
+                  "💡 Download VSCode from code.visualstudio.com",
+                  "🎯 Install the Live Server extension for instant previews",
+                  "🎨 Add the 'Prettier' extension to automatically format your code",
+                  "📁 Create a 'my-websites' folder on your desktop to organize projects",
+                  "🧪 Test everything by creating and opening an HTML file"
+                ]
+              }
+            ],
+            embeds: [
+              {
+                type: "stackblitz",
+                url: "https://stackblitz.com/edit/vscode-setup-practice",
+                title: "Practice VSCode Features"
+              }
+            ]
+          },
+          {
+            id: "github-basics",
+            title: "GitHub - Save Your Code Forever",
+            description: "Learn why every developer uses GitHub and set up your own account. We'll show you how to save your projects online and share them with the world!",
+            order: 3,
+            estimatedMinutes: 20,
+            video: {
+              youtubeId: "dQw4w9WgXcQ", // Placeholder
+              duration: 1200, // 20 minutes
+              thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/setup/github-explained-simple.svg",
+                alt: "GitHub explained in simple terms for beginners",
+                title: "GitHub: Like Google Drive for Code",
+                caption: "Understanding GitHub through familiar analogies"
+              }
+            ],
+            codeExamples: [],
+            exercises: [
+              {
+                title: "🌐 Exercise: Create Your GitHub Account and First Repository",
+                description: "Set up your GitHub account, create your first repository, and upload your HTML files. By the end, you'll have a live website on the internet!",
+                starterCode: "",
+                solution: "",
+                hints: [
+                  "🌟 Choose a professional username - this will be part of your developer identity",
+                  "📧 Use your real email address for account verification",
+                  "🔒 Set up two-factor authentication for security",
+                  "📁 Create your first repository called 'my-first-website'",
+                  "🌐 Enable GitHub Pages to make your site live at [username].github.io/my-first-website"
+                ]
+              }
+            ],
+            embeds: []
+          },
+          {
+            id: "github-desktop",
+            title: "GitHub Desktop - Git Made Simple",
+            description: "Skip the command line complexity! Use GitHub Desktop to easily manage your code with a point-and-click interface.",
+            order: 4,
+            estimatedMinutes: 15,
+            video: {
+              youtubeId: "dQw4w9WgXcQ", // Placeholder
+              duration: 900, // 15 minutes
+              thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/setup/github-desktop-workflow.svg",
+                alt: "GitHub Desktop workflow for beginners",
+                title: "Visual Git Workflow",
+                caption: "Managing code changes with GitHub Desktop"
+              }
+            ],
+            codeExamples: [],
+            exercises: [
+              {
+                title: "🔄 Exercise: Your First Code Backup and Update",
+                description: "Use GitHub Desktop to connect your local project to GitHub, make some changes to your HTML, and push them live. Watch your website update automatically!",
+                starterCode: "",
+                solution: "",
+                hints: [
+                  "⬇️ Download GitHub Desktop from desktop.github.com",
+                  "🔗 Clone your repository to your computer",
+                  "✏️ Make changes to your HTML files in VSCode",
+                  "💾 Commit your changes with a descriptive message",
+                  "☁️ Push to GitHub and watch your live site update!"
+                ]
+              }
+            ],
+            embeds: []
+          },
+          {
+            id: "live-website",
+            title: "🌐 Your Website Goes Live!",
+            description: "The exciting moment - put your website on the real internet! Learn about GitHub Pages and share your creation with friends and family.",
+            order: 5,
+            estimatedMinutes: 10,
+            video: {
+              youtubeId: "dQw4w9WgXcQ", // Placeholder
+              duration: 600, // 10 minutes
+              thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/setup/github-pages-explained.svg",
+                alt: "How GitHub Pages works to host websites for free",
+                title: "Free Website Hosting with GitHub Pages",
+                caption: "Turn your GitHub repository into a live website"
+              }
+            ],
+            codeExamples: [
+              {
+                title: "🎉 Add a 'Built with RockitCode' Footer",
+                language: "html",
+                code: `<!-- Add this to the bottom of your <body> section -->
+<footer style="margin-top: 50px; padding: 20px; background-color: #f0f0f0; text-align: center;">
+    <p>🚀 Built with <a href="https://rockitcode.com">RockitCode</a></p>
+    <p>👨‍💻 Created by [Your Name] | 📧 [your-email@example.com]</p>
+</footer>`,
+                explanation: "Add a professional footer to show off your new skills! Replace [Your Name] and [your-email@example.com] with your actual information."
+              }
+            ],
+            exercises: [
+              {
+                title: "🎊 Exercise: Launch Your Website and Share It!",
+                description: "Enable GitHub Pages for your repository, test your live website, and share it with at least 3 people. Welcome to the web!",
+                starterCode: "",
+                solution: "",
+                hints: [
+                  "⚙️ Go to your repository settings on GitHub.com",
+                  "📄 Find the 'Pages' section in the sidebar",
+                  "🌐 Enable Pages with 'Deploy from a branch' > 'main'",
+                  "⏰ Wait 2-5 minutes for deployment",
+                  "🔗 Your site will be live at [username].github.io/[repository-name]",
+                  "📱 Test it on your phone - it should work there too!",
+                  "💬 Share the link with friends, family, or on social media"
+                ]
+              }
+            ],
+            embeds: []
+          },
+          {
+            id: "professional-workflow",
+            title: "🎯 Your Professional Developer Workflow",
+            description: "Bring it all together! Learn the daily workflow that professional developers use: code in VSCode, save to GitHub, see changes live.",
+            order: 6,
+            estimatedMinutes: 15,
+            video: {
+              youtubeId: "dQw4w9WgXcQ", // Placeholder
+              duration: 900, // 15 minutes
+              thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/setup/developer-workflow-cycle.svg",
+                alt: "The professional developer workflow cycle",
+                title: "The Developer Workflow Loop",
+                caption: "Code → Save → Test → Commit → Push → Repeat"
+              }
+            ],
+            codeExamples: [
+              {
+                title: "🔥 Practice Project: Personal Portfolio Page",
+                language: "html",
+                code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Your Name] - Aspiring Web Developer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; text-align: center; }
+        h2 { color: #666; border-bottom: 2px solid #ddd; }
+        .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill { background: #007bff; color: white; padding: 5px 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👋 Hi, I'm [Your Name]!</h1>
+        <h2>🎯 About Me</h2>
+        <p>I'm learning web development with RockitCode and loving every minute of it!</p>
+        
+        <h2>🛠️ Skills I'm Learning</h2>
+        <div class="skills">
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">GitHub</span>
+            <span class="skill">VSCode</span>
+        </div>
+        
+        <h2>🚀 My Goals</h2>
+        <ul>
+            <li>Build amazing websites</li>
+            <li>Learn JavaScript</li>
+            <li>Create my dream project</li>
+            <li>Help others learn to code</li>
+        </ul>
+        
+        <h2>📬 Contact Me</h2>
+        <p>
+            📧 Email: [your-email]<br>
+            🐙 GitHub: <a href="https://github.com/[your-username]">github.com/[your-username]</a>
+        </p>
+    </div>
+</body>
+</html>`,
+                explanation: "This is a complete portfolio template! Replace all the [bracketed] sections with your information, save it as a new file, and push it to GitHub. You now have a professional developer portfolio!"
+              }
+            ],
+            exercises: [
+              {
+                title: "🎨 Final Exercise: Complete Your Developer Setup",
+                description: "Put everything together! Create a professional portfolio page, use your full workflow to get it live, and celebrate becoming a properly equipped developer.",
+                starterCode: "",
+                solution: "",
+                hints: [
+                  "📂 Create a new folder called 'portfolio' in your websites directory",
+                  "📝 Use the portfolio template provided, but make it uniquely yours",
+                  "🎨 Experiment with colors, fonts, and layout",
+                  "📸 Consider adding a professional photo if you have one",
+                  "🔗 Link to your other projects",
+                  "💾 Use your full workflow: VSCode → GitHub Desktop → GitHub Pages",
+                  "🎉 Share your portfolio with the RockitCode community!"
+                ]
+              }
+            ],
+            embeds: [
+              {
+                type: "codepen",
+                url: "https://codepen.io/rockitcode/pen/portfolio-template",
+                title: "Portfolio Template Playground"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "html-css-milestone-3",
         title: "Responsive Design",
         description: "Make websites that work on all devices",
-        order: 2,
+        order: 3,
         isPaid: true, // PAID milestone
         lessons: [
           // Lessons 11-20 would go here
         ]
       },
       {
-        id: "html-css-milestone-3",
+        id: "html-css-milestone-4",
         title: "Advanced Layouts",
         description: "Master Flexbox, Grid, and modern CSS",
-        order: 3,
+        order: 4,
         isPaid: true, // PAID milestone
         lessons: [
           // Lessons 21-30 would go here

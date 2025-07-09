@@ -5,18 +5,14 @@ import {
   BreadcrumbSeparator,
 } from "@/components/breadcrumbs";
 import { CenteredPageLayout } from "@/components/centered-layout";
-import { NextPageLink } from "@/components/next-page-link";
-import { TimestampButton, Video } from "@/components/video-player";
-import { getInterview, getInterviewTranscript } from "@/data/interviews";
-import { ClockIcon } from "@/icons/clock-icon";
+import { getDeveloperStory, getDeveloperStories } from "@/data/interviews";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
-function formatDuration(seconds: number): string {
-  let h = Math.floor(seconds / 3600);
-  let m = Math.floor((seconds % 3600) / 60);
-
-  return h > 0 ? (m > 0 ? `${h} hr ${m} min` : `${h} hr`) : `${m} min`;
+export async function generateStaticParams() {
+  const stories = getDeveloperStories();
+  return stories.map((story) => ({ slug: story.id }));
 }
 
 export async function generateMetadata({
@@ -24,26 +20,24 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  let interview = await getInterview((await params).slug);
+  const story = getDeveloperStory((await params).slug);
 
   return {
-    title: `Interview with ${interview?.name} - Compass`,
-    description: interview?.subtitle,
+    title: `${story?.name} - Developer Success Story - RockitCode`,
+    description: story?.subtitle,
   };
 }
 
-export default async function Page({
+export default async function DeveloperStoryPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  let interview = await getInterview((await params).slug);
+  const story = getDeveloperStory((await params).slug);
 
-  if (!interview) {
+  if (!story) {
     notFound();
   }
-
-  let transcript = await getInterviewTranscript(interview.id);
 
   return (
     <CenteredPageLayout
@@ -51,105 +45,112 @@ export default async function Page({
         <Breadcrumbs>
           <BreadcrumbHome />
           <BreadcrumbSeparator />
-          <Breadcrumb href="/interviews">Interviews</Breadcrumb>
+          <Breadcrumb href="/interviews">Developer Stories</Breadcrumb>
           <BreadcrumbSeparator />
-          <Breadcrumb>{interview.name}</Breadcrumb>
+          <Breadcrumb>{story.name}</Breadcrumb>
         </Breadcrumbs>
       }
     >
-      <div className="-mx-2 sm:-mx-4">
-        <Video
-          id="video"
-          src={interview.video.hd}
-          poster={interview.video.thumbnail}
-        />
-      </div>
-      <div className="mx-auto max-w-2xl py-14">
-        <div className="space-y-16">
-          <div className="space-y-6">
-            <hgroup>
-              <p className="text-sm/7 font-semibold text-gray-500">Interview</p>
-              <h1 className="text-3xl tracking-tight text-gray-950 dark:text-white">
-                {interview.name}
-              </h1>
-            </hgroup>
-            <p className="text-base/7 text-gray-700 dark:text-gray-400">
-              {interview.intro}
+      <div className="mt-10 sm:mt-14">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+            {story.name}
+          </h1>
+          <p className="mt-4 text-xl text-blue-600 dark:text-blue-400 font-semibold">
+            {story.role} at {story.company}
+          </p>
+          <p className="mt-2 text-lg text-gray-600 dark:text-gray-300">
+            {story.subtitle}
+          </p>
+          {story.timeToLanding && (
+            <div className="mt-4 inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium dark:bg-green-900 dark:text-green-300">
+              Landed job in {story.timeToLanding}
+            </div>
+          )}
+        </div>
+
+        {/* Story Content */}
+        <div className="mt-16 max-w-3xl mx-auto">
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm dark:bg-gray-900 dark:border-gray-800">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              Success Story
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              {story.story}
             </p>
-            <div className="flex items-center gap-x-2 text-sm/7 font-semibold text-gray-950 dark:text-white">
-              <ClockIcon className="stroke-gray-950/40 dark:stroke-white/40" />
-              <span>{formatDuration(interview.video.duration)}</span>
-            </div>
+            
+            {story.testimonial && (
+              <div className="mt-8 border-l-4 border-blue-500 pl-6">
+                <blockquote className="text-lg italic text-gray-600 dark:text-gray-400">
+                  "{story.testimonial}"
+                </blockquote>
+                <cite className="block mt-2 text-sm font-medium text-gray-500 dark:text-gray-500">
+                  — {story.name}
+                </cite>
+              </div>
+            )}
           </div>
-          <div>
-            <h2 className="border-b border-gray-950/5 pb-4 text-2xl font-medium tracking-tight text-gray-950 dark:border-white/10 dark:text-white">
-              Chapters
-            </h2>
-            <div className="mt-8 grid grid-cols-[auto_1fr] gap-x-6 gap-y-4">
-              {interview.chapters.map(({ start, title }) => (
-                <div
-                  key={start}
-                  className="col-span-2 grid grid-cols-subgrid items-baseline"
-                >
-                  <TimestampButton
-                    start={start}
-                    videoId="video"
-                    className="justify-self-end"
-                  />
-                  <p className="text-sm/7 font-semibold text-gray-950 dark:text-white">
-                    {title}
-                  </p>
-                </div>
-              ))}
-            </div>
+
+          {/* Career Journey */}
+          <div className="mt-8 bg-gray-50 rounded-2xl p-8 dark:bg-gray-800">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+              Career Journey
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300">
+              {story.careerPath}
+            </p>
+            {story.previousRole && (
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                Previous role: {story.previousRole}
+              </p>
+            )}
           </div>
-          <div>
-            <h2 className="border-b border-gray-950/5 pb-4 text-2xl font-medium tracking-tight text-gray-950 dark:border-white/10 dark:text-white">
-              Transcript
-            </h2>
-            <div className="mt-8 grid grid-cols-[auto_1fr] gap-x-6 gap-y-8">
-              {transcript.map(({ start, speaker, text }) => (
-                <div
-                  key={start}
-                  className="col-span-2 grid grid-cols-subgrid items-baseline"
+
+          {/* Skills */}
+          <div className="mt-8 bg-white rounded-2xl border border-gray-200 p-8 shadow-sm dark:bg-gray-900 dark:border-gray-800">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+              Technical Skills
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {story.skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                 >
-                  <TimestampButton
-                    start={start}
-                    videoId="video"
-                    className="justify-self-end"
-                  />
-                  <div>
-                    <p className="text-sm/7 font-semibold text-gray-950 dark:text-white">
-                      {speaker}
-                    </p>
-                    {text.map((p, index) => (
-                      <p
-                        key={index}
-                        className="mt-2 text-sm/7 whitespace-pre-wrap text-gray-700 dark:text-gray-400"
-                      >
-                        {p}
-                      </p>
-                    ))}
-                  </div>
-                </div>
+                  {skill}
+                </span>
               ))}
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-gray-200 pt-8 dark:border-white/10">
-          {interview.next ? (
-            <NextPageLink
-              title={interview.next.name}
-              description={interview.next.subtitle}
-              href={`/interviews/${interview.next.id}`}
-            />
-          ) : (
-            <NextPageLink
-              title="Resources"
-              description="Before you decide where to go, you need to know where you're starting from."
-              href="/resources"
-            />
-          )}
+
+        {/* Call to Action */}
+        <div className="mt-16 text-center">
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white">
+            <h3 className="text-2xl font-bold mb-4">
+              Ready to start your journey?
+            </h3>
+            <p className="text-lg mb-6 opacity-90">
+              Join {story.name} and thousands of other successful developers who transformed their careers with RockitCode.
+            </p>
+            <Link
+              href="/"
+              className="inline-flex items-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              Start Learning Today
+            </Link>
+          </div>
+        </div>
+
+        {/* Back to Stories */}
+        <div className="mt-16 text-center">
+          <Link
+            href="/interviews"
+            className="inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+          >
+            ← Back to All Developer Stories
+          </Link>
         </div>
       </div>
     </CenteredPageLayout>

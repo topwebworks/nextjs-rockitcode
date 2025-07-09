@@ -20,7 +20,7 @@ export async function generateMetadata({
   let lesson = await getLesson((await params).slug);
 
   return {
-    title: `${lesson?.title} - Compass`,
+    title: `${lesson?.title} - RockitCode`,
     description: lesson?.description,
   };
 }
@@ -63,12 +63,12 @@ export default async function Page({
             />
           )}
         </div>
-        <div className="mx-auto flex max-w-2xl gap-x-10 py-10 sm:py-14 lg:max-w-5xl">
-          <div className="w-full flex-1">
+        <div className="flex max-w-2xl py-10 mx-auto gap-x-10 sm:py-14 lg:max-w-5xl">
+          <div className="flex-1 w-full">
             <div id="content" className="prose">
               <Content />
             </div>
-            <div className="mt-16 border-t border-gray-200 pt-8 dark:border-white/10">
+            <div className="pt-8 mt-16 border-t border-gray-200 dark:border-white/10">
               {lesson.next ? (
                 <NextPageLink
                   title={lesson.next.title}
