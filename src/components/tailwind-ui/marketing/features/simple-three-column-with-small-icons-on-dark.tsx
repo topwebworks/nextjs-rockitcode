@@ -1,10 +1,30 @@
+import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline'
+
 const features = [
-  { name: 'Invite team members', description: 'Gérer les droits dacces et les permissions facilement pour tous vos associés.' },
-  { name: 'Notifications', description: 'Get notified when someones adds a comment.' },
-  { name: 'Calendar', description: 'Use the calendar to filter your files by date.' },
-  { name: 'Search', description: 'All your files are searchable including comments.' },
-  { name: 'Folders', description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.' },
-  { name: 'Security', description: 'Cras velit quis eros eget rhoncus lacus ultrices sed diam. Sit orci risus aenean curabitur donec aliquet. Mi venenatis in euismod ut.' },
+  {
+    name: 'Push to deploy',
+    description:
+      'Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.',
+    icon: CloudArrowUpIcon,
+  },
+  {
+    name: 'SSL certificates',
+    description:
+      'Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.',
+    icon: LockClosedIcon,
+  },
+  {
+    name: 'Simple queues',
+    description:
+      'Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam vestibulum.',
+    icon: ArrowPathIcon,
+  },
+  {
+    name: 'Advanced security',
+    description:
+      'Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.',
+    icon: FingerPrintIcon,
+  },
 ]
 
 export default function Example() {
@@ -27,9 +47,7 @@ export default function Example() {
               <div key={feature.name} className="relative pl-16">
                 <dt className="text-base/7 font-semibold text-white">
                   <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-indigo-500">
-                    <svg className="size-6 text-white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                    </svg>
+                    <feature.icon aria-hidden="true" className="size-6 text-white" />
                   </div>
                   {feature.name}
                 </dt>
