@@ -1,11 +1,16 @@
-import { SimpleCenteredHero } from "@/components/tailwind-ui/marketing/heroes";
+import { SimpleCentered } from "@/components/tailwind-ui/marketing/heroes";
 import { 
-  FeaturesGrid, 
-  FeaturesWithScreenshot, 
-  Centered2x2Grid,
-  SimpleThreeColumnLarge 
+  SimpleThreeColumnWithSmallIcons, 
+  WithProductScreenshot, 
+  WithLargeScreenshot
 } from "@/components/tailwind-ui/marketing/features";
-import { SimpleCTA } from "@/components/tailwind-ui/marketing/cta";
+import { SimpleCentered as SimpleCTA } from "@/components/tailwind-ui/marketing/cta";
+import { ThreeColumnBentoGrid } from "@/components/tailwind-ui/marketing/bento-grids";
+import { 
+  ThreeTiers, 
+  TwoTiersWithEmphasizedTier, 
+  SinglePriceWithDetails 
+} from "@/components/tailwind-ui/marketing/pricing";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,10 +22,14 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <SimpleCenteredHero />
-      <FeaturesWithScreenshot />
-      <Centered2x2Grid />
-      <SimpleThreeColumnLarge />
+      <SimpleCentered />
+      <WithProductScreenshot />
+      <WithLargeScreenshot />
+      <SimpleThreeColumnWithSmallIcons />
+      <ThreeColumnBentoGrid />
+      <ThreeTiers />
+      <TwoTiersWithEmphasizedTier />
+      <SinglePriceWithDetails />
       <SimpleCTA />
     </>
   );
