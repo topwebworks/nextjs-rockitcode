@@ -1,4 +1,15 @@
 // RockitCode Lessons Data - Coding Education Focus
+
+export interface CodeSection {
+  id: string;
+  title: string;
+  description: string;
+  language: string;
+  initialCode: string;
+  expectedOutput?: string;
+  videoTimestamp?: number; // When to show this code in relation to video
+}
+
 export interface Lesson {
   id: string;
   title: string;
@@ -14,6 +25,7 @@ export interface Lesson {
     };
     url: string;
   };
+  codeSections?: CodeSection[]; // Interactive coding exercises
   blocks: any[]; // Will be populated with actual lesson content blocks
 }
 
@@ -34,6 +46,59 @@ export const lessons: Lesson[] = [
       },
       url: '/videos/lessons/html-basics.mp4' // Local video content
     },
+    codeSections: [
+      {
+        id: 'basic-structure',
+        title: 'Basic HTML Structure',
+        description: 'Create your first HTML document with the essential elements every web page needs.',
+        language: 'html',
+        videoTimestamp: 45,
+        initialCode: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Web Page</title>
+</head>
+<body>
+    <!-- Add your content here -->
+    
+</body>
+</html>`,
+        expectedOutput: `A basic HTML page structure with head and body sections. 
+The page title will appear in the browser tab.`
+      },
+      {
+        id: 'headings-paragraphs',
+        title: 'Headings and Paragraphs',
+        description: 'Add headings and paragraphs to create readable content structure.',
+        language: 'html',
+        videoTimestamp: 120,
+        initialCode: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning HTML</title>
+</head>
+<body>
+    <h1>Welcome to My Website!</h1>
+    <p>This is my very first web page. I'm learning HTML!</p>
+    
+    <h2>About Me</h2>
+    <p>I'm a student learning web development with RockitCode.</p>
+    
+    <!-- Try adding more headings and paragraphs below -->
+    
+</body>
+</html>`,
+        expectedOutput: `A webpage with:
+- Main heading "Welcome to My Website!"
+- Introduction paragraph
+- Subheading "About Me"
+- About paragraph`
+      }
+    ],
     blocks: [] // To be populated with actual lesson blocks
   },
   {
