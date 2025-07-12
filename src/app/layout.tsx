@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import type React from "react";
 import { RockitSessionProvider } from '@/components/rockitcode/session-provider'
 import { EditorSettingsProvider } from '@/contexts/editor-settings'
+import { LearningProvider } from '@/contexts/learning-context'
+import { MainSiteLayout } from '@/components/main-site-layout'
 import "./globals.css";
 
 const InterVariable = localFont({
@@ -55,7 +57,11 @@ export default function RootLayout({
       >
         <RockitSessionProvider>
           <EditorSettingsProvider>
-            <div className="isolate">{children}</div>
+            <LearningProvider>
+              <MainSiteLayout>
+                {children}
+              </MainSiteLayout>
+            </LearningProvider>
           </EditorSettingsProvider>
         </RockitSessionProvider>
       </body>
