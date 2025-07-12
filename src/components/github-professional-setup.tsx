@@ -188,48 +188,65 @@ export function GitHubProfessionalSetup() {
 
   return (
     <div className="github-professional-setup max-w-6xl mx-auto p-6">
-      {/* Header */}
+      {/* Mission Control Header */}
       <div className="header mb-8">
-        <h1 className="text-4xl font-bold mb-4">
-          🚀 Professional Developer Setup
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
-          Get the exact same development environment used by professionals at GitHub, Netflix, and Airbnb. 
-          <strong> Everything is 100% free</strong> - no hidden costs, no trial periods.
-        </p>
+        <div className="text-center mb-6">
+          <div className="text-6xl mb-4">🚀</div>
+          <h1 className="text-4xl font-bold mb-4">
+            Mission Initialization Sequence
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
+            Activate your professional developer mission control center. Get the exact same tools used by engineers at <strong>GitHub, Netflix, and Airbnb</strong>. 
+            <span className="text-green-600 font-semibold"> Everything is 100% free</span> - no hidden costs, no trial periods.
+          </p>
+          <div className="inline-flex items-center space-x-2 bg-blue-50 dark:bg-blue-900/20 px-4 py-2 rounded-full">
+            <span className="text-blue-600">🎯</span>
+            <span className="text-sm font-medium">Mission Objective: Professional Developer Transformation</span>
+          </div>
+        </div>
         
-        {/* Value Proposition */}
+        {/* Mission Progress Dashboard */}
         <div className="value-prop bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg p-6 mb-6">
+          <div className="text-center mb-4">
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">Mission Control Dashboard</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Your professional development command center</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div>
+            <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-4">
               <div className="text-3xl font-bold text-green-600">${totalStackValue}+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Monthly Value</div>
-              <div className="text-xs text-gray-500">Enterprise tools</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Tools Value</div>
+              <div className="text-xs text-gray-500">Enterprise grade</div>
             </div>
             
-            <div>
+            <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-4">
               <div className="text-3xl font-bold text-blue-600">$0</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Your Cost</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Mission Cost</div>
               <div className="text-xs text-gray-500">Forever free</div>
             </div>
             
-            <div>
+            <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-4">
               <div className="text-3xl font-bold text-purple-600">{completionPercentage}%</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Setup Complete</div>
-              <div className="text-xs text-gray-500">{completedSteps.length}/{setupSteps.length} steps</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Mission Complete</div>
+              <div className="text-xs text-gray-500">{completedSteps.length}/{setupSteps.length} systems online</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Setup Progress */}
+      {/* Mission System Activation */}
       <div className="setup-progress mb-8">
-        <h2 className="text-2xl font-semibold mb-4">🛠️ Setup Progress</h2>
+        <div className="flex items-center space-x-3 mb-4">
+          <span className="text-2xl">🛠️</span>
+          <h2 className="text-2xl font-semibold">Mission System Activation</h2>
+        </div>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">
+          Initialize your professional developer mission systems. Each activation grants you enterprise-level capabilities used by the world's best development teams.
+        </p>
         
         <div className="progress-bar mb-6">
           <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
-            <span>Setup Progress</span>
-            <span>{completedSteps.length}/{setupSteps.length} completed</span>
+            <span>🚀 Mission Systems Online</span>
+            <span>{completedSteps.length}/{setupSteps.length} systems activated</span>
           </div>
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
             <div
@@ -301,20 +318,26 @@ export function GitHubProfessionalSetup() {
                 
                 <div className="ml-6">
                   {completedSteps.includes(step.id) ? (
-                    <button className="px-4 py-2 bg-gray-500 text-white rounded opacity-50">
-                      ✓ Completed
-                    </button>
+                    <div className="text-center">
+                      <button className="px-4 py-2 bg-green-500 text-white rounded mb-2 opacity-90">
+                        ✓ System Online
+                      </button>
+                      <div className="text-xs text-green-600">Mission system activated</div>
+                    </div>
                   ) : (
-                    <button
-                      onClick={() => {
-                        handleStepComplete(step.id)
-                        if (step.id === 'github-copilot') setGithubConnected(true)
-                        if (step.id === 'student-pack') setStudentPackClaimed(true)
-                      }}
-                      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    >
-                      Start Setup
-                    </button>
+                    <div className="text-center">
+                      <button
+                        onClick={() => {
+                          handleStepComplete(step.id)
+                          if (step.id === 'github-copilot') setGithubConnected(true)
+                          if (step.id === 'student-pack') setStudentPackClaimed(true)
+                        }}
+                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mb-2"
+                      >
+                        🚀 Activate
+                      </button>
+                      <div className="text-xs text-gray-500">Click to initialize</div>
+                    </div>
                   )}
                 </div>
               </div>
@@ -323,12 +346,15 @@ export function GitHubProfessionalSetup() {
         </div>
       </div>
 
-      {/* Free Developer Stack Overview */}
+      {/* Mission Equipment Arsenal */}
       <div className="free-stack-overview mb-8">
-        <h2 className="text-2xl font-semibold mb-4">💰 Your Free Professional Stack</h2>
+        <div className="flex items-center space-x-3 mb-4">
+          <span className="text-2xl">💰</span>
+          <h2 className="text-2xl font-semibold">Mission Equipment Arsenal</h2>
+        </div>
         <p className="text-gray-600 dark:text-gray-400 mb-6">
-          These are the exact same tools used by professional developers at major tech companies. 
-          You get them all for free while learning.
+          Your free professional developer arsenal. These are the exact same mission-critical tools used by development teams at major tech companies. 
+          <strong>Total value: ${totalStackValue}+/month</strong> - yours completely free during your mission training.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -359,67 +385,115 @@ export function GitHubProfessionalSetup() {
         </div>
       </div>
 
-      {/* Success State */}
+      {/* Mission Accomplished */}
       {completedSteps.length === setupSteps.length && (
-        <div className="success-state bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-lg p-8 text-center">
-          <div className="text-4xl mb-4">🎉</div>
-          <h2 className="text-2xl font-bold mb-4">
-            Professional Developer Environment Complete!
+        <div className="success-state bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-lg p-8 text-center mb-8">
+          <div className="text-6xl mb-4">🎉</div>
+          <h2 className="text-3xl font-bold mb-4">
+            Mission Systems Fully Operational!
           </h2>
           <p className="text-xl opacity-90 mb-6">
-            You now have the same development setup used by engineers at Google, Netflix, and Spotify. 
-            Time to start building!
+            🚀 Your professional developer mission control is now online. You have the same development environment used by engineers at Google, Netflix, and Spotify. 
+            <strong>Mission status: Ready for launch!</strong>
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div className="bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl mb-2">🤖</div>
-              <div className="font-semibold">AI-Powered Coding</div>
-              <div className="text-sm opacity-80">GitHub Copilot ready</div>
+              <div className="text-3xl mb-2">🤖</div>
+              <div className="font-semibold">AI Co-Pilot Online</div>
+              <div className="text-sm opacity-80">GitHub Copilot activated</div>
             </div>
             
             <div className="bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl mb-2">🌐</div>
-              <div className="font-semibold">Live Deployments</div>
-              <div className="text-sm opacity-80">GitHub Pages + Vercel</div>
+              <div className="text-3xl mb-2">🌐</div>
+              <div className="font-semibold">Deployment Systems</div>
+              <div className="text-sm opacity-80">GitHub Pages + Vercel ready</div>
             </div>
             
             <div className="bg-white/10 backdrop-blur rounded-lg p-4">
-              <div className="text-2xl mb-2">💼</div>
-              <div className="font-semibold">Professional Tools</div>
-              <div className="text-sm opacity-80">${totalStackValue}+ value</div>
+              <div className="text-3xl mb-2">💼</div>
+              <div className="font-semibold">Mission Arsenal</div>
+              <div className="text-sm opacity-80">${totalStackValue}+ tools active</div>
             </div>
           </div>
           
-          <button className="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-            Start First Lesson
-          </button>
+          <div className="space-y-4">
+            <button className="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              🚀 Begin First Mission
+            </button>
+            <div className="text-sm opacity-80">
+              Your mission briefings are ready in Mission Control
+            </div>
+          </div>
         </div>
       )}
 
-      {/* Support Information */}
+      {/* Mission Support & Intel */}
       <div className="support-info bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
-        <h3 className="font-semibold mb-3">💡 Need Help with Setup?</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+        <div className="flex items-center space-x-3 mb-4">
+          <span className="text-xl">💡</span>
+          <h3 className="font-semibold">Mission Support & Intelligence</h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
           <div>
-            <h4 className="font-medium mb-2">Common Questions:</h4>
-            <ul className="space-y-1 text-gray-600 dark:text-gray-400">
-              <li>• GitHub Student Pack verification can take 1-7 days</li>
-              <li>• GitHub Copilot free tier has usage limits but they're generous</li>
-              <li>• All tools remain free while you're a student</li>
-              <li>• You can upgrade individually when you start earning</li>
+            <h4 className="font-medium mb-3 flex items-center space-x-2">
+              <span>📋</span>
+              <span>Mission Status Updates:</span>
+            </h4>
+            <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+              <li className="flex items-start space-x-2">
+                <span className="text-blue-500 mt-1">•</span>
+                <span>GitHub Student Pack verification: 1-7 days (automatic approval for .edu emails)</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <span className="text-blue-500 mt-1">•</span>
+                <span>GitHub Copilot free tier: Generous usage limits, perfect for learning</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <span className="text-blue-500 mt-1">•</span>
+                <span>All mission tools remain free during student status</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <span className="text-blue-500 mt-1">•</span>
+                <span>Upgrade paths available when you start earning professionally</span>
+              </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-medium mb-2">Professional Benefits:</h4>
-            <ul className="space-y-1 text-gray-600 dark:text-gray-400">
-              <li>• GitHub profile shows real project experience</li>
-              <li>• Live portfolio impresses recruiters</li>
-              <li>• Experience with industry-standard tools</li>
-              <li>• Professional development workflow</li>
+            <h4 className="font-medium mb-3 flex items-center space-x-2">
+              <span>🎯</span>
+              <span>Professional Mission Benefits:</span>
+            </h4>
+            <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+              <li className="flex items-start space-x-2">
+                <span className="text-green-500 mt-1">•</span>
+                <span>GitHub profile demonstrates real project experience to recruiters</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <span className="text-green-500 mt-1">•</span>
+                <span>Live portfolio showcases your capabilities instantly</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <span className="text-green-500 mt-1">•</span>
+                <span>Industry-standard tools experience sets you apart</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <span className="text-green-500 mt-1">•</span>
+                <span>Professional development workflow from day one</span>
+              </li>
             </ul>
           </div>
+        </div>
+        
+        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <div className="flex items-center space-x-2 mb-2">
+            <span>🚀</span>
+            <span className="font-medium text-blue-800 dark:text-blue-200">Mission Commander Note:</span>
+          </div>
+          <p className="text-sm text-blue-700 dark:text-blue-300">
+            This exact setup has launched thousands of developers into six-figure careers. Every activation brings you closer to professional readiness. Your mission: complete the sequence and begin your transformation.
+          </p>
         </div>
       </div>
     </div>

@@ -117,20 +117,20 @@ function MobileNavigation({
                       href="/dashboard"
                       className="rounded-md px-4 py-1 text-sm/7 font-semibold text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
                     >
-                      Dashboard
+                      🚀 Mission Control
                     </CloseButton>
                     <CloseButton
                       as={Link}
                       href="/settings"
                       className="rounded-md px-4 py-1 text-sm/7 font-semibold text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
                     >
-                      Settings
+                      ⚙️ Equipment Settings
                     </CloseButton>
                     <button
                       onClick={() => signOut({ callbackUrl: '/login' })}
                       className="rounded-md px-4 py-1 text-left text-sm/7 font-semibold text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
                     >
-                      Sign out
+                      🔐 End Mission
                     </button>
                   </div>
                 </div>
@@ -161,9 +161,15 @@ function SiteNavigation() {
         onClose={() => setMobileMenuOpen(false)}
       />
       <div className="flex items-center gap-x-6 text-sm/6 text-gray-950 max-lg:hidden dark:text-white">
-        <Link href="/">Course</Link>
-        <Link href="/interviews">Interviews</Link>
-        <Link href="/resources">Resources</Link>
+        <Link href="/" className="flex items-center gap-1">
+          🚀 <span>Launch Missions</span>
+        </Link>
+        <Link href="/interviews" className="flex items-center gap-1">
+          🎯 <span>Mission Briefings</span>
+        </Link>
+        <Link href="/resources" className="flex items-center gap-1">
+          📋 <span>Equipment</span>
+        </Link>
         
         {/* Theme toggle for desktop */}
         <ThemeToggle />
@@ -175,7 +181,7 @@ function SiteNavigation() {
                 {session.user.image && (
                   <img
                     src={session.user.image}
-                    alt={session.user.name || 'User avatar'}
+                    alt={session.user.name || 'Mission Specialist avatar'}
                     className="h-6 w-6 rounded-full border border-gray-200 dark:border-gray-700"
                   />
                 )}
@@ -184,10 +190,10 @@ function SiteNavigation() {
               <ChevronDownIcon className="stroke-gray-950 dark:stroke-white" />
             </DropdownButton>
             <DropdownMenu anchor="bottom end">
-              <DropdownItem href="/dashboard">Dashboard</DropdownItem>
-              <DropdownItem href="/settings">Settings</DropdownItem>
-              <DropdownItem href="/support">Support</DropdownItem>
-              <DropdownItem href="/api/auth/signout">Sign out</DropdownItem>
+              <DropdownItem href="/dashboard">🚀 Mission Control</DropdownItem>
+              <DropdownItem href="/settings">⚙️ Equipment Settings</DropdownItem>
+              <DropdownItem href="/support">📡 Mission Support</DropdownItem>
+              <DropdownItem href="/api/auth/signout">🔐 End Mission</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         ) : (

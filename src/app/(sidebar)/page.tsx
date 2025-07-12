@@ -1,14 +1,17 @@
-import ZeroCostLanding from '@/components/zero-cost-landing'
+import ComprehensiveLaunchPad from '@/components/comprehensive-launch-pad'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'RockitCode - Professional Developer Education, 100% Free',
-  description: 'Learn to code with the same tools used by professionals at GitHub, Netflix, and Airbnb. AI assistance, hosting, and $200k+ worth of enterprise tools - completely free.',
+  title: 'RockitCode Launch Pad - Mission Control for Professional Developers',
+  description: 'Transform into a professional developer with our mission-driven learning platform. AI assistance, live deployment, and $200k+ worth of tools - completely free forever.',
 }
 
 /**
- * Homepage showcasing the zero-cost professional development approach
+ * Launch Pad Homepage - Mission Control for Developer Careers
+ * 
+ * Features the complete Launch Pad experience with rocket-themed
+ * mission progression and professional tool integration.
  */
 export default function HomePage() {
-  return <ZeroCostLanding />
+  return <ComprehensiveLaunchPad />
 }
