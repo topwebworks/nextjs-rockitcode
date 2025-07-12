@@ -48,6 +48,13 @@ const mainNavigation = [
 // Learning tracks for secondary navigation
 const learningTracksNav = [
   {
+    id: 'foundation',
+    title: 'Foundation Course',
+    href: '/foundation',
+    icon: '🏗️',
+    description: 'Design to Code Fundamentals'
+  },
+  {
     id: 'html-css',
     title: 'HTML & CSS',
     href: '/html-css',
@@ -84,6 +91,7 @@ export default function SmartSidebar() {
   
   // Determine current section for secondary navigation
   const getCurrentSection = () => {
+    if (pathname.startsWith('/foundation')) return 'foundation'
     if (pathname.startsWith('/html-css')) return 'html-css'
     if (pathname.startsWith('/javascript')) return 'javascript'
     if (pathname.startsWith('/python')) return 'python'

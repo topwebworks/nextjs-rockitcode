@@ -148,10 +148,223 @@ const rockitCourses: RockitCourse[] = [
     isActive: true,
     milestones: [
       {
-        id: "html-css-milestone-1",
-        title: "🚀 Web Foundations - Your First Steps",
-        description: "Start your web development journey! Learn HTML structure, add your first styling with CSS, and build real web pages you can show off to friends and family.",
+        id: "professional-setup",
+        title: "🚀 Professional Developer Setup - GitHub & AI Tools",
+        description: "Set up your professional developer environment with GitHub, AI assistance, and deployment tools. Get $200k+ worth of developer tools completely free and start building your portfolio from day 1.",
         order: 1,
+        isPaid: false, // FREE milestone
+        lessons: [
+          {
+            id: "github-professional-setup",
+            title: "Professional Developer Account Setup",
+            description: "Create your professional GitHub account and claim $200k+ in free developer tools through GitHub Student Pack.",
+            order: 1,
+            estimatedMinutes: 15,
+            video: {
+              youtubeId: "GITHUB-SETUP-001", // Will be replaced with actual video
+              duration: 900, // 15 minutes
+              thumbnail: "/images/lessons/professional-setup/github-setup-thumb.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/professional-setup/github-student-pack.svg",
+                alt: "GitHub Student Pack benefits overview",
+                title: "🎁 $200k+ in Free Developer Tools",
+                caption: "Professional tools that would cost thousands, now free for students"
+              }
+            ],
+            codeExamples: [],
+            exercises: [
+              {
+                title: "Set Up Your Professional GitHub Profile",
+                description: "Create a GitHub account optimized for recruiters and employers",
+                hints: [
+                  "Use your real name for professional credibility",
+                  "Add a professional profile photo",
+                  "Write a compelling bio that mentions your learning journey"
+                ]
+              }
+            ]
+          },
+          {
+            id: "github-copilot-activation",
+            title: "AI Coding Assistant Setup - GitHub Copilot",
+            description: "Activate GitHub Copilot free tier and learn to code with AI assistance. Experience the future of programming!",
+            order: 2,
+            estimatedMinutes: 10,
+            video: {
+              youtubeId: "COPILOT-SETUP-001",
+              duration: 600,
+              thumbnail: "/images/lessons/professional-setup/copilot-setup-thumb.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/professional-setup/copilot-benefits.svg",
+                alt: "GitHub Copilot AI assistance in action",
+                title: "🤖 Your AI Coding Partner",
+                caption: "Learn faster with intelligent code suggestions and explanations"
+              }
+            ],
+            codeExamples: [
+              {
+                title: "🧠 AI-Assisted HTML Learning",
+                language: "html",
+                code: `<!-- Ask GitHub Copilot: "Create a basic HTML page about my learning journey" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Coding Journey - Learning with AI</title>
+</head>
+<body>
+    <h1>🚀 My Coding Learning Journey</h1>
+    <p>I'm learning web development with the help of AI tools like GitHub Copilot!</p>
+    
+    <!-- AI Copilot helped suggest this structure! -->
+    <h2>📚 What I'm Learning</h2>
+    <ul>
+        <li>HTML fundamentals</li>
+        <li>CSS styling and responsive design</li>
+        <li>JavaScript interactivity</li>
+        <li>Professional development workflow</li>
+    </ul>
+    
+    <h2>🎯 My Goals</h2>
+    <p>Build amazing websites and launch my career as a professional developer!</p>
+</body>
+</html>`,
+                explanation: "🤖 This HTML was created with AI assistance! GitHub Copilot can help you: ✨ Generate code structure quickly ✨ Suggest best practices ✨ Explain complex concepts ✨ Speed up your learning process Remember: AI is your coding partner, not a replacement for understanding!"
+              }
+            ],
+            exercises: [
+              {
+                title: "Activate GitHub Copilot Free Tier",
+                description: "Enable AI coding assistance for all your future projects",
+                hints: [
+                  "GitHub Copilot is free for students and individual use",
+                  "Install the VS Code extension for the best experience",
+                  "Start with simple prompts to get comfortable with AI assistance"
+                ]
+              }
+            ]
+          },
+          {
+            id: "portfolio-initialization",
+            title: "Live Portfolio Website Setup - GitHub Pages",
+            description: "Create your professional portfolio website that updates automatically. Your first live website in under 5 minutes!",
+            order: 3,
+            estimatedMinutes: 20,
+            video: {
+              youtubeId: "PORTFOLIO-SETUP-001",
+              duration: 1200,
+              thumbnail: "/images/lessons/professional-setup/portfolio-setup-thumb.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/professional-setup/portfolio-workflow.svg",
+                alt: "Automated portfolio deployment workflow",
+                title: "🌐 Your Live Portfolio in Minutes",
+                caption: "Every project you build automatically adds to your professional portfolio"
+              }
+            ],
+            codeExamples: [
+              {
+                title: "🎨 Your Professional Portfolio Homepage",
+                language: "html",
+                code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Your Name] - Web Developer Portfolio</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; text-align: center; }
+        .intro { text-align: center; margin-bottom: 30px; }
+        .projects { display: grid; gap: 20px; margin-top: 30px; }
+        .project {
+            padding: 20px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .project:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👋 Hi, I'm [Your Name]</h1>
+        <div class="intro">
+            <p>🚀 <strong>Aspiring Web Developer</strong> currently learning modern web development</p>
+            <p>📚 Building projects with HTML, CSS, JavaScript, and AI-assisted development</p>
+            <p>🎯 Goal: Become a professional full-stack developer</p>
+        </div>
+        
+        <h2>🛠️ Current Skills</h2>
+        <ul>
+            <li>✅ HTML5 semantic markup</li>
+            <li>⏳ CSS3 styling and responsive design (learning now!)</li>
+            <li>⏳ JavaScript interactivity (coming soon!)</li>
+            <li>✅ Git version control and GitHub workflow</li>
+            <li>✅ AI-assisted development with GitHub Copilot</li>
+        </ul>
+        
+        <h2>📁 My Projects</h2>
+        <div class="projects">
+            <div class="project">
+                <h3>🎯 Project 1: Personal Portfolio (This Site!)</h3>
+                <p>My first live website built with HTML and CSS. Features responsive design and professional styling.</p>
+                <p><strong>Technologies:</strong> HTML5, CSS3, GitHub Pages</p>
+            </div>
+            <!-- More projects will be added as you learn! -->
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <p>🌐 <strong>Live at:</strong> https://[username].github.io</p>
+            <p>💼 <strong>GitHub:</strong> github.com/[username]</p>
+            <p>📧 <strong>Contact:</strong> [your-email]</p>
+        </div>
+    </div>
+</body>
+</html>`,
+                explanation: "🌟 This is your professional portfolio template! Key features: 💼 Professional design that impresses recruiters 🎨 Modern CSS with gradients and animations 📱 Responsive layout that works on all devices 🚀 Ready to deploy to GitHub Pages instantly Every lesson you complete will add new projects to showcase!"
+              }
+            ],
+            exercises: [
+              {
+                title: "Deploy Your First Live Website",
+                description: "Set up GitHub Pages and deploy your portfolio - your first URL on the internet!",
+                hints: [
+                  "Your site will be live at https://[username].github.io",
+                  "Changes to your code automatically update the live site",
+                  "This becomes your professional web presence"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "html-css-milestone-1",
+        title: "🏗️ HTML Foundations - Building Your First Web Pages",
+        description: "Master HTML structure and create semantic, accessible web content. Build real projects that automatically deploy to your live portfolio.",
+        order: 2,
         isPaid: false, // FREE milestone
         lessons: [
           {
