@@ -2,8 +2,11 @@
 
 import React from 'react'
 import VSCodeMonacoEditor from '@/components/vscode-monaco-editor'
+import { useEditorSettings } from '@/contexts/editor-settings'
 
 export default function EnhancedMonacoPage() {
+  const { settings } = useEditorSettings()
+  
   const sampleCode = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,76 +100,9 @@ export default function EnhancedMonacoPage() {
           <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">
             Enhanced Monaco Editor
           </h1>
-          <p className="mb-6 text-xl text-gray-600 dark:text-gray-300">
-            A professional VS Code-like editor that handles mixed HTML, CSS, and JavaScript content
+          <p className="mb-8 text-xl text-gray-600 dark:text-gray-300">
+            A professional VS Code-like editor with layout modes, shortcuts, and extreme resize flexibility
           </p>
-          <div className="p-6 mb-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-            <h2 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
-              Features Included:
-            </h2>
-            <div className="grid grid-cols-1 gap-3 text-sm text-gray-600 md:grid-cols-2 lg:grid-cols-3 dark:text-gray-300">
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Mixed Content Support (HTML+CSS+JS)
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Intelligent Content Detection
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Syntax Highlighting
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                IntelliSense & Auto-completion
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Error Detection & Problems Panel
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Multi-cursor Editing
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Find & Replace
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Command Palette
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Code Folding
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Minimap Navigation
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Professional Theming
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Activity Bar & Sidebar
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                File Explorer
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Terminal Panel
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2 text-green-500">✓</span>
-                Status Bar with Diagnostics
-              </div>
-            </div>
-          </div>
         </div>
         
         <div className="overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
@@ -183,10 +119,13 @@ export default function EnhancedMonacoPage() {
             <VSCodeMonacoEditor
               value={sampleCode}
               language="html"
-              theme="vs-dark"
-              showOutput={true}
-              showSidebar={true}
-              showActivityBar={true}
+              theme={settings.theme}
+              showOutput={settings.showOutput}
+              showSidebar={settings.showSidebar}
+              showActivityBar={settings.showActivityBar}
+              showStatusBar={settings.showStatusBar}
+              showMinimap={settings.showMinimap}
+              lineNumbers={settings.showLineNumbers}
               height="100%"
               tabs={[
                 { id: '1', name: 'index.html', language: 'html', content: sampleCode, isDirty: false, isActive: true }

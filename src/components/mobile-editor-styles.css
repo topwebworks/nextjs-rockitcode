@@ -1,0 +1,1322 @@
+/* Additional mobile-specific styles for VS Code Monaco Editor */
+
+/*
+==============================================
+EDITOR QUICK REFERENCE
+==============================================
+
+LAYOUT MODES (Desktop 900px+):
+• Simple: Editor + Output Panel only 
+• Advanced: + Activity Bar + Side Panel
+• Mobile: Always Simple, icons only
+
+SHORTCUTS:
+• Alt+T    - Toggle Simple/Advanced layout
+• Alt+L    - View HTML in browser  
+• Ctrl+J   - Toggle output panel size
+• F5       - Run code
+• Ctrl+F   - Search
+• Ctrl+K   - Command palette
+
+RESIZE:
+• Drag gray divider to resize output panel
+• Min: 40px (tabs only) | Max: 90% screen height
+==============================================
+*/
+
+/* Ensure smooth touch scrolling on mobile */
+.monaco-editor .overflow-guard {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Improve touch target sizes */
+@media (max-width: 767px) {
+  /* Make sure all interactive elements meet minimum touch target size */
+  .monaco-editor .suggest-widget,
+  .monaco-editor .parameter-hints-widget,
+  .monaco-editor .hover-contents {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Improve scrollbar visibility on mobile */
+  .monaco-editor .scrollbar {
+    opacity: 0.7;
+  }
+
+  .monaco-editor .scrollbar:hover {
+    opacity: 1;
+  }
+
+  /* Better touch zones for resize handles */
+  .resize-handle {
+    min-height: 20px;
+    min-width: 20px;
+  }
+
+  /* Improve button spacing on mobile */
+  .mobile-button-group button {
+    min-width: 44px;
+    min-height: 44px;
+    margin: 2px;
+  }
+
+  /* Better mobile menu positioning */
+  .mobile-menu-overlay {
+    backdrop-filter: blur(4px);
+  }
+
+  /* Improve mobile header z-index */
+  .mobile-header {
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Better mobile input styling */
+  .mobile-search-input {
+    font-size: 16px; /* Prevent zoom on iOS */
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 4px;
+  }
+
+  /* Mobile header padding - replaces JavaScript conditional logic */
+  .main-editor-area {
+    padding-top: 2.5rem; /* Mobile header height */
+  }
+}
+
+/* Very small screens (320px and below) */
+@media (max-width: 320px) {
+  /* Extra compact layout */
+  .mobile-header {
+    padding: 4px 8px;
+  }
+
+  .mobile-button {
+    min-width: 40px;
+    min-height: 40px;
+    font-size: 12px;
+  }
+
+  /* Tighter spacing */
+  .mobile-tab {
+    padding: 4px 8px;
+    max-width: 80px;
+  }
+
+  /* Smaller output panel on very small screens */
+  .mobile-output-panel {
+    min-height: 120px;
+  }
+}
+
+/* Ultra-narrow mobile (320px) optimizations */
+@media (max-width: 375px) {
+  /* Tighter tab button spacing for narrow screens */
+  .editor-output-panel .flex.shrink-0 button {
+    min-width: clamp(36px, 8vw, 50px) !important;
+    max-width: clamp(50px, 12vw, 70px) !important;
+    padding: clamp(4px, 1vw, 6px) clamp(4px, 1vw, 8px) !important;
+    font-size: clamp(14px, 3vw, 18px) !important;
+  }
+  
+  /* Ensure action buttons fit at 320px */
+  .editor-output-panel .flex.items-center > div:last-child {
+    min-width: 60px !important;
+    max-width: 90px !important;
+    gap: 2px !important;
+  }
+  
+  /* Reduce action button sizes at ultra-narrow widths */
+  .editor-output-panel button {
+    width: clamp(32px, 8vw, 40px) !important;
+    height: clamp(32px, 4vh, 36px) !important;
+    min-width: 32px !important;
+    max-width: 40px !important;
+    padding: clamp(4px, 0.8vw, 6px) !important;
+    font-size: clamp(12px, 2.5vw, 16px) !important;
+  }
+  
+  /* Make sure the tab container and action container play nice */
+  .editor-output-panel .flex.items-center {
+    padding: 0 2px !important;
+  }
+  
+  /* Ensure no overflow on ultra-narrow */
+  .editor-output-panel .flex-1.min-w-0 {
+    min-width: 20px !important;
+    flex: 1 1 20px !important;
+  }
+  
+  /* Fix action button spacing at narrow widths */
+  .editor-output-panel .space-x-1 > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 1px !important;
+  }
+}
+
+/* Problems tab specific padding fix */
+.editor-output-panel .flex.shrink-0 button[title*="Problems"] {
+  padding-right: clamp(12px, 3vw, 20px) !important;
+  min-width: 110px !important;
+}
+
+/* Landscape orientation optimizations */
+@media (max-width: 767px) and (orientation: landscape) {
+  /* Adjust mobile header height for landscape */
+  .mobile-header {
+    height: 36px;
+  }
+
+  /* Better use of horizontal space */
+  .mobile-tab {
+    max-width: 120px;
+  }
+
+  /* Show more content in landscape */
+  .mobile-output-panel {
+    min-height: 100px;
+  }
+}
+
+/* Touch-friendly hover states */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices */
+  .hover-only {
+    display: none;
+  }
+
+  /* Improve button feedback on touch */
+  button:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
+  }
+
+  /* Better focus styles for touch navigation */
+  button:focus,
+  input:focus,
+  select:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+  }
+}
+
+/* High DPI mobile screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .monaco-editor {
+    /* Crisper text rendering on high DPI mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Accessibility improvements for mobile */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable animations for users who prefer reduced motion */
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode mobile optimizations */
+@media (prefers-color-scheme: dark) {
+  .mobile-header {
+    background-color: #1e1e1e;
+    border-bottom-color: #3e3e42;
+  }
+
+  .mobile-menu-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Print styles for mobile (if someone tries to print) */
+@media print {
+  .mobile-header,
+  .mobile-menu,
+  .mobile-output-panel {
+    display: none !important;
+  }
+
+  .monaco-editor {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Enhanced Fluid Responsive Design Additions */
+
+/* Fluid Container System */
+.monaco-editor-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 320px !important;
+  height: 100% !important;
+  overflow: hidden;
+}
+
+/* Force Monaco Editor internal elements to be fluid responsive */
+.monaco-editor-container .monaco-editor,
+.monaco-editor-container .monaco-editor .overflow-guard,
+.monaco-editor-container .monaco-editor .monaco-scrollable-element {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Override Monaco's calculated pixel widths with percentage-based fluid widths */
+.monaco-editor-container .monaco-editor > div {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Ensure all Monaco editor layers are fluid responsive */
+.monaco-editor-container .monaco-editor .editor-widget,
+.monaco-editor-container .monaco-editor .lines-content,
+.monaco-editor-container .monaco-editor .view-overlays,
+.monaco-editor-container .monaco-editor .margin,
+.monaco-editor-container .monaco-editor .margin-view-overlays {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Force all Monaco editor internal containers to be fluid */
+.monaco-editor-container .monaco-editor .monaco-editor-background,
+.monaco-editor-container .monaco-editor .editor-widget,
+.monaco-editor-container .monaco-editor .editor-widget .editor-widget-container,
+.monaco-editor-container .monaco-editor .overflow-guard > div,
+.monaco-editor-container .monaco-editor .monaco-scrollable-element > .scrollbar,
+.monaco-editor-container .monaco-editor .view-lines,
+.monaco-editor-container .monaco-editor .view-line {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Ensure container queries don't interfere with Monaco's internal sizing */
+.monaco-editor-container {
+  container-type: normal !important;
+}
+
+/* Enhanced fluid breakpoints for precise responsive control */
+@media (max-width: 479px) {
+  /* Extra Small Mobile (< 480px) */
+  .monaco-editor {
+    font-size: 11px !important;
+    line-height: 16px !important;
+  }
+  
+  .monaco-editor .view-lines {
+    font-size: 11px !important;
+    line-height: 16px !important;
+  }
+  
+  /* Compact UI for very small screens */
+  .mobile-tab {
+    max-width: clamp(4rem, 20vw, 6rem) !important;
+    font-size: 10px !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  /* Small Mobile (480px - 639px) */
+  .monaco-editor {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+  
+  .monaco-editor .view-lines {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+  
+  .mobile-tab {
+    max-width: clamp(5rem, 22vw, 7rem) !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  /* Large Mobile (640px - 767px) */
+  .monaco-editor {
+    font-size: 13px !important;
+    line-height: 20px !important;
+  }
+  
+  .monaco-editor .view-lines {
+    font-size: 13px !important;
+    line-height: 20px !important;
+  }
+  
+  .mobile-tab {
+    max-width: clamp(6rem, 25vw, 8rem) !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablet (768px - 1023px) */
+  .monaco-editor {
+    font-size: 14px !important;
+    line-height: 21px !important;
+  }
+  
+  /* Responsive tab sizing for tablets */
+  .editor-tab {
+    max-width: clamp(8rem, 15vw, 12rem) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop (>= 1024px) */
+  .monaco-editor {
+    font-size: 14px !important;
+    line-height: 22px !important;
+  }
+  
+  .editor-tab {
+    max-width: clamp(10rem, 20vw, 16rem) !important;
+  }
+}
+
+/* Fluid container widths using CSS custom properties */
+:root {
+  --editor-activity-bar-width: 3rem;
+  --editor-sidebar-min-width: 12rem;
+  --editor-sidebar-max-width: 20rem;
+  --editor-sidebar-fluid-width: 20vw;
+}
+
+.editor-sidebar {
+  width: clamp(var(--editor-sidebar-min-width), var(--editor-sidebar-fluid-width), var(--editor-sidebar-max-width)) !important;
+  min-width: var(--editor-sidebar-min-width) !important;
+  max-width: var(--editor-sidebar-max-width) !important;
+}
+
+.editor-activity-bar {
+  width: var(--editor-activity-bar-width) !important;
+  min-width: var(--editor-activity-bar-width) !important;
+  max-width: var(--editor-activity-bar-width) !important;
+}
+
+.editor-main-content {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  width: auto !important;
+}
+
+/* Mobile-specific fluid adjustments */
+@media (max-width: 767px) {
+  :root {
+    --editor-sidebar-min-width: 16rem;
+    --editor-sidebar-max-width: 20rem;
+    --editor-sidebar-fluid-width: 80vw;
+  }
+  
+  .editor-sidebar {
+    max-width: 80vw !important;
+  }
+  
+  /* Ensure mobile menu uses fluid width */
+  .mobile-menu {
+    width: clamp(16rem, 80vw, 20rem) !important;
+    max-width: 80vw !important;
+  }
+}
+
+/* Ultra-wide screen optimizations */
+@media (min-width: 1440px) {
+  :root {
+    --editor-sidebar-max-width: 24rem;
+    --editor-sidebar-fluid-width: 18vw;
+  }
+}
+
+/* Container queries support (for modern browsers) */
+@container (max-width: 640px) {
+  .monaco-editor {
+    font-size: 12px !important;
+  }
+}
+
+@container (min-width: 641px) and (max-width: 1024px) {
+  .monaco-editor {
+    font-size: 13px !important;
+  }
+}
+
+/* Smooth responsive transitions */
+.editor-sidebar,
+.editor-activity-bar,
+.editor-main-content {
+  transition: width 0.2s ease, max-width 0.2s ease;
+}
+
+/* Responsive output panel height - allow JavaScript control with maximum flexibility */
+.editor-output-panel {
+  /* Very flexible constraints for maximum resize range */
+  min-height: 40px !important; /* Just enough to see tabs */
+  max-height: 90vh !important; /* Allow almost full screen height */
+}
+
+/* Default height only when no inline style is present (fallback) */
+.editor-output-panel:not([style*="height"]) {
+  height: clamp(120px, 25vh, 400px);
+}
+
+@media (max-width: 479px) {
+  .editor-output-panel {
+    min-height: 40px !important; /* Same minimum on mobile */
+    max-height: 85vh !important; /* Slightly less on mobile for touch targets */
+  }
+  
+  /* Mobile fallback height when no inline style */
+  .editor-output-panel:not([style*="height"]) {
+    height: clamp(100px, 20vh, 200px);
+  }
+}
+
+/* Ensure all text inputs scale properly */
+input[type="text"], 
+input[type="search"], 
+textarea {
+  font-size: max(14px, 1rem) !important; /* Prevent zoom on iOS */
+  min-height: 44px !important; /* Touch-friendly minimum */
+}
+
+/* Responsive command palette */
+.command-palette {
+  width: clamp(300px, 80vw, 600px) !important;
+  max-width: 90vw !important;
+}
+
+@media (max-width: 640px) {
+  .command-palette {
+    width: clamp(280px, 90vw, 400px) !important;
+    left: 5vw !important;
+    right: 5vw !important;
+  }
+}
+
+/* Smart positioning styles for editor settings panels */
+
+/* Settings panel positioning indicators */
+.settings-panel-above {
+  transform-origin: bottom center;
+}
+
+.settings-panel-below {
+  transform-origin: top center;
+}
+
+/* Enhanced panel shadows for better visibility when positioned above */
+.settings-panel-above {
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.settings-panel-below {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Dark mode shadows */
+@media (prefers-color-scheme: dark) {
+  .settings-panel-above {
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.3), 0 -2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+
+  .settings-panel-below {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Ensure panels don't exceed viewport bounds */
+.settings-panel {
+  max-height: min(400px, calc(100vh - 32px));
+  max-width: min(320px, calc(100vw - 32px));
+}
+
+/* Mobile-specific adjustments for settings panels */
+@media (max-width: 640px) {
+  .settings-panel {
+    max-width: calc(100vw - 16px);
+    left: 8px !important;
+    right: 8px !important;
+  }
+}
+
+/* Animation improvements for smart positioning */
+.settings-panel-entering-above {
+  animation: slideInFromBottom 0.2s ease-out;
+}
+
+.settings-panel-entering-below {
+  animation: slideInFromTop 0.2s ease-out;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Enhanced scrolling for settings panels */
+
+/* Custom scrollbar styling for settings panels */
+.settings-panel .flex-1.overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.settings-panel .flex-1.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.settings-panel .flex-1.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.settings-panel .flex-1.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.settings-panel .flex-1.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.8);
+}
+
+/* Dark mode scrollbar */
+.dark .settings-panel .flex-1.overflow-y-auto {
+  scrollbar-color: rgba(75, 85, 99, 0.5) transparent;
+}
+
+.dark .settings-panel .flex-1.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(75, 85, 99, 0.5);
+}
+
+.dark .settings-panel .flex-1.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(75, 85, 99, 0.8);
+}
+
+/* Smooth scrolling behavior */
+.settings-panel .flex-1.overflow-y-auto {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+/* Fade effect at top/bottom when scrolling */
+.settings-panel .flex-1.overflow-y-auto {
+  position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0px, black 8px, black calc(100% - 8px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0px, black 8px, black calc(100% - 8px), transparent 100%);
+}
+
+/* Mobile touch scrolling optimization */
+@media (max-width: 640px) {
+  .settings-panel .flex-1.overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+}
+
+/* Monaco Editor Responsive Font Sizing - CSS-only */
+@media (max-width: 479px) {
+  /* Extra small mobile (< 480px) */
+  .monaco-editor, .monaco-editor .view-lines {
+    font-size: 11px !important;
+    line-height: 16px !important;
+  }
+  
+  .monaco-editor .minimap {
+    display: none !important;
+  }
+  
+  .monaco-editor .rulers {
+    display: none !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  /* Small mobile (480px - 639px) */
+  .monaco-editor, .monaco-editor .view-lines {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+  
+  .monaco-editor .minimap {
+    display: none !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  /* Large mobile (640px - 767px) */
+  .monaco-editor, .monaco-editor .view-lines {
+    font-size: 13px !important;
+    line-height: 20px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablet (768px - 1023px) */
+  .monaco-editor, .monaco-editor .view-lines {
+    font-size: 14px !important;
+    line-height: 21px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop (>= 1024px) */
+  .monaco-editor, .monaco-editor .view-lines {
+    font-size: 14px !important;
+    line-height: 22px !important;
+  }
+}
+
+/* Responsive scrollbar sizing */
+@media (max-width: 767px) {
+  .monaco-editor .scrollbar {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  
+  .monaco-editor .scrollbar .arrow {
+    font-size: 8px !important;
+  }
+}
+
+/* True Fluid Responsive Action Buttons */
+.action-buttons-container {
+  container-type: inline-size;
+}
+
+/* Button base styles with fluid sizing */
+.view-browser-btn,
+.run-code-btn,
+.clear-btn {
+  width: clamp(28px, 6vw, auto);
+  height: clamp(28px, 4vh, 32px);
+  padding: clamp(4px, 0.8vw, 8px) clamp(6px, 1.2vw, 12px);
+  font-size: clamp(10px, 1.2vw, 12px);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+/* Fullscreen button with adaptive hiding */
+.fullscreen-btn {
+  padding: clamp(4px, 0.8vw, 8px) clamp(6px, 1.2vw, 12px);
+  font-size: clamp(10px, 1.2vw, 12px);
+  display: block;
+}
+
+/* Text/Icon adaptive display controlled by CSS custom properties only */
+.btn-text {
+  display: var(--show-text, none);
+}
+
+.btn-icon {
+  display: var(--show-icon, inline);
+}
+
+/* Button sizing adjustments for desktop text mode */
+@media (min-width: 769px) {
+  .view-browser-btn,
+  .run-code-btn,
+  .clear-btn {
+    width: auto;
+    min-width: clamp(80px, 12vw, 140px);
+  }
+}
+
+/* Hide fullscreen button on very narrow containers */
+@container (max-width: 400px) {
+  .fullscreen-btn {
+    display: none;
+  }
+}
+
+/* Responsive tab width using percentages */
+.mobile-tab {
+  max-width: clamp(4rem, 25vw, 12rem);
+  width: min(25%, 8rem);
+}
+
+/* Tab responsive behavior using container queries */
+.tab-container {
+  container-type: inline-size;
+}
+
+.tab-icon {
+  display: none;
+}
+
+.tab-close-btn {
+  display: none;
+}
+
+/* Show tab icons and close buttons when there's enough space */
+@container (min-width: 500px) {
+  .tab-icon {
+    display: inline;
+    margin-right: clamp(4px, 0.5vw, 8px);
+  }
+}
+
+@container (min-width: 600px) {
+  .tab-close-btn {
+    display: block;
+    margin-left: clamp(2px, 0.3vw, 4px);
+  }
+}
+
+/* Fluid Responsive Action Buttons - Optimal Desktop + Mobile */
+:root {
+  /* Default: Show icons only on narrow containers */
+  --show-icon: inline;
+  --show-text: none;  
+  --show-fullscreen: block;
+}
+
+/* Icons only for screens 768px and below */
+@media (max-width: 768px) {
+  :root {
+    --show-icon: inline !important;
+    --show-text: none !important;
+    --show-fullscreen: none !important;
+  }
+  
+  /* Hide layout toggle button completely on mobile - not needed */
+  button[title*="Layout"] {
+    display: none !important;
+  }
+}
+
+/* Text labels only for screens above 768px, hide icons */
+@media (min-width: 769px) {
+  :root {
+    --show-icon: none !important; /* Hide icons on desktop */
+    --show-text: inline !important; /* Show text on desktop */
+    --show-fullscreen: block !important;
+  }
+  
+  /* Force hide ALL icon spans on desktop - target spans without margin-left */
+  button span[style*="display:var(--show-icon"]:not([style*="margin-left"]),
+  button span[style*="display: var(--show-icon"]:not([style*="margin-left"]),
+  button span.btn-icon,
+  button .btn-icon,
+  button span[data-icon] {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+  }
+  
+  /* Force show text spans on desktop - target spans with margin-left and text display */
+  button span[style*="margin-left"],
+  button span[style*="display:var(--show-text"],
+  button span[style*="display: var(--show-text"],
+  button span:not(.btn-icon):not([data-icon]) {
+    display: inline !important;
+    visibility: visible !important;
+  }
+  
+  /* Add spacing in desktop buttons (text only) */
+  button {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+}
+
+/* Mobile/narrow container button sizing - clean professional mobile design */
+.editor-output-panel button {
+  min-width: 40px !important;
+  max-width: none !important;
+  flex-shrink: 0 !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  
+  /* Perfect centering for icons */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  
+  /* Clean professional mobile styling with better height */
+  width: clamp(48px, 12vw, 80px) !important;
+  height: clamp(32px, 4vh, 36px) !important;
+  padding: clamp(6px, 1vw, 8px) !important;
+  font-size: clamp(14px, 2vw, 16px) !important;
+  color: #ffffff !important;
+  background-color: transparent !important;
+  border: 1px solid #3e3e42 !important;
+  border-radius: 3px !important;
+  
+  /* Remove outline and focus states that cause overlapping */
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Mobile run button accent */
+@media (max-width: 767px) {
+  .editor-output-panel button[title="Run Code"]:not(:disabled) {
+    background-color: #007acc !important;
+    border-color: #007acc !important;
+  }
+}
+
+/* Better mobile icon spacing and sizing */
+@media (max-width: 767px) {
+  /* Increase editor output panel header height to match desktop */
+  .editor-output-panel > div:first-child {
+    height: clamp(32px, 5vh, 40px) !important;
+    min-height: 32px !important;
+  }
+  
+  .editor-output-panel button {
+    width: clamp(44px, 12vw, 60px) !important;
+    height: clamp(32px, 5vh, 36px) !important;
+    padding: clamp(6px, 1.5vw, 8px) !important;
+    font-size: clamp(16px, 2.5vw, 18px) !important;
+    line-height: 1 !important;
+  }
+  
+  /* Ensure icons are clearly visible and perfectly centered on mobile */
+  .editor-output-panel button span.btn-icon,
+  .editor-output-panel button .btn-icon,
+  .editor-output-panel button span[data-icon],
+  .editor-output-panel button span.block.btn-icon {
+    font-size: clamp(16px, 2.5vw, 18px) !important;
+    line-height: 1 !important;
+    display: inline !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Ensure text labels are hidden on mobile - more specific selectors */
+  .editor-output-panel button span.btn-text,
+  .editor-output-panel button .btn-text,
+  .editor-output-panel button span:not(.btn-icon):not([data-icon]):not(.block) {
+    display: none !important;
+  }
+}
+
+/* Extra small screens - very compact layout */
+@media (max-width: 320px) {
+  .editor-output-panel button {
+    width: clamp(36px, 15vw, 44px) !important;
+    height: clamp(36px, 8vh, 40px) !important;
+    padding: clamp(4px, 1vw, 6px) !important;
+    font-size: clamp(14px, 3vw, 16px) !important;
+  }
+  
+  .editor-output-panel button span.btn-icon,
+  .editor-output-panel button .btn-icon,
+  .editor-output-panel button span[data-icon],
+  .editor-output-panel button span.block.btn-icon {
+    font-size: clamp(14px, 3vw, 16px) !important;
+    display: inline !important;
+  }
+  
+  /* Hide text labels specifically */
+  .editor-output-panel button span.btn-text,
+  .editor-output-panel button .btn-text,
+  .editor-output-panel button span:not(.btn-icon):not([data-icon]):not(.block),
+  .vscode-editor button span:not(.btn-icon):not([data-icon]):not(.block) {
+    display: none !important;
+  }
+}
+
+/* Enhanced mobile header icon sizes */
+@media (max-width: 767px) {
+  /* Larger hamburger menu icon - better centering */
+  .mobile-header button[title="Menu"] {
+    font-size: 18px !important;
+    font-weight: bold !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+  }
+  
+  /* Larger run button icon - better centering */
+  .mobile-header button[title="Run Code"] {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+  }
+  
+  /* Better mobile header height and spacing */
+  .mobile-header {
+    height: 44px !important; /* Increased from 40px for better touch targets */
+    padding: 0 8px !important;
+  }
+  
+  /* Improve mobile header button sizes - smaller padding */
+  .mobile-header button {
+    min-width: 36px !important;
+    min-height: 36px !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 6px !important;
+  }
+}
+
+/* Clean professional tab styling - starts above 768px */
+@media (min-width: 769px) {
+  .editor-output-panel .flex.shrink-0 button {
+    background-color: transparent !important;
+    border: 1px solid #3e3e42 !important;
+    border-radius: 3px 3px 0 0 !important; /* Slightly rounded top for tab feel */
+    color: #ffffff !important;
+    font-size: 12px !important;
+    margin-right: 1px !important;
+    transition: all 0.2s ease !important;
+  }
+  
+  /* Active tab styling */
+  .editor-output-panel .flex.shrink-0 button.bg-\[#1e1e1e\] {
+    background-color: #37373d !important;
+    border-bottom-color: transparent !important;
+    border-color: #007acc !important;
+  }
+  
+  /* Tab hover effects */
+  .editor-output-panel .flex.shrink-0 button:hover {
+    background-color: #2c2c2c !important;
+    border-color: #007acc !important;
+  }
+}
+
+/* Desktop Professional Styling - Uniform Design System */
+@media (min-width: 768px) {
+  /* Base button styling - uniform smaller text and professional appearance */
+  .vscode-editor button {
+    font-size: 12px !important;
+    color: white !important;
+    border: 1px solid #404040 !important;
+    background-color: #2d2d30 !important;
+    padding: 4px 8px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    min-height: 28px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+  }
+  
+  .vscode-editor button:hover {
+    background-color: #3e3e42 !important;
+    border-color: #505050 !important;
+  }
+  
+  /* Style buttons appropriately based on media query */
+  /* Icon spans */
+  .vscode-editor button span.btn-icon,
+  .vscode-editor button .btn-icon,
+  .vscode-editor button span[data-icon] {
+    color: white !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+  }
+  
+  /* Text spans */
+  .vscode-editor button span.btn-text,
+  .vscode-editor button .btn-text,
+  .vscode-editor button span:not(.btn-icon):not([data-icon]) {
+    color: white !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+  }
+  
+  /* Control display based on media query breakpoint */
+  @media (min-width: 769px) {
+    /* These are redundant with our main media query but keep them for extra specificity */
+    .vscode-editor button span.btn-icon,
+    .vscode-editor button .btn-icon,
+    .vscode-editor button span[data-icon] {
+      display: none !important; /* Hide icons on desktop */
+      visibility: hidden !important;
+      width: 0 !important;
+      height: 0 !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      overflow: hidden !important;
+    }
+    
+    .vscode-editor button span.btn-text,
+    .vscode-editor button .btn-text,
+    .vscode-editor button span:not(.btn-icon):not([data-icon]) {
+      display: inline !important;
+    }
+    
+    /* Improve button layout with flexbox spacing */
+    .vscode-editor button {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+  }
+  
+  /* Tab buttons styling - integrated professional look */
+  .vscode-editor .tab-container button,
+  .vscode-editor [class*="tab"] button {
+    border: 1px solid #404040 !important;
+    background-color: #252526 !important;
+    color: #cccccc !important;
+    border-radius: 0 !important;
+    border-right: none !important;
+    padding: 6px 12px !important;
+    min-width: 70px !important;
+    height: 32px !important;
+    font-size: 11px !important;
+  }
+  
+  .vscode-editor .tab-container button:last-child,
+  .vscode-editor [class*="tab"] button:last-child {
+    border-right: 1px solid #404040 !important;
+  }
+  
+  .vscode-editor .tab-container button.active,
+  .vscode-editor [class*="tab"] button.active,
+  .vscode-editor .tab-container button[class*="bg-[#1e1e1e]"],
+  .vscode-editor [class*="tab"] button[class*="bg-[#1e1e1e]"] {
+    background-color: #1e1e1e !important;
+    color: white !important;
+    border-bottom-color: #1e1e1e !important;
+  }
+  
+  .vscode-editor .tab-container button:hover,
+  .vscode-editor [class*="tab"] button:hover {
+    background-color: #2d2d30 !important;
+    color: white !important;
+  }
+  
+  /* Output panel tab buttons - consistent with main tabs */
+  .vscode-editor .editor-output-panel .flex.shrink-0 button {
+    font-size: 11px !important;
+    color: white !important;
+    background-color: #252526 !important;
+    border: 1px solid #404040 !important;
+    padding: 4px 8px !important;
+    min-width: 60px !important;
+    height: 28px !important;
+    border-radius: 0 !important;
+    border-right: none !important;
+    margin-right: 0 !important;
+  }
+  
+  .vscode-editor .editor-output-panel .flex.shrink-0 button:last-child {
+    border-right: 1px solid #404040 !important;
+  }
+  
+  /* Active output panel tab */
+  .vscode-editor .editor-output-panel .flex.shrink-0 button[class*="bg-[#1e1e1e]"] {
+    background-color: #1e1e1e !important;
+    color: white !important;
+    border-bottom-color: #1e1e1e !important;
+  }
+  
+  /* Run button accent color - professional blue */
+  .vscode-editor button[title="Run"],
+  .vscode-editor button[title="Run Code"] {
+    background-color: #0e639c !important;
+    border-color: #0e639c !important;
+    color: white !important;
+    font-weight: 500 !important;
+  }
+  
+  .vscode-editor button[title="Run"]:hover,
+  .vscode-editor button[title="Run Code"]:hover {
+    background-color: #1177bb !important;
+    border-color: #1177bb !important;
+  }
+  
+  /* Run button disabled/running state */
+  .vscode-editor button[title="Run"]:disabled,
+  .vscode-editor button[title="Run Code"]:disabled {
+    background-color: #404040 !important;
+    border-color: #404040 !important;
+    color: #888888 !important;
+    cursor: not-allowed !important;
+  }
+  
+  /* Action buttons uniform styling - better horizontal padding for text */
+  .vscode-editor button[title="View Browser"],
+  .vscode-editor button[title="View in Browser"],
+  .vscode-editor button[title="Clear"],
+  .vscode-editor button[title="Enter Fullscreen"],
+  .vscode-editor button[title="Exit Fullscreen"] {
+    background-color: #2d2d30 !important;
+    border-color: #404040 !important;
+    color: white !important;
+    padding: 4px 20px !important;
+    min-width: 120px !important;
+    width: auto !important;
+    height: 28px !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: nowrap !important;
+    font-size: 11px !important;
+  }
+  
+  /* Ensure all icons in action buttons are white and properly sized */
+  .vscode-editor .editor-output-panel .ml-auto button {
+    min-width: 120px !important;
+    width: auto !important;
+    height: 28px !important;
+    padding: 4px 20px !important;
+    font-size: 11px !important;
+    color: white !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: nowrap !important;
+    background-color: #2d2d30 !important;
+    border: 1px solid #404040 !important;
+    border-radius: 3px !important;
+  }
+  
+  .vscode-editor .editor-output-panel .ml-auto button:hover {
+    background-color: #3e3e42 !important;
+    border-color: #505050 !important;
+  }
+  
+  .vscode-editor .editor-output-panel .ml-auto button span {
+    color: white !important;
+    font-size: 11px !important;
+    line-height: 1 !important;
+  }
+  
+  /* Ensure consistent button spacing */
+  .vscode-editor .editor-output-panel .ml-auto {
+    gap: 2px !important;
+  }
+  
+  .vscode-editor .editor-output-panel .space-x-1 > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 2px !important;
+  }
+}
+
+/* Fix container height and editor responsiveness */
+.vscode-editor {
+  height: 100%;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.vscode-editor .main-editor-area {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.vscode-editor .editor-main-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.vscode-editor .monaco-editor-container {
+  flex: 1;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure Monaco editor takes full container height */
+.vscode-editor .monaco-editor-container .monaco-editor {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* Fix resize handle targeting - using attribute selector */
+.vscode-editor [class*="cursor-row-resize"] {
+  cursor: row-resize !important;
+  background-color: #3e3e42 !important;
+  height: 8px !important;
+  min-height: 8px !important;
+  position: relative !important;
+  z-index: 10 !important;
+  /* Improve resize interaction */
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  touch-action: none !important;
+  /* Better visual feedback */
+  transition: background-color 0.2s ease !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.vscode-editor [class*="cursor-row-resize"]:hover {
+  background-color: #007acc !important;
+}
+
+/* When actively resizing, ensure visual feedback */
+.vscode-editor [class*="cursor-row-resize"]:active,
+.vscode-editor.resizing [class*="cursor-row-resize"] {
+  background-color: #007acc !important;
+  opacity: 1 !important;
+}
+
+/* Ensure proper cursor throughout resize operation */
+.vscode-editor.resizing,
+.vscode-editor.resizing * {
+  cursor: row-resize !important;
+}
+
+/* Prevent text selection during resize */
+.vscode-editor.resizing {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+/* Enhanced monaco editor container to handle extreme resize scenarios */
+.vscode-editor .monaco-editor-container {
+  position: relative;
+  overflow: hidden;
+  /* Ensure minimum visibility when output panel is maximized */
+  min-height: 60px !important;
+  /* Smooth transitions when resizing */
+  transition: height 0.05s ease-out;
+}
+
+/* Prevent layout jumping during extreme resizes */
+.vscode-editor.resizing .monaco-editor-container {
+  transition: none; /* Disable transitions during active resize */
+}
+
+/* Ensure Monaco editor adapts to container changes */
+.vscode-editor .monaco-editor-container .monaco-editor {
+  height: 100% !important;
+  width: 100% !important;
+  min-height: 60px !important;
+}
+
+/* End of mobile editor styles */

@@ -3,6 +3,7 @@ import { GeistMono } from "geist/font/mono";
 import localFont from "next/font/local";
 import type React from "react";
 import { RockitSessionProvider } from '@/components/rockitcode/session-provider'
+import { EditorSettingsProvider } from '@/contexts/editor-settings'
 import "./globals.css";
 
 const InterVariable = localFont({
@@ -48,9 +49,14 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white dark:bg-gray-950 text-gray-950 dark:text-white">
+      <body 
+        className="bg-white dark:bg-gray-950 text-gray-950 dark:text-white"
+        suppressHydrationWarning={true}
+      >
         <RockitSessionProvider>
-          <div className="isolate">{children}</div>
+          <EditorSettingsProvider>
+            <div className="isolate">{children}</div>
+          </EditorSettingsProvider>
         </RockitSessionProvider>
       </body>
     </html>

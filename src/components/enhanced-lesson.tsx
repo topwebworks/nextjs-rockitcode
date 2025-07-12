@@ -3,6 +3,10 @@
 import { useState } from 'react'
 import VSCodeMonacoEditor from '@/components/vscode-monaco-editor'
 import { Video } from '@/components/video-player'
+import { EditorSettingsButton } from '@/components/editor-settings-ui'
+import { QuickSettings } from '@/components/quick-settings'
+import { EditorTutorial } from '@/components/editor-tutorial'
+import { useEditorSettings } from '@/contexts/editor-settings'
 
 interface CodeSection {
   id: string
@@ -36,38 +40,54 @@ export function EnhancedLesson({
   const [activeCodeSection, setActiveCodeSection] = useState(0)
   const [currentCode, setCurrentCode] = useState(codeSections[0]?.initialCode || '')
   const [isVideoMode, setIsVideoMode] = useState(true)
+  const { settings } = useEditorSettings()
 
   const currentSection = codeSections[activeCodeSection]
 
   return (
     <div className="mx-auto max-w-7xl">
       {/* Video/Code Toggle */}
-      <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{title}</h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-1">{description}</p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg mb-6 gap-4">
+        <div className="flex-1 min-w-0">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white truncate">{title}</h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-1 text-sm sm:text-base">{description}</p>
         </div>
-        <div className="flex items-center space-x-4">
-          <button
-            onClick={() => setIsVideoMode(true)}
-            className={`px-4 py-2 rounded-lg transition-colors ${
-              isVideoMode 
-                ? 'bg-blue-500 text-white' 
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
-            }`}
-          >
-            📹 Watch Video
-          </button>
-          <button
-            onClick={() => setIsVideoMode(false)}
-            className={`px-4 py-2 rounded-lg transition-colors ${
-              !isVideoMode 
-                ? 'bg-blue-500 text-white' 
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
-            }`}
-          >
-            💻 Code Editor
-          </button>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
+          {/* Editor Settings */}
+          {!isVideoMode && (
+            <div className="flex items-center justify-center gap-2 order-2 sm:order-1">
+              <QuickSettings />
+              <div className="hidden lg:block">
+                <EditorSettingsButton />
+              </div>
+            </div>
+          )}
+          
+          {/* Mode Toggle */}
+          <div className="flex gap-2 order-1 sm:order-2">
+            <button
+              onClick={() => setIsVideoMode(true)}
+              className={`flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg transition-colors text-sm sm:text-base touch-manipulation ${
+                isVideoMode 
+                  ? 'bg-blue-500 text-white' 
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+              }`}
+            >
+              <span className="sm:hidden">📹</span>
+              <span className="hidden sm:inline">📹 Watch Video</span>
+            </button>
+            <button
+              onClick={() => setIsVideoMode(false)}
+              className={`flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg transition-colors text-sm sm:text-base touch-manipulation ${
+                !isVideoMode 
+                  ? 'bg-blue-500 text-white' 
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+              }`}
+            >
+              <span className="sm:hidden">💻</span>
+              <span className="hidden sm:inline">💻 Code Editor</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -112,10 +132,13 @@ export function EnhancedLesson({
                   <VSCodeMonacoEditor
                     value={currentCode}
                     language={currentSection?.language || 'html'}
-                    theme="vs-dark"
-                    showOutput={true}
-                    showSidebar={true}
-                    showActivityBar={true}
+                    theme={settings.theme}
+                    showOutput={settings.showOutput}
+                    showSidebar={settings.showSidebar}
+                    showActivityBar={settings.showActivityBar}
+                    showStatusBar={settings.showStatusBar}
+                    showMinimap={settings.showMinimap}
+                    lineNumbers={settings.showLineNumbers}
                     height="100%"
                     tabs={[
                       { 
@@ -205,6 +228,9 @@ export function EnhancedLesson({
           </div>
         </div>
       </div>
+      
+      {/* Tutorial for first-time users */}
+      <EditorTutorial />
     </div>
   )
 }

@@ -8,7 +8,6 @@ const features = [
     id: 'mobile-first',
     title: 'Mobile-First Design',
     description: 'Coding interface optimized for touch screens, with gesture support and mobile-friendly UI elements.',
-    benefits: ['Touch-optimized interface', 'Gesture navigation', 'Responsive design', 'Offline capabilities'],
     image: (
       <div className="relative">
         <div className="bg-slate-900 rounded-2xl p-4 shadow-lg border border-slate-700">
@@ -42,7 +41,6 @@ const features = [
     id: 'voice-coding',
     title: 'Voice Coding',
     description: 'Code hands-free using voice commands. Perfect for when typing is difficult or inconvenient.',
-    benefits: ['Voice-to-code conversion', 'Natural language support', 'Hands-free coding', 'Accessibility features'],
     image: (
       <div className="relative">
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
@@ -73,7 +71,6 @@ const features = [
     id: 'smart-hints',
     title: 'Smart Hints',
     description: 'AI-powered code suggestions and error detection that helps you learn as you code.',
-    benefits: ['Real-time error detection', 'Code completion', 'Learning suggestions', 'Context-aware help'],
     image: (
       <div className="relative">
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-lg border border-slate-200 dark:border-slate-700 space-y-3">
@@ -102,7 +99,6 @@ const features = [
     id: 'micro-learning',
     title: '5-Minute Sessions',
     description: 'Bite-sized lessons perfect for busy schedules. Learn effectively in short, focused sessions.',
-    benefits: ['Quick completion', 'Progress tracking', 'Flexible scheduling', 'Retention optimization'],
     image: (
       <div className="relative">
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-lg border border-slate-200 dark:border-slate-700">
@@ -185,22 +181,7 @@ export function AnimatedFeatures() {
                       {feature.description}
                     </p>
 
-                    {/* Benefits List */}
-                    <ul className="mt-6 space-y-2">
-                      {feature.benefits.map((benefit, idx) => (
-                        <motion.li
-                          key={idx}
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.2 + idx * 0.1 }}
-                          className="flex items-center text-sm text-slate-600 dark:text-slate-400"
-                        >
-                          <span className="mr-3 text-green-500">✓</span>
-                          {benefit}
-                        </motion.li>
-                      ))}
-                    </ul>
+
                   </div>
                 </div>
 
