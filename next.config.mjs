@@ -1,4 +1,9 @@
 import createMDX from "@next/mdx";
+import bundleAnalyzer from "@next/bundle-analyzer";
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
@@ -9,8 +14,25 @@ const withMDX = createMDX({
 });
 
 const nextConfig = {
+  // Performance optimizations
   turbopack: {},
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: [
+      '@radix-ui/react-icons',
+      'lucide-react',
+      'socket.io-client',
+      '@monaco-editor/react'
+    ],
+  },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+  
+  // Compression and optimization
+  compress: true,
+  poweredByHeader: false,
+  
+  // Output optimization
+  output: 'standalone',
   webpack: (config, { isServer }) => {
     // Monaco Editor webpack configuration
     if (!isServer) {
@@ -43,4 +65,4 @@ const nextConfig = {
   },
 };
 
-export default withMDX(nextConfig);
+export default withBundleAnalyzer(withMDX(nextConfig));

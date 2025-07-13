@@ -1,5 +1,7 @@
 // RockitCode Lessons Data - Coding Education Focus
 
+import missionControlSetupLesson from './lessons/week-1-chapter-1-mission-control-setup'
+
 export interface CodeSection {
   id: string;
   title: string;
@@ -18,6 +20,7 @@ export interface Lesson {
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   course: string;
   module: string;
+  type?: 'traditional' | 'interactive'; // Add support for different lesson types
   video?: {
     poster: {
       src: string;
@@ -26,10 +29,25 @@ export interface Lesson {
     url: string;
   };
   codeSections?: CodeSection[]; // Interactive coding exercises
+  interactiveData?: any; // For interactive lessons
   blocks: any[]; // Will be populated with actual lesson content blocks
 }
 
 export const lessons: Lesson[] = [
+  // Week 1: Mission Control Setup - Interactive Lesson
+  {
+    id: 'mission-control-setup',
+    title: 'Mission Control Setup',
+    description: 'Set up your professional developer environment and create your first live website',
+    duration: '90-120 min',
+    difficulty: 'beginner',
+    course: 'foundation',
+    module: 'week-1',
+    type: 'interactive',
+    interactiveData: missionControlSetupLesson,
+    blocks: [] // Interactive lessons use their own structure
+  },
+  
   // HTML & CSS Fundamentals Course
   {
     id: 'html-basics',
@@ -39,6 +57,7 @@ export const lessons: Lesson[] = [
     difficulty: 'beginner',
     course: 'html-css',
     module: 'html-fundamentals',
+    type: 'traditional',
     video: {
       poster: {
         src: '/images/lessons/html-css/html-structure-diagram.svg',

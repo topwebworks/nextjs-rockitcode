@@ -5,6 +5,7 @@ import type React from "react";
 import { RockitSessionProvider } from '@/components/rockitcode/session-provider'
 import { EditorSettingsProvider } from '@/contexts/editor-settings'
 import { LearningProvider } from '@/contexts/learning-context'
+import { UserProvider } from '@/contexts/UserContext'
 import { MainSiteLayout } from '@/components/main-site-layout'
 import "./globals.css";
 
@@ -58,9 +59,9 @@ export default function RootLayout({
         <RockitSessionProvider>
           <EditorSettingsProvider>
             <LearningProvider>
-              <MainSiteLayout>
+              <UserProvider>
                 {children}
-              </MainSiteLayout>
+              </UserProvider>
             </LearningProvider>
           </EditorSettingsProvider>
         </RockitSessionProvider>
