@@ -1,9 +1,6 @@
-'use client'
-
 import { notFound } from 'next/navigation'
 import { lessons } from '@/data/lessons'
 import InteractiveLessonRenderer from '@/components/lessons/InteractiveLessonRenderer'
-import { useState } from 'react'
 
 interface PageProps {
   params: {

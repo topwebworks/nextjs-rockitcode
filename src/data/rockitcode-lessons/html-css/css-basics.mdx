@@ -1,0 +1,448 @@
+---
+title: "CSS Basics: Making Your Website Beautiful"
+description: "Learn how to style your HTML with CSS - add colors, fonts, layouts and make your website look amazing!"
+estimatedTime: 45
+difficulty: "beginner"
+technologies: ["CSS3", "HTML5"]
+---
+
+# CSS Basics: Making Your Website Beautiful
+
+Transform your plain HTML into a stunning, professional-looking website with CSS styling.
+
+In this lesson, you'll discover how CSS (Cascading Style Sheets) works and learn to add colors, fonts, spacing, and layouts to your HTML. By the end, your personal portfolio will look professional and polished!
+
+## Understanding CSS: The Artist's Paintbrush for the Web
+
+CSS stands for **Cascading Style Sheets**. Think of HTML as the structure of a house (the walls, rooms, and foundation), and CSS as the interior design (paint colors, furniture, decorations). CSS is what makes websites beautiful and engaging.
+
+![CSS Styling Comparison|800x1200](/images/lessons/html-css/css-before-after.{scheme}.svg)
+
+### How CSS Works with HTML
+
+CSS works by selecting HTML elements and applying styling rules to them. It's like giving instructions to a web browser: "Make all headings blue," "Make paragraphs have bigger text," or "Add space around this section."
+
+```css
+/* This is CSS code */
+h1 {
+    color: blue;
+    font-size: 36px;
+    text-align: center;
+}
+
+p {
+    color: gray;
+    font-size: 18px;
+    line-height: 1.5;
+}
+```
+
+## Your First CSS Styles
+
+Let's start by adding some basic styling to your "About Me" page from the previous lesson. We'll add CSS to make it look more professional and attractive.
+
+### Step 1: Adding CSS to Your HTML
+
+There are three ways to add CSS to HTML, but we'll use the most common method - an external CSS file.
+
+First, create your CSS file:
+
+```css
+/* styles.css - Your first CSS file! */
+
+/* Style the entire page */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Style your main heading */
+h1 {
+    color: #2563eb;
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #3b82f6;
+    padding-bottom: 15px;
+}
+
+/* Style your subheadings */
+h2 {
+    color: #7c3aed;
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+/* Style your paragraphs */
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+```
+
+### Step 2: Link CSS to Your HTML
+
+Now update your HTML file to include the CSS:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Me - [Your Name]</title>
+    <!-- This line connects your CSS to your HTML -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Hi, I'm [Your Name]!</h1>
+    
+    <p>Welcome to my first web page! I'm learning how to code with HTML and CSS.</p>
+    
+    <p>I'm excited to discover how websites are built and create my own amazing projects.</p>
+    
+    <h2>My Favorite Things</h2>
+    <p>I love pizza, video games, and learning new things!</p>
+    
+    <h2>My Goals</h2>
+    <p>I want to become a great web developer and build cool websites.</p>
+</body>
+</html>
+```
+
+## Understanding CSS Properties
+
+CSS is made up of **properties** and **values**. Each property controls a different aspect of how elements look:
+
+### Colors
+```css
+/* Different ways to set colors */
+h1 { color: blue; }           /* Named colors */
+h2 { color: #ff6b6b; }        /* Hex colors */
+p { color: rgb(100, 100, 100); } /* RGB colors */
+
+/* Background colors */
+body { background-color: #f8f9fa; }
+```
+
+### Fonts and Text
+```css
+/* Font properties */
+body {
+    font-family: Arial, sans-serif;  /* Font type */
+    font-size: 18px;                 /* Text size */
+    font-weight: bold;               /* Text thickness */
+    text-align: center;              /* Text alignment */
+    line-height: 1.6;                /* Space between lines */
+}
+```
+
+### Spacing
+```css
+/* Margin (space outside element) and Padding (space inside element) */
+h1 {
+    margin: 20px;          /* Space around the element */
+    padding: 15px;         /* Space inside the element */
+    margin-top: 30px;      /* Space only on top */
+    padding-bottom: 10px;  /* Space only on bottom */
+}
+```
+
+## Try It Yourself: Style Your Portfolio
+
+Now let's enhance your portfolio with more advanced styling. Add these styles to your `styles.css` file:
+
+### Step 1: Add a Professional Header Section
+
+```css
+/* Create a beautiful header */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 40px;
+    margin: -20px -20px 40px -20px;
+    border-radius: 0 0 20px 20px;
+}
+
+.header h1 {
+    color: white;
+    margin: 0;
+    font-size: 48px;
+    border: none;
+    padding: 0;
+}
+
+.header p {
+    font-size: 20px;
+    margin: 15px 0 0 0;
+    opacity: 0.9;
+}
+```
+
+### Step 2: Add Section Styling
+
+```css
+/* Style your content sections */
+.section {
+    background: white;
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    color: #4a5568;
+    margin-top: 0;
+    font-size: 24px;
+}
+```
+
+### Step 3: Update Your HTML Structure
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Me - [Your Name]</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Beautiful header section -->
+    <div class="header">
+        <h1>Hi, I'm [Your Name]!</h1>
+        <p>Aspiring Web Developer | Learning to Code | Building Amazing Things</p>
+    </div>
+    
+    <!-- About section -->
+    <div class="section">
+        <h2>About Me</h2>
+        <p>Welcome to my portfolio! I'm learning how to code with HTML and CSS, and I'm excited to discover how websites are built and create my own amazing projects.</p>
+    </div>
+    
+    <!-- Interests section -->
+    <div class="section">
+        <h2>My Favorite Things</h2>
+        <p>I love pizza, video games, and learning new things! I'm passionate about technology and enjoy solving problems through code.</p>
+    </div>
+    
+    <!-- Goals section -->
+    <div class="section">
+        <h2>My Goals</h2>
+        <p>I want to become a great web developer and build cool websites that help people and solve real problems. My dream is to work at a tech company and create applications that millions of people use.</p>
+    </div>
+</body>
+</html>
+```
+
+## CSS Selectors: Targeting Elements
+
+CSS selectors tell the browser which HTML elements to style:
+
+### Element Selectors
+```css
+/* Style ALL h1 elements */
+h1 {
+    color: blue;
+}
+
+/* Style ALL paragraphs */
+p {
+    font-size: 18px;
+}
+```
+
+### Class Selectors
+```css
+/* Style elements with class="header" */
+.header {
+    background-color: blue;
+}
+
+/* Style elements with class="section" */
+.section {
+    padding: 20px;
+}
+```
+
+### ID Selectors
+```css
+/* Style the element with id="main-title" */
+#main-title {
+    font-size: 48px;
+}
+```
+
+## Complete Example: Your Beautiful Portfolio
+
+Here's what your complete files should look like:
+
+**HTML (index.html):**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Alex Chen</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Hi, I'm Alex Chen!</h1>
+        <p>Aspiring Web Developer | Learning to Code | Building Amazing Things</p>
+    </div>
+    
+    <div class="section">
+        <h2>About Me</h2>
+        <p>Welcome to my portfolio! I'm a beginner web developer passionate about creating beautiful and functional websites. I love learning new technologies and solving problems through code.</p>
+    </div>
+    
+    <div class="section">
+        <h2>What I'm Learning</h2>
+        <p>I'm currently mastering HTML and CSS fundamentals. Next, I'll be diving into JavaScript to make my websites interactive and dynamic.</p>
+    </div>
+    
+    <div class="section">
+        <h2>My Interests</h2>
+        <p>When I'm not coding, I enjoy playing video games, reading tech blogs, and experimenting with new design ideas. I'm fascinated by how technology can solve real-world problems.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Goals & Dreams</h2>
+        <p>My goal is to become a professional web developer and work on projects that make a positive impact. I dream of building applications that help people and contribute to amazing open-source projects.</p>
+    </div>
+</body>
+</html>
+```
+
+**CSS (styles.css):**
+```css
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+/* Header section */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 40px;
+    margin: -20px -20px 40px -20px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 20px;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Content sections */
+.section {
+    background: white;
+    padding: 40px;
+    margin: 30px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #667eea;
+}
+
+.section h2 {
+    color: #4a5568;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.section p {
+    font-size: 18px;
+    color: #718096;
+    margin-bottom: 15px;
+}
+
+/* Hover effects for sections */
+.section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+}
+```
+
+## Interactive Playground
+
+Try out your CSS code in this live playground. You can edit the styles and see the results instantly!
+
+<CSSPlayground />
+
+## Video Tutorial: CSS Fundamentals
+
+Watch this step-by-step guide to styling your first website with CSS:
+
+<YouTubeEmbed 
+  videoId="1Rs2ND1ryYc" 
+  title="CSS Basics - Making Websites Beautiful"
+  description="Learn CSS fundamentals and transform your HTML into a stunning website"
+/>
+
+*Note: The video will stay visible in a small window when you scroll down the page, so you can follow along while reading!*
+
+## 🎉 Congratulations! Your Website Looks Amazing!
+
+Look at what you've accomplished! Your simple HTML page has been transformed into a beautiful, professional-looking website.
+
+### What You've Mastered
+
+- ✅ **CSS Fundamentals**: You understand how CSS works with HTML to create beautiful designs
+- ✅ **Color and Typography**: You can style text with different colors, fonts, and sizes
+- ✅ **Layout and Spacing**: You know how to use padding, margins, and positioning
+- ✅ **CSS Selectors**: You can target specific elements with classes and IDs
+- ✅ **Professional Styling**: Your portfolio now looks like a real professional website
+
+### Challenge Yourself
+
+Before moving on, try these enhancements:
+
+1. **Add more colors**: Experiment with different color schemes for your sections
+2. **Try different fonts**: Look up Google Fonts and add a custom font to your site
+3. **Add more sections**: Create an "Education" or "Projects" section
+4. **Experiment with spacing**: Adjust margins and padding to see how it affects the layout
+5. **Add hover effects**: Make elements change when you hover over them
+
+### Your Next Adventure
+
+In the next lesson, you'll learn how to create **multiple pages** and add **navigation** to your portfolio. You'll transform your single-page site into a complete multi-page portfolio with an About page, Projects page, and Contact page.
+
+But first, take a moment to appreciate how far you've come! You now have the skills to make any HTML page look professional and beautiful with CSS.
+
+## Portfolio Evolution: From Plain to Professional
+
+Your portfolio has just evolved from a basic HTML page to a professional-looking website! This is exactly how the **Living Portfolio Ecosystem** works - each lesson builds upon the previous one, creating something better and more professional.
+
+**What's Next**: In Lesson 3, we'll add multiple pages and navigation to create a complete portfolio website that showcases different aspects of your skills and personality.
+
+Keep building, keep learning, and most importantly - keep having fun with your code! 🎨✨

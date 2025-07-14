@@ -25,19 +25,22 @@ declare module 'next-auth' {
 
 export const config: NextAuthOptions = {
   providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-      profile(profile: any) {
-        return {
-          id: profile.id.toString(),
-          email: profile.email || '',
-          name: profile.name || profile.login,
-          image: profile.avatar_url,
-          login: profile.login
+    // Only add GitHub provider if environment variables are available
+    ...(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET ? [
+      GitHubProvider({
+        clientId: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        profile(profile: any) {
+          return {
+            id: profile.id.toString(),
+            email: profile.email || '',
+            name: profile.name || profile.login,
+            image: profile.avatar_url,
+            login: profile.login
+          }
         }
-      }
-    }),
+      })
+    ] : []),
   ],
   pages: {
     signIn: '/login',

@@ -1,0 +1,244 @@
+<!-- 
+CSS Basics Playground - Lesson 2
+This is a practice environment for CSS fundamentals
+Students can modify this code to experiment with CSS styling
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Basics Playground</title>
+    <style>
+        /* Base styles for the playground */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8fafc;
+            line-height: 1.6;
+        }
+        
+        .playground-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin: -20px -20px 30px -20px;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .playground-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 36px;
+        }
+        
+        .practice-section {
+            background: white;
+            border: 2px dashed #e2e8f0;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .practice-section::before {
+            content: "🎨 Practice Area - Edit the CSS above!";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: white;
+            color: #667eea;
+            padding: 0 15px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .demo-text {
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+        
+        .color-demo {
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .blue-section {
+            background-color: #3182ce;
+            color: white;
+        }
+        
+        .purple-section {
+            background-color: #805ad5;
+            color: white;
+        }
+        
+        .green-section {
+            background-color: #38a169;
+            color: white;
+        }
+        
+        .tip-box {
+            background: #fef5e7;
+            border-left: 4px solid #f6ad55;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tip-box strong {
+            color: #c05621;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        
+        .exercise-area {
+            background: #edf2f7;
+            border: 3px solid #cbd5e0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        /* Students can modify these styles */
+        .student-heading {
+            color: #2d3748;
+            font-size: 28px;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        
+        .student-paragraph {
+            color: #4a5568;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .student-button {
+            background-color: #4299e1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        
+        .student-button:hover {
+            background-color: #3182ce;
+        }
+    </style>
+</head>
+<body>
+    <div class="playground-header">
+        <h1>🎨 CSS Basics Playground</h1>
+        <p>Experiment with CSS styling and see your changes come to life!</p>
+    </div>
+    
+    <div class="demo-text">
+        <h2>🎯 What You'll Practice</h2>
+        <p>This playground lets you experiment with the CSS concepts from today's lesson:</p>
+        <ul>
+            <li><strong>Colors</strong> - Change text and background colors</li>
+            <li><strong>Fonts</strong> - Modify font sizes, families, and weights</li>
+            <li><strong>Spacing</strong> - Adjust margins, padding, and layout</li>
+            <li><strong>Styling</strong> - Create beautiful visual effects</li>
+        </ul>
+    </div>
+    
+    <div class="practice-section">
+        <h3>🌈 Color Practice</h3>
+        <p>Try changing the background colors and text colors below:</p>
+        
+        <div class="color-demo blue-section">
+            Blue Section - Try changing this to red!
+        </div>
+        
+        <div class="color-demo purple-section">
+            Purple Section - Make this green!
+        </div>
+        
+        <div class="color-demo green-section">
+            Green Section - Try a different color!
+        </div>
+    </div>
+    
+    <div class="tip-box">
+        <strong>💡 Color Tip:</strong> You can use color names (like 'red', 'blue'), hex codes (like '#ff0000'), or RGB values (like 'rgb(255, 0, 0)'). Try them all!
+    </div>
+    
+    <div class="practice-section">
+        <h3>📝 Text Styling Practice</h3>
+        <p>Modify the styles of these elements:</p>
+        
+        <h2 class="student-heading">This is a heading - make it bigger or change its color!</h2>
+        
+        <p class="student-paragraph">
+            This is a paragraph. Try changing the font size, color, or even the font family. 
+            You could make it bold, italic, or change the line spacing!
+        </p>
+        
+        <button class="student-button">Button 1</button>
+        <button class="student-button">Button 2</button>
+    </div>
+    
+    <div class="exercise-area">
+        <h3>🏆 Your Challenge</h3>
+        <p><strong>Mission:</strong> Style the elements above to create your own unique design!</p>
+        
+        <h4>Try These Ideas:</h4>
+        <ul>
+            <li>Change the heading color to your favorite color</li>
+            <li>Make the paragraph text bigger and easier to read</li>
+            <li>Style the buttons with different colors</li>
+            <li>Add more spacing between elements</li>
+            <li>Try different font families</li>
+        </ul>
+        
+        <p><strong>Remember:</strong> There's no wrong way to style! Experiment and have fun! 🎨</p>
+    </div>
+    
+    <div class="code-example">
+/* Example CSS - Try copying and modifying this! */
+
+.student-heading {
+    color: #e53e3e;        /* Red color */
+    font-size: 36px;       /* Bigger text */
+    text-align: center;    /* Center the text */
+}
+
+.student-paragraph {
+    color: #2d3748;        /* Dark gray */
+    font-size: 18px;       /* Bigger text */
+    font-weight: bold;     /* Make it bold */
+}
+
+.student-button {
+    background-color: #38a169;  /* Green background */
+    color: white;               /* White text */
+    padding: 15px 30px;         /* More padding */
+    border-radius: 25px;        /* Rounded corners */
+}
+    </div>
+    
+    <div class="tip-box">
+        <strong>🎯 Next Steps:</strong> Once you're comfortable with these CSS basics, you'll learn how to create multi-page websites and add navigation! Keep practicing and experimenting! 🚀
+    </div>
+</body>
+</html>

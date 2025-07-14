@@ -1,0 +1,1134 @@
+---
+title: "Multi-Page Navigation: Building a Professional Website"
+description: "Transform your single-page portfolio into a multi-page website with professional navigation. Learn file organization, linking pages, and creating seamless user experiences."
+estimatedTime: 50
+difficulty: "beginner"
+technologies: ["HTML5", "CSS3", "File Organization", "Navigation"]
+---
+
+# Multi-Page Navigation: Building a Professional Website
+
+Transform your single-page portfolio into a complete multi-page website with professional navigation, just like the websites you visit every day.
+
+In this lesson, you'll learn how to organize multiple HTML pages, create navigation menus, and link pages together. By the end, your portfolio will have separate About, Projects, and Contact pages with smooth navigation between them!
+
+## Understanding Multi-Page Websites
+
+Most professional websites aren't just one long page - they're organized into multiple pages that serve different purposes. Think about websites you use daily: they have Home pages, About pages, Contact pages, and more.
+
+![Multi-Page Website Structure|800x600](/images/lessons/html-css/multi-page-structure.{scheme}.svg)
+
+### Why Multi-Page Websites Matter
+
+**Organization**: Different content gets its own dedicated space
+**User Experience**: Visitors can find specific information quickly  
+**Professional Appearance**: Looks like real business and portfolio websites
+**SEO Benefits**: Search engines can index different pages for different topics
+
+## File Organization: The Foundation of Professional Websites
+
+Before we create multiple pages, let's organize our files like professional developers do.
+
+### Professional File Structure
+
+```
+my-portfolio/
+├── index.html          (Home page - main landing page)
+├── about.html           (About page - your story)
+├── projects.html        (Projects page - your work)
+├── contact.html         (Contact page - how to reach you)
+├── css/
+│   └── styles.css       (All your styles in one place)
+├── images/
+│   ├── profile.jpg      (Your photos and graphics)
+│   └── project1.jpg
+└── README.md           (Project documentation)
+```
+
+### Why This Organization Works
+
+- **Clear Purpose**: Each file has a specific job
+- **Easy to Find**: Anyone can understand your project structure
+- **Scalable**: Easy to add more pages later
+- **Professional**: Matches industry standards
+
+## Creating Your Navigation System
+
+Navigation is how visitors move between your pages. Let's build a professional navigation menu that works on all your pages.
+
+### Step 1: Design Your Navigation Menu
+
+```html
+<!-- Professional Navigation Component -->
+<nav class="main-navigation">
+    <div class="nav-container">
+        <!-- Your site logo/name -->
+        <div class="nav-logo">
+            <a href="index.html">Alex Chen</a>
+        </div>
+        
+        <!-- Navigation menu -->
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="projects.html" class="nav-link">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+```
+
+### Step 2: Style Your Navigation
+
+```css
+/* Professional Navigation Styling */
+.main-navigation {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Active page styling */
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+}
+```
+
+## Creating Your Pages
+
+Now let's create each page of your portfolio. Each page will have the same navigation but different content.
+
+### Page 1: Home Page (index.html)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Chen - Web Developer Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation (same on all pages) -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Alex Chen</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="page-content">
+        <section class="hero-section">
+            <div class="hero-container">
+                <h1>Hi, I'm Alex Chen</h1>
+                <p class="hero-subtitle">Aspiring Web Developer | Building Amazing Digital Experiences</p>
+                <p class="hero-description">
+                    I'm passionate about creating beautiful, functional websites that solve real problems. 
+                    Welcome to my portfolio where you can see my journey and projects!
+                </p>
+                <div class="hero-buttons">
+                    <a href="about.html" class="btn btn-primary">Learn About Me</a>
+                    <a href="projects.html" class="btn btn-secondary">View My Work</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick intro sections -->
+        <section class="intro-grid">
+            <div class="intro-card">
+                <h2>About Me</h2>
+                <p>Learn about my background, interests, and what drives my passion for web development.</p>
+                <a href="about.html" class="card-link">Read More →</a>
+            </div>
+            
+            <div class="intro-card">
+                <h2>My Projects</h2>
+                <p>Explore the websites and applications I've built during my learning journey.</p>
+                <a href="projects.html" class="card-link">View Projects →</a>
+            </div>
+            
+            <div class="intro-card">
+                <h2>Get In Touch</h2>
+                <p>Ready to collaborate or just want to say hello? I'd love to hear from you!</p>
+                <a href="contact.html" class="card-link">Contact Me →</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+```
+
+### Page 2: About Page (about.html)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Alex Chen</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Same navigation on every page -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Alex Chen</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link active">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <section class="page-header">
+            <div class="container">
+                <h1>About Me</h1>
+                <p class="page-subtitle">My journey into web development</p>
+            </div>
+        </section>
+
+        <section class="about-content">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h2>My Story</h2>
+                        <p>
+                            I discovered web development through my curiosity about how websites work. 
+                            What started as a simple question - "How do they make websites?" - turned into 
+                            a passion for creating digital experiences that help people.
+                        </p>
+                        
+                        <h2>What I'm Learning</h2>
+                        <p>
+                            Currently mastering HTML, CSS, and JavaScript fundamentals. I love the problem-solving 
+                            aspect of coding and the satisfaction of seeing my ideas come to life in the browser.
+                        </p>
+
+                        <h2>My Goals</h2>
+                        <p>
+                            I want to become a professional web developer and contribute to projects that make 
+                            a positive impact. I'm particularly interested in building accessible, user-friendly 
+                            websites that everyone can use and enjoy.
+                        </p>
+                    </div>
+                    
+                    <div class="about-skills">
+                        <h2>Skills I'm Building</h2>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <span class="skill-name">HTML5</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <span class="skill-name">CSS3</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 40%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <span class="skill-name">Git & GitHub</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+```
+
+### Page 3: Projects Page (projects.html)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects - Alex Chen</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Alex Chen</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link active">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <section class="page-header">
+            <div class="container">
+                <h1>My Projects</h1>
+                <p class="page-subtitle">A showcase of my learning journey</p>
+            </div>
+        </section>
+
+        <section class="projects-grid">
+            <div class="container">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">Project Screenshot</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Personal Portfolio Website</h3>
+                        <p>
+                            My first major project! A responsive portfolio website built from scratch 
+                            using HTML, CSS, and JavaScript. Features include multi-page navigation, 
+                            contact forms, and mobile-friendly design.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Live Demo</a>
+                            <a href="#" class="btn btn-small btn-outline">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">Coming Soon</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Interactive To-Do App</h3>
+                        <p>
+                            Currently working on a dynamic to-do application with local storage, 
+                            drag-and-drop functionality, and task categorization. This project is 
+                            helping me master JavaScript fundamentals.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Local Storage</span>
+                            <span class="tech-tag">CSS Grid</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small btn-disabled">In Progress</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">Planning Phase</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Weather Dashboard</h3>
+                        <p>
+                            Planned project to build a weather dashboard using APIs, featuring 
+                            current conditions, forecasts, and location-based weather data. 
+                            Will focus on API integration and data visualization.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">API Integration</span>
+                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">Responsive Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small btn-disabled">Coming Soon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+```
+
+### Page 4: Contact Page (contact.html)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me - Alex Chen</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Alex Chen</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <section class="page-header">
+            <div class="container">
+                <h1>Get In Touch</h1>
+                <p class="page-subtitle">I'd love to hear from you!</p>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2>Let's Connect</h2>
+                        <p>
+                            Whether you have a project in mind, want to collaborate, or just want to 
+                            say hello, I'm always excited to connect with fellow developers and potential collaborators.
+                        </p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <strong>Email</strong>
+                                <p>alex.chen.dev@email.com</p>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <strong>GitHub</strong>
+                                <p><a href="https://github.com/alexchen" target="_blank">github.com/alexchen</a></p>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <strong>LinkedIn</strong>
+                                <p><a href="https://linkedin.com/in/alexchen" target="_blank">linkedin.com/in/alexchen</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h2>Send a Message</h2>
+                        <form class="contact-form-container">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Choose a subject</option>
+                                    <option value="collaboration">Collaboration Opportunity</option>
+                                    <option value="job">Job Opportunity</option>
+                                    <option value="question">General Question</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required 
+                                    placeholder="Tell me about your project, question, or just say hello!"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+```
+
+## Complete CSS for Multi-Page Design
+
+Here's the comprehensive CSS that makes all your pages look professional and cohesive:
+
+```css
+/* Complete CSS for Multi-Page Portfolio */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* Container for consistent page width */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation Styles (already covered above) */
+.main-navigation {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Page Content */
+.page-content {
+    min-height: calc(100vh - 80px);
+}
+
+/* Page Headers */
+.page-header {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.page-subtitle {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+/* Hero Section (Home Page) */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-section h1 {
+    font-size: 56px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.hero-description {
+    font-size: 18px;
+    margin-bottom: 40px;
+    opacity: 0.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #4299e1;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3182ce;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: #667eea;
+}
+
+.btn-small {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid #4299e1;
+    color: #4299e1;
+}
+
+.btn-outline:hover {
+    background-color: #4299e1;
+    color: white;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-disabled {
+    background-color: #e2e8f0;
+    color: #a0aec0;
+    cursor: not-allowed;
+}
+
+/* Card Layouts */
+.intro-grid {
+    padding: 80px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 80px 20px;
+}
+
+.intro-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    border-left: 4px solid #667eea;
+    transition: transform 0.3s ease;
+}
+
+.intro-card:hover {
+    transform: translateY(-5px);
+}
+
+.intro-card h2 {
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.intro-card p {
+    color: #718096;
+    margin-bottom: 20px;
+}
+
+.card-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.card-link:hover {
+    color: #764ba2;
+}
+
+/* About Page Styles */
+.about-content {
+    padding: 80px 0;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.about-text h2 {
+    color: #4a5568;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.about-text h2:first-child {
+    margin-top: 0;
+}
+
+.about-text p {
+    color: #718096;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* Skills Section */
+.about-skills {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.about-skills h2 {
+    color: #4a5568;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.skill-item {
+    margin-bottom: 25px;
+}
+
+.skill-name {
+    display: block;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 8px;
+}
+
+.skill-bar {
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Projects Page */
+.projects-grid {
+    padding: 80px 0;
+}
+
+.projects-grid .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.project-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-image {
+    height: 200px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-placeholder {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.project-content {
+    padding: 30px;
+}
+
+.project-content h3 {
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.project-content p {
+    color: #718096;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.tech-tag {
+    background: #e2e8f0;
+    color: #4a5568;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+}
+
+/* Contact Page */
+.contact-section {
+    padding: 80px 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.contact-info h2 {
+    color: #4a5568;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    color: #718096;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contact-method strong {
+    display: block;
+    color: #4a5568;
+    margin-bottom: 5px;
+}
+
+.contact-method p {
+    margin: 0;
+    color: #718096;
+}
+
+.contact-method a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.contact-method a:hover {
+    color: #764ba2;
+}
+
+/* Contact Form */
+.contact-form {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.contact-form h2 {
+    color: #4a5568;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    color: #4a5568;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .nav-menu {
+        gap: 20px;
+    }
+    
+    .hero-section h1 {
+        font-size: 36px;
+    }
+    
+    .page-header h1 {
+        font-size: 32px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .intro-grid {
+        grid-template-columns: 1fr;
+        padding: 60px 20px;
+    }
+}
+```
+
+## Interactive Playground
+
+Try building your own multi-page navigation in this live environment:
+
+<MultiPagePlayground />
+
+## Try It Yourself: Build Your Multi-Page Portfolio
+
+Now it's time to transform your single-page portfolio into a professional multi-page website!
+
+### Step 1: Create Your File Structure
+
+1. Create a new folder called `css` in your project
+2. Move your `styles.css` file into the `css` folder
+3. Create four HTML files: `index.html`, `about.html`, `projects.html`, `contact.html`
+
+### Step 2: Add Navigation to Each Page
+
+1. Copy the navigation HTML to each page
+2. Update the `active` class on each page's navigation
+3. Make sure all links point to the correct files
+
+### Step 3: Create Unique Content for Each Page
+
+1. **Home Page**: Hero section and preview cards
+2. **About Page**: Your story, skills, and goals
+3. **Projects Page**: Showcase your work (even if it's just this portfolio!)
+4. **Contact Page**: Contact information and a form
+
+### Step 4: Test Your Navigation
+
+1. Click through all your pages
+2. Make sure the navigation works from every page
+3. Check that the active states show correctly
+4. Test on your phone to make sure it's mobile-friendly
+
+## Video Tutorial: Building Multi-Page Websites
+
+Watch this comprehensive guide to creating professional multi-page navigation:
+
+<YouTubeEmbed 
+  videoId="9YffrCViTVk" 
+  title="Multi-Page Navigation - Building Professional Websites"
+  description="Learn to create multi-page websites with professional navigation systems"
+/>
+
+*Note: The video stays visible as you scroll, so you can follow along while reading!*
+
+## 🎉 Congratulations! You Built a Real Website!
+
+Look at what you've accomplished! You now have a complete, professional multi-page website with navigation - just like the websites you visit every day.
+
+### What You've Mastered
+
+- ✅ **Professional File Organization**: Your project is structured like real websites
+- ✅ **Multi-Page Architecture**: You understand how websites are organized
+- ✅ **Navigation Systems**: You can build menus that work across all pages  
+- ✅ **Consistent Design**: All your pages share the same professional styling
+- ✅ **User Experience**: Visitors can easily navigate and find information
+- ✅ **Professional Presentation**: Your portfolio looks like a real business website
+
+### Challenge Yourself
+
+Before moving to the next lesson, try these enhancements:
+
+1. **Add a Footer**: Create a footer with copyright and links that appears on all pages
+2. **Breadcrumb Navigation**: Add "Home > About" style navigation
+3. **Page Transitions**: Add subtle CSS transitions between page loads
+4. **More Sections**: Add a "Blog" or "Services" page
+5. **Social Links**: Add social media links to your contact page
+
+### Your Next Adventure
+
+In the next lesson, you'll learn **JavaScript fundamentals** and start making your website **interactive**. You'll add features like:
+- Working contact forms
+- Interactive buttons and animations  
+- Dynamic content that changes based on user actions
+- Smooth scrolling and modern web interactions
+
+## Portfolio Evolution: From Static to Professional
+
+Your portfolio has evolved from a simple single page to a complete professional website! This demonstrates the **Living Portfolio Ecosystem** perfectly - each lesson builds upon the previous work, creating something more sophisticated and valuable.
+
+**What's Next**: In Lesson 4, we'll add JavaScript to make your multi-page website truly interactive and engaging.
+
+Keep building, keep improving, and enjoy watching your skills and portfolio grow! 🚀✨

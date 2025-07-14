@@ -591,47 +591,526 @@ const rockitCourses: RockitCourse[] = [
           // Additional lessons for milestone 1...
           {
             id: "css-basics",
-            title: "CSS Styling Fundamentals",
-            description: "Add colors, fonts, and layouts to your HTML",
+            title: "CSS Basics: Making Your Website Beautiful",
+            description: "Transform your plain HTML into a stunning, professional-looking website with CSS styling. Learn colors, fonts, layouts and make your portfolio shine!",
             order: 2,
-            estimatedMinutes: 50,
-            video: null, // No video for this lesson
+            estimatedMinutes: 45,
+            video: {
+              youtubeId: "1Rs2ND1ryYc", // Will be replaced with actual educational video
+              duration: 2700, // 45 minutes in seconds
+              thumbnail: "https://img.youtube.com/vi/1Rs2ND1ryYc/maxresdefault.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/html-css/css-before-after.svg",
+                alt: "CSS styling transformation showing before and after",
+                title: "The Power of CSS - Before and After! ✨",
+                caption: "See how CSS transforms plain HTML into beautiful designs"
+              },
+              {
+                src: "/images/lessons/html-css/css-properties-guide.svg",
+                alt: "Visual guide to CSS properties and values",
+                title: "CSS Properties Reference Guide",
+                caption: "The most important CSS properties you'll use every day"
+              },
+              {
+                src: "/images/lessons/html-css/css-selectors-diagram.svg",
+                alt: "CSS selectors explained with visual examples",
+                title: "CSS Selectors Made Simple",
+                caption: "How to target HTML elements with CSS selectors"
+              }
+            ],
             codeExamples: [
               {
-                title: "Basic CSS Styling",
+                title: "🎨 Your First CSS Styles",
                 language: "css",
-                code: `body {
+                code: `/* styles.css - Your first CSS file! */
+
+/* Style the entire page */
+body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Style your main heading */
+h1 {
+    color: #2563eb;
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #3b82f6;
+    padding-bottom: 15px;
+}
+
+/* Style your subheadings */
+h2 {
+    color: #7c3aed;
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+/* Style your paragraphs */
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: justify;
+}`,
+                explanation: "This CSS transforms your plain HTML into a beautiful, professional-looking page! 🎨 Each rule targets different HTML elements and applies styling properties to them."
+              },
+              {
+                title: "🌈 CSS Color Properties",
+                language: "css",
+                code: `/* Different ways to set colors */
+h1 { color: blue; }           /* Named colors */
+h2 { color: #ff6b6b; }        /* Hex colors (most common) */
+p { color: rgb(100, 100, 100); } /* RGB colors */
+
+/* Background colors */
+body { background-color: #f8f9fa; }
+.header { background-color: #667eea; }
+
+/* Gradient backgrounds (advanced) */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}`,
+                explanation: "CSS offers many ways to add color! Named colors are easiest for beginners, hex codes (#ff6b6b) are most common in professional development, and gradients create beautiful effects."
+              },
+              {
+                title: "📝 Typography and Text Styling",
+                language: "css",
+                code: `/* Font properties */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;  /* Font type */
+    font-size: 18px;                            /* Text size */
+    font-weight: 400;                           /* Text thickness */
+    line-height: 1.6;                           /* Space between lines */
 }
 
 h1 {
-    color: #333;
-    text-align: center;
+    font-size: 48px;           /* Large heading */
+    font-weight: 700;          /* Bold text */
+    text-align: center;        /* Center alignment */
+    letter-spacing: -1px;      /* Tight letter spacing */
 }
 
 p {
-    color: #666;
-    line-height: 1.6;
+    text-align: justify;       /* Justified text */
+    color: #4a5568;           /* Gray color */
 }`,
-                explanation: "CSS controls how your HTML looks. We're styling the body, headings, and paragraphs."
+                explanation: "Typography is crucial for readability! font-family sets the typeface, font-size controls text size, and line-height affects readability by controlling space between lines."
+              },
+              {
+                title: "📦 CSS Box Model - Spacing",
+                language: "css",
+                code: `/* Understanding spacing */
+.section {
+    margin: 30px 0;        /* Space OUTSIDE the element (top/bottom) */
+    padding: 40px;         /* Space INSIDE the element */
+    border: 2px solid #ddd; /* Border around the element */
+}
+
+/* Specific spacing */
+h1 {
+    margin-top: 0;         /* No space on top */
+    margin-bottom: 30px;   /* Space on bottom */
+    padding-left: 20px;    /* Space inside, left side */
+    padding-right: 20px;   /* Space inside, right side */
+}
+
+/* Shorthand properties */
+.header {
+    margin: 20px auto;     /* 20px top/bottom, auto left/right (centers) */
+    padding: 40px 20px;    /* 40px top/bottom, 20px left/right */
+}`,
+                explanation: "The CSS Box Model controls spacing! 📦 Margin = space outside, Padding = space inside, Border = the edge. This is fundamental to CSS layout!"
               }
             ],
             exercises: [
               {
-                title: "Style Your Page",
-                description: "Add CSS to make your HTML page look beautiful.",
+                title: "🎮 Exercise 1: Style Your Portfolio Header",
+                description: "Transform your boring HTML header into a stunning, professional-looking section with a gradient background, perfect typography, and beautiful spacing.",
                 hints: [
-                  "Link your CSS file in the <head> section",
-                  "Try changing colors with the 'color' property",
-                  "Use 'font-family' to change fonts"
+                  "Use a gradient background with 'linear-gradient()'",
+                  "Make the text white and centered",
+                  "Add generous padding for breathing room",
+                  "Try different font sizes for hierarchy"
                 ],
-                solution: `/* Complete CSS solution here */`
+                solution: `/* Professional Header Styling */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 40px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.header h1 {
+    font-size: 48px;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 20px;
+    opacity: 0.9;
+    margin: 0;
+}`
+              },
+              {
+                title: "🎨 Exercise 2: Create Beautiful Content Sections",
+                description: "Style your content sections with cards, shadows, and hover effects to create a modern, professional portfolio layout.",
+                hints: [
+                  "Use white backgrounds with subtle shadows",
+                  "Add border-radius for rounded corners",
+                  "Include hover effects with 'transform' and 'transition'",
+                  "Use consistent padding and margins"
+                ],
+                solution: `/* Modern Card Sections */
+.section {
+    background: white;
+    padding: 40px;
+    margin: 30px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.section h2 {
+    color: #4a5568;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}`
               }
             ],
-            embeds: []
+            embeds: [
+              {
+                type: "codepen",
+                url: "/codepen-examples/css-basics-playground.html",
+                title: "🎨 CSS Basics Playground - Style Your Heart Out!"
+              }
+            ]
+          },
+          {
+            id: "multi-page-navigation",
+            title: "Multi-Page Navigation: Building a Professional Website",
+            description: "Transform your single-page portfolio into a multi-page website with professional navigation. Learn file organization, linking pages, and creating seamless user experiences.",
+            order: 3,
+            estimatedMinutes: 50,
+            video: {
+              youtubeId: "9YffrCViTVk", // Professional multi-page navigation tutorial
+              duration: 3000, // 50 minutes
+              thumbnail: "https://img.youtube.com/vi/9YffrCViTVk/maxresdefault.jpg"
+            },
+            images: [
+              {
+                src: "/images/lessons/html-css/multi-page-structure.svg",
+                alt: "Multi-page website structure diagram",
+                title: "Professional Multi-Page Website Structure",
+                caption: "How real websites organize content across multiple pages"
+              },
+              {
+                src: "/images/lessons/html-css/file-organization.svg",
+                alt: "Professional file organization structure",
+                title: "Professional File Organization",
+                caption: "Organize your project files like professional developers"
+              },
+              {
+                src: "/images/lessons/html-css/navigation-flow.svg",
+                alt: "Navigation user experience flow",
+                title: "Navigation User Experience",
+                caption: "How users move through your multi-page website"
+              }
+            ],
+            codeExamples: [
+              {
+                title: "🧭 Professional Navigation Component",
+                language: "html",
+                code: `<!-- Professional Navigation Component -->
+<nav class="main-navigation">
+    <div class="nav-container">
+        <!-- Your site logo/name -->
+        <div class="nav-logo">
+            <a href="index.html">Your Name</a>
+        </div>
+        
+        <!-- Navigation menu -->
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link active">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="projects.html" class="nav-link">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- This navigation goes on EVERY page -->
+<!-- Just change the "active" class to match the current page -->`,
+                explanation: "🎯 This navigation component is the foundation of professional multi-page websites! Key concepts: 📁 nav = semantic HTML for navigation, 🏠 .nav-logo = your site branding, 📋 .nav-menu = unordered list for menu items, 🔗 .nav-link = individual navigation links, ✨ .active = highlights current page. Pro tip: Copy this exact HTML to every page, just change which link has the 'active' class!"
+              },
+              {
+                title: "✨ Professional Navigation Styling",
+                language: "css",
+                code: `/* Professional Navigation Styling */
+.main-navigation {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Active page styling */
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .nav-menu {
+        gap: 20px;
+    }
+}`,
+                explanation: "🎨 This CSS creates stunning professional navigation! Key features: 🌈 linear-gradient = beautiful color transitions, 📌 position: sticky = navigation follows you while scrolling, 💡 box-shadow = subtle depth effect, 🎯 :hover = interactive feedback, ✨ transition = smooth animations, 📱 @media = mobile-responsive design. Pro tip: The 'sticky' navigation stays visible while users scroll!"
+              },
+              {
+                title: "📁 Professional File Organization",
+                language: "text",
+                code: `my-portfolio/
+├── index.html          (Home page - main landing page)
+├── about.html           (About page - your story)
+├── projects.html        (Projects page - your work)
+├── contact.html         (Contact page - how to reach you)
+├── css/
+│   └── styles.css       (All your styles in one place)
+├── images/
+│   ├── profile.jpg      (Your photos and graphics)
+│   └── project1.jpg
+└── README.md           (Project documentation)
+
+🎯 Why This Organization Works:
+
+✅ Clear Purpose: Each file has a specific job
+✅ Easy to Find: Anyone can understand your project structure
+✅ Scalable: Easy to add more pages later
+✅ Professional: Matches industry standards
+
+📝 Navigation Rules:
+1. Same navigation HTML on every page
+2. Update "active" class for current page
+3. Test all links work correctly
+4. Use relative paths (about.html, not /about.html)`,
+                explanation: "📁 Professional file organization is crucial for maintainable websites! Structure rules: 🏠 index.html = always your home page, 📂 css/ = keep stylesheets organized, 🖼️ images/ = all photos and graphics, 📋 separate HTML files = one page per file. Pro tip: Use lowercase names and no spaces for web compatibility!"
+              },
+              {
+                title: "🏠 Complete Home Page with Navigation",
+                language: "html",
+                code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Web Developer Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation (same on all pages) -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Your Name</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="page-content">
+        <section class="hero-section">
+            <div class="hero-container">
+                <h1>Hi, I'm Your Name</h1>
+                <p class="hero-subtitle">Aspiring Web Developer | Building Amazing Digital Experiences</p>
+                <p class="hero-description">
+                    I'm passionate about creating beautiful, functional websites that solve real problems. 
+                    Welcome to my portfolio where you can see my journey and projects!
+                </p>
+                <div class="hero-buttons">
+                    <a href="about.html" class="btn btn-primary">Learn About Me</a>
+                    <a href="projects.html" class="btn btn-secondary">View My Work</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick intro sections -->
+        <section class="intro-grid">
+            <div class="intro-card">
+                <h2>About Me</h2>
+                <p>Learn about my background, interests, and what drives my passion for web development.</p>
+                <a href="about.html" class="card-link">Read More →</a>
+            </div>
+            
+            <div class="intro-card">
+                <h2>My Projects</h2>
+                <p>Explore the websites and applications I've built during my learning journey.</p>
+                <a href="projects.html" class="card-link">View Projects →</a>
+            </div>
+            
+            <div class="intro-card">
+                <h2>Get In Touch</h2>
+                <p>Ready to collaborate or just want to say hello? I'd love to hear from you!</p>
+                <a href="contact.html" class="card-link">Contact Me →</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>`,
+                explanation: "🏠 This complete home page shows how navigation integrates with content! Page structure: 📋 <nav> = navigation at the top, 🎯 <main> = main page content, 🏆 <section> = organized content sections, 🔗 href links = connect to other pages. Pro tip: Notice how the Home link has 'active' class and all buttons link to other pages in your site!"
+              }
+            ],
+            exercises: [
+              {
+                title: "🗂️ Exercise 1: Create Professional File Structure",
+                description: "Set up your multi-page portfolio with proper file organization that matches professional standards",
+                hints: [
+                  "Create folders: css/, images/",
+                  "Create four HTML files: index.html, about.html, projects.html, contact.html", 
+                  "Move your styles.css file into the css/ folder",
+                  "Update CSS link paths in all HTML files to 'css/styles.css'",
+                  "Test that all files load correctly in your browser"
+                ],
+                solution: `File Structure:
+my-portfolio/
+├── index.html
+├── about.html  
+├── projects.html
+├── contact.html
+├── css/
+│   └── styles.css
+├── images/
+└── README.md
+
+In each HTML file:
+<link rel="stylesheet" href="css/styles.css">
+
+Pro tip: Use relative paths like 'css/styles.css' not '/css/styles.css'`
+              },
+              {
+                title: "🧭 Exercise 2: Build Navigation System",
+                description: "Create professional navigation that works perfectly across all your pages",
+                hints: [
+                  "Add the navigation HTML to all four pages",
+                  "Update the 'active' class on each page's navigation",
+                  "Test that navigation links work from every page",
+                  "Add professional styling with hover effects",
+                  "Make navigation mobile-responsive with media queries"
+                ],
+                solution: `Navigation goes on ALL pages:
+<nav class="main-navigation">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a href="index.html">Your Name</a>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+Remember: Change "active" class for each page!
+• index.html: Home gets "active"
+• about.html: About gets "active"  
+• projects.html: Projects gets "active"
+• contact.html: Contact gets "active"`
+              }
+            ],
+            embeds: [
+              {
+                type: "codepen",
+                url: "/codepen-examples/multi-page-navigation-playground.html",
+                title: "🌐 Multi-Page Navigation Playground - Build Professional Websites!"
+              }
+            ]
           }
         ]
       },
