@@ -5,18 +5,18 @@
       "src": "package.json",
       "use": "@vercel/next@canary",
       "config": {
-        "maxDuration": 60
+        "maxDuration": 30
       }
     }
   ],
   "functions": {
     "src/app/api/**/*.ts": {
-      "maxDuration": 10,
-      "memory": 512
+      "maxDuration": 5,
+      "memory": 256
     },
     "src/app/api/**/*.js": {
-      "maxDuration": 10,
-      "memory": 512
+      "maxDuration": 5,
+      "memory": 256
     }
   },
   "regions": ["iad1"],
@@ -29,19 +29,6 @@
     "NEXT_TELEMETRY_DISABLED": "1",
     "ANALYZE": "false"
   },
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/home",
-      "destination": "/",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/static/(.*)",

@@ -10,12 +10,11 @@ const nextConfig = {
   
   // CRITICAL: Remove heavy experimental optimizations
   experimental: {
-    // Optimize essential packages including Monaco
+    // Only optimize essential packages
     optimizePackageImports: [
-      '@heroicons/react', // Keep lightweight icons
-      '@monaco-editor/react' // KEEP: Essential for code editor
+      '@heroicons/react' // Keep lightweight icons only
     ]
-    // REMOVED: framer-motion, react-syntax-highlighter (these are optional)
+    // REMOVED: framer-motion, react-syntax-highlighter, @monaco-editor
   },
   
   // PRODUCTION OPTIMIZATIONS
@@ -58,14 +57,6 @@ const nextConfig = {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             priority: -10,
-            reuseExistingChunk: true
-          },
-          // MONACO OPTIMIZATION: Separate chunk for code editor
-          monaco: {
-            test: /[\\/]node_modules[\\/](@monaco-editor|monaco-editor)[\\/]/,
-            name: 'monaco-editor',
-            chunks: 'async', // Load only when needed
-            priority: 10,
             reuseExistingChunk: true
           }
         }
