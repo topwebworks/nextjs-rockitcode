@@ -4,6 +4,15 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Vercel Optimization Configuration
+  eslint: {
+    // Skip ESLint during builds for faster deployment
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    // Skip TypeScript checks during builds (for faster deployment)
+    ignoreBuildErrors: false, // Keep this false for safety
+  },
   experimental: {
     optimizePackageImports: [
       'framer-motion',

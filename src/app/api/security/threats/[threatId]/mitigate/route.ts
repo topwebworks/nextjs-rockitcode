@@ -5,10 +5,11 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { threatId: string } }
+  { params }: { params: Promise<{ threatId: string }> }
 ) {
+  const { threatId } = await params
+  
   try {
-    const threatId = params.threatId
     
     if (!threatId) {
       return NextResponse.json(
@@ -75,7 +76,7 @@ export async function POST(
       { 
         success: false, 
         error: 'Failed to mitigate threat',
-        threatId: params.threatId
+        threatId: threatId
       },
       { status: 500 }
     )

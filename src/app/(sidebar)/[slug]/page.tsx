@@ -3,13 +3,13 @@ import { lessons } from '@/data/lessons'
 import InteractiveLessonRenderer from '@/components/lessons/InteractiveLessonRenderer'
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export default function LessonPage({ params }: PageProps) {
-  const { slug } = params
+export default async function LessonPage({ params }: PageProps) {
+  const { slug } = await params
   
   // Find the lesson by slug
   const lesson = lessons.find(l => l.id === slug)

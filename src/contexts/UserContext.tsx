@@ -80,33 +80,16 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     }
 
     try {
-      // Load profile and preferences
-      const [profileResult, preferencesResult] = await Promise.all([
-        supabase
-          .from('user_profiles')
-          .select('*')
-          .eq('user_id', userId)
-          .single(),
-        supabase
-          .from('user_preferences')
-          .select('*')
-          .eq('user_id', userId)
-          .single()
-      ])
-
-      if (profileResult.error && profileResult.error.code !== 'PGRST116') {
-        throw profileResult.error
-      }
-      if (preferencesResult.error && preferencesResult.error.code !== 'PGRST116') {
-        throw preferencesResult.error
-      }
-
-      setProfile(profileResult.data)
-      setPreferences(preferencesResult.data)
+      // For now, just skip loading additional user data since we only need GitHub auth
+      // The user object from Supabase auth already contains all the GitHub info we need
+      setProfile(null)
+      setPreferences(null)
       setError(null)
     } catch (err) {
-      console.error('Error loading user data:', err)
-      setError(err instanceof Error ? err.message : 'Failed to load user data')
+      // Better error logging and handling
+      const errorMessage = err instanceof Error ? err.message : 'Failed to load user data'
+      console.error('Error loading user data:', errorMessage)
+      setError(errorMessage)
     }
   }
 
@@ -193,23 +176,43 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       setProfile(null)
       setPreferences(null)
       setError(null)
+      // Force redirect to homepage
+      if (typeof window !== 'undefined') {
+        window.location.replace('/')
+      }
       return true
     }
 
     try {
-      const { error } = await supabase.auth.signOut()
-      if (error) throw error
-      
+      // First clear local state immediately for fast UI response
       setUser(null)
       setProfile(null)
       setPreferences(null)
       setError(null)
+
+      // Then try to sign out from Supabase
+      const { error } = await supabase.auth.signOut()
+      
+      // Don't throw error if session is already missing - that's what we want
+      if (error && !error.message?.includes('Auth session missing')) {
+        console.error('Sign out error:', error)
+        // Don't set error state since local state is already cleared
+      }
+      
+      // Force redirect to homepage after successful logout - use replace to prevent back button issues
+      if (typeof window !== 'undefined') {
+        window.location.replace('/')
+      }
       
       return true
     } catch (err) {
+      // If sign out fails, still keep local state cleared since that's the goal
       console.error('Sign out error:', err)
-      setError(err instanceof Error ? err.message : 'Failed to sign out')
-      return false
+      // Force redirect to homepage even on error
+      if (typeof window !== 'undefined') {
+        window.location.replace('/')
+      }
+      return true
     }
   }
 

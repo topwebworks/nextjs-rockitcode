@@ -14,8 +14,7 @@ const withMDX = createMDX({
 });
 
 const nextConfig = {
-  // Performance optimizations
-  turbopack: {},
+  // Vercel optimization for free tier
   experimental: {
     optimizeCss: true,
     optimizePackageImports: [
@@ -24,7 +23,20 @@ const nextConfig = {
       'socket.io-client',
       '@monaco-editor/react'
     ],
+    // Enable static optimization
+    outputFileTracingRoot: process.cwd(),
+    esmExternals: true,
   },
+  
+  // Force static generation where possible
+  output: 'standalone',
+  
+  // Optimize for Vercel free tier
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   
   // Compression and optimization

@@ -197,7 +197,7 @@ function SiteNavigation() {
             </DropdownMenu>
           </Dropdown>
         ) : (
-          <AuthButton variant="primary" size="sm" />
+          <AuthButton variant="transparent" size="sm" />
         )}
       </div>
     </nav>

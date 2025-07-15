@@ -1,17 +1,17 @@
-import MissionBriefing from '@/components/mission-briefing'
+import EnhancedDashboard from '@/components/enhanced-dashboard'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Mission Control - RockitCode Launch Pad',
-  description: 'Your personal mission control center. Track your progress, manage missions, and monitor your path to professional developer status.',
+  title: 'Dashboard - RockitCode Launch Pad',
+  description: 'Your personal mission control center. Track your progress, manage lessons, and monitor your path to professional developer status.',
 }
 
 /**
- * Mission Control Dashboard - Personal Command Center
+ * Dashboard - Personal Command Center
  * 
- * Shows mission progress, launch readiness score, professional portfolio,
- * and next mission objectives for each mission specialist.
+ * Shows lesson progress, learning metrics, quick actions, and 
+ * navigation to AI subscriptions and tools for each mission specialist.
  */
-export default function MissionControlPage() {
-  return <MissionBriefing />
+export default function DashboardPage() {
+  return <EnhancedDashboard />
 }

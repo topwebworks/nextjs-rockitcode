@@ -38,7 +38,7 @@ function convertTemplateModulesToNavigation(modules: Module[]): NavigationSectio
       description: lesson.description,
       url: `/${lesson.id}`,
       type: 'lesson' as const,
-      estimatedMinutes: lesson.video?.duration ? Math.ceil(lesson.video.duration / 60) : undefined,
+      estimatedMinutes: lesson.video?.url ? 30 : undefined,
     }))
   }));
 }

@@ -15,6 +15,10 @@ export async function GET(request: NextRequest) {
       const cookieStore = await cookies()
       const supabase = await createServerSupabaseClient()
       
+      if (!supabase) {
+        return NextResponse.redirect(new URL('/error', request.url))
+      }
+      
       const { error } = await supabase.auth.exchangeCodeForSession(code)
       
       if (!error) {

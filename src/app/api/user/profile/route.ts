@@ -18,6 +18,10 @@ export async function GET(request: NextRequest) {
     const cookieStore = await cookies()
     const supabase = await createServerSupabaseClient()
     
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
+    }
+    
     const { data: { user }, error: authError } = await supabase.auth.getUser()
     
     if (authError || !user) {
@@ -63,6 +67,10 @@ export async function PUT(request: NextRequest) {
   try {
     const cookieStore = await cookies()
     const supabase = await createServerSupabaseClient()
+    
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
+    }
     
     const { data: { user }, error: authError } = await supabase.auth.getUser()
     

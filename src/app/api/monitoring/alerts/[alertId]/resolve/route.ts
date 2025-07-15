@@ -5,10 +5,11 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { alertId: string } }
+  { params }: { params: Promise<{ alertId: string }> }
 ) {
+  const { alertId } = await params
+  
   try {
-    const alertId = params.alertId
     
     if (!alertId) {
       return NextResponse.json(
@@ -74,7 +75,7 @@ export async function POST(
       { 
         success: false, 
         error: 'Failed to resolve alert',
-        alertId: params.alertId
+        alertId: alertId
       },
       { status: 500 }
     )

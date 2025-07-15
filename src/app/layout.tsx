@@ -2,11 +2,9 @@ import { clsx } from "clsx";
 import { GeistMono } from "geist/font/mono";
 import localFont from "next/font/local";
 import type React from "react";
-import { RockitSessionProvider } from '@/components/rockitcode/session-provider'
-import { EditorSettingsProvider } from '@/contexts/editor-settings'
-import { LearningProvider } from '@/contexts/learning-context'
+import { GlobalHeader } from '@/components/simple-header'
+import { GlobalFooter } from '@/components/global-footer'
 import { UserProvider } from '@/contexts/UserContext'
-import { MainSiteLayout } from '@/components/main-site-layout'
 import "./globals.css";
 
 const InterVariable = localFont({
@@ -53,18 +51,16 @@ export default function RootLayout({
         />
       </head>
       <body 
-        className="bg-white dark:bg-gray-950 text-gray-950 dark:text-white"
+        className="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100"
         suppressHydrationWarning={true}
       >
-        <RockitSessionProvider>
-          <EditorSettingsProvider>
-            <LearningProvider>
-              <UserProvider>
-                {children}
-              </UserProvider>
-            </LearningProvider>
-          </EditorSettingsProvider>
-        </RockitSessionProvider>
+        <UserProvider>
+          <GlobalHeader />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <GlobalFooter />
+        </UserProvider>
       </body>
     </html>
   );

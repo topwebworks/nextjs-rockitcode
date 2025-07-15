@@ -173,11 +173,12 @@ const rockitCourses: RockitCourse[] = [
                 caption: "Professional tools that would cost thousands, now free for students"
               }
             ],
-            codeExamples: [],
+            embeds: [],            codeExamples: [],
             exercises: [
               {
                 title: "Set Up Your Professional GitHub Profile",
                 description: "Create a GitHub account optimized for recruiters and employers",
+                solution: "Create GitHub account → Add profile photo → Write professional bio → Add contact info",
                 hints: [
                   "Use your real name for professional credibility",
                   "Add a professional profile photo",
@@ -1140,7 +1141,7 @@ Remember: Change "active" class for each page!
                 caption: "Just like a chef has professional knives, developers have professional tools"
               }
             ],
-            codeExamples: [], // No code needed - this is conceptual
+            embeds: [],            codeExamples: [], // No code needed - this is conceptual
             exercises: [],
             embeds: []
           },
@@ -1233,7 +1234,7 @@ Remember: Change "active" class for each page!
                 caption: "Understanding GitHub through familiar analogies"
               }
             ],
-            codeExamples: [],
+            embeds: [],            codeExamples: [],
             exercises: [
               {
                 title: "🌐 Exercise: Create Your GitHub Account and First Repository",
@@ -1270,7 +1271,7 @@ Remember: Change "active" class for each page!
                 caption: "Managing code changes with GitHub Desktop"
               }
             ],
-            codeExamples: [],
+            embeds: [],            codeExamples: [],
             exercises: [
               {
                 title: "🔄 Exercise: Your First Code Backup and Update",

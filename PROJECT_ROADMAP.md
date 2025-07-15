@@ -247,5 +247,90 @@ The platform will launch careers by providing not just education, but complete p
 
 ---
 
+## 🎨 **DESIGN SYSTEM DOCUMENTATION**
+### **Current Implementation Status - DO NOT CHANGE**
+
+### **Icon Family: Authentic Lucide Icons**
+- **Library**: Lucide Icons (1400+ icons available)
+- **Choice Rationale**: Largest selection, active development, consistent design language
+- **Alternative Considered**: Feather Icons (280 icons) - rejected for limited variety
+
+### **Icon Technical Standards**
+```typescript
+// Standard Lucide Icon Implementation
+viewBox="0 0 24 24"
+strokeWidth="2"
+strokeLinecap="round"
+strokeLinejoin="round"
+fill="none"
+```
+
+### **Implemented Icon Components**
+#### **Header Icons** (`src/components/simple-header.tsx`)
+- **SunIcon**: Theme toggle (light mode) - Yellow glow
+- **MoonIcon**: Theme toggle (dark mode) - Blue glow  
+- **MenuIcon**: Mobile hamburger menu - Slate glow
+- **XIcon**: Mobile menu close - Red glow
+- **RockitLogo**: Authentic Lucide rocket with pulsing blue glow
+
+#### **Footer Icons** (`src/components/global-footer.tsx`)
+- **DiscordIcon**: Social media link - Purple glow
+- **FacebookIcon**: Social media link - Blue glow
+- **GitHubIcon**: Social media link - Slate glow
+- **RockitLogo**: Matches header exactly
+
+### **Glow Effect System**
+```css
+/* Color-coded hover glows by function */
+Yellow: Theme toggle (sun)
+Blue: Theme toggle (moon), Facebook, RockitCode logo
+Purple: Discord
+Red: Close/delete actions
+Slate: GitHub, neutral actions
+
+/* Technical Implementation */
+bg-{color}-400/20 dark:bg-{color}-300/15
+blur-sm opacity-0 group-hover:opacity-100
+transition-opacity duration-200
+```
+
+### **Animation Framework**
+```css
+/* Pulsing Logo Effects */
+animate-gentle-pulse: 3s opacity cycle
+animate-pulse-glow: 2s scale+opacity
+```
+
+### **Color Palette**
+- **Primary**: Slate color family (migrated from gray)
+- **Accent**: Blue gradient system
+- **Background**: White/Slate-900 with backdrop-blur
+- **Borders**: Subtle transparency (200/50, 800/50)
+
+### **Design Principles Established**
+1. **Consistency**: All icons use Lucide family
+2. **Elegant Subtlety**: Gentle glows, not flashy effects
+3. **Professional Appearance**: Clean lines, proper contrast
+4. **Accessibility**: Proper sizing, color contrast, screen reader support
+5. **Future-Proof**: Easy to add more Lucide icons
+
+### **Free Tier Strategy Preservation**
+- **Current System**: ✅ COMPLETE - Do not modify
+- **Next Icon Needs**: Use additional Lucide icons with same standards
+- **Future Components**: Follow established glow and animation patterns
+- **Brand Consistency**: Maintain rocket logo and blue accent system
+
+### **Components Completed with Lucide Icons**
+- ✅ Global Header (`GlobalHeader`)
+- ✅ Global Footer (`GlobalFooter`) 
+- ✅ Theme Toggle System
+- ✅ Mobile Navigation
+- ✅ Social Media Links
+
+### **CRITICAL NOTE FOR FUTURE SESSIONS**
+**DO NOT CHANGE THE ICON SYSTEM** - This has been optimized and tested. Any new icon needs should use additional Lucide icons following the established technical standards and glow system documented above.
+
+---
+
 *Last Updated: December 2024*
 *Next Review: Monthly strategic alignment*

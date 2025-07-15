@@ -207,8 +207,8 @@ const IntegratedOnboarding = () => {
     console.log(`Affiliate click tracked: ${stepId} -> ${url}`)
     
     // Send to analytics
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'affiliate_click', {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'affiliate_click', {
         event_category: 'onboarding',
         event_label: stepId,
         value: 1

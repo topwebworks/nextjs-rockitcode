@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   description: "Latest coding tutorials, tips, and industry insights. Stay updated with the latest in web development, Python, JavaScript, and more!",
 };
 
+// Force static generation for better Vercel performance
+export const dynamic = 'force-static'
+export const revalidate = 3600 // Revalidate every hour for blog content
+
 export default function BlogPage() {
   return (
     <div className="px-8 py-6">

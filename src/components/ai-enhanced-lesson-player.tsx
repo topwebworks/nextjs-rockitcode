@@ -337,7 +337,7 @@ export function ResponsiveNavigation() {
             height="400px"
             aiConfig={{
               enabled: true,
-              provider: 'mock',
+              fallbackMode: true,
               contextAware: true
             }}
             learningLevel={{

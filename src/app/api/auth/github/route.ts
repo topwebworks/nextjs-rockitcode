@@ -11,6 +11,10 @@ export async function POST(request: NextRequest) {
     const cookieStore = await cookies()
     const supabase = await createServerSupabaseClient()
     
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
+    }
+    
     const { redirectTo } = await request.json()
 
     const { data, error } = await supabase.auth.signInWithOAuth({
@@ -46,6 +50,10 @@ export async function GET(request: NextRequest) {
 
     const cookieStore = await cookies()
     const supabase = await createServerSupabaseClient()
+    
+    if (!supabase) {
+      return NextResponse.redirect('/auth/error?message=Database connection failed')
+    }
 
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 

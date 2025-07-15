@@ -8,6 +8,11 @@ import { AILearningAssistant } from '@/lib/ai-assistant'
 export async function GET(request: NextRequest) {
   try {
     const supabase = await createServerSupabaseClient()
+    
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
+    }
+    
     const { data: { user }, error: authError } = await supabase.auth.getUser()
     
     if (authError || !user) {

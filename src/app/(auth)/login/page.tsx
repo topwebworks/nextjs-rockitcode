@@ -2,26 +2,27 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useUser } from '@/contexts/UserContext'
+import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
-  const { signInWithGitHub } = useUser()
   const router = useRouter()
 
   const handleGitHubSignIn = async () => {
     setIsLoading(true)
     
     try {
-      const result = await signInWithGitHub()
+      const result = await signIn('github', { 
+        callbackUrl: '/dashboard',
+        redirect: false 
+      })
       
-      if (result.success && result.url) {
-        // Redirect to GitHub OAuth
-        window.location.href = result.url
+      if (result?.ok) {
+        router.push('/dashboard')
       } else {
-        console.error('Sign-in failed:', result.error)
+        console.error('Sign-in failed:', result?.error)
       }
     } catch (error) {
       console.error('Sign-in error:', error)

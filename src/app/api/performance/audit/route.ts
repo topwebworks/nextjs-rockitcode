@@ -7,6 +7,11 @@ import { createServerSupabaseClient } from '@/lib/supabase'
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createServerSupabaseClient()
+    
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
+    }
+    
     const { data: { user }, error: authError } = await supabase.auth.getUser()
     
     if (authError || !user) {
