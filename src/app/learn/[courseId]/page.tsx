@@ -3,13 +3,14 @@ import { LessonNavigation } from '@/components/rockitcode/lesson-navigation'
 import { notFound } from 'next/navigation'
 
 interface CoursePageProps {
-  params: {
+  params: Promise<{
     courseId: string
-  }
+  }>
 }
 
 export default async function CoursePage({ params }: CoursePageProps) {
-  const course = await getRockitCourse(params.courseId)
+  const resolvedParams = await params
+  const course = await getRockitCourse(resolvedParams.courseId)
   
   if (!course) {
     notFound()

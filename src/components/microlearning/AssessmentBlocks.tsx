@@ -404,7 +404,7 @@ export const AchievementHunter = ({ achievements, userActions, onAchievement }: 
           const progress = achievement.conditions.map((condition: any) => 
             Math.min((actionCounts[condition.action] || 0) / condition.count, 1)
           )
-          const overallProgress = progress.reduce((sum, p) => sum + p, 0) / progress.length
+          const overallProgress = progress.reduce((sum: number, p: number) => sum + p, 0) / progress.length
 
           return (
             <div

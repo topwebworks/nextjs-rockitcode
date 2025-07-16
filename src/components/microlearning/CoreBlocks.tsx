@@ -271,7 +271,7 @@ export const InteractiveCodeDissector = ({ codeSnippet, explanations, onComplete
         {/* Code Display */}
         <div>
           <div className="p-3 bg-gray-900 rounded-lg">
-            {lines.map((line, index) => (
+            {lines.map((line: string, index: number) => (
               <div
                 key={index}
                 onClick={() => handleLineClick(index)}

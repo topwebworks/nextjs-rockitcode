@@ -427,9 +427,15 @@ export const FutureCoder = ({ timePeriods, technologies, onTimeTravel }: any) =>
 }
 
 // 29. 🎮 RETRO ARCADE - Classic Game Learning
+interface GameState {
+  score: number
+  level: number
+  lives: number
+}
+
 export const RetroArcade = ({ games, onHighScore }: any) => {
   const [selectedGame, setSelectedGame] = useState(0)
-  const [gameState, setGameState] = useState<any>({ score: 0, level: 1, lives: 3 })
+  const [gameState, setGameState] = useState<GameState>({ score: 0, level: 1, lives: 3 })
   const [isPlaying, setIsPlaying] = useState(false)
   const [playerCode, setPlayerCode] = useState('')
 
@@ -443,7 +449,7 @@ export const RetroArcade = ({ games, onHighScore }: any) => {
     const game = games[selectedGame]
     const codeQuality = analyzeCode(playerCode, game.codePatterns)
     
-    setGameState(prev => ({
+    setGameState((prev: GameState) => ({
       ...prev,
       score: prev.score + codeQuality.points,
       level: codeQuality.points > 100 ? prev.level + 1 : prev.level,

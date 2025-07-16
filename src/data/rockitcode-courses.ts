@@ -243,13 +243,15 @@ const rockitCourses: RockitCourse[] = [
               {
                 title: "Activate GitHub Copilot Free Tier",
                 description: "Enable AI coding assistance for all your future projects",
+                solution: "Visit github.com/settings/copilot, enable the free tier, and install the VS Code extension for GitHub Copilot.",
                 hints: [
                   "GitHub Copilot is free for students and individual use",
                   "Install the VS Code extension for the best experience",
                   "Start with simple prompts to get comfortable with AI assistance"
                 ]
               }
-            ]
+            ],
+            embeds: []
           },
           {
             id: "portfolio-initialization",
@@ -352,13 +354,15 @@ const rockitCourses: RockitCourse[] = [
               {
                 title: "Deploy Your First Live Website",
                 description: "Set up GitHub Pages and deploy your portfolio - your first URL on the internet!",
+                solution: "Go to repository Settings → Pages → Deploy from main branch → Visit https://[username].github.io",
                 hints: [
                   "Your site will be live at https://[username].github.io",
                   "Changes to your code automatically update the live site",
                   "This becomes your professional web presence"
                 ]
               }
-            ]
+            ],
+            embeds: []
           }
         ]
       },
@@ -1351,9 +1355,9 @@ nav > :first-child { font-weight: bold; }
                 caption: "Just like a chef has professional knives, developers have professional tools"
               }
             ],
-            embeds: [],            codeExamples: [], // No code needed - this is conceptual
-            exercises: [],
-            embeds: []
+            embeds: [],
+            codeExamples: [], // No code needed - this is conceptual
+            exercises: []
           },
           {
             id: "vscode-setup",
@@ -1444,7 +1448,8 @@ nav > :first-child { font-weight: bold; }
                 caption: "Understanding GitHub through familiar analogies"
               }
             ],
-            embeds: [],            codeExamples: [],
+            embeds: [],
+            codeExamples: [],
             exercises: [
               {
                 title: "🌐 Exercise: Create Your GitHub Account and First Repository",
@@ -1459,8 +1464,7 @@ nav > :first-child { font-weight: bold; }
                   "🌐 Enable GitHub Pages to make your site live at [username].github.io/my-first-website"
                 ]
               }
-            ],
-            embeds: []
+            ]
           },
           {
             id: "github-desktop",
@@ -1481,7 +1485,8 @@ nav > :first-child { font-weight: bold; }
                 caption: "Managing code changes with GitHub Desktop"
               }
             ],
-            embeds: [],            codeExamples: [],
+            embeds: [],
+            codeExamples: [],
             exercises: [
               {
                 title: "🔄 Exercise: Your First Code Backup and Update",
@@ -1496,8 +1501,7 @@ nav > :first-child { font-weight: bold; }
                   "☁️ Push to GitHub and watch your live site update!"
                 ]
               }
-            ],
-            embeds: []
+            ]
           },
           {
             id: "live-website",

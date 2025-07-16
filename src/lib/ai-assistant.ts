@@ -3,11 +3,21 @@
 
 import OpenAI from 'openai'
 
-// Initialize OpenAI client with error handling
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  organization: process.env.OPENAI_ORG_ID || undefined,
-})
+// Lazy-initialized OpenAI client with error handling
+let openai: OpenAI | null = null
+
+function getOpenAIClient(): OpenAI {
+  if (!openai) {
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error('OpenAI API key is not configured')
+    }
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+      organization: process.env.OPENAI_ORG_ID || undefined,
+    })
+  }
+  return openai
+}
 
 // AI assistant configuration
 const AI_CONFIG = {
@@ -69,7 +79,7 @@ export class AILearningAssistant {
     improvements: string[];
   }> {
     try {
-      const response = await openai.chat.completions.create({
+      const response = await getOpenAIClient().chat.completions.create({
         model: AI_CONFIG.models.analysis,
         messages: [
           { role: 'system', content: SYSTEM_PROMPTS.codeReviewer },
@@ -104,7 +114,7 @@ export class AILearningAssistant {
         advanced: 'comprehensive detail with complex examples'
       };
 
-      const response = await openai.chat.completions.create({
+      const response = await getOpenAIClient().chat.completions.create({
         model: AI_CONFIG.models.chat,
         messages: [
           { role: 'system', content: SYSTEM_PROMPTS.conceptExplainer },
@@ -132,7 +142,7 @@ export class AILearningAssistant {
     confidence: number;
   }> {
     try {
-      const response = await openai.chat.completions.create({
+      const response = await getOpenAIClient().chat.completions.create({
         model: AI_CONFIG.models.chat,
         messages: [
           { role: 'system', content: SYSTEM_PROMPTS.hintProvider },
@@ -166,7 +176,7 @@ export class AILearningAssistant {
       const progressSummary = this.formatProgressSummary(userProgress);
       const preferencesSummary = this.formatPreferences(preferences);
 
-      const response = await openai.chat.completions.create({
+      const response = await getOpenAIClient().chat.completions.create({
         model: AI_CONFIG.models.analysis,
         messages: [
           { role: 'system', content: SYSTEM_PROMPTS.pathRecommender },
@@ -190,7 +200,7 @@ export class AILearningAssistant {
   // Generate Code Embeddings for Semantic Search
   async generateEmbedding(text: string): Promise<number[]> {
     try {
-      const response = await openai.embeddings.create({
+      const response = await getOpenAIClient().embeddings.create({
         model: AI_CONFIG.models.embeddings,
         input: text,
       });
@@ -214,7 +224,7 @@ export class AILearningAssistant {
     }>;
   }> {
     try {
-      const response = await openai.chat.completions.create({
+      const response = await getOpenAIClient().chat.completions.create({
         model: AI_CONFIG.models.analysis,
         messages: [
           { 
@@ -246,7 +256,7 @@ export class AILearningAssistant {
     feedback: string;
   }> {
     try {
-      const response = await openai.chat.completions.create({
+      const response = await getOpenAIClient().chat.completions.create({
         model: AI_CONFIG.models.analysis,
         messages: [
           { 
@@ -298,7 +308,7 @@ Context: ${context}
 Type: ${type}`;
 
     try {
-      const completion = await openai.chat.completions.create({
+      const completion = await getOpenAIClient().chat.completions.create({
         model: AI_CONFIG.models.chat,
         messages: [
           { role: 'system', content: systemPrompt },

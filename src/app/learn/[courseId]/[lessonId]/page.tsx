@@ -4,26 +4,27 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 
 interface LessonPageProps {
-  params: {
+  params: Promise<{
     courseId: string
     lessonId: string
-  }
+  }>
 }
 
 export default async function LessonPage({ params }: LessonPageProps) {
-  const course = await getRockitCourse(params.courseId)
-  const lesson = await getRockitLesson(params.courseId, params.lessonId)
+  const resolvedParams = await params
+  const course = await getRockitCourse(resolvedParams.courseId)
+  const lesson = await getRockitLesson(resolvedParams.courseId, resolvedParams.lessonId)
   
   if (!course || !lesson) {
     notFound()
   }
 
   // Try to get MDX content for the lesson
-  const LessonContent = await getRockitLessonContent(params.courseId, params.lessonId)
+  const LessonContent = await getRockitLessonContent(resolvedParams.courseId, resolvedParams.lessonId)
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-4xl mx-auto py-8 px-6">
+      <div className="max-w-4xl px-6 py-8 mx-auto">
         {/* Breadcrumb Navigation */}
         <nav className="mb-8">
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
@@ -48,14 +49,14 @@ export default async function LessonPage({ params }: LessonPageProps) {
         </nav>
 
         {/* Lesson Header */}
-        <div className="mb-8 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+        <div className="p-6 mb-8 bg-white border border-gray-200 shadow-sm dark:bg-gray-800 rounded-xl dark:border-gray-700">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-2xl">{course.icon}</span>
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
                 {lesson.title}
               </h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-1">
+              <p className="mt-1 text-gray-600 dark:text-gray-400">
                 {lesson.description}
               </p>
             </div>
@@ -69,14 +70,14 @@ export default async function LessonPage({ params }: LessonPageProps) {
         </div>
 
         {/* Lesson Content */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+        <div className="bg-white border border-gray-200 shadow-sm dark:bg-gray-800 rounded-xl dark:border-gray-700">
           <div className="p-8 prose prose-lg dark:prose-invert max-w-none">
             {LessonContent ? (
               <LessonContent />
             ) : (
               <RockitLessonRenderer 
                 lesson={lesson} 
-                courseId={params.courseId}
+                courseId={resolvedParams.courseId}
                 className="lesson-content"
               />
             )}
@@ -84,10 +85,10 @@ export default async function LessonPage({ params }: LessonPageProps) {
         </div>
 
         {/* Navigation Footer */}
-        <div className="mt-8 flex justify-between items-center">
+        <div className="flex items-center justify-between mt-8">
           <Link
             href={`/learn/${course.id}`}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 text-gray-700 transition-colors bg-gray-100 rounded-lg hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-300"
           >
             ← Back to Course
           </Link>

@@ -6,6 +6,8 @@ import React, { useState, useEffect } from 'react'
 export default function HTMLConcepts() {
   const [currentStep, setCurrentStep] = useState(0)
   const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set())
+  const [currentConcept, setCurrentConcept] = useState(0)
+  const [completedConcepts, setCompletedConcepts] = useState<Set<number>>(new Set())
   const [githubConnected, setGithubConnected] = useState(false)
   const [showExample, setShowExample] = useState(false)
   const [draggedBlocks, setDraggedBlocks] = useState<{ [key: string]: boolean }>({})
