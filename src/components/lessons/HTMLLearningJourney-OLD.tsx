@@ -17,7 +17,6 @@ export default function HTMLLearningJourney() {
   // New interactive component states
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set())
   const [draggedCommand, setDraggedCommand] = useState<string | null>(null)
-  const [commandSequence, setCommandSequence] = useState<(string | null)[]>([null, null, null, null, null])
   const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({})
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set())
   const [animateSection, setAnimateSection] = useState<string | null>(null)
@@ -31,13 +30,6 @@ export default function HTMLLearningJourney() {
   const [terminalHistory, setTerminalHistory] = useState<Array<{command: string, output: string}>>([])
   const [currentCommand, setCurrentCommand] = useState('')
   const [completedExercises, setCompletedExercises] = useState<Set<string>>(new Set())
-
-  // Rockit assistant states
-  const [rockitVisible, setRockitVisible] = useState(true)
-  const [rockitExpanded, setRockitExpanded] = useState(false)
-  const [rockitHidden, setRockitHidden] = useState(false)
-  const [lastScrollY, setLastScrollY] = useState(0)
-  const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null)
 
   // Animation trigger helper
   const triggerAnimation = (sectionId: string) => {
@@ -53,79 +45,6 @@ export default function HTMLLearningJourney() {
     setCompletedSections(prev => new Set([...prev, sectionId]))
     triggerAnimation(sectionId)
   }
-
-  // Rockit assistant functions
-  const getCurrentSection = () => {
-    const sectionsCount = [0, 1, 2, 3, 4].filter(i => isSectionCompleted(`section${i}`)).length
-    return sectionsCount
-  }
-
-  const getTotalProgress = () => {
-    const totalSections = 5
-    return Math.round((getCurrentSection() / totalSections) * 100)
-  }
-
-  const getCurrentSectionName = () => {
-    if (!isSectionCompleted('section0')) return 'Installing Git'
-    if (!isSectionCompleted('section1')) return 'Version Control Basics'
-    if (!isSectionCompleted('section2')) return 'Git Commands'
-    if (!isSectionCompleted('section3')) return 'GitHub Repository'
-    if (!isSectionCompleted('section4')) return 'Hands-On Practice'
-    return 'All Complete!'
-  }
-
-  const getNextAction = () => {
-    if (!isSectionCompleted('section0')) {
-      const installSteps = Array.from(checkedItems).filter(id => id.startsWith('install-')).length
-      if (installSteps < 3) return 'Choose an installation method'
-      if (!checkedItems.has('install-verify-install')) return 'Verify Git installation'
-      return 'Complete setup configuration'
-    }
-    if (!isSectionCompleted('section1')) return 'Learn about version control'
-    if (!isSectionCompleted('section2')) return 'Practice Git commands'
-    if (!isSectionCompleted('section3')) return 'Create your first repository'
-    if (!isSectionCompleted('section4')) return 'Try the interactive terminal'
-    return 'Congratulations! 🎉'
-  }
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
-  const scrollToSection = (sectionNum: number) => {
-    const element = document.querySelector(`[data-section="section${sectionNum}"]`)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
-  // Handle scroll behavior for Rockit
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      
-      // Hide during fast scrolling
-      if (Math.abs(currentScrollY - lastScrollY) > 5) {
-        setRockitVisible(false)
-        setRockitExpanded(false)
-      }
-      
-      // Show after scroll stops
-      if (scrollTimeout) clearTimeout(scrollTimeout)
-      const timeout = setTimeout(() => {
-        if (!rockitHidden) setRockitVisible(true)
-      }, 150)
-      setScrollTimeout(timeout)
-      
-      setLastScrollY(currentScrollY)
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      if (scrollTimeout) clearTimeout(scrollTimeout)
-    }
-  }, [lastScrollY, rockitHidden, scrollTimeout])
 
   // Validate coding exercise
   const validateCode = (exerciseId: string, userCode: string, expectedPatterns: string[]) => {
@@ -590,183 +509,12 @@ The most commonly used git commands are:
     return <HTMLMastery />
   }
 
-  // GitHub Setup Phase - Always shown
+  // GitHub Setup Phase
   if (currentPhase === 'setup') {
     return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
         {/* Add custom animations */}
         <style dangerouslySetInnerHTML={{ __html: animationStyles }} />
-        
-        {/* Rockit - Smart Learning Assistant */}
-        {!rockitHidden && (
-          <div
-            className={`fixed bottom-6 right-6 z-50 transition-all duration-300 transform ${
-              rockitVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
-            }`}
-          >
-            {/* Compact Mode */}
-            {!rockitExpanded && (
-              <div
-                onClick={() => setRockitExpanded(true)}
-                className="relative flex items-center justify-center cursor-pointer w-14 h-14 group"
-              >
-                {/* Progress Ring */}
-                <svg className="absolute inset-0 transform -rotate-90 w-14 h-14">
-                  <circle
-                    cx="28"
-                    cy="28"
-                    r="24"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.1)"
-                    strokeWidth="2"
-                  />
-                  <circle
-                    cx="28"
-                    cy="28"
-                    r="24"
-                    fill="none"
-                    stroke="url(#rockitGradient)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeDasharray={`${(getTotalProgress() / 100) * 150.8} 150.8`}
-                    className="transition-all duration-500"
-                  />
-                  <defs>
-                    <linearGradient id="rockitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#10b981" />
-                      <stop offset="100%" stopColor="#3b82f6" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                
-                {/* Rockit Icon */}
-                <div className="flex items-center justify-center w-10 h-10 text-white transition-all duration-300 rounded-full bg-gradient-to-br from-emerald-500 to-blue-500 group-hover:scale-110 group-hover:shadow-lg">
-                  <span className="text-lg font-bold">🚀</span>
-                </div>
-                
-                {/* Progress Badge */}
-                <div className="absolute -top-1 -right-1 px-1.5 py-0.5 text-xs font-bold text-white bg-gradient-to-r from-green-500 to-blue-500 rounded-full">
-                  {getTotalProgress()}%
-                </div>
-              </div>
-            )}
-
-            {/* Expanded Mode */}
-            {rockitExpanded && (
-              <div className="p-4 border border-gray-700 shadow-2xl w-80 rounded-xl bg-gray-900/95 backdrop-blur-sm">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="flex items-center justify-center w-8 h-8 text-white rounded-full bg-gradient-to-br from-emerald-500 to-blue-500">
-                      <span className="text-sm font-bold">🚀</span>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-white">Rockit</h3>
-                      <p className="text-xs text-gray-400">Learning Assistant</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <button
-                      onClick={() => setRockitHidden(true)}
-                      className="p-1 text-gray-400 transition-colors rounded hover:text-gray-200 hover:bg-gray-800"
-                      title="Hide Rockit"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={() => setRockitExpanded(false)}
-                      className="p-1 text-gray-400 transition-colors rounded hover:text-gray-200 hover:bg-gray-800"
-                      title="Minimize"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Progress Overview */}
-                <div className="p-3 mb-4 rounded-lg bg-gray-800/50">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-gray-300">Progress</span>
-                    <span className="text-sm font-semibold text-green-400">{getTotalProgress()}%</span>
-                  </div>
-                  <div className="w-full h-2 overflow-hidden bg-gray-700 rounded-full">
-                    <div 
-                      className="h-full transition-all duration-500 bg-gradient-to-r from-emerald-500 to-blue-500"
-                      style={{ width: `${getTotalProgress()}%` }}
-                    />
-                  </div>
-                  <div className="mt-2 text-xs text-gray-400">
-                    Section {getCurrentSection()}/5: {getCurrentSectionName()}
-                  </div>
-                </div>
-
-                {/* Current Focus */}
-                <div className="p-3 mb-4 border rounded-lg border-blue-700/50 bg-blue-900/20">
-                  <div className="flex items-center mb-2">
-                    <span className="w-2 h-2 mr-2 bg-blue-400 rounded-full animate-pulse"></span>
-                    <span className="text-sm font-medium text-blue-300">Next Action</span>
-                  </div>
-                  <p className="text-sm text-blue-200">{getNextAction()}</p>
-                </div>
-
-                {/* Quick Actions */}
-                <div className="space-y-2">
-                  <div className="flex space-x-2">
-                    <button
-                      onClick={scrollToTop}
-                      className="flex-1 px-3 py-2 text-xs font-medium text-white transition-colors bg-gray-700 rounded-lg hover:bg-gray-600"
-                    >
-                      ↑ Top
-                    </button>
-                    <button
-                      onClick={() => {
-                        const currentSection = getCurrentSection()
-                        if (currentSection < 5) scrollToSection(currentSection)
-                      }}
-                      className="flex-1 px-3 py-2 text-xs font-medium text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
-                    >
-                      → Current
-                    </button>
-                  </div>
-                  
-                  {/* Section Jump Buttons */}
-                  <div className="grid grid-cols-5 gap-1">
-                    {[0, 1, 2, 3, 4].map(sectionNum => (
-                      <button
-                        key={sectionNum}
-                        onClick={() => scrollToSection(sectionNum)}
-                        className={`px-2 py-1 text-xs font-medium rounded transition-colors ${
-                          isSectionCompleted(`section${sectionNum}`)
-                            ? 'bg-green-600 text-white hover:bg-green-700'
-                            : getCurrentSection() === sectionNum
-                            ? 'bg-blue-600 text-white hover:bg-blue-700'
-                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                        }`}
-                      >
-                        {sectionNum}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Show Rockit Again Button (when hidden) */}
-        {rockitHidden && (
-          <button
-            onClick={() => setRockitHidden(false)}
-            className="fixed z-50 p-3 text-white transition-all duration-300 rounded-full bottom-6 right-6 bg-gradient-to-br from-emerald-500 to-blue-500 hover:scale-110 hover:shadow-lg"
-            title="Show Rockit Assistant"
-          >
-            <span className="text-sm">🚀</span>
-          </button>
-        )}
         
         {/* Enhanced Header with Modern Icons */}
         <div className="relative overflow-hidden bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900">
@@ -884,479 +632,8 @@ The most commonly used git commands are:
           {/* Interactive Learning Sections */}
           <div className="space-y-12">
             
-            {/* Section 0: Installing Git */}
-            <div 
-              data-section="section0"
-              className={`bg-gray-800 border border-gray-700 rounded-xl p-8 transition-all duration-500 ${
-              animateSection === 'section0' ? 'ring-2 ring-green-500 transform scale-105' : ''
-            }`}>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="flex items-center text-2xl font-bold">
-                  <span className="flex items-center justify-center w-8 h-8 mr-4 text-sm font-bold bg-green-600 rounded-full">0</span>
-                  Installing Git on Your Computer
-                </h2>
-                {isSectionCompleted('section0') && (
-                  <div className="flex items-center text-green-400 animate-pulse">
-                    <span className="mr-2">✅</span>
-                    <span className="text-sm">Completed</span>
-                  </div>
-                )}
-              </div>
-              
-              <p className="mb-6 text-gray-300">
-                Before we can use Git commands, we need to install Git on your computer. Don't worry - it's free and takes just a few minutes!
-              </p>
-
-              {/* Installation Progress Tracker */}
-              <div className="p-6 mb-6 border border-green-700 rounded-lg bg-green-900/20">
-                <h3 className="mb-4 text-lg font-semibold text-green-300">🎯 Installation Progress</h3>
-                <div className="space-y-3">
-                  {[
-                    { id: 'choose-method', text: 'Choose installation method for your platform (see below)', platform: 'both' },
-                    { id: 'download-git', text: 'Download Git installer or GitHub Desktop (see below)', platform: 'both' },
-                    { id: 'run-installer', text: 'Run the installer and follow setup steps', platform: 'both' },
-                    { id: 'verify-install', text: 'Verify installation with "git --version" command', platform: 'both' }
-                  ].map((step, idx) => (
-                    <label key={step.id} className="flex items-center space-x-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        checked={checkedItems.has(`install-${step.id}`)}
-                        onChange={(e) => {
-                          const id = `install-${step.id}`
-                          if (e.target.checked) {
-                            setCheckedItems(prev => new Set([...prev, id]))
-                          } else {
-                            setCheckedItems(prev => {
-                              const newSet = new Set(prev)
-                              newSet.delete(id)
-                              return newSet
-                            })
-                          }
-                        }}
-                        className="w-4 h-4 text-green-600 transition-all bg-gray-700 border-gray-500 rounded focus:ring-green-500"
-                      />
-                      <span className={`text-sm transition-all duration-300 ${
-                        checkedItems.has(`install-${step.id}`) 
-                          ? 'text-green-300 line-through' 
-                          : 'text-gray-300 group-hover:text-white'
-                      }`}>
-                        {idx + 1}. {step.text}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-                
-                {/* Progress bar */}
-                <div className="mt-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-gray-400">
-                      Installation steps: {Array.from(checkedItems).filter(id => id.startsWith('install-')).length}/4
-                    </span>
-                    <span className="text-sm text-green-400">
-                      {Math.round((Array.from(checkedItems).filter(id => id.startsWith('install-')).length / 4) * 100)}%
-                    </span>
-                  </div>
-                  <div className="w-full h-3 overflow-hidden bg-gray-700 rounded-full">
-                    <div 
-                      className="h-full transition-all duration-500 ease-out bg-gradient-to-r from-green-500 to-emerald-500"
-                      style={{ width: `${(Array.from(checkedItems).filter(id => id.startsWith('install-')).length / 4) * 100}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Unified Installation Options */}
-              <div className="p-6 mb-6 border border-blue-700 rounded-lg bg-blue-900/20">
-                <div className="flex items-center mb-6">
-                  <span className="mr-3 text-3xl">🔥</span>
-                  <h3 className="text-2xl font-bold text-blue-300">Git Installation (All Platforms)</h3>
-                </div>
-                
-                <div className="space-y-6">
-                  {/* Method 1: GitHub Desktop (Recommended for Beginners) */}
-                  <div className="p-6 bg-gray-900 border border-green-600 rounded-lg">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center">
-                        <span className="mr-3 text-2xl">⭐</span>
-                        <div>
-                          <h4 className="text-xl font-bold text-green-300">GitHub Desktop (Recommended)</h4>
-                          <p className="text-sm text-green-200">Easiest option - includes Git + visual interface</p>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => setCheckedItems(prev => new Set([...prev, 'install-choose-method', 'install-download-git', 'install-run-installer']))}
-                        className="px-4 py-2 text-sm font-semibold text-white transition-colors bg-green-600 rounded-lg hover:bg-green-700"
-                      >
-                        Choose This Method
-                      </button>
-                    </div>
-                    
-                    <div className="p-4 bg-gray-800 rounded-lg">
-                      <h5 className="mb-3 font-semibold text-white">Installation Steps:</h5>
-                      <ol className="space-y-2 text-sm text-gray-300">
-                        <li className="flex items-center">
-                          <span className="mr-2">1.</span>
-                          <span>Go to </span>
-                          <a href="https://desktop.github.com" target="_blank" className="mx-1 text-blue-400 hover:underline">
-                            desktop.github.com
-                          </a>
-                        </li>
-                        <li>2. Click "Download for [Your OS]" (auto-detects Windows/Mac/Linux)</li>
-                        <li>3. Run the installer and <strong className="text-green-300">follow the default prompts</strong> - no need to change anything!</li>
-                        <li>4. Git is included automatically - no extra setup needed!</li>
-                      </ol>
-                      
-                      <div className="p-3 mt-4 border border-green-700 rounded-lg bg-green-900/30">
-                        <p className="text-sm text-green-200">
-                          ✨ <strong>Bonus:</strong> GitHub Desktop gives you a visual interface for Git commands, perfect for beginners!
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Method 2: Official Git */}
-                  <div className="p-6 bg-gray-900 border border-blue-600 rounded-lg">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center">
-                        <span className="mr-3 text-2xl">⚙️</span>
-                        <div>
-                          <h4 className="text-xl font-bold text-blue-300">Official Git</h4>
-                          <p className="text-sm text-blue-200">Command-line focused installation</p>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => setCheckedItems(prev => new Set([...prev, 'install-choose-method', 'install-download-git', 'install-run-installer']))}
-                        className="px-4 py-2 text-sm font-semibold text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
-                      >
-                        Choose This Method
-                      </button>
-                    </div>
-                    
-                    <div className="p-4 bg-gray-800 rounded-lg">
-                      <h5 className="mb-3 font-semibold text-white">Installation Steps:</h5>
-                      <ol className="space-y-2 text-sm text-gray-300">
-                        <li className="flex items-center">
-                          <span className="mr-2">1.</span>
-                          <span>Go to </span>
-                          <a href="https://git-scm.com/downloads" target="_blank" className="mx-1 text-blue-400 hover:underline">
-                            git-scm.com/downloads
-                          </a>
-                        </li>
-                        <li>2. Click your operating system (Windows/Mac/Linux)</li>
-                        <li>3. Download and run the installer</li>
-                        <li>4. <strong>Windows:</strong> Accept all defaults (<span className="text-green-300">just keep clicking "Next"</span>)</li>
-                        <li>5. <strong>Mac:</strong> Open .dmg file and <span className="text-green-300">follow default installation</span></li>
-                        <li>6. <strong>Linux:</strong> Use your package manager (apt, yum, pacman, etc.)</li>
-                      </ol>
-                      
-                      <div className="p-3 mt-4 border border-blue-700 rounded-lg bg-blue-900/30">
-                        <p className="text-sm text-blue-200">
-                          😌 <strong>Don't stress:</strong> The default settings work perfectly for most users - no need to customize anything!
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Quick Platform Notes */}
-                  <div className="grid gap-4 md:grid-cols-3">
-                    <div className="p-4 border border-gray-600 rounded-lg bg-gray-800/50">
-                      <div className="flex items-center mb-2">
-                        <span className="mr-2 text-xl">🪟</span>
-                        <span className="font-semibold text-white">Windows</span>
-                      </div>
-                      <p className="text-xs text-gray-400">Both methods work great. GitHub Desktop is easier for beginners.</p>
-                    </div>
-                    
-                    <div className="p-4 border border-gray-600 rounded-lg bg-gray-800/50">
-                      <div className="flex items-center mb-2">
-                        <span className="mr-2 text-xl">🍎</span>
-                        <span className="font-semibold text-white">Mac</span>
-                      </div>
-                      <p className="text-xs text-gray-400">GitHub Desktop recommended. Git may already be installed via Xcode.</p>
-                    </div>
-                    
-                    <div className="p-4 border border-gray-600 rounded-lg bg-gray-800/50">
-                      <div className="flex items-center mb-2">
-                        <span className="mr-2 text-xl">🐧</span>
-                        <span className="font-semibold text-white">Linux</span>
-                      </div>
-                      <p className="text-xs text-gray-400">Usually installed via package manager: apt install git</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Verification Steps */}
-              <div className="p-6 mb-6 border border-yellow-700 rounded-lg bg-yellow-900/20">
-                <h3 className="mb-4 text-lg font-semibold text-yellow-300">🔍 Verify Installation</h3>
-                <p className="mb-3 text-yellow-200">After installation, let's make sure Git is working:</p>
-                
-                <div className="p-4 bg-gray-900 rounded-lg">
-                  <h4 className="mb-2 font-semibold text-white">Open your terminal/command prompt:</h4>
-                  <ul className="mb-3 space-y-1 text-sm text-gray-300">
-                    <li>• <strong>Windows:</strong> Press Win + R, type "cmd", press Enter</li>
-                    <li>• <strong>Mac:</strong> Press Cmd + Space, type "Terminal", press Enter</li>
-                  </ul>
-                  
-                  <p className="mb-2 text-sm text-gray-300">Type this command and press Enter:</p>
-                  <div className="flex items-center justify-between p-2 mb-3 bg-black rounded">
-                    <span className="font-mono text-sm text-green-400">git --version</span>
-                    <button
-                      onClick={() => {
-                        navigator.clipboard.writeText('git --version')
-                        setCheckedItems(prev => new Set([...prev, 'install-verify-install']))
-                        // Show immediate feedback
-                        console.log('Verification marked complete!')
-                      }}
-                      className={`px-2 py-1 text-xs text-white transition-colors rounded ${
-                        checkedItems.has('install-verify-install') 
-                          ? 'bg-green-600 hover:bg-green-700' 
-                          : 'bg-yellow-600 hover:bg-yellow-700'
-                      }`}
-                    >
-                      {checkedItems.has('install-verify-install') ? '✅ Copied & Done!' : '📋 Copy & Mark Done'}
-                    </button>
-                  </div>
-                  
-                  <p className="text-sm text-gray-300">
-                    You should see something like: <span className="font-mono text-green-400">git version 2.39.0</span>
-                  </p>
-
-                  {/* Visual feedback when button is clicked */}
-                  {checkedItems.has('install-verify-install') && (
-                    <div className="p-3 mt-3 border border-green-700 rounded-lg bg-green-900/30 animate-slideIn">
-                      <p className="text-sm text-green-300">
-                        ✅ <strong>Great!</strong> Verification step completed. Check the Installation Checklist below to see it marked as done!
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Setup Configuration */}
-              <div className="p-6 mb-6 border border-purple-700 rounded-lg bg-purple-900/20">
-                <h3 className="mb-4 text-lg font-semibold text-purple-300">⚙️ First-Time Setup</h3>
-                <p className="mb-3 text-purple-200">Configure Git with your information (run these commands in terminal):</p>
-                
-                <div className="space-y-3">
-                  <div className="p-3 bg-gray-900 rounded-lg">
-                    <div className="flex items-center justify-between mb-1">
-                      <p className="text-sm text-gray-400">Set your name:</p>
-                      <label className="flex items-center space-x-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={checkedItems.has('setup-name')}
-                          onChange={(e) => {
-                            const id = 'setup-name'
-                            if (e.target.checked) {
-                              setCheckedItems(prev => new Set([...prev, id]))
-                            } else {
-                              setCheckedItems(prev => {
-                                const newSet = new Set(prev)
-                                newSet.delete(id)
-                                return newSet
-                              })
-                            }
-                          }}
-                          className="w-3 h-3 text-purple-600 bg-gray-700 border-gray-500 rounded focus:ring-purple-500"
-                        />
-                        <span className="text-xs text-gray-400">Done</span>
-                      </label>
-                    </div>
-                    <div className="flex items-center justify-between p-2 bg-black rounded">
-                      <span className="font-mono text-sm text-green-400">git config --global user.name "Your Name"</span>
-                      <button
-                        onClick={() => navigator.clipboard.writeText('git config --global user.name "Your Name"')}
-                        className="px-2 py-1 text-xs text-white transition-colors bg-purple-600 rounded hover:bg-purple-700"
-                      >
-                        📋
-                      </button>
-                    </div>
-                  </div>
-                  
-                  <div className="p-3 bg-gray-900 rounded-lg">
-                    <div className="flex items-center justify-between mb-1">
-                      <p className="text-sm text-gray-400">Set your email:</p>
-                      <label className="flex items-center space-x-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={checkedItems.has('setup-email')}
-                          onChange={(e) => {
-                            const id = 'setup-email'
-                            if (e.target.checked) {
-                              setCheckedItems(prev => new Set([...prev, id]))
-                            } else {
-                              setCheckedItems(prev => {
-                                const newSet = new Set(prev)
-                                newSet.delete(id)
-                                return newSet
-                              })
-                            }
-                          }}
-                          className="w-3 h-3 text-purple-600 bg-gray-700 border-gray-500 rounded focus:ring-purple-500"
-                        />
-                        <span className="text-xs text-gray-400">Done</span>
-                      </label>
-                    </div>
-                    <div className="flex items-center justify-between p-2 bg-black rounded">
-                      <span className="font-mono text-sm text-green-400">git config --global user.email "your.email@example.com"</span>
-                      <button
-                        onClick={() => navigator.clipboard.writeText('git config --global user.email "your.email@example.com"')}
-                        className="px-2 py-1 text-xs text-white transition-colors bg-purple-600 rounded hover:bg-purple-700"
-                      >
-                        📋
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="p-3 mt-4 rounded-lg bg-blue-900/30">
-                  <p className="text-sm text-blue-200">
-                    💡 <strong>Tip:</strong> Use the same email address you'll use for GitHub to keep everything connected!
-                  </p>
-                </div>
-              </div>
-
-              {/* Completion Checklist */}
-              <div className="p-6 border border-gray-600 rounded-lg bg-gray-700/30">
-                <h3 className="mb-4 text-lg font-semibold text-white">✅ Installation Checklist</h3>
-                <div className="space-y-3">
-                  {[
-                    { id: 'downloaded', text: 'Downloaded and installed Git on my computer', deps: ['install-choose-method', 'install-download-git', 'install-run-installer'] },
-                    { id: 'verified', text: 'Verified Git is working with "git --version" command', deps: ['install-verify-install'] },
-                    { id: 'configured-name', text: 'Configured my name with "git config --global user.name"', deps: ['setup-name'] },
-                    { id: 'configured-email', text: 'Configured my email with "git config --global user.email"', deps: ['setup-email'] }
-                  ].map((item, idx) => {
-                    const isAutoChecked = item.deps?.every(dep => checkedItems.has(dep))
-                    const isManuallyChecked = checkedItems.has(`section0-${idx}`)
-                    const isChecked = isAutoChecked || isManuallyChecked
-                    
-                    return (
-                      <label key={idx} className="flex items-center space-x-3 cursor-pointer group">
-                        <input
-                          type="checkbox"
-                          checked={isChecked}
-                          onChange={(e) => {
-                            const id = `section0-${idx}`
-                            if (e.target.checked) {
-                              setCheckedItems(prev => new Set([...prev, id]))
-                            } else {
-                              setCheckedItems(prev => {
-                                const newSet = new Set(prev)
-                                newSet.delete(id)
-                                return newSet
-                              })
-                            }
-                          }}
-                          className="w-4 h-4 text-green-600 transition-all bg-gray-700 border-gray-500 rounded focus:ring-green-500"
-                        />
-                        <span className={`text-sm transition-all duration-300 flex-1 ${
-                          isChecked 
-                            ? 'text-green-300 line-through' 
-                            : 'text-gray-300 group-hover:text-white'
-                        }`}>
-                          {item.text}
-                        </span>
-                        {isAutoChecked && !isManuallyChecked && (
-                          <span className="px-2 py-1 text-xs text-green-200 bg-green-800 rounded">
-                            Auto-completed ✨
-                          </span>
-                        )}
-                      </label>
-                    )
-                  })}
-                </div>
-                
-                {/* Installation Progress Summary */}
-                <div className="p-4 mt-6 bg-gray-800 rounded-lg">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm font-semibold text-white">Overall Installation Progress</span>
-                    <span className="text-green-400">
-                      {Array.from(checkedItems).filter(id => id.startsWith('install-') || id.startsWith('setup-')).length}/6 tasks
-                    </span>
-                  </div>
-                  
-                  <div className="w-full h-4 overflow-hidden bg-gray-700 rounded-full">
-                    <div 
-                      className="h-full transition-all duration-500 ease-out bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500"
-                      style={{ width: `${(Array.from(checkedItems).filter(id => id.startsWith('install-') || id.startsWith('setup-')).length / 6) * 100}%` }}
-                    />
-                  </div>
-                  
-                  <div className="mt-2 text-xs text-gray-400">
-                    Complete installation steps and setup commands to unlock the completion button!
-                  </div>
-                </div>
-                
-                {/* Auto-complete section when all items checked */}
-                {(
-                  [0,1,2,3].every(idx => {
-                    const item = [
-                      { deps: ['install-choose-method', 'install-download-git', 'install-run-installer'] },
-                      { deps: ['install-verify-install'] },
-                      { deps: ['setup-name'] },
-                      { deps: ['setup-email'] }
-                    ][idx]
-                    return item.deps?.every(dep => checkedItems.has(dep)) || checkedItems.has(`section0-${idx}`)
-                  }) || 
-                  [0,1,2,3].every(idx => checkedItems.has(`section0-${idx}`))
-                ) && !isSectionCompleted('section0') && (
-                  <div className="mt-6">
-                    <div className="p-3 mb-3 text-center border border-blue-700 rounded-lg bg-blue-900/30">
-                      <p className="text-sm text-blue-200">
-                        🎯 <strong>Ready to finish?</strong> This button will complete your entire Git installation and mark all progress items above.
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => {
-                        // Auto-complete ALL installation steps when user clicks completion button
-                        setCheckedItems(prev => new Set([
-                          ...prev, 
-                          // Installation progress items (top section)
-                          'install-choose-method',
-                          'install-download-git', 
-                          'install-run-installer',
-                          'install-verify-install',
-                          // Setup items
-                          'setup-name',
-                          'setup-email',
-                          // Checklist items (will be auto-completed by dependencies, but ensuring they're marked)
-                          'section0-0', 'section0-1', 'section0-2', 'section0-3'
-                        ]))
-                        markSectionCompleted('section0')
-                        triggerAnimation('section0')
-                      }}
-                      className="relative w-full px-6 py-4 font-bold text-white transition-all transform rounded-lg shadow-lg bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 hover:from-green-700 hover:via-emerald-700 hover:to-teal-700 hover:scale-105 animate-pulse hover:shadow-green-500/50"
-                    >
-                      <span className="flex items-center justify-center space-x-3">
-                        <span className="text-2xl animate-bounce">🎉</span>
-                        <span>Complete Git Installation & Setup!</span>
-                        <span className="text-2xl animate-bounce">🚀</span>
-                      </span>
-                      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-white to-transparent opacity-20 animate-shimmer"></div>
-                    </button>
-                  </div>
-                )}
-                
-                {/* Celebration message after completion */}
-                {isSectionCompleted('section0') && (
-                  <div className="p-4 mt-4 border border-green-500 rounded-lg bg-green-900/40 animate-slideIn">
-                    <div className="text-center">
-                      <div className="mb-2 text-3xl">🎊</div>
-                      <h4 className="mb-2 text-lg font-bold text-green-300">Awesome! Git is Ready to Go!</h4>
-                      <p className="text-sm text-green-200">
-                        You now have Git installed and configured. You're ready to start version controlling your projects like a pro!
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
             {/* Section 1: What is Version Control? */}
-            <div 
-              data-section="section1"
-              className={`bg-gray-800 border border-gray-700 rounded-xl p-8 transition-all duration-500 ${
+            <div className={`bg-gray-800 border border-gray-700 rounded-xl p-8 transition-all duration-500 ${
               animateSection === 'section1' ? 'ring-2 ring-blue-500 transform scale-105' : ''
             }`}>
               <div className="flex items-center justify-between mb-6">
@@ -1502,9 +779,7 @@ The most commonly used git commands are:
             </div>
 
             {/* Section 2: Basic Git Commands */}
-            <div 
-              data-section="section2"
-              className={`bg-gray-800 border border-gray-700 rounded-xl p-8 transition-all duration-500 ${
+            <div className={`bg-gray-800 border border-gray-700 rounded-xl p-8 transition-all duration-500 ${
               animateSection === 'section2' ? 'ring-2 ring-purple-500 transform scale-105' : ''
             }`}>
               <div className="flex items-center justify-between mb-6">
@@ -1523,6 +798,60 @@ The most commonly used git commands are:
               <p className="mb-6 text-gray-300">
                 These 5 commands handle 90% of your daily Git usage. Let's see them in action:
               </p>
+
+              {/* Interactive Command Sequence */}
+              <div className="p-6 mb-6 border border-yellow-700 rounded-lg bg-yellow-900/20">
+                <h3 className="mb-4 text-lg font-semibold text-yellow-300">🎯 Command Sequence Challenge</h3>
+                <p className="mb-4 text-yellow-200">Drag the commands into the correct order for creating a new project:</p>
+                
+                <div className="grid gap-6 md:grid-cols-2">
+                  {/* Draggable Commands */}
+                  <div>
+                    <h4 className="mb-3 text-sm font-semibold text-gray-300">Available Commands (drag these):</h4>
+                    <div className="space-y-2">
+                      {[
+                        { cmd: 'git push', order: 5, id: 'push' },
+                        { cmd: 'git init', order: 1, id: 'init' },
+                        { cmd: 'git commit', order: 4, id: 'commit' },
+                        { cmd: 'git add', order: 3, id: 'add' },
+                        { cmd: 'Create files', order: 2, id: 'create' }
+                      ].map((command) => (
+                        <div
+                          key={command.id}
+                          draggable
+                          onDragStart={() => setDraggedCommand(command.id)}
+                          className={`p-3 bg-purple-900/30 border border-purple-700 rounded-lg cursor-move hover:bg-purple-800/40 transition-all transform hover:scale-105 ${
+                            draggedCommand === command.id ? 'opacity-50 rotate-3' : ''
+                          }`}
+                        >
+                          <span className="font-mono text-purple-300">{command.cmd}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Drop Zones */}
+                  <div>
+                    <h4 className="mb-3 text-sm font-semibold text-gray-300">Correct Order (drop here):</h4>
+                    <div className="space-y-2">
+                      {[1,2,3,4,5].map((step) => (
+                        <div
+                          key={step}
+                          onDragOver={(e) => e.preventDefault()}
+                          onDrop={(e) => {
+                            e.preventDefault()
+                            // Handle drop logic here
+                            console.log(`Dropped ${draggedCommand} on step ${step}`)
+                          }}
+                          className="p-3 bg-gray-700/50 border-2 border-dashed border-gray-600 rounded-lg min-h-[50px] flex items-center justify-center text-gray-400 hover:border-green-500 transition-colors"
+                        >
+                          Step {step}: Drop command here
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               {/* Detailed Commands with Toggles */}
               <div className="space-y-6">
@@ -1642,152 +971,11 @@ The most commonly used git commands are:
                 ))}
               </div>
 
-              {/* Interactive Command Sequence */}
-              <div className="p-6 mt-8 mb-6 border border-yellow-700 rounded-lg bg-yellow-900/20">
-                <h3 className="mb-4 text-lg font-semibold text-yellow-300">🎯 Command Sequence Challenge</h3>
-                <p className="mb-4 text-yellow-200">Drag the commands into the correct order for creating a new project:</p>
-                
-                <div className="grid gap-6 md:grid-cols-2">
-                  {/* Draggable Commands */}
-                  <div>
-                    <h4 className="mb-3 text-sm font-semibold text-gray-300">Available Commands (drag these):</h4>
-                    <div className="space-y-2">
-                      {[
-                        { cmd: 'git push', order: 5, id: 'push' },
-                        { cmd: 'git init', order: 1, id: 'init' },
-                        { cmd: 'git commit', order: 4, id: 'commit' },
-                        { cmd: 'git add', order: 3, id: 'add' },
-                        { cmd: 'Create files', order: 2, id: 'create' }
-                      ].filter(command => !commandSequence.includes(command.id)).map((command) => (
-                        <div
-                          key={command.id}
-                          draggable
-                          onDragStart={(e) => {
-                            setDraggedCommand(command.id)
-                            e.dataTransfer.effectAllowed = 'move'
-                          }}
-                          onDragEnd={() => setDraggedCommand(null)}
-                          className={`p-3 bg-purple-900/30 border border-purple-700 rounded-lg cursor-move hover:bg-purple-800/40 transition-all transform hover:scale-105 ${
-                            draggedCommand === command.id ? 'opacity-50 rotate-3' : ''
-                          }`}
-                        >
-                          <span className="font-mono text-purple-300">{command.cmd}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {/* Drop Zones */}
-                  <div>
-                    <h4 className="mb-3 text-sm font-semibold text-gray-300">Correct Order (drop here):</h4>
-                    <div className="space-y-2">
-                      {[1,2,3,4,5].map((step) => {
-                        const commandData = [
-                          { cmd: 'git init', order: 1, id: 'init' },
-                          { cmd: 'Create files', order: 2, id: 'create' },
-                          { cmd: 'git add', order: 3, id: 'add' },
-                          { cmd: 'git commit', order: 4, id: 'commit' },
-                          { cmd: 'git push', order: 5, id: 'push' }
-                        ]
-                        const placedCommand = commandSequence[step - 1]
-                        const commandInfo = commandData.find(cmd => cmd.id === placedCommand)
-                        
-                        return (
-                          <div
-                            key={step}
-                            onDragOver={(e) => e.preventDefault()}
-                            onDrop={(e) => {
-                              e.preventDefault()
-                              if (draggedCommand) {
-                                const newSequence = [...commandSequence]
-                                // Remove command from other positions first
-                                const currentIndex = newSequence.indexOf(draggedCommand)
-                                if (currentIndex !== -1) {
-                                  newSequence[currentIndex] = null
-                                }
-                                // Place command in new position
-                                newSequence[step - 1] = draggedCommand
-                                setCommandSequence(newSequence)
-                                setDraggedCommand(null)
-                              }
-                            }}
-                            className={`p-3 border-2 border-dashed rounded-lg min-h-[50px] flex items-center justify-center transition-colors ${
-                              placedCommand 
-                                ? 'bg-green-900/30 border-green-500 text-green-300' 
-                                : 'bg-gray-700/50 border-gray-600 text-gray-400 hover:border-green-500'
-                            }`}
-                          >
-                            {placedCommand ? (
-                              <div className="flex items-center justify-between w-full">
-                                <span className="font-mono text-green-300">{commandInfo?.cmd}</span>
-                                <button
-                                  onClick={() => {
-                                    const newSequence = [...commandSequence]
-                                    newSequence[step - 1] = null
-                                    setCommandSequence(newSequence)
-                                  }}
-                                  className="text-red-400 hover:text-red-300"
-                                >
-                                  ✕
-                                </button>
-                              </div>
-                            ) : (
-                              `Step ${step}: Drop command here`
-                            )}
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Sequence Validation */}
-                {commandSequence.every(cmd => cmd !== null) && (
-                  <div className={`mt-4 p-4 rounded-lg border ${
-                    commandSequence.join(',') === 'init,create,add,commit,push'
-                      ? 'border-green-700 bg-green-900/30'
-                      : 'border-red-700 bg-red-900/30'
-                  }`}>
-                    {commandSequence.join(',') === 'init,create,add,commit,push' ? (
-                      <div>
-                        <div className="mb-3 text-green-300">
-                          🎉 Perfect! You've got the correct Git workflow sequence!
-                        </div>
-                        {!checkedItems.has('sequence-challenge') && (
-                          <button
-                            onClick={() => {
-                              setCheckedItems(prev => new Set([...prev, 'sequence-challenge']))
-                              triggerAnimation('sequence-challenge')
-                            }}
-                            className="px-4 py-2 text-sm font-semibold text-white transition-all transform bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 animate-pulse"
-                          >
-                            ✅ Mark Challenge Complete
-                          </button>
-                        )}
-                        {checkedItems.has('sequence-challenge') && (
-                          <div className="flex items-center text-green-400">
-                            <span className="mr-2">✅</span>
-                            <span className="text-sm">Challenge Completed!</span>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <div className="text-red-300">
-                        ❌ Not quite right. Try again! Remember: initialize → create files → stage → commit → push
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-
               {/* Progress indicator */}
               <div className="pt-4 mt-6 border-t border-gray-700">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-400">
                     Commands learned: {Array.from(checkedItems).filter(id => id.startsWith('cmd-')).length}/5
-                    {checkedItems.has('sequence-challenge') && (
-                      <span className="ml-2 text-green-400">• Sequence Challenge ✓</span>
-                    )}
                   </span>
                   <div className="w-32 h-2 overflow-hidden bg-gray-700 rounded-full">
                     <div 
@@ -1797,12 +985,7 @@ The most commonly used git commands are:
                   </div>
                 </div>
                 
-                {/* Show completion requirements */}
-                <div className="mt-3 text-xs text-gray-500">
-                  Complete all 5 commands and the sequence challenge to finish this section
-                </div>
-                
-                {Array.from(checkedItems).filter(id => id.startsWith('cmd-')).length === 5 && checkedItems.has('sequence-challenge') && !isSectionCompleted('section2') && (
+                {Array.from(checkedItems).filter(id => id.startsWith('cmd-')).length === 5 && !isSectionCompleted('section2') && (
                   <button
                     onClick={() => markSectionCompleted('section2')}
                     className="w-full px-4 py-2 mt-4 font-semibold text-white transition-all transform bg-purple-600 rounded-lg hover:bg-purple-700 hover:scale-105 animate-pulse"
@@ -1814,9 +997,7 @@ The most commonly used git commands are:
             </div>
 
             {/* Section 3: GitHub in Action */}
-            <div 
-              data-section="section3"
-              className={`bg-gray-800 border border-gray-700 rounded-xl p-8 transition-all duration-500 ${
+            <div className={`bg-gray-800 border border-gray-700 rounded-xl p-8 transition-all duration-500 ${
               animateSection === 'section3' ? 'ring-2 ring-green-500 transform scale-105' : ''
             }`}>
               <div className="flex items-center justify-between mb-6">
@@ -1970,9 +1151,7 @@ The most commonly used git commands are:
             </div>
 
             {/* Section 4: Hands-On Coding Practice */}
-            <div 
-              data-section="section4"
-              className={`bg-gray-800 border border-gray-700 rounded-xl p-8 transition-all duration-500 ${
+            <div className={`bg-gray-800 border border-gray-700 rounded-xl p-8 transition-all duration-500 ${
               animateSection === 'section4' ? 'ring-2 ring-orange-500 transform scale-105' : ''
             }`}>
               <div className="flex items-center justify-between mb-6">
@@ -2293,8 +1472,7 @@ The most commonly used git commands are:
   }
 
   // Concepts Learning Phase
-  if (currentPhase === 'concepts') {
-    return (
+  return (
     <div className="min-h-screen text-white bg-gray-900">
       {/* Modern Header */}
       <div className="sticky top-0 z-10 border-b bg-gray-800/80 backdrop-blur-sm border-gray-700/50">
@@ -2519,8 +1697,4 @@ The most commonly used git commands are:
       </div>
     </div>
   )
-  }
-
-  // Default fallback (shouldn't reach here)
-  return null
 }

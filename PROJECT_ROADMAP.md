@@ -11,7 +11,8 @@
    ├── 🎯 Launch Pad (Onboarding + Affiliate Revenue)
    ├── 📚 Course Catalog (Beginner → Advanced)
    ├── 💼 Portfolio Ecosystem (Living Projects)
-   └── 🛠️ Developer Tools (Professional Setup)
+   ├── 🛠️ Developer Tools (Professional Setup)
+   └── 🤖 Rockit AI Assistant (Context-Aware Learning Companion)
 ```
 
 ### **Core Platform Principles**
@@ -20,6 +21,52 @@
 - **Living Portfolio Approach**: Each lesson builds cumulative professional projects
 - **Affiliate Revenue Model**: Monetize through professional tool onboarding
 - **Zero-Cost Learning**: Leverage GitHub free tier + student benefits
+- **AI-Powered Learning**: Rockit provides contextual guidance and progress tracking
+
+---
+
+## 🤖 **ROCKIT AI ASSISTANT: PLATFORM-WIDE LEARNING COMPANION**
+
+### **Current Implementation** ✅ **COMPLETED**
+- **GitHub Mastery Lessons**: Smart progress tracking, contextual hints, section navigation
+- **Mobile-Optimized**: Auto-hide during scrolling, touch-friendly interactions
+- **Professional Design**: Non-gimmicky, enterprise-grade UI/UX
+- **User Control**: Hideable, expandable, with persistent preferences
+
+### **Rockit Expansion Strategy**
+1. **Site-Wide Implementation**
+   - Context-aware help for every page/feature
+   - Unified progress tracking across all courses
+   - Cross-lesson navigation and recommendations
+   - Global learning analytics dashboard
+
+2. **Advanced AI Features**
+   - Code review and suggestions within lessons
+   - Personalized learning path optimization
+   - Stuck detection with proactive help offers
+   - Smart content recommendations
+
+3. **Platform Integration**
+   - GitHub repository analysis and feedback
+   - Real-time collaboration guidance
+   - Portfolio project management
+   - Career milestone tracking
+
+4. **Monetization Integration**
+   - Tool recommendation engine
+   - Upgrade path guidance
+   - Professional development suggestions
+   - Affiliate opportunity optimization
+
+### **Rockit Technical Architecture**
+```
+🤖 Rockit Core System
+   ├── 📊 Progress Analytics Engine
+   ├── 🎯 Context Detection Service
+   ├── 💡 Smart Recommendation System
+   ├── 🔄 Cross-Platform State Management
+   └── 📱 Responsive UI Component Library
+```
 
 ---
 
@@ -159,6 +206,7 @@ Core Platform Features:
 ├── Interactive terminal simulations
 ├── Mobile-responsive design
 ├── Progress tracking system
+├── Rockit AI Assistant (basic context-aware guidance) ✅ COMPLETED
 └── Drag-and-drop learning exercises
 ```
 
@@ -170,6 +218,7 @@ Onboarding & Revenue Features:
 ├── Portfolio template automation
 ├── Tool recommendation engine
 ├── Student progress analytics
+├── Rockit site-wide integration (context switching between lessons)
 └── Payment/subscription management
 ```
 
@@ -182,6 +231,7 @@ Content Production & Delivery:
 ├── Project-based portfolio building
 ├── Video content integration
 ├── Community features (forums, Discord)
+├── Rockit advanced AI features (stuck detection, code review assistance)
 └── Assessment and certification system
 ```
 
@@ -193,6 +243,7 @@ Platform Maturity & Scale:
 ├── Enterprise integration
 ├── Instructor/mentor marketplace
 ├── API and extensibility
+├── Rockit personalized learning paths & career guidance
 └── Mobile applications
 ```
 
