@@ -186,7 +186,8 @@ export default function HomePage() {
                 lessons: "12 lessons",
                 duration: "~3 hours",
                 level: "Beginner",
-                color: "bg-blue-600"
+                color: "bg-blue-600",
+                href: "/learn/html-css"
               },
               {
                 title: "JavaScript Essentials",
@@ -194,7 +195,8 @@ export default function HomePage() {
                 lessons: "18 lessons", 
                 duration: "~6 hours",
                 level: "Beginner",
-                color: "bg-yellow-600"
+                color: "bg-yellow-600",
+                href: "/courses"
               },
               {
                 title: "React Development",
@@ -202,7 +204,8 @@ export default function HomePage() {
                 lessons: "24 lessons",
                 duration: "~10 hours", 
                 level: "Intermediate",
-                color: "bg-purple-600"
+                color: "bg-purple-600",
+                href: "/courses"
               }
             ].map((course, index) => (
               <article key={index} className="flex flex-col items-start justify-between max-w-xl p-6 transition-shadow duration-200 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600 hover:shadow-md">
@@ -215,7 +218,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative group">
                   <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 transition-colors duration-200 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                    <Link href="/courses" className="relative">
+                    <Link href={course.href} className="relative">
                       <span className="absolute inset-0" />
                       {course.title}
                       {/* Animated underline */}

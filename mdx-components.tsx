@@ -7,6 +7,7 @@ import theme from "./src/app/syntax-theme.json";
 import { YouTubeEmbed } from "./src/components/rockitcode/youtube-embed";
 import { HTMLPlayground } from "./src/components/rockitcode/html-playground";
 import { ImageLightbox } from "./src/components/image-lightbox";
+import { InteractiveLessonLauncher } from "./src/components/mdx/InteractiveLessonLauncher";
 
 function getTextContent(node: ReactNode): string {
   if (typeof node === "string") return node;
@@ -151,6 +152,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     },
     YouTubeEmbed,
     HTMLPlayground,
+    InteractiveLessonLauncher,
     ...components,
   };
 }

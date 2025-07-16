@@ -127,7 +127,8 @@ export async function getRockitLesson(
 
 export async function getRockitLessonContent(courseId: string, lessonId: string) {
   try {
-    return (await import(`@/data/rockitcode-lessons/${courseId}/${lessonId}.mdx`)).default;
+    // Only try React components for now to avoid MDX issues
+    return (await import(`@/data/rockitcode-lessons/${courseId}/${lessonId}.tsx`)).default;
   } catch {
     return null;
   }
@@ -1110,6 +1111,215 @@ Remember: Change "active" class for each page!
                 type: "codepen",
                 url: "/codepen-examples/multi-page-navigation-playground.html",
                 title: "🌐 Multi-Page Navigation Playground - Build Professional Websites!"
+              }
+            ]
+          },
+          {
+            id: "html-gaming-arena",
+            title: "🎮 HTML Gaming Arena - Level Up Through Play!",
+            description: "Master HTML through addictive games, puzzles, leaderboards and RPG-style progression. Compete with other learners and unlock achievements!",
+            order: 4,
+            estimatedMinutes: 45,
+            video: null, // No video needed - this is an interactive game!
+            images: [
+              {
+                src: "/images/lessons/html-css/gaming-arena-hero.svg",
+                alt: "HTML Gaming Arena with leaderboards and achievements",
+                title: "🎮 Welcome to the HTML Gaming Arena!",
+                caption: "Learn HTML through epic challenges, puzzles and competitive gameplay"
+              }
+            ],
+            codeExamples: [
+              {
+                title: "🧩 Code Puzzle Challenge",
+                language: "html",
+                code: `<!-- Challenge: Complete this heading tag! -->
+<h1>Welcome to my site
+
+<!-- Timer: 30 seconds | Attempts: 3 | Bonus: Speed + Accuracy -->
+<!-- Your solution: _____________ -->`,
+                explanation: "Speed challenges test your HTML knowledge under pressure! Complete the missing tags as fast as you can to earn maximum points. Time bonuses and attempt bonuses reward both speed and accuracy! 🏆"
+              },
+              {
+                title: "🎯 Drag & Drop HTML Builder",
+                language: "html", 
+                code: `<!-- Drag these HTML elements to build a complete page: -->
+
+Available Elements:
+[<!DOCTYPE html>] [<html>] [<head>] [<title>My Page</title>]
+[</head>] [<body>] [<h1>Hello!</h1>] [</body>] [</html>]
+
+Drop Zone:
+┌─────────────────────────────────────────┐
+│ Drag HTML elements here to build your  │
+│ page structure. Order matters!          │
+│                                         │
+│ 🏆 Perfect structure = 1000 points!    │
+└─────────────────────────────────────────┘`,
+                explanation: "Visual learners love drag & drop! Build HTML structure by dragging elements into the correct order. Perfect for understanding document flow and nesting! 🎯"
+              },
+              {
+                title: "👹 Boss Challenge: HTML Overlord",
+                language: "html",
+                code: `<!-- Boss Battle: Defeat the HTML Overlord! -->
+<!-- Lives: ❤️❤️❤️ | Time: 5:00 | Difficulty: Progressive -->
+
+Problem 1/3: Fix this broken heading
+<h1>Welcome to My Site</h2>
+             ↑
+         Fix this tag!
+
+Problem 2/3: Complete the document structure  
+<html>
+  <head></head>
+  <body>
+    <!-- Missing closing tag! -->
+
+Problem 3/3: Add the missing doctype
+<html>
+  <head><title>Page</title></head>
+</html>
+<!-- What goes at the very top? -->`,
+                explanation: "Boss battles are the ultimate test! Face progressively harder challenges with limited lives and time pressure. Defeat the boss to unlock the next world! ⚔️"
+              }
+            ],
+            exercises: [
+              {
+                title: "🏆 Leaderboard Challenge",
+                description: "Compete with other learners! Complete speed challenges to climb the leaderboard and earn bonus XP.",
+                solution: "</h1>",
+                hints: ["Remember closing tags!", "HTML tags come in pairs", "The closing tag has a forward slash"]
+              },
+              {
+                title: "🧩 Puzzle Master Achievement", 
+                description: "Solve drag & drop HTML puzzles to master document structure and element nesting.",
+                solution: "<!DOCTYPE html>",
+                hints: ["This goes at the very top", "It tells the browser what type of document this is", "All modern web pages start with this"]
+              },
+              {
+                title: "👹 Boss Battle: HTML Overlord",
+                description: "Face the ultimate HTML challenge! Defeat the HTML Overlord to prove your mastery and unlock advanced content.",
+                starterCode: "<h1>Welcome</h2>",
+                solution: "<h1>Welcome</h1>",
+                hints: ["Opening and closing tags must match", "h1 opens, h1 must close", "Fix the closing tag"]
+              }
+            ],
+            embeds: [
+              {
+                type: "codepen",
+                url: "/games/html-gaming-arena", 
+                title: "🎮 HTML Gaming Arena - Play Now!"
+              }
+            ]
+          },
+          {
+            id: "css-gaming-playground",
+            title: "🎨 CSS Gaming Playground - Style Wars!",
+            description: "Master CSS through epic color mixing, layout racing, selector battles and championship tournaments. Become the ultimate CSS warrior!",
+            order: 5,
+            estimatedMinutes: 45,
+            video: null,
+            images: [
+              {
+                src: "/images/lessons/html-css/css-gaming-arena.svg",
+                alt: "CSS Gaming Playground with color mixing and layout challenges",
+                title: "🎨 CSS Gaming Arena - Where Style Meets Strategy!",
+                caption: "Master CSS through interactive games, tournaments and epic challenges"
+              }
+            ],
+            codeExamples: [
+              {
+                title: "🎨 Color Mixing Challenge",
+                language: "css",
+                code: `/* Challenge: Mix RGB values to match the target color! */
+.target-color {
+  background-color: rgb(255, 100, 150); /* This pink! */
+}
+
+/* Your RGB sliders: */
+.your-color {
+  background-color: rgb(???, ???, ???);
+}
+
+/* Score = 1000 - color_difference - attempts_penalty */
+/* Perfect match = Maximum points! */`,
+                explanation: "Visual color mixing teaches RGB values through interactive sliders! Adjust red, green, and blue values to match the target color. Perfect for understanding how colors work in CSS! 🎨"
+              },
+              {
+                title: "🏎️ Layout Speed Racing",
+                language: "css",
+                code: `/* 60-Second Layout Challenge! Complete as many as possible: */
+
+/* Challenge 1: Center a div */
+.center-me {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Challenge 2: Create 3 equal columns */
+.three-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Challenge 3: Make it responsive */
+.responsive {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Racing = 500 points per completion! */`,
+                explanation: "Speed challenges build muscle memory for common CSS patterns! Race against the clock to complete layout challenges. Great for learning flexbox, grid, and responsive design! 🏎️"
+              },
+              {
+                title: "⚔️ CSS Selector Battle Arena",
+                language: "css",
+                code: `/* Battle the CSS Monster! Answer selector challenges: */
+
+/* Question: "Select all paragraphs" */
+p { color: blue; }
+
+/* Question: "Select element with ID 'header'" */
+#header { font-size: 2rem; }
+
+/* Question: "Select all elements with class 'button'" */
+.button { padding: 10px; }
+
+/* Question: "Select first child of nav" */
+nav > :first-child { font-weight: bold; }
+
+/* Wrong answer = lose HP! Correct = deal damage! */
+/* Defeat the monster to win! 👹⚔️ */`,
+                explanation: "Turn-based combat teaches CSS selectors through epic battles! Each correct selector damages the enemy, wrong answers hurt you. Master selectors to defeat the CSS Monster! ⚔️"
+              }
+            ],
+            exercises: [
+              {
+                title: "🎨 Color Master Challenge",
+                description: "Win the color mixing tournament by achieving perfect color matches with minimal attempts.",
+                solution: "rgb(255, 100, 150)",
+                hints: ["Use RGB sliders to mix colors", "Red = 255, Green = 100, Blue = 150", "Perfect match gives maximum points"]
+              },
+              {
+                title: "🏎️ Layout Racing Champion",
+                description: "Complete 5+ layout challenges in 60 seconds to earn the Speed Demon badge.",
+                solution: "display: flex; justify-content: center; align-items: center;",
+                hints: ["Flexbox is great for centering", "Grid is perfect for columns", "Don't forget responsive techniques"]
+              },
+              {
+                title: "⚔️ CSS Selector Warrior",
+                description: "Defeat the CSS Monster in selector battle by answering all challenges correctly.",
+                solution: "p, #header, .button, nav > :first-child",
+                hints: ["Elements = tag names", "IDs = #name", "Classes = .name", "Child selector = parent > child"]
+              }
+            ],
+            embeds: [
+              {
+                type: "codepen",
+                url: "/games/css-gaming-playground",
+                title: "🎨 CSS Gaming Playground - Battle Now!"
               }
             ]
           }

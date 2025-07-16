@@ -75,7 +75,7 @@ export default function CoursesPage() {
               <span className="text-sm text-gray-500">🎯 15 lessons</span>
             </div>
             <a 
-              href="/html-css" 
+              href="/learn/html-css" 
               className="block w-full px-4 py-2 text-center text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
             >
               Start Learning

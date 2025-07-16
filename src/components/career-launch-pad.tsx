@@ -14,6 +14,7 @@ interface Mission {
   badge?: string
   status: 'locked' | 'available' | 'in-progress' | 'completed'
   prerequisites?: string[]
+  courseLink?: string
 }
 
 interface CareerPath {
@@ -47,7 +48,8 @@ const careerPaths: CareerPath[] = [
         estimatedTime: '2 weeks',
         xp: 100,
         badge: '🏗️',
-        status: 'available'
+        status: 'available',
+        courseLink: '/learn/html-css'
       },
       {
         id: 'js-essentials',
@@ -315,7 +317,7 @@ export function CareerLaunchPad() {
                           <div className="ml-6">
                             {mission.status === 'available' && (
                               <Link
-                                href="/courses"
+                                href={mission.courseLink || "/courses"}
                                 className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all"
                               >
                                 Start Mission
@@ -328,7 +330,7 @@ export function CareerLaunchPad() {
                             )}
                             {mission.status === 'in-progress' && (
                               <Link
-                                href="/courses"
+                                href={mission.courseLink || "/courses"}
                                 className="px-4 py-2 bg-yellow-600 text-white rounded-lg font-semibold hover:bg-yellow-700 transition-all"
                               >
                                 Continue
