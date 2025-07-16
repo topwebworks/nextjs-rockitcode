@@ -811,7 +811,7 @@ h1 {
             ]
           },
           {
-            id: "multi-page-navigation",
+            id: "javascript-realm",
             title: "Multi-Page Navigation: Building a Professional Website",
             description: "Transform your single-page portfolio into a multi-page website with professional navigation. Learn file organization, linking pages, and creating seamless user experiences.",
             order: 3,

@@ -31,13 +31,6 @@ export default function HTMLLearningJourney() {
   const [currentCommand, setCurrentCommand] = useState('')
   const [completedExercises, setCompletedExercises] = useState<Set<string>>(new Set())
 
-  // Auto-advance to concepts if user is logged in
-  useEffect(() => {
-    if (user && currentPhase === 'setup') {
-      setCurrentPhase('concepts')
-    }
-  }, [user, currentPhase])
-
   // Animation trigger helper
   const triggerAnimation = (sectionId: string) => {
     setAnimateSection(sectionId)
