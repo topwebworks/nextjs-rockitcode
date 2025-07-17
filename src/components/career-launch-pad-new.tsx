@@ -62,40 +62,40 @@ export function CareerLaunchPad() {
 
   const missionPhases: MissionPhase[] = [
     {
-      id: 'environment-setup',
-      title: 'Environment Configuration',
-      description: 'Professional development environment and toolchain setup',
+      id: 'professional-setup',
+      title: 'Professional Setup',
+      description: 'GitHub, VS Code, deployment pipeline - everything professionals use',
       icon: 'settings',
       status: 'available',
-      estimatedTime: '15 minutes',
+      estimatedTime: '20 minutes',
       reward: '$200k+ in professional tools access'
     },
     {
-      id: 'foundation-track',
-      title: 'Foundation Development',
-      description: 'Core web technologies mastery with portfolio deployment',
+      id: 'choose-career-path',
+      title: 'Choose Your Career Path',
+      description: 'Frontend, Full-Stack, Mobile, or DevOps - start with what interests you',
+      icon: 'map',
+      status: 'locked',
+      estimatedTime: '5 minutes',
+      reward: 'Personalized learning journey'
+    },
+    {
+      id: 'project-based-learning',
+      title: 'Build Real Projects',
+      description: 'Clone, modify, deploy - learn through GitHub repositories',
       icon: 'building',
       status: 'locked',
-      estimatedTime: '4-6 weeks',
-      reward: '3-5 production-ready projects'
+      estimatedTime: 'Ongoing',
+      reward: 'Production-ready portfolio projects'
     },
     {
-      id: 'advanced-systems',
-      title: 'Advanced Systems',
-      description: 'Full-stack development and deployment automation',
-      icon: 'lightning',
+      id: 'community-collaboration',
+      title: 'Join the Community',
+      description: 'Discord support, code reviews, and peer collaboration',
+      icon: 'users',
       status: 'locked',
-      estimatedTime: '6-8 weeks',
-      reward: 'Enterprise-grade applications with CI/CD'
-    },
-    {
-      id: 'specialization',
-      title: 'Career Specialization',
-      description: 'Advanced specialization and professional readiness',
-      icon: 'rocket',
-      status: 'locked',
-      estimatedTime: '8-12 weeks',
-      reward: 'Industry-ready professional developer'
+      estimatedTime: 'Community-driven',
+      reward: 'Network of developers and mentors'
     }
   ]
 
@@ -247,11 +247,11 @@ export function CareerLaunchPad() {
     {
       id: 'frontend',
       title: 'Frontend Developer',
-      description: 'Design and develop responsive user interfaces with modern frameworks',
+      description: 'Clone, modify, and deploy responsive UIs - GitHub repository-based learning',
       icon: 'computer',
-      projects: ['Portfolio Site', 'E-commerce Store', 'Dashboard App', 'Landing Pages'],
-      averageTime: '3-6 months',
-      skillsGained: ['HTML/CSS', 'JavaScript', 'React', 'UI/UX Design'],
+      projects: ['Professional Portfolio', 'E-commerce Store', 'Dashboard App', 'Landing Pages'],
+      averageTime: '2-4 months',
+      skillsGained: ['HTML/CSS', 'JavaScript', 'React', 'GitHub Workflow', 'Deployment'],
       difficulty: 'Beginner Friendly',
       salaryRange: '$55k - $85k',
       jobGrowth: '+8% annually'
@@ -259,11 +259,11 @@ export function CareerLaunchPad() {
     {
       id: 'fullstack',
       title: 'Full-Stack Developer',
-      description: 'Build complete web applications from database to user interface',
+      description: 'Build complete applications - Clone production codebases, learn professional patterns',
       icon: 'wrench',
       projects: ['Social Platform', 'SaaS Application', 'E-commerce Platform', 'API Services'],
-      averageTime: '6-12 months',
-      skillsGained: ['React/Next.js', 'Node.js', 'Databases', 'APIs', 'Deployment'],
+      averageTime: '4-8 months',
+      skillsGained: ['React/Next.js', 'Node.js', 'Databases', 'APIs', 'DevOps', 'Professional Git'],
       difficulty: 'Some Experience',
       salaryRange: '$65k - $120k',
       jobGrowth: '+13% annually'
@@ -271,10 +271,10 @@ export function CareerLaunchPad() {
     {
       id: 'mobile',
       title: 'Mobile Developer',
-      description: 'Develop cross-platform mobile applications for iOS and Android',
+      description: 'Build cross-platform apps - Real app store deployment from day one',
       icon: 'mobile',
       projects: ['Weather App', 'Social Media App', 'E-commerce App', 'Productivity Tools'],
-      averageTime: '4-8 months',
+      averageTime: '3-6 months',
       skillsGained: ['React Native', 'Mobile UI', 'App Store Deployment', 'Push Notifications'],
       difficulty: 'Some Experience',
       salaryRange: '$60k - $110k',
@@ -283,11 +283,11 @@ export function CareerLaunchPad() {
     {
       id: 'devops',
       title: 'DevOps Engineer',
-      description: 'Streamline deployment processes and manage cloud infrastructure',
+      description: 'Enterprise deployment automation - Clone real production infrastructure setups',
       icon: 'settings',
       projects: ['CI/CD Pipeline', 'Cloud Infrastructure', 'Monitoring Dashboard', 'Auto-Scaling'],
-      averageTime: '6-10 months',
-      skillsGained: ['Docker', 'AWS/Azure', 'CI/CD', 'Monitoring', 'Infrastructure as Code'],
+      averageTime: '4-8 months',
+      skillsGained: ['Docker', 'AWS/Azure', 'CI/CD', 'Monitoring', 'Infrastructure as Code', 'GitHub Actions'],
       difficulty: 'Advanced',
       salaryRange: '$70k - $140k',
       jobGrowth: '+19% annually'
@@ -433,10 +433,11 @@ export function CareerLaunchPad() {
               </div>
             </div>
             <h1 className="mb-6 text-5xl font-light tracking-wide text-white">
-              Developer Launch Pad
+              Developer Career Launch Pad
             </h1>
             <p className="max-w-3xl mx-auto mb-12 text-xl font-light leading-relaxed text-slate-300">
-              Your professional command center for building a successful development career. Track progress, access industry tools, and navigate your path to expertise.
+              Skip courses, build careers. Choose your path → Clone real projects → Build professional portfolio. 
+              Community-driven support through Discord, no email required.
             </p>
             
             {/* Professional Stats Grid */}
@@ -477,7 +478,7 @@ export function CareerLaunchPad() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
-              <span>Progress Dashboard</span>
+              <span>Launch Sequence</span>
             </button>
             <button
               onClick={() => setActiveTab('professional-setup')}
@@ -504,7 +505,7 @@ export function CareerLaunchPad() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
               </svg>
-              <span>Career Pathways</span>
+              <span>Career + Projects</span>
             </button>
           </div>
         </div>

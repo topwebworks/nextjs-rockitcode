@@ -277,7 +277,7 @@ export default function AccountSettingsPage() {
                   <select className="w-full px-4 py-3 text-white border rounded-lg border-slate-600 bg-slate-700/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent">
                     <option>Hands-on practice focused</option>
                     <option>Theory and practice balanced</option>
-                    <option>Video and visual learning</option>
+                    <option>Text-based and interactive learning</option>
                     <option>Self-paced exploration</option>
                   </select>
                 </div>

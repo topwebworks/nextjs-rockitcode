@@ -7,9 +7,9 @@ export default function RoadmapPage() {
       {/* Header */}
       <div className="text-center mb-8">
         <div className="text-6xl mb-4 flex justify-center">{renderIcon('map', 'w-16 h-16')}</div>
-        <h1 className="text-4xl font-bold mb-4">Launch Pad Development Roadmap</h1>
+        <h1 className="text-4xl font-bold mb-4">RockitCode Development Roadmap</h1>
         <p className="text-lg text-gray-600 dark:text-gray-400">
-          Strategic development phases for the complete RockitCode transformation
+          Community-driven learning platform with professional project focus
         </p>
       </div>
 
@@ -17,44 +17,44 @@ export default function RoadmapPage() {
       <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
           {renderIcon('trophy', 'w-5 h-5 mr-2')}
-          Recent Major Accomplishments (December 2024 - January 2025)
+          Recent Major Accomplishments (2024-2025)
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <h4 className="font-medium mb-2">Interactive Learning System:</h4>
+            <h4 className="font-medium mb-2">Community-First Platform:</h4>
             <ul className="space-y-1 text-sm">
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Complete InteractiveLessonRenderer component</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mission Control Setup - 7 hands-on labs</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Toggle completion tracking</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional navigation system</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Achievement celebrations</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Discord-centric support system</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Community-driven help center</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Peer-to-peer learning model</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Gamified community participation</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional footer and navigation</li>
             </ul>
           </div>
           <div>
             <h4 className="font-medium mb-2">Technical Infrastructure:</h4>
             <ul className="space-y-1 text-sm">
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Dynamic lesson routing ([slug]/page.tsx)</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Extended lesson data architecture</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Supabase authentication integration</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Graceful fallbacks for development</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} UserContext with error handling</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Interactive lesson system</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mission Control Setup lesson</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Supabase authentication</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Dynamic lesson routing</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional icon system</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-medium mb-2">User Experience Polish:</h4>
+            <h4 className="font-medium mb-2">User Experience:</h4>
             <ul className="space-y-1 text-sm">
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Fluid responsive design (320px+)</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Dark mode accessibility improvements</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional animations and transitions</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Visual cleanup - removed duplicate elements</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Enhanced mobile navigation</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Clean, professional design</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mobile-responsive layout</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Dark mode accessibility</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Community pages and FAQ</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Progress tracking system</li>
             </ul>
           </div>
         </div>
         <div className="mt-4 p-4 bg-emerald-100 dark:bg-emerald-900/40 rounded-lg">
           <p className="text-sm font-medium flex items-center">
             {renderIcon('target', 'w-4 h-4 mr-2')}
-            Impact: Complete foundation for professional interactive learning platform with production-ready first lesson integrated into main system.
+            Impact: Foundation established for community-driven platform with Discord-first support and professional project focus.
           </p>
         </div>
       </div>
@@ -63,31 +63,31 @@ export default function RoadmapPage() {
       <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
           {renderIcon('check', 'w-5 h-5 mr-2')}
-          Phase 1 & 2: Interactive Learning Platform Complete
+          Phase 1: Community Foundation Complete
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <h4 className="font-medium mb-2">What We've Built:</h4>
             <ul className="space-y-1 text-sm">
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Launch Pad homepage transformation</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mission-themed UI/UX design</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Interactive lesson system with navigation</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mission Control Setup - First complete lesson</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional responsive design (320px+)</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Authentication with Supabase integration</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Dynamic lesson routing architecture</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Toggle completion tracking system</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Discord-first support model</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Community-driven help center</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Interactive lesson system</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional site design</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mission Control Setup lesson</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Responsive mobile experience</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Clean navigation and footer</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Community pages and FAQ</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-medium mb-2">User Experience Results:</h4>
+            <h4 className="font-medium mb-2">Community Model Results:</h4>
             <ul className="space-y-1 text-sm">
-              <li>✅ Professional interactive learning experience</li>
-              <li>✅ Clean visual design with accessible dark mode</li>
-              <li>✅ Fluid responsive navigation (mobile-first)</li>
-              <li>✅ Working authentication with graceful fallbacks</li>
-              <li>✅ Production-ready first lesson integrated</li>
-              <li>✅ Extensible lesson architecture for course expansion</li>
+              <li>✅ Discord as primary support channel</li>
+              <li>✅ Peer-to-peer learning environment</li>
+              <li>✅ Gamified community participation</li>
+              <li>✅ Professional brand identity</li>
+              <li>✅ Clean, accessible design</li>
+              <li>✅ Mobile-first responsive layout</li>
             </ul>
           </div>
         </div>
@@ -142,146 +142,146 @@ export default function RoadmapPage() {
         </div>
       </div>
 
-      {/* Phase 3: GitHub Professional Integration */}
+      {/* Phase 2: Content Expansion */}
       <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          {renderIcon('wrench', 'w-5 h-5 mr-2')}
-          Phase 3: GitHub Professional Integration (Current Priority)
+          {renderIcon('book', 'w-5 h-5 mr-2')}
+          Phase 2: Content Expansion (Current Priority)
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <h4 className="font-medium mb-2">Core Features:</h4>
             <ul className="space-y-1 text-sm">
-              <li>🔄 Real GitHub OAuth authentication</li>
-              <li>🔄 GitHub Student Developer Pack API</li>
-              <li>🔄 User progress tracking database</li>
-              <li>🔄 Repository creation automation</li>
-              <li>🔄 Professional profile optimization</li>
+              <li>🔄 Foundation course expansion</li>
+              <li>🔄 Project-based learning modules</li>
+              <li>🔄 Enhanced lesson progression</li>
+              <li>🔄 Professional portfolio projects</li>
+              <li>🔄 Career-focused curriculum</li>
             </ul>
           </div>
           <div>
             <h4 className="font-medium mb-2">Technical Implementation:</h4>
             <ul className="space-y-1 text-sm">
-              <li>• NextAuth.js with GitHub provider</li>
-              <li>• GitHub REST API integration</li>
-              <li>• Enhanced Supabase user management</li>
-              <li>• Lesson progress persistence</li>
-              <li>• Automated repository templates</li>
+              <li>• Additional interactive lessons</li>
+              <li>• Progress tracking enhancement</li>
+              <li>• Project template system</li>
+              <li>• Portfolio showcase features</li>
+              <li>• Community project sharing</li>
             </ul>
           </div>
         </div>
         <div className="bg-blue-100 dark:bg-blue-900/40 rounded-lg p-4">
-          <p className="text-sm"><strong>Estimated Time:</strong> 2-3 weeks</p>
-          <p className="text-sm"><strong>Impact:</strong> Unlocks persistent progress tracking and GitHub workflow</p>
+          <p className="text-sm"><strong>Estimated Time:</strong> 3-4 weeks</p>
+          <p className="text-sm"><strong>Impact:</strong> Complete foundation course with real-world projects</p>
         </div>
       </div>
 
-      {/* Phase 3: Interactive Learning Platform */}
+      {/* Phase 3: Advanced Learning Features */}
       <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          {renderIcon('book', 'w-5 h-5 mr-2')}
-          Phase 4: Advanced Learning Features
+          {renderIcon('lightning', 'w-5 h-5 mr-2')}
+          Phase 3: Advanced Learning Features
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <h4 className="font-medium mb-2">Enhanced Features:</h4>
             <ul className="space-y-1 text-sm">
-              <li>🔄 Advanced code editor features (Monaco)</li>
-              <li>🔄 Video synchronization system</li>
-              <li>🔄 Real-time code execution sandbox</li>
-              <li>🔄 AI-powered coding assistance</li>
+              <li>🔄 Advanced code editor features</li>
+              <li>🔄 Real-time collaboration tools</li>
+              <li>🔄 AI-powered learning assistance</li>
+              <li>🔄 Community code reviews</li>
               <li>🔄 Advanced progress analytics</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-medium mb-2">Expanded Content:</h4>
-            <ul className="space-y-1 text-sm">
-              <li>• Complete course curriculum expansion</li>
-              <li>• Multiple learning track specializations</li>
-              <li>• Advanced project-based modules</li>
-              <li>• Interactive coding challenges</li>
-              <li>• Professional certification paths</li>
-            </ul>
-          </div>
-        </div>
-        <div className="bg-purple-100 dark:bg-purple-900/40 rounded-lg p-4">
-          <p className="text-sm"><strong>Estimated Time:</strong> 4-6 weeks</p>
-          <p className="text-sm"><strong>Impact:</strong> Advanced interactive learning with AI assistance</p>
-        </div>
-      </div>
-
-      {/* Phase 4: Mission & Progression System */}
-      <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4 flex items-center">
-          {renderIcon('target', 'w-5 h-5 mr-2')}
-          Phase 4: Mission & Progression System
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <div>
-            <h4 className="font-medium mb-2">Mission Features:</h4>
-            <ul className="space-y-1 text-sm">
-              <li>🔄 Dynamic mission generation</li>
-              <li>🔄 Skill-based progression paths</li>
-              <li>🔄 Real-world project assignments</li>
-              <li>🔄 Collaborative coding missions</li>
-              <li>🔄 Portfolio building automation</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-medium mb-2">Professional Tools:</h4>
-            <ul className="space-y-1 text-sm">
-              <li>• GitHub Copilot integration</li>
-              <li>• Codespaces environment setup</li>
-              <li>• Automated deployment workflows</li>
-              <li>• Code review & feedback system</li>
-              <li>• Professional networking features</li>
-            </ul>
-          </div>
-        </div>
-        <div className="bg-orange-100 dark:bg-orange-900/40 rounded-lg p-4">
-          <p className="text-sm"><strong>Estimated Time:</strong> 3-4 weeks</p>
-          <p className="text-sm"><strong>Impact:</strong> Complete mission-driven experience</p>
-        </div>
-      </div>
-
-      {/* Phase 5: Advanced Features & Polish */}
-      <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4 flex items-center">
-          {renderIcon('sparkle', 'w-5 h-5 mr-2')}
-          Phase 5: Advanced Features & Polish
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div>
-            <h4 className="font-medium mb-2">AI Integration:</h4>
-            <ul className="space-y-1 text-sm">
-              <li>• Personalized learning paths</li>
-              <li>• Smart code suggestions</li>
-              <li>• Automated project feedback</li>
-              <li>• Career guidance AI</li>
             </ul>
           </div>
           <div>
             <h4 className="font-medium mb-2">Community Features:</h4>
             <ul className="space-y-1 text-sm">
-              <li>• Peer code reviews</li>
-              <li>• Team collaboration tools</li>
-              <li>• Mentorship matching</li>
-              <li>• Developer showcases</li>
+              <li>• Discord bot integration</li>
+              <li>• Peer mentorship matching</li>
+              <li>• Community challenges</li>
+              <li>• Project showcases</li>
+              <li>• Achievement leaderboards</li>
+            </ul>
+          </div>
+        </div>
+        <div className="bg-purple-100 dark:bg-purple-900/40 rounded-lg p-4">
+          <p className="text-sm"><strong>Estimated Time:</strong> 4-5 weeks</p>
+          <p className="text-sm"><strong>Impact:</strong> Advanced learning with community collaboration</p>
+        </div>
+      </div>
+
+      {/* Phase 4: Professional Portfolio System */}
+      <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-6 mb-8">
+        <h2 className="text-xl font-semibold mb-4 flex items-center">
+          {renderIcon('briefcase', 'w-5 h-5 mr-2')}
+          Phase 4: Professional Portfolio System
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <h4 className="font-medium mb-2">Portfolio Features:</h4>
+            <ul className="space-y-1 text-sm">
+              <li>🔄 Dynamic portfolio generation</li>
+              <li>🔄 Project showcase system</li>
+              <li>🔄 Professional resume builder</li>
+              <li>🔄 Career development tracking</li>
+              <li>🔄 Industry connection tools</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-medium mb-2">Business Features:</h4>
+            <h4 className="font-medium mb-2">Career Tools:</h4>
             <ul className="space-y-1 text-sm">
-              <li>• Revenue model implementation</li>
-              <li>• Analytics & insights</li>
+              <li>• Professional networking features</li>
+              <li>• Interview preparation resources</li>
+              <li>• Job application tracking</li>
+              <li>• Skill assessment system</li>
+              <li>• Mentor-mentee connections</li>
+            </ul>
+          </div>
+        </div>
+        <div className="bg-orange-100 dark:bg-orange-900/40 rounded-lg p-4">
+          <p className="text-sm"><strong>Estimated Time:</strong> 3-4 weeks</p>
+          <p className="text-sm"><strong>Impact:</strong> Complete career preparation ecosystem</p>
+        </div>
+      </div>
+
+      {/* Phase 5: Business & Sustainability */}
+      <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 mb-8">
+        <h2 className="text-xl font-semibold mb-4 flex items-center">
+          {renderIcon('money', 'w-5 h-5 mr-2')}
+          Phase 5: Business & Sustainability
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div>
+            <h4 className="font-medium mb-2">Revenue Model:</h4>
+            <ul className="space-y-1 text-sm">
+              <li>• Affiliate partnerships</li>
+              <li>• Professional tool setups</li>
+              <li>• Premium career services</li>
+              <li>• Corporate training programs</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-medium mb-2">Community Growth:</h4>
+            <ul className="space-y-1 text-sm">
+              <li>• Discord community scaling</li>
+              <li>• Influencer partnerships</li>
+              <li>• Content creator programs</li>
+              <li>• University partnerships</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-medium mb-2">Platform Features:</h4>
+            <ul className="space-y-1 text-sm">
+              <li>• Advanced analytics</li>
               <li>• Performance optimization</li>
               <li>• Scaling infrastructure</li>
+              <li>• Enterprise features</li>
             </ul>
           </div>
         </div>
         <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
           <p className="text-sm"><strong>Estimated Time:</strong> 4-6 weeks</p>
-          <p className="text-sm"><strong>Impact:</strong> Production-ready platform</p>
+          <p className="text-sm"><strong>Impact:</strong> Sustainable, scalable business model</p>
         </div>
       </div>
 
@@ -293,22 +293,22 @@ export default function RoadmapPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-medium mb-3">Technical Priorities:</h4>
+            <h4 className="font-medium mb-3">Content Priorities:</h4>
             <ol className="space-y-2 text-sm list-decimal list-inside">
-              <li><strong>Build additional interactive lessons</strong> - Expand from Mission Control</li>
-              <li><strong>Enhance GitHub OAuth</strong> - Real GitHub integration beyond Supabase</li>
-              <li><strong>Progress persistence</strong> - Database tracking for lesson completion</li>
-              <li><strong>Mission dashboard</strong> - Post-authentication progress view</li>
-              <li><strong>Course progression system</strong> - Chapter 1.2, Week 2 planning</li>
+              <li><strong>Expand Foundation course</strong> - Add more interactive lessons</li>
+              <li><strong>Create project templates</strong> - Professional portfolio projects</li>
+              <li><strong>Build career pathways</strong> - Frontend, backend, full-stack tracks</li>
+              <li><strong>Enhance community features</strong> - Discord integration improvements</li>
+              <li><strong>Portfolio showcase system</strong> - Student project highlights</li>
             </ol>
           </div>
           <div>
-            <h4 className="font-medium mb-3">Content & Experience:</h4>
+            <h4 className="font-medium mb-3">Technical & Community:</h4>
             <ol className="space-y-2 text-sm list-decimal list-inside">
-              <li><strong>Lesson content expansion</strong> - Build Week 1 Chapter 2</li>
-              <li><strong>Professional portfolio integration</strong> - GitHub Pages deployment</li>
-              <li><strong>Mobile experience optimization</strong> - Fine-tune responsive design</li>
-              <li><strong>Performance monitoring</strong> - Analytics and user behavior tracking</li>
+              <li><strong>Course progression system</strong> - Better tracking and navigation</li>
+              <li><strong>Community engagement tools</strong> - Discord bot features</li>
+              <li><strong>Mobile experience polish</strong> - Fine-tune responsive design</li>
+              <li><strong>Performance optimization</strong> - Analytics and user behavior</li>
               <li><strong>User feedback collection</strong> - Gather insights for improvements</li>
             </ol>
           </div>
@@ -323,75 +323,88 @@ export default function RoadmapPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <h4 className="font-medium mb-3">Authentication & Database:</h4>
+            <h4 className="font-medium mb-3">Core Platform:</h4>
             <ul className="space-y-1 text-sm">
-              <li>• <strong>NextAuth.js</strong> - GitHub OAuth</li>
+              <li>• <strong>Next.js 15</strong> - React framework</li>
               <li>• <strong>Supabase</strong> - Database & auth</li>
-              <li>• <strong>Prisma</strong> - Database ORM</li>
-              <li>• <strong>PostgreSQL</strong> - Primary database</li>
+              <li>• <strong>Tailwind CSS</strong> - Styling</li>
+              <li>• <strong>TypeScript</strong> - Type safety</li>
             </ul>
           </div>
           <div>
             <h4 className="font-medium mb-3">Learning Platform:</h4>
             <ul className="space-y-1 text-sm">
               <li>• <strong>Monaco Editor</strong> - Code editor</li>
-              <li>• <strong>Pyodide/WebAssembly</strong> - Python execution</li>
-              <li>• <strong>Docker API</strong> - Sandboxed execution</li>
-              <li>• <strong>WebRTC</strong> - Video synchronization</li>
+              <li>• <strong>Interactive components</strong> - Custom React</li>
+              <li>• <strong>Progress tracking</strong> - Database persistence</li>
+              <li>• <strong>Text-based tutorials</strong> - No video fatigue</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-medium mb-3">GitHub Integration:</h4>
+            <h4 className="font-medium mb-3">Community:</h4>
             <ul className="space-y-1 text-sm">
-              <li>• <strong>Octokit</strong> - GitHub API client</li>
-              <li>• <strong>GitHub Apps</strong> - Repository management</li>
-              <li>• <strong>GitHub Actions</strong> - CI/CD automation</li>
-              <li>• <strong>Webhooks</strong> - Real-time updates</li>
+              <li>• <strong>Discord API</strong> - Community integration</li>
+              <li>• <strong>GitHub OAuth</strong> - Portfolio connection</li>
+              <li>• <strong>Real-time features</strong> - WebSocket/SSE</li>
+              <li>• <strong>Analytics</strong> - User behavior tracking</li>
             </ul>
           </div>
         </div>
       </div>
 
-      {/* Decision Points */}
-      <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 mb-8">
+      {/* Strategic Foundation */}
+      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <span className="mr-2">❓</span>
-          Key Decision Points
+          {renderIcon('target', 'w-5 h-5 mr-2')}
+          Strategic Foundation
         </h2>
         <div className="space-y-4">
           <div>
-            <h4 className="font-medium mb-2">1. Development Approach:</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div className="bg-white dark:bg-gray-700 p-3 rounded">
-                <strong>Option A: Incremental Enhancement</strong>
-                <p className="mt-1">Build features one by one on current foundation</p>
-                <p className="text-green-600 mt-1">+ Faster initial progress</p>
-                <p className="text-red-600">- May need refactoring later</p>
-              </div>
-              <div className="bg-white dark:bg-gray-700 p-3 rounded">
-                <strong>Option B: Complete Rebuild</strong>
-                <p className="mt-1">Start fresh with production architecture</p>
-                <p className="text-green-600 mt-1">+ Better long-term structure</p>
-                <p className="text-red-600">- Longer time to market</p>
+            <h4 className="font-medium mb-2">✅ Community-First Learning Model:</h4>
+            <div className="bg-white dark:bg-gray-700 p-4 rounded text-sm">
+              <p className="font-medium text-green-600 mb-2">Confirmed Approach: Discord-Centric Community Platform</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <strong>Core Features:</strong>
+                  <ul className="mt-1 space-y-1">
+                    <li>• Real-time Discord support</li>
+                    <li>• Project-based learning</li>
+                    <li>• Peer-to-peer mentoring</li>
+                    <li>• Gamified progression</li>
+                  </ul>
+                </div>
+                <div>
+                  <strong>Strategic Benefits:</strong>
+                  <ul className="mt-1 space-y-1">
+                    <li>• Lower barrier to entry</li>
+                    <li>• Stronger community bonds</li>
+                    <li>• Immediate help access</li>
+                    <li>• Social learning motivation</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
           
           <div>
-            <h4 className="font-medium mb-2">2. Monetization Timeline:</h4>
-            <div className="text-sm space-y-1">
-              <p>• <strong>Free Forever Promise:</strong> How to balance free access with sustainability?</p>
-              <p>• <strong>Revenue Streams:</strong> Premium features, enterprise, or affiliate commissions?</p>
-              <p>• <strong>Student Developer Pack:</strong> Integration complexity vs. value proposition?</p>
+            <h4 className="font-medium mb-2">✅ Multi-Stream Revenue Strategy:</h4>
+            <div className="bg-white dark:bg-gray-700 p-4 rounded text-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <strong>Affiliate Integration:</strong>
+                  <p className="mt-1">Tool recommendations, hosting, courses that complement free education</p>
+                </div>
+                <div>
+                  <strong>Premium Career Services:</strong>
+                  <p className="mt-1">Portfolio reviews, interview prep, job placement assistance</p>
+                </div>
+                <div>
+                  <strong>Corporate Training:</strong>
+                  <p className="mt-1">Custom programs for companies seeking skilled developers</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div className="mt-6 text-center">
-          <Link href="/strategy-decisions" className="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-            {renderIcon('chart', 'w-4 h-4 mr-2')}
-            View Detailed Strategy Analysis
-          </Link>
         </div>
       </div>
 
@@ -403,21 +416,21 @@ export default function RoadmapPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-medium mb-3">Phase 2 Success (Authentication):</h4>
+            <h4 className="font-medium mb-3">Phase 2 Success (Content):</h4>
             <ul className="space-y-1 text-sm">
-              <li>• 100% GitHub OAuth success rate</li>
-              <li>• User profile creation &lt; 30 seconds</li>
-              <li>• Student Developer Pack application automation</li>
-              <li>• Repository creation &lt; 10 seconds</li>
+              <li>• Complete Foundation course (8+ lessons)</li>
+              <li>• 3+ professional project templates</li>
+              <li>• Course completion rate &gt; 60%</li>
+              <li>• User engagement &gt; 25 min/session</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-medium mb-3">Phase 3 Success (Learning):</h4>
+            <h4 className="font-medium mb-3">Community Growth:</h4>
             <ul className="space-y-1 text-sm">
-              <li>• Interactive code execution &lt; 2 seconds</li>
-              <li>• Video-code sync accuracy &gt; 95%</li>
-              <li>• Course completion rate &gt; 60%</li>
-              <li>• User engagement &gt; 20 min/session</li>
+              <li>• Discord community &gt; 500 active members</li>
+              <li>• Daily community interactions &gt; 50</li>
+              <li>• Peer-to-peer help success rate &gt; 80%</li>
+              <li>• Student portfolio showcase &gt; 100 projects</li>
             </ul>
           </div>
         </div>
@@ -433,19 +446,19 @@ export default function RoadmapPage() {
           <div>
             <h4 className="font-medium mb-3">This Week:</h4>
             <ol className="space-y-1 text-sm list-decimal list-inside">
-              <li>Build Chapter 1.2 using Mission Control template</li>
-              <li>Test lesson architecture scalability</li>
-              <li>Plan Week 2 curriculum progression</li>
-              <li>Enhance GitHub OAuth beyond Supabase auth</li>
+              <li>Expand Foundation course content</li>
+              <li>Create professional project templates</li>
+              <li>Build career pathway guidance</li>
+              <li>Enhance Discord community features</li>
             </ol>
           </div>
           <div>
             <h4 className="font-medium mb-3">Next Week:</h4>
             <ol className="space-y-1 text-sm list-decimal list-inside">
-              <li>Implement progress persistence in database</li>
-              <li>Create mission dashboard for authenticated users</li>
-              <li>Build portfolio deployment automation</li>
-              <li>Start user testing with interactive lessons</li>
+              <li>Launch portfolio showcase system</li>
+              <li>Implement advanced progress tracking</li>
+              <li>Build community project sharing</li>
+              <li>Start user testing and feedback collection</li>
             </ol>
           </div>
         </div>
@@ -454,10 +467,10 @@ export default function RoadmapPage() {
       {/* Back to Launch Pad */}
       <div className="text-center">
         <Link href="/" className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mr-4">
-          ← Back to Launch Pad
+          ← Back to Home
         </Link>
-        <Link href="/testing-guide" className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
-          View Testing Guide
+        <Link href="/community" className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+          Join Discord Community
         </Link>
       </div>
     </div>

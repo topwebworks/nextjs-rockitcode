@@ -3,7 +3,7 @@ import { GeistMono } from "geist/font/mono";
 import localFont from "next/font/local";
 import type React from "react";
 import { GlobalHeader } from '@/components/simple-header'
-import { GlobalFooter } from '@/components/global-footer'
+import CommunityFooter from '@/components/community-footer'
 import { UserProvider } from '@/contexts/UserContext'
 import "./globals.css";
 
@@ -51,7 +51,7 @@ export default function RootLayout({
           <main className="min-h-screen">
             {children}
           </main>
-          <GlobalFooter />
+          <CommunityFooter />
         </UserProvider>
       </body>
     </html>
