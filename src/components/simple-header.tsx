@@ -265,6 +265,29 @@ function UserDropdown() {
               </Link>
               
               <Link
+                href="/settings"
+                className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 group"
+                onClick={() => setIsOpen(false)}
+              >
+                <SettingsIcon className="w-4 h-4 mr-3" />
+                Account Settings
+              </Link>
+
+              {/* Admin-only Revenue Dashboard */}
+              {(user?.email?.includes('topwebworks') || 
+                user?.email?.includes('@yourcompany.com') || 
+                user?.email === 'admin@rockitcode.com') && (
+                <Link
+                  href="/revdash"
+                  className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 group"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <AIIcon className="w-4 h-4 mr-3" />
+                  Revenue Dashboard
+                </Link>
+              )}
+              
+              <Link
                 href="/dashboard/tools"
                 className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 group"
                 onClick={() => setIsOpen(false)}
@@ -272,6 +295,24 @@ function UserDropdown() {
                 <ToolsIcon className="w-4 h-4 mr-3" />
                 Pro Tools
                 <span className="ml-auto bg-gray-600 text-white text-xs px-2 py-0.5 rounded">$200k+</span>
+              </Link>
+
+              <Link
+                href="/foundation"
+                className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 group"
+                onClick={() => setIsOpen(false)}
+              >
+                <DashboardIcon className="w-4 h-4 mr-3" />
+                My Courses
+              </Link>
+
+              <Link
+                href="/launch-pad"
+                className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 group"
+                onClick={() => setIsOpen(false)}
+              >
+                <AIIcon className="w-4 h-4 mr-3" />
+                Career Launch Pad
               </Link>
               
               <div className="border-t border-gray-200 dark:border-gray-700 mt-1 pt-1">

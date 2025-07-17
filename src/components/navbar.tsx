@@ -9,6 +9,7 @@ import {
 import { IconButton } from "@/components/icon-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AuthButton } from "@/components/rockitcode/auth-button";
+import { useUser } from "@/contexts/UserContext";
 import { ChevronDownIcon } from "@/icons/chevron-down-icon";
 import { CloseIcon } from "@/icons/close-icon";
 import { MenuIcon } from "@/icons/menu-icon";
@@ -160,10 +161,10 @@ function SiteNavigation() {
         onClose={() => setMobileMenuOpen(false)}
       />
       <div className="flex items-center gap-x-6 text-sm/6 text-gray-950 max-lg:hidden dark:text-white">
-        <Link href="/launch-pad" className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        <Link href="/launch-pad" className="flex items-center gap-1 transition-colors hover:text-blue-600 dark:hover:text-blue-400">
           🚀 <span>Launch Pad</span>
         </Link>
-        <Link href="/about" className="flex items-center gap-1 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+        <Link href="/about" className="flex items-center gap-1 transition-colors hover:text-purple-600 dark:hover:text-purple-400">
           🌟 <span>About RockitCode</span>
         </Link>
         
@@ -187,7 +188,15 @@ function SiteNavigation() {
             </DropdownButton>
             <DropdownMenu anchor="bottom end">
               <DropdownItem href="/dashboard">🚀 Mission Control</DropdownItem>
-              <DropdownItem href="/settings">⚙️ Equipment Settings</DropdownItem>
+              <DropdownItem href="/settings">⚙️ Account Settings</DropdownItem>
+              {/* Admin-only Revenue Dashboard */}
+              {(session.user.email?.includes('topwebworks') || 
+                session.user.email?.includes('@yourcompany.com') || 
+                session.user.email === 'admin@rockitcode.com') && (
+                <DropdownItem href="/revdash">📊 Revenue Dashboard</DropdownItem>
+              )}
+              <DropdownItem href="/foundation">📚 My Courses</DropdownItem>
+              <DropdownItem href="/launch-pad">🎯 Career Launch Pad</DropdownItem>
               <DropdownItem href="/support">📡 Mission Support</DropdownItem>
               <DropdownItem href="/api/auth/signout">🔐 End Mission</DropdownItem>
             </DropdownMenu>
