@@ -35,16 +35,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                try {
-                  const savedTheme = localStorage.getItem('theme');
-                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  
-                  if (savedTheme === 'dark' || (!savedTheme && systemTheme)) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
-                } catch (e) {}
+                // Always enable dark mode
+                document.documentElement.classList.add('dark');
               })();
             `,
           }}

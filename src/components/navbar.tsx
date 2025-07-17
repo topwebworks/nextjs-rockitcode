@@ -7,7 +7,6 @@ import {
   DropdownMenu,
 } from "@/components/dropdown";
 import { IconButton } from "@/components/icon-button";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { AuthButton } from "@/components/rockitcode/auth-button";
 import { useUser } from "@/contexts/UserContext";
 import { ChevronDownIcon } from "@/icons/chevron-down-icon";
@@ -78,16 +77,6 @@ function MobileNavigation({
             
             {/* Mobile Authentication */}
             <div className="pt-6 mt-6 border-t border-gray-200 dark:border-gray-700">
-              {/* Theme Toggle */}
-              <div className="px-4 mb-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">
-                    Theme
-                  </span>
-                  <ThemeToggle />
-                </div>
-              </div>
-              
               {session ? (
                 <div className="space-y-3">
                   <div className="px-4">
@@ -167,9 +156,6 @@ function SiteNavigation() {
         <Link href="/about" className="flex items-center gap-1 transition-colors hover:text-purple-600 dark:hover:text-purple-400">
           🌟 <span>About RockitCode</span>
         </Link>
-        
-        {/* Theme toggle for desktop */}
-        <ThemeToggle />
         
         {session ? (
           <Dropdown>

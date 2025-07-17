@@ -5,30 +5,6 @@ import { useState, useEffect } from 'react'
 import { useUser } from '@/contexts/UserContext'
 
 // Authentic Lucide icon family with elegant styling and subtle glows
-function SunIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={`${className} drop-shadow-sm transition-all duration-200 group-hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.3)] dark:group-hover:drop-shadow-[0_0_8px_rgba(253,224,71,0.25)]`}>
-      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="m12 2 0 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="m12 20 0 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="m4.93 4.93 1.41 1.41" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="m17.66 17.66 1.41 1.41" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="m2 12 2 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="m20 12 2 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="m4.93 19.07 1.41-1.41" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="m17.66 6.34 1.41-1.41" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  )
-}
-
-function MoonIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={`${className} drop-shadow-sm transition-all duration-200 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.3)] dark:group-hover:drop-shadow-[0_0_8px_rgba(96,165,250,0.25)]`}>
-      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  )
-}
-
 function MenuIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={`${className} drop-shadow-sm transition-all duration-200 group-hover:drop-shadow-[0_0_8px_rgba(148,163,184,0.3)]`}>
@@ -165,40 +141,6 @@ const navigation = [
   { name: '🚀 Launch Pad', href: '/launch-pad' },
   { name: '🌟 About RockitCode', href: '/about' },
 ]
-
-// Simple theme toggle component
-function SimpleThemeToggle() {
-  const [isDark, setIsDark] = useState(false)
-
-  useEffect(() => {
-    // Check initial theme
-    const savedTheme = localStorage.getItem('theme')
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const initialDark = savedTheme === 'dark' || (!savedTheme && systemDark)
-    setIsDark(initialDark)
-  }, [])
-
-  const toggleTheme = () => {
-    const newTheme = !isDark
-    setIsDark(newTheme)
-    document.documentElement.classList.toggle('dark', newTheme)
-    localStorage.setItem('theme', newTheme ? 'dark' : 'light')
-  }
-
-  return (
-    <button
-      onClick={toggleTheme}
-      className="p-2 text-gray-500 transition-colors duration-200 rounded-md hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 group"
-      aria-label="Toggle theme"
-    >
-      {isDark ? (
-        <SunIcon className="w-5 h-5" />
-      ) : (
-        <MoonIcon className="w-5 h-5" />
-      )}
-    </button>
-  )
-}
 
 // User dropdown component
 function UserDropdown() {
@@ -408,7 +350,6 @@ export function GlobalHeader() {
         </div>
         
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:space-x-6">
-          <SimpleThemeToggle />
           {user ? (
             <UserDropdown />
           ) : (
@@ -464,10 +405,6 @@ export function GlobalHeader() {
                   ))}
                 </div>
                 <div className="py-6 space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Theme</span>
-                    <SimpleThemeToggle />
-                  </div>
                   {user ? (
                     <>
                       <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
