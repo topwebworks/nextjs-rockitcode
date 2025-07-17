@@ -141,7 +141,7 @@ const rockitCourses: RockitCourse[] = [
     description: "Master the building blocks of the web. Learn to create beautiful, responsive websites from scratch.",
     difficulty: "beginner",
     estimatedHours: 15,
-    icon: "🎨",
+    icon: "palette",
     color: "bg-orange-500",
     category: "web",
     prerequisites: [], // No prerequisites for beginner course
@@ -150,7 +150,7 @@ const rockitCourses: RockitCourse[] = [
     milestones: [
       {
         id: "professional-setup",
-        title: "🚀 Professional Developer Setup - GitHub & AI Tools",
+        title: "Professional Developer Setup - GitHub & AI Tools",
         description: "Set up your professional developer environment with GitHub, AI assistance, and deployment tools. Get $200k+ worth of developer tools completely free and start building your portfolio from day 1.",
         order: 1,
         isPaid: false, // FREE milestone
@@ -170,7 +170,7 @@ const rockitCourses: RockitCourse[] = [
               {
                 src: "/images/lessons/professional-setup/github-student-pack.svg",
                 alt: "GitHub Student Pack benefits overview",
-                title: "🎁 $200k+ in Free Developer Tools",
+                title: "$200k+ in Free Developer Tools",
                 caption: "Professional tools that would cost thousands, now free for students"
               }
             ],
@@ -220,11 +220,11 @@ const rockitCourses: RockitCourse[] = [
     <title>My Coding Journey - Learning with AI</title>
 </head>
 <body>
-    <h1>🚀 My Coding Learning Journey</h1>
+    <h1>My Coding Learning Journey</h1>
     <p>I'm learning web development with the help of AI tools like GitHub Copilot!</p>
     
     <!-- AI Copilot helped suggest this structure! -->
-    <h2>📚 What I'm Learning</h2>
+    <h2>What I'm Learning</h2>
     <ul>
         <li>HTML fundamentals</li>
         <li>CSS styling and responsive design</li>
@@ -232,7 +232,7 @@ const rockitCourses: RockitCourse[] = [
         <li>Professional development workflow</li>
     </ul>
     
-    <h2>🎯 My Goals</h2>
+    <h2>My Goals</h2>
     <p>Build amazing websites and launch my career as a professional developer!</p>
 </body>
 </html>`,
@@ -274,7 +274,7 @@ const rockitCourses: RockitCourse[] = [
             ],
             codeExamples: [
               {
-                title: "🎨 Your Professional Portfolio Homepage",
+                title: "Your Professional Portfolio Homepage",
                 language: "html",
                 code: `<!DOCTYPE html>
 <html lang="en">
@@ -315,12 +315,12 @@ const rockitCourses: RockitCourse[] = [
     <div class="container">
         <h1>👋 Hi, I'm [Your Name]</h1>
         <div class="intro">
-            <p>🚀 <strong>Aspiring Web Developer</strong> currently learning modern web development</p>
-            <p>📚 Building projects with HTML, CSS, JavaScript, and AI-assisted development</p>
-            <p>🎯 Goal: Become a professional full-stack developer</p>
+            <p><strong>Aspiring Web Developer</strong> currently learning modern web development</p>
+            <p>Building projects with HTML, CSS, JavaScript, and AI-assisted development</p>
+            <p>Goal: Become a professional full-stack developer</p>
         </div>
         
-        <h2>🛠️ Current Skills</h2>
+        <h2>Current Skills</h2>
         <ul>
             <li>✅ HTML5 semantic markup</li>
             <li>⏳ CSS3 styling and responsive design (learning now!)</li>
@@ -329,10 +329,10 @@ const rockitCourses: RockitCourse[] = [
             <li>✅ AI-assisted development with GitHub Copilot</li>
         </ul>
         
-        <h2>📁 My Projects</h2>
+        <h2>My Projects</h2>
         <div class="projects">
             <div class="project">
-                <h3>🎯 Project 1: Personal Portfolio (This Site!)</h3>
+                <h3>Project 1: Personal Portfolio (This Site!)</h3>
                 <p>My first live website built with HTML and CSS. Features responsive design and professional styling.</p>
                 <p><strong>Technologies:</strong> HTML5, CSS3, GitHub Pages</p>
             </div>
@@ -341,13 +341,13 @@ const rockitCourses: RockitCourse[] = [
         
         <div style="text-align: center; margin-top: 40px;">
             <p>🌐 <strong>Live at:</strong> https://[username].github.io</p>
-            <p>💼 <strong>GitHub:</strong> github.com/[username]</p>
+            <p><strong>GitHub:</strong> github.com/[username]</p>
             <p>📧 <strong>Contact:</strong> [your-email]</p>
         </div>
     </div>
 </body>
 </html>`,
-                explanation: "🌟 This is your professional portfolio template! Key features: 💼 Professional design that impresses recruiters 🎨 Modern CSS with gradients and animations 📱 Responsive layout that works on all devices 🚀 Ready to deploy to GitHub Pages instantly Every lesson you complete will add new projects to showcase!"
+                explanation: "This is your professional portfolio template! Key features: Professional design that impresses recruiters, Modern CSS with gradients and animations, Responsive layout that works on all devices, Ready to deploy to GitHub Pages instantly. Every lesson you complete will add new projects to showcase!"
               }
             ],
             exercises: [
@@ -368,7 +368,7 @@ const rockitCourses: RockitCourse[] = [
       },
       {
         id: "html-css-milestone-1",
-        title: "🏗️ HTML Foundations - Building Your First Web Pages",
+        title: "HTML Foundations - Building Your First Web Pages",
         description: "Master HTML structure and create semantic, accessible web content. Build real projects that automatically deploy to your live portfolio.",
         order: 2,
         isPaid: false, // FREE milestone
@@ -406,7 +406,7 @@ const rockitCourses: RockitCourse[] = [
             ],
             codeExamples: [
               {
-                title: "🌟 Your Very First Web Page",
+                title: "Your Very First Web Page",
                 language: "html",
                 code: `<!DOCTYPE html>
 <html lang="en">
@@ -416,15 +416,15 @@ const rockitCourses: RockitCourse[] = [
     <title>My First Web Page - I'm Learning HTML!</title>
 </head>
 <body>
-    <h1>🚀 Welcome to My First Web Page!</h1>
+    <h1>Welcome to My First Web Page!</h1>
     <p>Hi there! My name is [Your Name] and I'm learning to code with RockitCode!</p>
     <p>This is my very first HTML document. Pretty cool, right? 😎</p>
 </body>
 </html>`,
-                explanation: "This is a complete HTML document! Every web page you've ever visited starts with code like this. Let's break down what each part does: 💡 <!DOCTYPE html> tells the browser 'Hey, this is HTML5!' 💡 <html> is like a container that holds everything 💡 <head> contains information about the page 💡 <body> contains what people actually see on the page"
+                explanation: "This is a complete HTML document! Every web page you've ever visited starts with code like this. Let's break down what each part does: <!DOCTYPE html> tells the browser 'Hey, this is HTML5!', <html> is like a container that holds everything, <head> contains information about the page, <body> contains what people actually see on the page"
               },
               {
-                title: "🏗️ HTML Structure Explained",
+                title: "HTML Structure Explained",
                 language: "html",
                 code: `<!-- This is the blueprint of EVERY web page! -->
 <!DOCTYPE html>           <!-- Step 1: Tell browser this is HTML -->

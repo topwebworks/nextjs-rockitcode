@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useUser } from '@/contexts/UserContext'
+import { renderIcon } from '@/components/icons'
 
 interface Tool {
   id: string
@@ -44,7 +45,7 @@ export default function ToolsPartnershipManager() {
       name: 'Vercel',
       description: 'Deploy your frontend applications with zero configuration',
       category: 'deployment',
-      icon: '▲',
+      icon: 'triangle',
       features: [
         'Instant deployments',
         'Global CDN',
@@ -67,7 +68,7 @@ export default function ToolsPartnershipManager() {
       name: 'Supabase',
       description: 'Open source Firebase alternative with PostgreSQL',
       category: 'development',
-      icon: '🚀',
+      icon: 'rocket',
       features: [
         'PostgreSQL database',
         'Real-time subscriptions',
@@ -90,7 +91,7 @@ export default function ToolsPartnershipManager() {
       name: 'Figma',
       description: 'Collaborative interface design tool',
       category: 'design',
-      icon: '🎨',
+      icon: 'palette',
       features: [
         'Real-time collaboration',
         'Component libraries',
@@ -112,7 +113,7 @@ export default function ToolsPartnershipManager() {
       name: 'GitHub Copilot',
       description: 'AI-powered code completion and assistance',
       category: 'development',
-      icon: '🤖',
+      icon: 'robot',
       features: [
         'Code suggestions',
         'Auto-completion',
@@ -134,7 +135,7 @@ export default function ToolsPartnershipManager() {
       name: 'Railway',
       description: 'Deploy applications and databases with ease',
       category: 'deployment',
-      icon: '🚄',
+      icon: 'train',
       features: [
         'One-click deployments',
         'Built-in databases',
@@ -156,7 +157,7 @@ export default function ToolsPartnershipManager() {
       name: 'Plausible Analytics',
       description: 'Privacy-friendly website analytics',
       category: 'analytics',
-      icon: '📊',
+      icon: 'chart',
       features: [
         'No cookies needed',
         'GDPR compliant',
@@ -192,7 +193,7 @@ export default function ToolsPartnershipManager() {
         'Monthly performance reports'
       ],
       status: 'approved',
-      icon: '▲'
+      icon: 'triangle'
     },
     {
       id: 'supabase-affiliate',
@@ -211,7 +212,7 @@ export default function ToolsPartnershipManager() {
         'Exclusive partner events'
       ],
       status: 'active',
-      icon: '🚀'
+      icon: 'rocket'
     },
     {
       id: 'github-campus',
@@ -230,17 +231,17 @@ export default function ToolsPartnershipManager() {
         'Training and resources'
       ],
       status: 'not-applied',
-      icon: '🎓'
+      icon: 'graduation'
     }
   ]
 
   const categories = [
-    { id: 'all', name: 'All Tools', icon: '🔧' },
-    { id: 'development', name: 'Development', icon: '💻' },
-    { id: 'design', name: 'Design', icon: '🎨' },
-    { id: 'deployment', name: 'Deployment', icon: '🚀' },
-    { id: 'analytics', name: 'Analytics', icon: '📊' },
-    { id: 'learning', name: 'Learning', icon: '📚' }
+    { id: 'all', name: 'All Tools', icon: 'wrench' },
+    { id: 'development', name: 'Development', icon: 'computer' },
+    { id: 'design', name: 'Design', icon: 'palette' },
+    { id: 'deployment', name: 'Deployment', icon: 'rocket' },
+    { id: 'analytics', name: 'Analytics', icon: 'chart' },
+    { id: 'learning', name: 'Learning', icon: 'book' }
   ]
 
   const filteredTools = selectedCategory === 'all' 
@@ -444,7 +445,7 @@ export default function ToolsPartnershipManager() {
                     : 'bg-slate-800/30 text-slate-300 border-slate-700/50 hover:border-slate-600/50 hover:bg-slate-700/30'
                 }`}
               >
-                <span>{category.icon}</span>
+                {renderIcon(category.icon, "w-4 h-4")}
                 <span>{category.name}</span>
               </button>
             ))}
@@ -457,7 +458,7 @@ export default function ToolsPartnershipManager() {
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center justify-center w-12 h-12 border rounded-full bg-slate-700/50 border-slate-600/50">
-                      <span className="text-xl">{tool.icon}</span>
+                      {renderIcon(tool.icon, "w-6 h-6")}
                     </div>
                     <div>
                       <div className="flex items-center gap-3 mb-1">

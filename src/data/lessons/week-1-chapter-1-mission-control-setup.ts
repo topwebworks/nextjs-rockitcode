@@ -28,7 +28,7 @@ export const missionControlSetupLesson: InteractiveLesson = {
   
   // Lesson Metadata
   lessonId: "mission-control-setup",
-  title: "🚀 Mission Control Setup - Become a Real Developer",
+  title: "Mission Control Setup - Become a Real Developer",
   description: "Transform from complete beginner to professional developer with your own GitHub account, VS Code, and first live website - all in 2 days!",
   
   // Learning Objectives (What students will achieve)
@@ -95,7 +95,7 @@ export const missionControlSetupLesson: InteractiveLesson = {
   interactiveLabs: [
     {
       id: "github-account-creation",
-      title: "🎯 Lab 1: Create Your Professional GitHub Account",
+      title: "Lab 1: Create Your Professional GitHub Account",
       description: "Set up your developer identity and unlock $200k+ in free professional tools",
       type: "guided-setup",
       estimatedMinutes: 15,
@@ -181,7 +181,7 @@ export const missionControlSetupLesson: InteractiveLesson = {
     },
     {
       id: "first-repository-creation",
-      title: "📁 Lab 4: Create Your First Code Repository",
+      title: "Lab 4: Create Your First Code Repository",
       description: "Learn the professional GitHub workflow by creating your first project",
       type: "hands-on-practice",
       estimatedMinutes: 15,
@@ -213,7 +213,7 @@ export const missionControlSetupLesson: InteractiveLesson = {
     },
     {
       id: "first-code-creation",
-      title: "💻 Lab 5: Write Your First Professional Code",
+      title: "Lab 5: Write Your First Professional Code",
       description: "Create your first HTML file and experience the magic of coding",
       type: "hands-on-practice",
       estimatedMinutes: 20,
@@ -328,7 +328,7 @@ export const missionControlSetupLesson: InteractiveLesson = {
   microChallenges: [
     {
       id: "profile-customization",
-      title: "🎨 Quick Win: Customize Your GitHub Profile",
+      title: "Quick Win: Customize Your GitHub Profile",
       description: "Make your GitHub profile stand out",
       task: "Add a bio, location, and website URL to your GitHub profile",
       expectedOutcome: "Professional GitHub profile that makes a great first impression",
@@ -381,7 +381,7 @@ export const missionControlSetupLesson: InteractiveLesson = {
   achievements: [
     {
       id: "first-github-account",
-      title: "🎯 GitHub Community Member",
+      title: "GitHub Community Member",
       description: "Created professional GitHub account",
       badgeIcon: "github",
       unlockedMessage: "Welcome to the global developer community!"
@@ -395,7 +395,7 @@ export const missionControlSetupLesson: InteractiveLesson = {
     },
     {
       id: "first-code-written",
-      title: "💻 Code Creator",
+      title: "Code Creator",
       description: "Wrote first HTML code in professional environment",
       badgeIcon: "code",
       unlockedMessage: "You're officially a coder now!"

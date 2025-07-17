@@ -1,11 +1,12 @@
 import Link from 'next/link'
+import { renderIcon } from '@/components/icons'
 
 export default function RoadmapPage() {
   return (
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="text-6xl mb-4">🗺️</div>
+        <div className="text-6xl mb-4 flex justify-center">{renderIcon('map', 'w-16 h-16')}</div>
         <h1 className="text-4xl font-bold mb-4">Launch Pad Development Roadmap</h1>
         <p className="text-lg text-gray-600 dark:text-gray-400">
           Strategic development phases for the complete RockitCode transformation
@@ -15,64 +16,67 @@ export default function RoadmapPage() {
       {/* Recent Major Accomplishments */}
       <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <span className="mr-2">🏆</span>
+          {renderIcon('trophy', 'w-5 h-5 mr-2')}
           Recent Major Accomplishments (December 2024 - January 2025)
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <h4 className="font-medium mb-2">Interactive Learning System:</h4>
             <ul className="space-y-1 text-sm">
-              <li>✅ Complete InteractiveLessonRenderer component</li>
-              <li>✅ Mission Control Setup - 7 hands-on labs</li>
-              <li>✅ Toggle completion tracking</li>
-              <li>✅ Professional navigation system</li>
-              <li>✅ Achievement celebrations</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Complete InteractiveLessonRenderer component</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mission Control Setup - 7 hands-on labs</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Toggle completion tracking</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional navigation system</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Achievement celebrations</li>
             </ul>
           </div>
           <div>
             <h4 className="font-medium mb-2">Technical Infrastructure:</h4>
             <ul className="space-y-1 text-sm">
-              <li>✅ Dynamic lesson routing ([slug]/page.tsx)</li>
-              <li>✅ Extended lesson data architecture</li>
-              <li>✅ Supabase authentication integration</li>
-              <li>✅ Graceful fallbacks for development</li>
-              <li>✅ UserContext with error handling</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Dynamic lesson routing ([slug]/page.tsx)</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Extended lesson data architecture</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Supabase authentication integration</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Graceful fallbacks for development</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} UserContext with error handling</li>
             </ul>
           </div>
           <div>
             <h4 className="font-medium mb-2">User Experience Polish:</h4>
             <ul className="space-y-1 text-sm">
-              <li>✅ Fluid responsive design (320px+)</li>
-              <li>✅ Dark mode accessibility improvements</li>
-              <li>✅ Professional animations and transitions</li>
-              <li>✅ Visual cleanup - removed duplicate elements</li>
-              <li>✅ Enhanced mobile navigation</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Fluid responsive design (320px+)</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Dark mode accessibility improvements</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional animations and transitions</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Visual cleanup - removed duplicate elements</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Enhanced mobile navigation</li>
             </ul>
           </div>
         </div>
         <div className="mt-4 p-4 bg-emerald-100 dark:bg-emerald-900/40 rounded-lg">
-          <p className="text-sm font-medium">🎯 Impact: Complete foundation for professional interactive learning platform with production-ready first lesson integrated into main system.</p>
+          <p className="text-sm font-medium flex items-center">
+            {renderIcon('target', 'w-4 h-4 mr-2')}
+            Impact: Complete foundation for professional interactive learning platform with production-ready first lesson integrated into main system.
+          </p>
         </div>
       </div>
 
       {/* Current Status */}
       <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <span className="mr-2">✅</span>
+          {renderIcon('check', 'w-5 h-5 mr-2')}
           Phase 1 & 2: Interactive Learning Platform Complete
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <h4 className="font-medium mb-2">What We've Built:</h4>
             <ul className="space-y-1 text-sm">
-              <li>✅ Launch Pad homepage transformation</li>
-              <li>✅ Mission-themed UI/UX design</li>
-              <li>✅ Interactive lesson system with navigation</li>
-              <li>✅ Mission Control Setup - First complete lesson</li>
-              <li>✅ Professional responsive design (320px+)</li>
-              <li>✅ Authentication with Supabase integration</li>
-              <li>✅ Dynamic lesson routing architecture</li>
-              <li>✅ Toggle completion tracking system</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Launch Pad homepage transformation</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mission-themed UI/UX design</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Interactive lesson system with navigation</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mission Control Setup - First complete lesson</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional responsive design (320px+)</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Authentication with Supabase integration</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Dynamic lesson routing architecture</li>
+              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Toggle completion tracking system</li>
             </ul>
           </div>
           <div>
@@ -92,7 +96,7 @@ export default function RoadmapPage() {
       {/* Strategic Decision Analysis */}
       <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <span className="mr-2">🎯</span>
+          {renderIcon('target', 'w-5 h-5 mr-2')}
           Strategic Decisions & Technical Analysis
         </h2>
         <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -113,11 +117,26 @@ export default function RoadmapPage() {
           <div>
             <h4 className="font-medium mb-2">Analysis Available:</h4>
             <ul className="space-y-1 text-sm">
-              <li>📊 <Link href="/strategy-decisions" className="text-blue-600 hover:underline">Strategic Business Analysis</Link></li>
-              <li>💾 <Link href="/database-options" className="text-blue-600 hover:underline">Database Strategy Comparison</Link></li>
-              <li>🏗️ <Link href="/rebuild-analysis" className="text-blue-600 hover:underline">Complete Rebuild vs. Incremental Analysis</Link></li>
-              <li>⚡ Performance optimization roadmap</li>
-              <li>💰 Revenue model implementation plan</li>
+              <li className="flex items-center gap-2">
+                {renderIcon('chart', 'w-4 h-4')}
+                <Link href="/strategy-decisions" className="text-blue-600 hover:underline">Strategic Business Analysis</Link>
+              </li>
+              <li className="flex items-center gap-2">
+                {renderIcon('chart', 'w-4 h-4')}
+                <Link href="/database-options" className="text-blue-600 hover:underline">Database Strategy Comparison</Link>
+              </li>
+              <li className="flex items-center gap-2">
+                {renderIcon('building', 'w-4 h-4')}
+                <Link href="/rebuild-analysis" className="text-blue-600 hover:underline">Complete Rebuild vs. Incremental Analysis</Link>
+              </li>
+              <li className="flex items-center gap-2">
+                {renderIcon('lightning', 'w-4 h-4')}
+                Performance optimization roadmap
+              </li>
+              <li className="flex items-center gap-2">
+                {renderIcon('chart', 'w-4 h-4')}
+                Revenue model implementation plan
+              </li>
             </ul>
           </div>
         </div>
@@ -126,7 +145,7 @@ export default function RoadmapPage() {
       {/* Phase 3: GitHub Professional Integration */}
       <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <span className="mr-2">🔧</span>
+          {renderIcon('wrench', 'w-5 h-5 mr-2')}
           Phase 3: GitHub Professional Integration (Current Priority)
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -160,7 +179,7 @@ export default function RoadmapPage() {
       {/* Phase 3: Interactive Learning Platform */}
       <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <span className="mr-2">📚</span>
+          {renderIcon('book', 'w-5 h-5 mr-2')}
           Phase 4: Advanced Learning Features
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -194,7 +213,7 @@ export default function RoadmapPage() {
       {/* Phase 4: Mission & Progression System */}
       <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <span className="mr-2">🎯</span>
+          {renderIcon('target', 'w-5 h-5 mr-2')}
           Phase 4: Mission & Progression System
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -228,7 +247,7 @@ export default function RoadmapPage() {
       {/* Phase 5: Advanced Features & Polish */}
       <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <span className="mr-2">✨</span>
+          {renderIcon('sparkle', 'w-5 h-5 mr-2')}
           Phase 5: Advanced Features & Polish
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
@@ -269,7 +288,7 @@ export default function RoadmapPage() {
       {/* Immediate Next Steps */}
       <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <span className="mr-2">🚀</span>
+          {renderIcon('rocket', 'w-5 h-5 mr-2')}
           Immediate Next Steps (This Week)
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -369,8 +388,9 @@ export default function RoadmapPage() {
         </div>
         
         <div className="mt-6 text-center">
-          <Link href="/strategy-decisions" className="inline-block px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-            📊 View Detailed Strategy Analysis
+          <Link href="/strategy-decisions" className="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+            {renderIcon('chart', 'w-4 h-4 mr-2')}
+            View Detailed Strategy Analysis
           </Link>
         </div>
       </div>
@@ -378,7 +398,7 @@ export default function RoadmapPage() {
       {/* Success Metrics */}
       <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <span className="mr-2">📊</span>
+          {renderIcon('chart', 'w-5 h-5 mr-2')}
           Success Metrics & Milestones
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -405,7 +425,10 @@ export default function RoadmapPage() {
 
       {/* Action Items */}
       <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4">🎯 Your Next Action Items</h2>
+        <h2 className="text-xl font-semibold mb-4 flex items-center">
+          {renderIcon('target', 'w-5 h-5 mr-2')}
+          Your Next Action Items
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-medium mb-3">This Week:</h4>

@@ -155,7 +155,7 @@ const AIIntegrationStrategy = () => {
         {/* Strategic Overview */}
         <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
           <h2 className="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-3">
-            🎯 Recommended Hybrid Strategy
+            Recommended Hybrid Strategy
           </h2>
           <p className="text-blue-800 dark:text-blue-200">
             <strong>Primary:</strong> GitHub Copilot Free Tier for professional development workflow<br/>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { renderIcon } from '@/components/icons'
 import { 
   AFFILIATE_PARTNERS, 
   getAffiliatePartner, 
@@ -64,7 +65,7 @@ export function CareerLaunchPad() {
       id: 'environment-setup',
       title: 'Environment Configuration',
       description: 'Professional development environment and toolchain setup',
-      icon: '⚙️',
+      icon: 'settings',
       status: 'available',
       estimatedTime: '15 minutes',
       reward: '$200k+ in professional tools access'
@@ -73,7 +74,7 @@ export function CareerLaunchPad() {
       id: 'foundation-track',
       title: 'Foundation Development',
       description: 'Core web technologies mastery with portfolio deployment',
-      icon: '🏗️',
+      icon: 'building',
       status: 'locked',
       estimatedTime: '4-6 weeks',
       reward: '3-5 production-ready projects'
@@ -82,7 +83,7 @@ export function CareerLaunchPad() {
       id: 'advanced-systems',
       title: 'Advanced Systems',
       description: 'Full-stack development and deployment automation',
-      icon: '⚡',
+      icon: 'lightning',
       status: 'locked',
       estimatedTime: '6-8 weeks',
       reward: 'Enterprise-grade applications with CI/CD'
@@ -91,7 +92,7 @@ export function CareerLaunchPad() {
       id: 'specialization',
       title: 'Career Specialization',
       description: 'Advanced specialization and professional readiness',
-      icon: '�',
+      icon: 'rocket',
       status: 'locked',
       estimatedTime: '8-12 weeks',
       reward: 'Industry-ready professional developer'
@@ -247,7 +248,7 @@ export function CareerLaunchPad() {
       id: 'frontend',
       title: 'Frontend Developer',
       description: 'Design and develop responsive user interfaces with modern frameworks',
-      icon: '💻',
+      icon: 'computer',
       projects: ['Portfolio Site', 'E-commerce Store', 'Dashboard App', 'Landing Pages'],
       averageTime: '3-6 months',
       skillsGained: ['HTML/CSS', 'JavaScript', 'React', 'UI/UX Design'],
@@ -259,7 +260,7 @@ export function CareerLaunchPad() {
       id: 'fullstack',
       title: 'Full-Stack Developer',
       description: 'Build complete web applications from database to user interface',
-      icon: '🔧',
+      icon: 'wrench',
       projects: ['Social Platform', 'SaaS Application', 'E-commerce Platform', 'API Services'],
       averageTime: '6-12 months',
       skillsGained: ['React/Next.js', 'Node.js', 'Databases', 'APIs', 'Deployment'],
@@ -271,7 +272,7 @@ export function CareerLaunchPad() {
       id: 'mobile',
       title: 'Mobile Developer',
       description: 'Develop cross-platform mobile applications for iOS and Android',
-      icon: '📱',
+      icon: 'mobile',
       projects: ['Weather App', 'Social Media App', 'E-commerce App', 'Productivity Tools'],
       averageTime: '4-8 months',
       skillsGained: ['React Native', 'Mobile UI', 'App Store Deployment', 'Push Notifications'],
@@ -283,7 +284,7 @@ export function CareerLaunchPad() {
       id: 'devops',
       title: 'DevOps Engineer',
       description: 'Streamline deployment processes and manage cloud infrastructure',
-      icon: '⚙️',
+      icon: 'settings',
       projects: ['CI/CD Pipeline', 'Cloud Infrastructure', 'Monitoring Dashboard', 'Auto-Scaling'],
       averageTime: '6-10 months',
       skillsGained: ['Docker', 'AWS/Azure', 'CI/CD', 'Monitoring', 'Infrastructure as Code'],
@@ -733,34 +734,37 @@ export function CareerLaunchPad() {
                       )}
                       {tool.name === 'Vercel Pro Hosting' && (
                         <div className="mt-2 text-xs text-green-300">
-                          💰 <strong>Revenue Model:</strong> ~$36/year commission when you upgrade for team/commercial projects
+                          <strong>Revenue Model:</strong> ~$36/year commission when you upgrade for team/commercial projects
                         </div>
                       )}
                       {tool.name === 'Tailwind UI Components' && (
                         <div className="mt-2 text-xs text-green-300">
-                          💰 <strong>Revenue Model:</strong> ~$75/year commission - helps fund free Tailwind CSS education
+                          <strong>Revenue Model:</strong> ~$75/year commission - helps fund free Tailwind CSS education
                         </div>
                       )}
                       {tool.name === 'AWS Professional Setup' && (
                         <div className="mt-2 text-xs text-green-300">
-                          💰 <strong>Revenue Model:</strong> Small percentage of usage for production apps (free tier covers learning)
+                          <strong>Revenue Model:</strong> Small percentage of usage for production apps (free tier covers learning)
                         </div>
                       )}
                       {tool.name === 'Shopify Partner' && (
                         <div className="mt-2 text-xs text-green-300">
-                          💰 <strong>Revenue Model:</strong> $58-200 per store referral (massive e-commerce opportunity for you!)
+                          <strong>Revenue Model:</strong> $58-200 per store referral (massive e-commerce opportunity for you!)
                         </div>
                       )}
                       {tool.name === 'Stripe Professional' && (
                         <div className="mt-2 text-xs text-green-300">
-                          💰 <strong>Revenue Model:</strong> Ongoing small percentage of payment processing (industry standard)
+                          <strong>Revenue Model:</strong> Ongoing small percentage of payment processing (industry standard)
                         </div>
                       )}
                     </div>
                   )}
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-blue-200">⏱️ {tool.setupTime} setup</span>
+                    <span className="text-sm text-blue-200 flex items-center">
+                      {renderIcon('clock', 'w-4 h-4 mr-1')}
+                      {tool.setupTime} setup
+                    </span>
                     {/* Enhanced Setup Button with Centralized Affiliate Links */}
                     <a
                       href={
@@ -784,7 +788,17 @@ export function CareerLaunchPad() {
                           : 'bg-gray-600 text-gray-400 cursor-not-allowed pointer-events-none'
                       }`}
                     >
-                      {tool.status === 'available' ? '🚀 Setup Now' : '🔒 Locked'}
+                      {tool.status === 'available' ? (
+                        <span className="flex items-center">
+                          {renderIcon('rocket', 'w-4 h-4 mr-2')}
+                          Setup Now
+                        </span>
+                      ) : (
+                        <span className="flex items-center">
+                          {renderIcon('lock', 'w-4 h-4 mr-2')}
+                          Locked
+                        </span>
+                      )}
                     </a>
                   </div>
                 </div>
@@ -793,7 +807,10 @@ export function CareerLaunchPad() {
 
             {/* Enhanced Setup Progress with Revenue Transparency */}
             <div className="p-8 border bg-gradient-to-r from-green-600/20 to-blue-600/20 backdrop-blur-md rounded-2xl border-white/20">
-              <h3 className="mb-6 text-2xl font-bold text-center text-white">🎯 Setup Progress</h3>
+              <h3 className="mb-6 text-2xl font-bold text-center text-white flex items-center justify-center">
+                {renderIcon('target', 'w-6 h-6 mr-2')}
+                Setup Progress
+              </h3>
               <div className="grid gap-6 text-center md:grid-cols-4">
                 <div>
                   <div className="mb-2 text-3xl font-bold text-green-400">5/12</div>
@@ -822,7 +839,10 @@ export function CareerLaunchPad() {
               <div className="mt-8 space-y-6">
                 <div className="p-6 border rounded-lg bg-white/10 border-white/20">
                   <div className="text-center">
-                    <div className="mb-4 text-xl font-semibold text-yellow-400">💰 How We Keep RockitCode Free Forever</div>
+                    <div className="mb-4 text-xl font-semibold text-yellow-400 flex items-center">
+                      {renderIcon('money', 'w-6 h-6 mr-2')}
+                      How We Keep RockitCode Free Forever
+                    </div>
                     <p className="mb-6 text-lg leading-relaxed text-blue-200">
                       We partner with the exact same professional tools you'll use in your career. When you naturally progress 
                       from learning to professional work, small commissions fund our free education platform.
@@ -831,7 +851,10 @@ export function CareerLaunchPad() {
                     {/* Revenue Model Breakdown */}
                     <div className="grid gap-4 mb-6 md:grid-cols-3">
                       <div className="p-4 border rounded-lg bg-green-500/10 border-green-500/30">
-                        <h4 className="mb-2 font-semibold text-green-400">🎯 Career-First Selection</h4>
+                        <h4 className="mb-2 font-semibold text-green-400 flex items-center">
+                          {renderIcon('target', 'w-5 h-5 mr-2')}
+                          Career-First Selection
+                        </h4>
                         <p className="text-sm text-gray-200">Every tool is used by 85%+ of professional developers and appears in job descriptions</p>
                       </div>
                       <div className="p-4 border rounded-lg bg-blue-500/10 border-blue-500/30">
@@ -839,14 +862,20 @@ export function CareerLaunchPad() {
                         <p className="text-sm text-gray-200">All 200+ lessons work with free tiers. Upgrades only benefit professional projects</p>
                       </div>
                       <div className="p-4 border rounded-lg bg-purple-500/10 border-purple-500/30">
-                        <h4 className="mb-2 font-semibold text-purple-400">🚀 Success Alignment</h4>
+                        <h4 className="mb-2 font-semibold text-purple-400 flex items-center">
+                          {renderIcon('rocket', 'w-5 h-5 mr-2')}
+                          Success Alignment
+                        </h4>
                         <p className="text-sm text-gray-200">We only succeed when you get hired. 74% job placement rate proves our commitment</p>
                       </div>
                     </div>
 
                     {/* Projected Revenue Impact using Centralized Calculations */}
                     <div className="p-4 border rounded-lg bg-slate-800/50 border-slate-600">
-                      <h4 className="mb-3 text-lg font-semibold text-white">📊 Projected Monthly Revenue (200 active students)</h4>
+                      <h4 className="mb-3 text-lg font-semibold text-white flex items-center">
+                        {renderIcon('chart', 'w-5 h-5 mr-2')}
+                        Projected Monthly Revenue (200 active students)
+                      </h4>
                       {(() => {
                         const revenue = calculateProjectedRevenue(200)
                         return (
@@ -893,17 +922,17 @@ export function CareerLaunchPad() {
               <h3 className="mb-6 text-2xl font-bold text-center text-white">✨ Why Professional Setup Matters</h3>
               <div className="grid gap-6 md:grid-cols-3">
                 <div className="text-center">
-                  <div className="mb-4 text-4xl">💼</div>
+                  <div className="mb-4 text-4xl flex justify-center">{renderIcon('briefcase', 'w-10 h-10')}</div>
                   <h4 className="mb-2 text-lg font-bold text-white">Industry Standard</h4>
                   <p className="text-sm text-blue-200">Use the exact tools professional developers use every day</p>
                 </div>
                 <div className="text-center">
-                  <div className="mb-4 text-4xl">🚀</div>
+                  <div className="mb-4 text-4xl flex justify-center">{renderIcon('rocket', 'w-10 h-10')}</div>
                   <h4 className="mb-2 text-lg font-bold text-white">Career Ready</h4>
                   <p className="text-sm text-blue-200">Graduate with professional workflow experience</p>
                 </div>
                 <div className="text-center">
-                  <div className="mb-4 text-4xl">💰</div>
+                  <div className="mb-4 text-4xl flex justify-center">{renderIcon('money', 'w-10 h-10')}</div>
                   <h4 className="mb-2 text-lg font-bold text-white">Higher Salary</h4>
                   <p className="text-sm text-blue-200">Developers skilled in these tools earn 25-40% more</p>
                 </div>
@@ -932,8 +961,8 @@ export function CareerLaunchPad() {
                       className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 cursor-pointer hover:bg-slate-700/30 transition-all duration-300 hover:scale-[1.02] group hover:border-blue-500/30"
                     >
                       <div className="flex items-center gap-4 mb-6">
-                        <div className="flex items-center justify-center w-12 h-12 text-2xl transition-colors border rounded-xl bg-slate-700/50 border-slate-600/50 group-hover:border-blue-500/50">
-                          {career.icon}
+                        <div className="flex items-center justify-center w-12 h-12 transition-colors border rounded-xl bg-slate-700/50 border-slate-600/50 group-hover:border-blue-500/50">
+                          {renderIcon(career.icon, "w-6 h-6")}
                         </div>
                         <div>
                           <h3 className="text-2xl font-medium text-white">{career.title}</h3>
@@ -1017,7 +1046,10 @@ export function CareerLaunchPad() {
                         
                         {/* Real World Use */}
                         <div className="p-3 mb-4 border rounded-lg bg-green-500/20 border-green-400/50">
-                          <div className="text-sm font-medium text-green-400">💡 Real-World Impact</div>
+                          <div className="text-sm font-medium text-green-400 flex items-center">
+                            {renderIcon('lightbulb', 'w-4 h-4 mr-2')}
+                            Real-World Impact
+                          </div>
                           <div className="text-sm text-green-200">{project.realWorldUse}</div>
                         </div>
                         
@@ -1096,13 +1128,19 @@ export function CareerLaunchPad() {
                           rel="noopener noreferrer"
                           className="block w-full px-4 py-3 mb-3 font-semibold text-center text-white transition-colors bg-green-600 rounded-lg hover:bg-green-700"
                         >
-                          📁 Clone Repository
+                          <span className="flex items-center justify-center">
+                            {renderIcon('folder', 'w-5 h-5 mr-2')}
+                            Clone Repository
+                          </span>
                         </a>
                         <Link
                           href={`/foundation/chapter-1-vscode`}
                           className="block w-full px-4 py-3 font-semibold text-center text-green-400 transition-colors border border-green-500 rounded-lg bg-green-600/20 hover:bg-green-600/30"
                         >
-                          📖 Start Foundation Course
+                          <span className="flex items-center justify-center">
+                            {renderIcon('book', 'w-5 h-5 mr-2')}
+                            Start Foundation Course
+                          </span>
                         </Link>
                       </div>
 
@@ -1141,10 +1179,14 @@ export function CareerLaunchPad() {
                           rel="noopener noreferrer"
                           className="block w-full px-4 py-3 mb-3 font-semibold text-center text-white transition-colors bg-yellow-600 rounded-lg hover:bg-yellow-700"
                         >
-                          📁 Clone Repository
+                          <span className="flex items-center justify-center">
+                            {renderIcon('folder', 'w-5 h-5 mr-2')}
+                            Clone Repository
+                          </span>
                         </a>
-                        <button className="w-full px-4 py-3 font-semibold text-yellow-400 border border-yellow-500 rounded-lg cursor-not-allowed bg-yellow-600/20">
-                          🔒 Complete Foundation First
+                        <button className="w-full px-4 py-3 font-semibold text-yellow-400 border border-yellow-500 rounded-lg cursor-not-allowed bg-yellow-600/20 flex items-center justify-center">
+                          {renderIcon('lock', 'w-5 h-5 mr-2')}
+                          Complete Foundation First
                         </button>
                       </div>
 
@@ -1183,10 +1225,14 @@ export function CareerLaunchPad() {
                           rel="noopener noreferrer"
                           className="block w-full px-4 py-3 mb-3 font-semibold text-center text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700"
                         >
-                          📁 Clone Repository
+                          <span className="flex items-center justify-center">
+                            {renderIcon('folder', 'w-5 h-5 mr-2')}
+                            Clone Repository
+                          </span>
                         </a>
-                        <button className="w-full px-4 py-3 font-semibold text-red-400 border border-red-500 rounded-lg cursor-not-allowed bg-red-600/20">
-                          🔒 Complete Intermediate First
+                        <button className="w-full px-4 py-3 font-semibold text-red-400 border border-red-500 rounded-lg cursor-not-allowed bg-red-600/20 flex items-center justify-center">
+                          {renderIcon('lock', 'w-5 h-5 mr-2')}
+                          Complete Intermediate First
                         </button>
                       </div>
                     </div>

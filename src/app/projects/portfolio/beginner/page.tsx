@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { foundationCourse } from '@/data/foundation-course'
+import { renderIcon } from '@/components/icons'
 
 export const metadata: Metadata = {
   title: 'Portfolio Project - Beginner Level | RockitCode',
@@ -57,17 +58,19 @@ export default function PortfolioBeginner() {
           <div className="flex flex-wrap gap-4">
             <Link 
               href="/foundation/chapter-1-vscode"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
             >
-              🚀 Start Building
+              {renderIcon('rocket', 'w-5 h-5 mr-2')}
+              Start Building
             </Link>
             <a 
               href="https://github.com/rockitcode-learning/portfolio-beginner-template"
-              className="bg-gray-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-700 transition-colors"
+              className="inline-flex items-center bg-gray-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-700 transition-colors"
               target="_blank"
               rel="noopener noreferrer"
             >
-              📁 Clone Repository
+              {renderIcon('folder', 'w-5 h-5 mr-2')}
+              Clone Repository
             </a>
             <a 
               href="https://portfolio-demo-beginner.vercel.app"
@@ -85,7 +88,10 @@ export default function PortfolioBeginner() {
           {/* Main Content */}
           <div className="lg:col-span-2">
             <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-8">
-              <h2 className="text-2xl font-bold mb-6">🎯 What You'll Build</h2>
+              <h2 className="text-2xl font-bold mb-6 flex items-center">
+                {renderIcon('target', 'w-6 h-6 mr-2')}
+                What You'll Build
+              </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="space-y-4">
@@ -142,7 +148,10 @@ export default function PortfolioBeginner() {
               </div>
               
               <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">💡 Why This Matters</h4>
+                <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 flex items-center">
+                  {renderIcon('lightbulb', 'w-4 h-4 mr-2')}
+                  Why This Matters
+                </h4>
                 <p className="text-sm text-blue-800 dark:text-blue-300">
                   This portfolio will be <strong>actually suitable for job applications</strong>. Clean, professional design following Tailwind UI patterns that employers recognize and respect. You'll learn real-world development practices that scale to advanced projects.
                 </p>
@@ -164,7 +173,10 @@ export default function PortfolioBeginner() {
                       href="/foundation/chapter-1-vscode"
                       className="block p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     >
-                      <div className="font-medium">📝 Lesson 1: VS Code Mastery</div>
+                      <div className="font-medium flex items-center">
+                        {renderIcon('document', 'w-4 h-4 mr-2')}
+                        Lesson 1: VS Code Mastery
+                      </div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">Learn the world's most popular code editor</div>
                     </Link>
                     <Link 
@@ -188,14 +200,20 @@ export default function PortfolioBeginner() {
                       href="/foundation/design-planning"
                       className="block p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     >
-                      <div className="font-medium">🎨 Design & Planning Fundamentals</div>
+                      <div className="font-medium flex items-center">
+                        {renderIcon('palette', 'w-4 h-4 mr-2')}
+                        Design & Planning Fundamentals
+                      </div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">UX/UI, project management, technical architecture</div>
                     </Link>
                     <Link 
                       href="/foundation/portfolio-strategy"
                       className="block p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     >
-                      <div className="font-medium">🎯 Portfolio Strategy Workshop</div>
+                      <div className="font-medium flex items-center">
+                        {renderIcon('target', 'w-4 h-4 mr-2')}
+                        Portfolio Strategy Workshop
+                      </div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">Define your brand and content strategy</div>
                     </Link>
                   </div>
@@ -226,7 +244,10 @@ export default function PortfolioBeginner() {
                   </p>
                   <div className="space-y-2">
                     <div className="block p-3 bg-gray-50 dark:bg-gray-900 rounded-lg opacity-60">
-                      <div className="font-medium">🎨 CSS Fundamentals (Coming Soon)</div>
+                      <div className="font-medium flex items-center">
+                        {renderIcon('palette', 'w-4 h-4 mr-2')}
+                        CSS Fundamentals (Coming Soon)
+                      </div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">Colors, fonts, layouts, and responsive design</div>
                     </div>
                   </div>
@@ -267,7 +288,10 @@ export default function PortfolioBeginner() {
 
             {/* What You'll Build */}
             <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
-              <h3 className="text-lg font-semibold mb-4">🎯 What You'll Build</h3>
+              <h3 className="text-lg font-semibold mb-4 flex items-center">
+                {renderIcon('target', 'w-5 h-5 mr-2')}
+                What You'll Build
+              </h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>

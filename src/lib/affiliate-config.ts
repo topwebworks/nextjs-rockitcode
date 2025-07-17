@@ -428,11 +428,11 @@ export function getTransparencyDisclosure() {
     message: "We partner with professional tools that helped us build our $200k+/year business. When you naturally progress to professional work, we earn small commissions that keep our education free forever.",
     emphasis: "Every tool recommendation comes from real experience - we use these exact tools daily to generate income.",
     values: [
-      "🎯 Earn with the same tools we use to make $200k+/year",
-      "📚 All learning content works with free tiers first", 
-      "💰 Upgrade only when you start earning money professionally",
-      "🤝 Transparent affiliate partnerships fund free education",
-      "✅ Student success directly drives our platform success"
+      "Earn with the same tools we use to make $200k+/year",
+      "All learning content works with free tiers first", 
+      "Upgrade only when you start earning money professionally",
+      "Transparent affiliate partnerships fund free education",
+      "Student success directly drives our platform success"
     ]
   }
 }

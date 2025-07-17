@@ -2,16 +2,17 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { renderIcon } from '@/components/icons'
 
 export default function AboutPage() {
   const [activeSection, setActiveSection] = useState('mission')
 
   const navigationItems = [
-    { id: 'mission', label: 'Our Mission', icon: '🎯' },
-    { id: 'difference', label: 'What Makes Us Different', icon: '⭐' },
-    { id: 'portfolio', label: 'Living Portfolio Ecosystem', icon: '🏗️' },
-    { id: 'philosophy', label: 'Student-First Philosophy', icon: '💡' },
-    { id: 'future', label: 'Your Future', icon: '🌟' }
+    { id: 'mission', label: 'Our Mission', icon: 'target' },
+    { id: 'difference', label: 'What Makes Us Different', icon: 'star' },
+    { id: 'portfolio', label: 'Living Portfolio Ecosystem', icon: 'building' },
+    { id: 'philosophy', label: 'Student-First Philosophy', icon: 'lightbulb' },
+    { id: 'future', label: 'Your Future', icon: 'sparkle' }
   ]
 
   return (
@@ -70,7 +71,7 @@ export default function AboutPage() {
                     : 'bg-slate-800/30 text-slate-400 hover:bg-slate-700/30 hover:text-slate-300 border border-slate-700/50'
                 }`}
               >
-                <span className="text-lg">{item.icon}</span>
+                {renderIcon(item.icon, "w-5 h-5")}
                 <span>{item.label}</span>
               </button>
             ))}

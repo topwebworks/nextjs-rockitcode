@@ -92,7 +92,7 @@ export const cssBasicsLesson: LessonComponent = {
   },
   
   codeEditor: {
-    template: `<!-- Add some style to your webpage! 🎨 -->
+    template: `<!-- Add some style to your webpage! -->
 <html>
   <head>
     <style>

@@ -124,7 +124,7 @@ export function getNavigationSections(): NavigationSection[] {
         description: 'Create and manage educational content',
         url: '/admin/content',
         type: 'page' as const,
-        icon: '⚙️',
+        icon: 'settings',
         category: 'admin',
       },
       {
@@ -142,7 +142,7 @@ export function getNavigationSections(): NavigationSection[] {
         description: 'Course and user analytics dashboard',
         url: '/admin/analytics',
         type: 'page' as const,
-        icon: '📊',
+        icon: 'chart',
         category: 'admin',
       }
     ]
@@ -177,7 +177,7 @@ export function getNavigationSections(): NavigationSection[] {
         description: 'Curated resources for developers',
         url: '/resources',
         type: 'page' as const,
-        icon: '📚',
+        icon: 'book',
       }
     ]
   });

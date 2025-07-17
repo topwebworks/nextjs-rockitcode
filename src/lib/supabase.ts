@@ -8,7 +8,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 // Check for required environment variables
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('⚠️ Supabase environment variables are not configured. User features will be disabled.')
+  console.warn('WARNING: Supabase environment variables are not configured. User features will be disabled.')
   console.warn('Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in your .env.local file')
   console.warn('Get these values from: https://supabase.com/dashboard/project/_/settings/api')
 }
@@ -23,7 +23,7 @@ export async function createServerSupabaseClient() {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   
   if (!supabaseUrl || !supabaseAnonKey) {
-    console.warn('⚠️ Supabase environment variables are not configured')
+    console.warn('WARNING: Supabase environment variables are not configured')
     return null
   }
 
@@ -63,7 +63,7 @@ export function createBrowserSupabaseClient() {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   
   if (!supabaseUrl || !supabaseAnonKey) {
-    console.warn('⚠️ Supabase environment variables are not configured')
+    console.warn('WARNING: Supabase environment variables are not configured')
     return null
   }
   

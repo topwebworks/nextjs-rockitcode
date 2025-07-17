@@ -35,7 +35,7 @@ export const STUDENT_PACK_BENEFITS: StudentPackBenefit[] = [
     category: 'development',
     provider: 'GitHub',
     setupUrl: 'https://github.com/codespaces',
-    icon: '☁️',
+    icon: 'cloud',
     priority: 1
   },
   {
@@ -46,7 +46,7 @@ export const STUDENT_PACK_BENEFITS: StudentPackBenefit[] = [
     category: 'hosting',
     provider: 'Vercel',
     setupUrl: 'https://vercel.com/github-students',
-    icon: '🚀',
+    icon: 'rocket',
     priority: 1
   },
 
@@ -81,7 +81,7 @@ export const STUDENT_PACK_BENEFITS: StudentPackBenefit[] = [
     category: 'development',
     provider: 'JetBrains',
     setupUrl: 'https://www.jetbrains.com/student/',
-    icon: '🔧',
+    icon: 'wrench',
     priority: 2
   },
 
@@ -94,7 +94,7 @@ export const STUDENT_PACK_BENEFITS: StudentPackBenefit[] = [
     category: 'design',
     provider: 'Figma',
     setupUrl: 'https://www.figma.com/education/',
-    icon: '🎨',
+    icon: 'palette',
     priority: 3
   },
   {
@@ -116,7 +116,7 @@ export const STUDENT_PACK_BENEFITS: StudentPackBenefit[] = [
     category: 'design',
     provider: 'Canva',
     setupUrl: 'https://www.canva.com/education/',
-    icon: '🖼️',
+    icon: 'image',
     priority: 3
   }
 ]

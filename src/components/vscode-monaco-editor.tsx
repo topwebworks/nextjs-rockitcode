@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import { clsx } from 'clsx'
 import { useEditorSettings } from '@/contexts/editor-settings'
+import { renderIcon } from '@/components/icons'
 
 // VS Code-like Monaco Editor with full professional features
 const MonacoEditor = dynamic(
@@ -1026,11 +1027,11 @@ ${code}
 
   // Activity bar items
   const activityBarItems = [
-    { id: 'explorer', icon: '📁', label: 'Explorer', active: true },
-    { id: 'search', icon: '🔍', label: 'Search' },
-    { id: 'git', icon: '🌿', label: 'Source Control' },
-    { id: 'debug', icon: '🐛', label: 'Run and Debug' },
-    { id: 'extensions', icon: '🧩', label: 'Extensions' }
+    { id: 'explorer', icon: 'folder', label: 'Explorer', active: true },
+    { id: 'search', icon: 'search', label: 'Search' },
+    { id: 'git', icon: 'branch', label: 'Source Control' },
+    { id: 'debug', icon: 'bug', label: 'Run and Debug' },
+    { id: 'extensions', icon: 'puzzle', label: 'Extensions' }
   ]
 
   return (
@@ -1146,7 +1147,7 @@ ${code}
               )}
               title={item.label}
             >
-              <span className="text-lg">{item.icon}</span>
+              {renderIcon(item.icon, "w-5 h-5 text-[#cccccc]")}
             </div>
           ))}
         </div>

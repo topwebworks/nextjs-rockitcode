@@ -10,6 +10,42 @@
 import { useState, useEffect } from 'react'
 import { InteractiveLesson, StudentProgress, LabValidation } from '@/types/interactive-lesson'
 import missionControlSetupLesson from '@/data/lessons/week-1-chapter-1-mission-control-setup'
+import { renderIcon } from '@/components/icons'
+
+// Utility function to render text with emoji-to-icon replacement
+const renderTextWithIcons = (text: string): React.ReactNode => {
+  const emojiMap: { [key: string]: string } = {
+    '🚀': 'rocket',
+    '🎯': 'target', 
+    '🎉': 'star',
+    '🎁': 'star',
+    '💻': 'computer',
+    '🌟': 'sparkle',
+    '🏆': 'trophy',
+    '📊': 'chart',
+    '📚': 'book',
+    '💡': 'lightbulb',
+    '🔧': 'wrench'
+  }
+
+  // Find the first emoji in the text
+  for (const [emoji, iconName] of Object.entries(emojiMap)) {
+    if (text.includes(emoji)) {
+      const parts = text.split(emoji)
+      return (
+        <>
+          {parts[0]}
+          <span className="inline-flex items-center mx-1">
+            {renderIcon(iconName, 'w-5 h-5')}
+          </span>
+          {parts.slice(1).join(emoji) && renderTextWithIcons(parts.slice(1).join(emoji))}
+        </>
+      )
+    }
+  }
+  
+  return text
+}
 
 // Utility function to convert text with URLs to clickable links and handle code blocks
 const linkifyText = (text: string) => {
@@ -154,7 +190,7 @@ export default function InteractiveLessonRenderer({
             Week {lesson.week} • Chapter {lesson.chapter}
           </span>
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{lesson.title}</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{renderTextWithIcons(lesson.title)}</h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">{lesson.description}</p>
         
         {/* Progress Bar */}
@@ -344,7 +380,7 @@ export default function InteractiveLessonRenderer({
           {/* Current Lab */}
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 shadow-sm">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{currentLab.title}</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{renderTextWithIcons(currentLab.title)}</h3>
               <div className="flex items-center space-x-4">
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   Lab {currentLabIndex + 1} of {lesson.interactiveLabs.length}

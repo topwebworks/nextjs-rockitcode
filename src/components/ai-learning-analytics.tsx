@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { renderIcon } from '@/components/icons'
 import { clsx } from 'clsx'
 
 interface AISkillMetric {
@@ -189,7 +190,7 @@ export function AILearningAnalytics({
                 <h3 className="font-medium text-sm">{insight.title}</h3>
                 <p className="text-sm text-gray-600 mt-1">{insight.description}</p>
                 <p className="text-xs text-gray-500 mt-2 font-medium">
-                  💡 {insight.actionable}
+                  {renderIcon('lightbulb', 'w-4 h-4 mr-2 inline')} {insight.actionable}
                 </p>
               </div>
               <span className={clsx(
@@ -313,7 +314,7 @@ export function AILearningAnalytics({
 
       {/* Next Steps */}
       <div className="next-steps p-4 bg-gray-50 rounded-lg">
-        <h3 className="font-semibold mb-2">🎯 Recommended Next Steps</h3>
+        <h3 className="font-semibold mb-2 flex items-center">{renderIcon('target', 'w-4 h-4 mr-2')} Recommended Next Steps</h3>
         <div className="space-y-2 text-sm">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>

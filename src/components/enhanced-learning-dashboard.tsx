@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CourseContentIntegration } from './course-content-integration'
+import { renderIcon } from '@/components/icons'
 
 interface CourseProgress {
   courseId: string
@@ -69,7 +70,7 @@ export function EnhancedLearningDashboard() {
       duration: '4-6 hours',
       lessons: 12,
       difficulty: 'Beginner',
-      icon: '🎨',
+      icon: 'palette',
       color: 'from-blue-500 to-cyan-500',
       technologies: ['HTML5', 'CSS3', 'Flexbox', 'Grid', 'Responsive Design']
     },
@@ -80,7 +81,7 @@ export function EnhancedLearningDashboard() {
       duration: '8-10 hours',
       lessons: 18,
       difficulty: 'Intermediate',
-      icon: '⚡',
+      icon: 'lightning',
       color: 'from-yellow-500 to-orange-500',
       technologies: ['ES6+', 'DOM', 'Async/Await', 'APIs', 'Modules']
     },
@@ -91,7 +92,7 @@ export function EnhancedLearningDashboard() {
       duration: '10-12 hours',
       lessons: 15,
       difficulty: 'Beginner',
-      icon: '🐍',
+      icon: 'code',
       color: 'from-green-500 to-emerald-500',
       technologies: ['Python 3', 'Flask', 'APIs', 'Data Structures', 'OOP']
     }
@@ -130,8 +131,9 @@ export function EnhancedLearningDashboard() {
     <div className="max-w-6xl p-6 mx-auto">
       {/* Header */}
       <div className="mb-8 text-center">
-        <h1 className="mb-4 text-4xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
-          🎯 Learning Mission Center
+        <h1 className="flex items-center justify-center mb-4 text-4xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
+          {renderIcon('target', 'w-8 h-8 mr-3')}
+          Learning Mission Center
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400">
           Transform from beginner to professional developer with guided missions
@@ -141,7 +143,7 @@ export function EnhancedLearningDashboard() {
       {/* Learning Stats Dashboard */}
       <div className="p-6 mb-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl">
         <h2 className="flex items-center mb-4 text-xl font-semibold">
-          <span className="mr-2">📊</span>
+          {renderIcon('chart', 'w-5 h-5 mr-2')}
           Mission Intelligence
         </h2>
         
@@ -194,7 +196,7 @@ export function EnhancedLearningDashboard() {
               {/* Course Header */}
               <div className={`bg-gradient-to-r ${course.color} p-6 text-white`}>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-3xl">{course.icon}</span>
+                  {renderIcon(course.icon, "w-8 h-8")}
                   <div className="text-right">
                     <div className="text-sm opacity-90">{course.difficulty}</div>
                     <div className="text-xs opacity-75">{course.duration}</div>
@@ -230,7 +232,7 @@ export function EnhancedLearningDashboard() {
               <div className="p-6">
                 <div className="mb-4">
                   <div className="flex items-center mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    <span className="mr-1">📚</span>
+                    {renderIcon('book', 'w-4 h-4 mr-1')}
                     {course.lessons} lessons
                   </div>
                   <div className="flex flex-wrap gap-1">
@@ -255,35 +257,40 @@ export function EnhancedLearningDashboard() {
                   {!isStarted ? (
                     <button
                       onClick={() => startCourse(course.id)}
-                      className={`w-full px-4 py-3 bg-gradient-to-r ${course.color} text-white rounded-lg font-semibold hover:opacity-90 transition-opacity`}
+                      className={`w-full px-4 py-3 bg-gradient-to-r ${course.color} text-white rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center`}
                     >
-                      🚀 Start Mission
+                      {renderIcon('rocket', 'w-5 h-5 mr-2')}
+                      Start Mission
                     </button>
                   ) : isCompleted ? (
                     <div className="space-y-2">
-                      <div className="w-full px-4 py-3 font-semibold text-center text-green-700 bg-green-100 rounded-lg dark:bg-green-900/20 dark:text-green-300">
-                        ✅ Mission Complete!
+                      <div className="flex items-center justify-center w-full px-4 py-3 font-semibold text-center text-green-700 bg-green-100 rounded-lg dark:bg-green-900/20 dark:text-green-300">
+                        {renderIcon('star', 'w-5 h-5 mr-2')}
+                        Mission Complete!
                       </div>
                       <Link
                         href={`/${course.id}`}
-                        className="block w-full px-4 py-2 text-center transition-colors border border-gray-300 rounded-lg dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                        className="flex items-center justify-center w-full px-4 py-2 text-center transition-colors border border-gray-300 rounded-lg dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
                       >
-                        📖 Review Content
+                        {renderIcon('book', 'w-4 h-4 mr-2')}
+                        Review Content
                       </Link>
                     </div>
                   ) : (
                     <div className="space-y-2">
                       <Link
                         href={`/${course.id}/${progress.currentLesson}`}
-                        className={`block w-full px-4 py-3 bg-gradient-to-r ${course.color} text-white rounded-lg font-semibold text-center hover:opacity-90 transition-opacity`}
+                        className={`w-full px-4 py-3 bg-gradient-to-r ${course.color} text-white rounded-lg font-semibold text-center hover:opacity-90 transition-opacity flex items-center justify-center`}
                       >
-                        📖 Continue Mission
+                        {renderIcon('book', 'w-5 h-5 mr-2')}
+                        Continue Mission
                       </Link>
                       <Link
                         href={`/${course.id}`}
-                        className="block w-full px-4 py-2 text-sm text-center transition-colors border border-gray-300 rounded-lg dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                        className="flex items-center justify-center w-full px-4 py-2 text-sm text-center transition-colors border border-gray-300 rounded-lg dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
                       >
-                        📋 View All Lessons
+                        {renderIcon('document', 'w-4 h-4 mr-2')}
+                        View All Lessons
                       </Link>
                     </div>
                   )}
@@ -297,13 +304,16 @@ export function EnhancedLearningDashboard() {
       {/* Quick Actions */}
       <div className="mt-12 text-center">
         <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-xl">
-          <h3 className="mb-4 text-lg font-semibold">🎯 Next Steps</h3>
+          <h3 className="flex items-center justify-center mb-4 text-lg font-semibold">
+            {renderIcon('target', 'w-5 h-5 mr-2')}
+            Next Steps
+          </h3>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <Link
               href="/interviews"
               className="p-4 transition-colors border border-gray-200 rounded-lg dark:border-gray-700 hover:bg-white dark:hover:bg-gray-700"
             >
-              <div className="mb-2 text-2xl">💼</div>
+              <div className="flex justify-center mb-2 text-2xl">{renderIcon('briefcase', 'w-8 h-8')}</div>
               <div className="font-semibold">Interview Prep</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Practice coding interviews</div>
             </Link>
@@ -311,7 +321,7 @@ export function EnhancedLearningDashboard() {
               href="/projects"
               className="p-4 transition-colors border border-gray-200 rounded-lg dark:border-gray-700 hover:bg-white dark:hover:bg-gray-700"
             >
-              <div className="mb-2 text-2xl">🚀</div>
+              <div className="flex justify-center mb-2 text-2xl">{renderIcon('rocket', 'w-8 h-8')}</div>
               <div className="font-semibold">Build Projects</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Apply your skills</div>
             </Link>
@@ -319,7 +329,7 @@ export function EnhancedLearningDashboard() {
               href="/resources"
               className="p-4 transition-colors border border-gray-200 rounded-lg dark:border-gray-700 hover:bg-white dark:hover:bg-gray-700"
             >
-              <div className="mb-2 text-2xl">📚</div>
+              <div className="flex justify-center mb-2 text-2xl">{renderIcon('book', 'w-8 h-8')}</div>
               <div className="font-semibold">Developer Resources</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Tools & references</div>
             </Link>
@@ -338,7 +348,7 @@ export function EnhancedLearningDashboard() {
           <div className="overflow-hidden bg-white border border-gray-200 dark:bg-gray-800 rounded-xl dark:border-gray-700">
             <div className="p-6 border-b border-gray-200 dark:border-gray-700">
               <h3 className="flex items-center text-xl font-semibold">
-                <span className="mr-2">🎓</span>
+                {renderIcon('graduation', 'w-6 h-6 mr-2')}
                 Interactive Learning Environment
               </h3>
               <p className="mt-1 text-gray-600 dark:text-gray-400">

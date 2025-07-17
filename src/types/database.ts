@@ -470,7 +470,7 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
     type: 'milestone',
     title: 'First Steps',
     description: 'Completed your first lesson!',
-    icon: '🎯',
+    icon: 'target',
     rarity: 'common',
     points: 10
   },
@@ -479,7 +479,7 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
     type: 'milestone',
     title: 'Course Master',
     description: 'Completed a full course!',
-    icon: '🏆',
+    icon: 'trophy',
     rarity: 'rare',
     points: 50
   },

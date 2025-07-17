@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { renderIcon } from '@/components/icons'
 
 const features = [
   { label: "12,847+ learners", detail: "Active community" },
@@ -97,7 +98,7 @@ export function AnimatedCTA() {
                   transition={{ duration: 0.5 }}
                   className="mr-2"
                 >
-                  🚀
+                  {renderIcon('rocket', 'w-5 h-5')}
                 </motion.span>
                 Start Interactive Demo
                 <motion.span

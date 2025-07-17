@@ -4,6 +4,7 @@ import { useSession, signIn } from 'next-auth/react'
 import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { renderIcon } from '@/components/icons'
 
 // Lazy load the heavy progress tracking component
 const LazyProgressDashboard = dynamic(() => import('@/components/progress-dashboard'), {
@@ -26,7 +27,7 @@ function AuthStatus() {
   if (!session) {
     return (
       <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-gray-700 text-center max-w-2xl mx-auto">
-        <div className="text-6xl mb-4">🎯</div>
+        <div className="text-6xl mb-4 flex justify-center">{renderIcon('target', 'w-16 h-16')}</div>
         <h3 className="text-2xl font-bold mb-4">Mission Briefing Required</h3>
         <p className="text-gray-600 dark:text-gray-400 mb-6">
           Sign in to access your personalized mission control dashboard and track your progress
@@ -48,7 +49,7 @@ function AuthStatus() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="text-center mb-8">
-        <div className="text-4xl mb-2">👨‍🚀</div>
+        <div className="text-4xl mb-2 flex justify-center">{renderIcon('star', 'w-10 h-10')}</div>
         <h3 className="text-2xl font-bold mb-2">Welcome back, {session.user?.name || 'Developer'}!</h3>
         <p className="text-gray-600 dark:text-gray-400">
           Continue your mission to professional developer status
