@@ -122,10 +122,10 @@ function TabbedHero() {
               </svg>
             </div>
             <h1 className="text-5xl font-light tracking-wide text-white sm:text-6xl">
-              Launch Your Dev Career
+              RockitCode Launch Pad
             </h1>
-            <p className="mt-4 text-xl text-slate-300 font-light">
-              Interactive coding lessons, AI assistance, and live deployment tools
+            <p className="mt-4 text-xl font-light text-slate-300">
+              Mission Control for Professional Developers
             </p>
           </div>
 
@@ -200,9 +200,9 @@ export default function HomePage() {
         <div className="px-6 mx-auto max-w-7xl lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-4xl font-light tracking-wide text-white sm:text-5xl">
-              Everything You Need to Become a Professional Developer
+              Everything You Need for Career Launch Success
             </h2>
-            <p className="mt-6 text-xl leading-8 text-slate-300 font-light">
+            <p className="mt-6 text-xl font-light leading-8 text-slate-300">
               From zero to deployed projects. Learn with interactive lessons, AI guidance, and real-world tools.
             </p>
           </div>
@@ -216,10 +216,10 @@ export default function HomePage() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                       </svg>
                     </div>
-                    <h3 className="text-lg font-medium text-white">Interactive Code Editor</h3>
+                    <h3 className="text-lg font-medium text-white">No Video Fatigue</h3>
                   </div>
-                  <p className="text-slate-300 leading-7">
-                    Write and test code directly in the browser with our Monaco-powered editor. Real-time feedback and syntax highlighting.
+                  <p className="leading-7 text-slate-300">
+                    Quick, focused concepts you can apply immediately. Content stays current - no outdated tutorials. Skip the phone-reel saturation.
                   </p>
                 </div>
               </div>
@@ -231,10 +231,10 @@ export default function HomePage() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                       </svg>
                     </div>
-                    <h3 className="text-lg font-medium text-white">AI-Powered Assistant</h3>
+                    <h3 className="text-lg font-medium text-white">Full-Stack Learning</h3>
                   </div>
-                  <p className="text-slate-300 leading-7">
-                    Get instant help with coding problems, explanations, and personalized guidance powered by advanced AI.
+                  <p className="leading-7 text-slate-300">
+                    Real projects use technology stacks, not single languages. HTML + CSS + JavaScript + React + Deploy tools working together.
                   </p>
                 </div>
               </div>
@@ -248,8 +248,8 @@ export default function HomePage() {
                     </div>
                     <h3 className="text-lg font-medium text-white">Live Deployment</h3>
                   </div>
-                  <p className="text-slate-300 leading-7">
-                    Deploy your projects live to the web instantly. Build a professional portfolio while you learn.
+                  <p className="leading-7 text-slate-300">
+                    Every line of code becomes part of your professional portfolio. Deploy immediately, impress employers.
                   </p>
                 </div>
               </div>
@@ -263,16 +263,16 @@ export default function HomePage() {
         <div className="px-6 mx-auto max-w-7xl lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-4xl font-light tracking-wide text-white sm:text-5xl">
-              Start With These Popular Courses
+              Launch Your Career With These Mission Sequences
             </h2>
-            <p className="mt-6 text-xl leading-8 text-slate-300 font-light">
+            <p className="mt-6 text-xl font-light leading-8 text-slate-300">
               Structured learning paths designed to take you from beginner to job-ready developer.
             </p>
           </div>
           <div className="grid max-w-2xl grid-cols-1 gap-6 mx-auto mt-16 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
             {[
               {
-                title: "HTML & CSS Fundamentals",
+                title: "Foundation Launch",
                 description: "Master web fundamentals with responsive design, flexbox, and modern CSS techniques.",
                 lessons: "12 lessons",
                 duration: "~3 hours",
@@ -281,7 +281,7 @@ export default function HomePage() {
                 href: "/learn/html-css"
               },
               {
-                title: "JavaScript Essentials",
+                title: "Interactive Dynamics",
                 description: "Learn modern JavaScript, DOM manipulation, and asynchronous programming.",
                 lessons: "18 lessons", 
                 duration: "~6 hours",
@@ -290,7 +290,7 @@ export default function HomePage() {
                 href: "/courses"
               },
               {
-                title: "React Development",
+                title: "Component Architecture",
                 description: "Build interactive UIs with React hooks, components, and state management.",
                 lessons: "24 lessons",
                 duration: "~10 hours", 
@@ -339,10 +339,10 @@ export default function HomePage() {
         <div className="px-6 mx-auto max-w-7xl lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-4xl font-light tracking-wide text-white sm:text-5xl">
-              Join Thousands of Successful Developers
+              Join Thousands Who've Launched Successful Careers
             </h2>
-            <p className="mt-6 text-xl leading-8 text-slate-300 font-light">
-              Our students have landed jobs at top companies and built amazing projects. You could be next.
+            <p className="mt-6 text-xl font-light leading-8 text-slate-300">
+              Our Launch Pad methodology has helped thousands transition into professional roles. Your mission starts here.
             </p>
             <div className="flex items-center justify-center mt-10 gap-x-6">
               <Link
@@ -352,9 +352,9 @@ export default function HomePage() {
                 <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-                <span className="relative">Start Your Journey</span>
+                <span className="relative">Begin Pre-Flight Check</span>
               </Link>
-              <Link href="/about" className="relative inline-block text-lg font-medium leading-6 text-slate-300 transition-colors duration-200 hover:text-blue-400 group">
+              <Link href="/about" className="relative inline-block text-lg font-medium leading-6 transition-colors duration-200 text-slate-300 hover:text-blue-400 group">
                 Learn more <span aria-hidden="true">→</span>
                 {/* Animated underline */}
                 <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full" />
