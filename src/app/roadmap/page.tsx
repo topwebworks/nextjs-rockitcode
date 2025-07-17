@@ -3,130 +3,331 @@ import { renderIcon } from '@/components/icons'
 
 export default function RoadmapPage() {
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <div className="text-6xl mb-4 flex justify-center">{renderIcon('map', 'w-16 h-16')}</div>
-        <h1 className="text-4xl font-bold mb-4">RockitCode Development Roadmap</h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400">
-          Community-driven learning platform with professional project focus
-        </p>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">
+      {/* Subtle Space Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+        {/* Subtle Stars */}
+        <div className="absolute w-1 h-1 rounded-full top-20 left-20 bg-white/60"></div>
+        <div className="absolute w-1 h-1 rounded-full top-40 right-32 bg-blue-200/40"></div>
+        <div className="absolute top-64 left-1/3 w-0.5 h-0.5 bg-white/50 rounded-full"></div>
+        <div className="absolute w-1 h-1 rounded-full bottom-40 right-20 bg-white/30"></div>
+        <div className="absolute bottom-64 left-16 w-0.5 h-0.5 bg-blue-100/40 rounded-full"></div>
       </div>
 
+      <div className="relative max-w-7xl mx-auto px-6 py-20">
+        {/* Header */}
+        <div className="text-center mb-16">
+          {/* Professional Roadmap Icon */}
+          <div className="flex justify-center mb-8">
+            <div className="relative">
+              {renderIcon('map', "w-16 h-16 text-blue-400")}
+              <div className="absolute w-3 h-3 rounded-full -top-1 -right-1 bg-green-400/80 animate-pulse"></div>
+            </div>
+          </div>
+          
+          <h1 className="text-5xl font-light mb-6 text-white tracking-wide">
+            RockitCode Development Roadmap
+          </h1>
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
+            Community-driven learning platform with professional project focus
+          </p>
+        </div>
+
       {/* Recent Major Accomplishments */}
-      <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4 flex items-center">
-          {renderIcon('trophy', 'w-5 h-5 mr-2')}
+      <div className="bg-white/[0.08] backdrop-blur-xl border border-white/[0.12] rounded-3xl p-8 mb-16 hover:bg-white/[0.12] hover:border-white/[0.2] transition-all duration-300 ease-out">
+        <h2 className="text-2xl font-medium mb-6 text-white flex items-center">
+          <div className="w-8 h-8 rounded-xl bg-yellow-500/20 border border-yellow-400/30 flex items-center justify-center mr-3">
+            {renderIcon('trophy', 'w-5 h-5 text-yellow-400')}
+          </div>
           Recent Major Accomplishments (2024-2025)
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <h4 className="font-medium mb-2">Community-First Platform:</h4>
-            <ul className="space-y-1 text-sm">
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Discord-centric support system</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Community-driven help center</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Peer-to-peer learning model</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Gamified community participation</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional footer and navigation</li>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="space-y-4">
+            <h4 className="font-medium mb-3 text-white/90 border-b border-white/[0.1] pb-2">Community-First Platform:</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Discord-centric support system
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Community-driven help center
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Peer-to-peer learning model
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Gamified community participation</li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Professional footer and navigation
+              </li>
             </ul>
           </div>
-          <div>
-            <h4 className="font-medium mb-2">Technical Infrastructure:</h4>
-            <ul className="space-y-1 text-sm">
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Interactive lesson system</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mission Control Setup lesson</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Supabase authentication</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Dynamic lesson routing</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional icon system</li>
+          <div className="space-y-4">
+            <h4 className="font-medium mb-3 text-white/90 border-b border-white/[0.1] pb-2">Technical Infrastructure:</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Interactive lesson system
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Mission Control Setup lesson
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Supabase authentication
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Dynamic lesson routing
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Professional icon system
+              </li>
             </ul>
           </div>
-          <div>
-            <h4 className="font-medium mb-2">User Experience:</h4>
-            <ul className="space-y-1 text-sm">
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Clean, professional design</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mobile-responsive layout</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Dark mode accessibility</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Community pages and FAQ</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Progress tracking system</li>
+          <div className="space-y-4">
+            <h4 className="font-medium mb-3 text-white/90 border-b border-white/[0.1] pb-2">User Experience:</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Clean, professional design
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Mobile-responsive layout
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Dark mode accessibility
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Community pages and FAQ
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Progress tracking system
+              </li>
             </ul>
           </div>
         </div>
-        <div className="mt-4 p-4 bg-emerald-100 dark:bg-emerald-900/40 rounded-lg">
-          <p className="text-sm font-medium flex items-center">
-            {renderIcon('target', 'w-4 h-4 mr-2')}
+        <div className="mt-6 p-6 bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-sm rounded-2xl">
+          <p className="text-sm font-medium flex items-center text-emerald-300">
+            <div className="w-5 h-5 rounded-lg bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center mr-3 flex-shrink-0">
+              {renderIcon('target', 'w-3 h-3 text-emerald-400')}
+            </div>
             Impact: Foundation established for community-driven platform with Discord-first support and professional project focus.
           </p>
         </div>
       </div>
 
       {/* Current Status */}
-      <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4 flex items-center">
-          {renderIcon('check', 'w-5 h-5 mr-2')}
+      <div className="bg-white/[0.08] backdrop-blur-xl border border-white/[0.12] rounded-3xl p-8 mb-16 hover:bg-white/[0.12] hover:border-white/[0.2] transition-all duration-300 ease-out">
+        <h2 className="text-2xl font-medium mb-6 text-white flex items-center">
+          <div className="w-8 h-8 rounded-xl bg-green-500/20 border border-green-400/30 flex items-center justify-center mr-3">
+            {renderIcon('check', 'w-5 h-5 text-green-400')}
+          </div>
           Phase 1: Community Foundation Complete
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <h4 className="font-medium mb-2">What We've Built:</h4>
-            <ul className="space-y-1 text-sm">
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Discord-first support model</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Community-driven help center</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Interactive lesson system</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Professional site design</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Mission Control Setup lesson</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Responsive mobile experience</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Clean navigation and footer</li>
-              <li className="flex items-center">{renderIcon('check', 'w-4 h-4 mr-2')} Community pages and FAQ</li>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-4">
+            <h4 className="font-medium mb-3 text-white/90 border-b border-white/[0.1] pb-2">What We've Built:</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Discord-first support model
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Community-driven help center
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Interactive lesson system
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Professional site design
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Mission Control Setup lesson
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Responsive mobile experience
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Clean navigation and footer
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  {renderIcon('check', 'w-3 h-3 text-green-400')}
+                </div>
+                Community pages and FAQ
+              </li>
             </ul>
           </div>
-          <div>
-            <h4 className="font-medium mb-2">Community Model Results:</h4>
-            <ul className="space-y-1 text-sm">
-              <li>✅ Discord as primary support channel</li>
-              <li>✅ Peer-to-peer learning environment</li>
-              <li>✅ Gamified community participation</li>
-              <li>✅ Professional brand identity</li>
-              <li>✅ Clean, accessible design</li>
-              <li>✅ Mobile-first responsive layout</li>
-            </ul>
+          <div className="space-y-4">
+            <h4 className="font-medium mb-3 text-white/90 border-b border-white/[0.1] pb-2">Community Model Results:</h4>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 text-xs">✅</span>
+                </div>
+                Discord as primary support channel
+              </div>
+              <div className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 text-xs">✅</span>
+                </div>
+                Peer-to-peer learning environment
+              </div>
+              <div className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 text-xs">✅</span>
+                </div>
+                Gamified community participation
+              </div>
+              <div className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 text-xs">✅</span>
+                </div>
+                Professional brand identity
+              </div>
+              <div className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 text-xs">✅</span>
+                </div>
+                Clean, accessible design
+              </div>
+              <div className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 text-xs">✅</span>
+                </div>
+                Mobile-first responsive layout
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Strategic Decision Analysis */}
-      <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4 flex items-center">
-          {renderIcon('target', 'w-5 h-5 mr-2')}
+      <div className="bg-white/[0.08] backdrop-blur-xl border border-white/[0.12] rounded-3xl p-8 mb-16 hover:bg-white/[0.12] hover:border-white/[0.2] transition-all duration-300 ease-out">
+        <h2 className="text-2xl font-medium mb-6 text-white flex items-center">
+          <div className="w-8 h-8 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center mr-3">
+            {renderIcon('target', 'w-5 h-5 text-purple-400')}
+          </div>
           Strategic Decisions & Technical Analysis
         </h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-slate-300 mb-8 leading-relaxed">
           Critical technical and business decisions that will shape Launch Pad's development approach and long-term success.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <h4 className="font-medium mb-2">Key Decision Points:</h4>
-            <ul className="space-y-1 text-sm">
-              <li>• Incremental vs. Complete Rebuild approach</li>
-              <li>• TailwindCSS vs. Custom CSS strategy</li>
-              <li>• Component architecture optimization</li>
-              <li>• Performance vs. Development speed trade-offs</li>
-              <li>• Database strategy and timeline</li>
-              <li>• Monetization approach and sustainability</li>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-4">
+            <h4 className="font-medium mb-3 text-white/90 border-b border-white/[0.1] pb-2">Key Decision Points:</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-400/60 mt-2 flex-shrink-0"></div>
+                Incremental vs. Complete Rebuild approach
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-400/60 mt-2 flex-shrink-0"></div>
+                TailwindCSS vs. Custom CSS strategy
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-400/60 mt-2 flex-shrink-0"></div>
+                Component architecture optimization
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-400/60 mt-2 flex-shrink-0"></div>
+                Performance vs. Development speed trade-offs
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-400/60 mt-2 flex-shrink-0"></div>
+                Database strategy and timeline
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-400/60 mt-2 flex-shrink-0"></div>
+                Monetization approach and sustainability
+              </li>
             </ul>
           </div>
-          <div>
-            <h4 className="font-medium mb-2">Analysis Available:</h4>
-            <ul className="space-y-1 text-sm">
-              <li className="flex items-center gap-2">
-                {renderIcon('chart', 'w-4 h-4')}
-                <Link href="/strategy-decisions" className="text-blue-600 hover:underline">Strategic Business Analysis</Link>
+          <div className="space-y-4">
+            <h4 className="font-medium mb-3 text-white/90 border-b border-white/[0.1] pb-2">Analysis Available:</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-blue-500/20 border border-blue-400/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  {renderIcon('chart', 'w-3 h-3 text-blue-400')}
+                </div>
+                <Link href="/strategy-decisions" className="text-blue-400 hover:text-blue-300 underline decoration-blue-400/50 hover:decoration-blue-300 transition-colors">
+                  Strategic Business Analysis
+                </Link>
               </li>
-              <li className="flex items-center gap-2">
-                {renderIcon('chart', 'w-4 h-4')}
-                <Link href="/database-options" className="text-blue-600 hover:underline">Database Strategy Comparison</Link>
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-blue-500/20 border border-blue-400/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  {renderIcon('chart', 'w-3 h-3 text-blue-400')}
+                </div>
+                <Link href="/database-options" className="text-blue-400 hover:text-blue-300 underline decoration-blue-400/50 hover:decoration-blue-300 transition-colors">
+                  Database Strategy Comparison
+                </Link>
               </li>
-              <li className="flex items-center gap-2">
-                {renderIcon('building', 'w-4 h-4')}
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-blue-500/20 border border-blue-400/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  {renderIcon('building', 'w-3 h-3 text-blue-400')}
+                </div>
                 <Link href="/rebuild-analysis" className="text-blue-600 hover:underline">Complete Rebuild vs. Incremental Analysis</Link>
               </li>
               <li className="flex items-center gap-2">
@@ -143,36 +344,92 @@ export default function RoadmapPage() {
       </div>
 
       {/* Phase 2: Content Expansion */}
-      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4 flex items-center">
-          {renderIcon('book', 'w-5 h-5 mr-2')}
-          Phase 2: Content Expansion (Current Priority)
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <div>
-            <h4 className="font-medium mb-2">Core Features:</h4>
-            <ul className="space-y-1 text-sm">
-              <li>🔄 Foundation course expansion</li>
-              <li>🔄 Project-based learning modules</li>
-              <li>🔄 Enhanced lesson progression</li>
-              <li>🔄 Professional portfolio projects</li>
-              <li>🔄 Career-focused curriculum</li>
-            </ul>
+      <div className="bg-white/[0.08] backdrop-blur-xl border border-white/[0.12] rounded-3xl p-8 mb-16 hover:bg-white/[0.12] hover:border-white/[0.2] transition-all duration-300 ease-out group">
+        <h2 className="text-2xl font-medium mb-6 text-white flex items-center">
+          <div className="w-8 h-8 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center mr-3">
+            {renderIcon('book', 'w-5 h-5 text-blue-400')}
           </div>
           <div>
-            <h4 className="font-medium mb-2">Technical Implementation:</h4>
-            <ul className="space-y-1 text-sm">
-              <li>• Additional interactive lessons</li>
-              <li>• Progress tracking enhancement</li>
-              <li>• Project template system</li>
-              <li>• Portfolio showcase features</li>
-              <li>• Community project sharing</li>
+            <span>Phase 2: Content Expansion</span>
+            <div className="text-sm text-blue-400 font-medium">CURRENT PRIORITY</div>
+          </div>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+          <div className="space-y-4">
+            <h4 className="font-medium mb-3 text-white/90 border-b border-white/[0.1] pb-2">Core Features:</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-orange-500/20 border border-orange-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-orange-400 text-xs">🔄</span>
+                </div>
+                Foundation course expansion
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-orange-500/20 border border-orange-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-orange-400 text-xs">🔄</span>
+                </div>
+                Project-based learning modules
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-orange-500/20 border border-orange-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-orange-400 text-xs">🔄</span>
+                </div>
+                Enhanced lesson progression
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-orange-500/20 border border-orange-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-orange-400 text-xs">🔄</span>
+                </div>
+                Professional portfolio projects
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <div className="w-5 h-5 rounded-lg bg-orange-500/20 border border-orange-400/30 flex items-center justify-center flex-shrink-0">
+                  <span className="text-orange-400 text-xs">🔄</span>
+                </div>
+                Career-focused curriculum
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-4">
+            <h4 className="font-medium mb-3 text-white/90 border-b border-white/[0.1] pb-2">Technical Implementation:</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-400/60 mt-2 flex-shrink-0"></div>
+                Additional interactive lessons
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-400/60 mt-2 flex-shrink-0"></div>
+                Progress tracking enhancement
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-400/60 mt-2 flex-shrink-0"></div>
+                Project template system
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-400/60 mt-2 flex-shrink-0"></div>
+                Portfolio showcase features
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-400/60 mt-2 flex-shrink-0"></div>
+                Community project sharing
+              </li>
             </ul>
           </div>
         </div>
-        <div className="bg-blue-100 dark:bg-blue-900/40 rounded-lg p-4">
-          <p className="text-sm"><strong>Estimated Time:</strong> 3-4 weeks</p>
-          <p className="text-sm"><strong>Impact:</strong> Complete foundation course with real-world projects</p>
+        <div className="bg-blue-500/10 border border-blue-400/20 backdrop-blur-sm rounded-2xl p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-blue-300 mb-1">
+                <strong>Estimated Time:</strong> 3-4 weeks
+              </p>
+              <p className="text-sm text-blue-300">
+                <strong>Impact:</strong> Complete foundation course with real-world projects
+              </p>
+            </div>
+            <div className="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center">
+              {renderIcon('clock', 'w-6 h-6 text-blue-400')}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -453,8 +710,8 @@ export default function RoadmapPage() {
             </ol>
           </div>
           <div>
-            <h4 className="font-medium mb-3">Next Week:</h4>
-            <ol className="space-y-1 text-sm list-decimal list-inside">
+            <h4 className="font-medium mb-3 text-white">Next Week:</h4>
+            <ol className="space-y-1 text-sm list-decimal list-inside text-slate-300">
               <li>Launch portfolio showcase system</li>
               <li>Implement advanced progress tracking</li>
               <li>Build community project sharing</li>
@@ -466,13 +723,20 @@ export default function RoadmapPage() {
 
       {/* Back to Launch Pad */}
       <div className="text-center">
-        <Link href="/" className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mr-4">
-          ← Back to Home
+        <Link href="/" className="inline-block px-8 py-4 bg-white/[0.08] backdrop-blur-xl border border-white/[0.12] text-white rounded-2xl hover:bg-white/[0.15] hover:border-white/[0.2] transition-all duration-300 ease-out mr-4 group">
+          <span className="flex items-center gap-2">
+            {renderIcon('arrow-left', "w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300")}
+            Back to Home
+          </span>
         </Link>
-        <Link href="/community" className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
-          Join Discord Community
+        <Link href="/community" className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600/80 to-blue-600/80 backdrop-blur-xl border border-purple-400/20 text-white rounded-2xl hover:from-purple-500/90 hover:to-blue-500/90 hover:border-purple-300/30 transition-all duration-300 ease-out group">
+          <span className="flex items-center gap-2">
+            Join Discord Community
+            {renderIcon('external-link', "w-4 h-4 group-hover:translate-x-1 transition-transform duration-300")}
+          </span>
         </Link>
       </div>
+    </div>
     </div>
   )
 }
