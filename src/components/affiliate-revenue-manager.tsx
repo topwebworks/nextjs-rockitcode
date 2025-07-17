@@ -154,78 +154,70 @@ export function AffiliateRevenueManager() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Active': return 'text-green-600 bg-green-100 dark:bg-green-900/20'
-      case 'Pending': return 'text-yellow-600 bg-yellow-100 dark:bg-yellow-900/20'
-      case 'Planned': return 'text-blue-600 bg-blue-100 dark:bg-blue-900/20'
-      default: return 'text-gray-600 bg-gray-100 dark:bg-gray-900/20'
+      case 'Active': return 'text-green-400 bg-green-400/10 border border-green-400/20'
+      case 'Pending': return 'text-yellow-400 bg-yellow-400/10 border border-yellow-400/20'
+      case 'Planned': return 'text-blue-400 bg-blue-400/10 border border-blue-400/20'
+      default: return 'text-slate-400 bg-slate-400/10 border border-slate-400/20'
     }
   }
 
   const getComplexityColor = (complexity: string) => {
     switch (complexity) {
-      case 'Easy': return 'text-green-600 bg-green-100 dark:bg-green-900/20'
-      case 'Medium': return 'text-yellow-600 bg-yellow-100 dark:bg-yellow-900/20'
-      case 'Hard': return 'text-red-600 bg-red-100 dark:bg-red-900/20'
-      default: return 'text-gray-600 bg-gray-100 dark:bg-gray-900/20'
+      case 'Easy': return 'text-green-400 bg-green-400/10 border border-green-400/20'
+      case 'Medium': return 'text-yellow-400 bg-yellow-400/10 border border-yellow-400/20'
+      case 'Hard': return 'text-red-400 bg-red-400/10 border border-red-400/20'
+      default: return 'text-slate-400 bg-slate-400/10 border border-slate-400/20'
     }
   }
 
   return (
-    <div className="affiliate-revenue-manager max-w-7xl mx-auto p-6">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <div className="text-5xl mb-4">💰</div>
-        <h1 className="text-4xl font-bold mb-4">Affiliate Revenue System</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400">
-          Sustaining 100% free education through transparent professional tool partnerships
-        </p>
-      </div>
-
+    <div className="max-w-7xl mx-auto">
       {/* Revenue Overview */}
-      <div className="revenue-overview bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg p-6 mb-8">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Revenue Projections</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-          <div>
-            <div className="text-3xl font-bold text-green-600">${totalMonthlyRevenue.toLocaleString()}</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Monthly Revenue</div>
-            <div className="text-xs text-gray-500">Current trajectory</div>
+      <div className="p-6 mb-8 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50">
+        <h2 className="mb-6 text-2xl font-medium text-center text-white">Revenue Projections</h2>
+        <div className="grid grid-cols-1 gap-6 text-center md:grid-cols-4">
+          <div className="p-4 border rounded-lg bg-slate-700/30 border-slate-600/50">
+            <div className="mb-2 text-3xl font-light text-green-400">${totalMonthlyRevenue.toLocaleString()}</div>
+            <div className="text-sm text-slate-300">Monthly Revenue</div>
+            <div className="text-xs text-slate-400">Current trajectory</div>
           </div>
-          <div>
-            <div className="text-3xl font-bold text-blue-600">${totalAnnualRevenue.toLocaleString()}</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Annual Revenue</div>
-            <div className="text-xs text-gray-500">Year 1 projection</div>
+          <div className="p-4 border rounded-lg bg-slate-700/30 border-slate-600/50">
+            <div className="mb-2 text-3xl font-light text-blue-400">${totalAnnualRevenue.toLocaleString()}</div>
+            <div className="text-sm text-slate-300">Annual Revenue</div>
+            <div className="text-xs text-slate-400">Year 1 projection</div>
           </div>
-          <div>
-            <div className="text-3xl font-bold text-purple-600">${(projectedYear5Revenue / 1000000).toFixed(1)}M+</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">5-Year Projection</div>
-            <div className="text-xs text-gray-500">Conservative estimate</div>
+          <div className="p-4 border rounded-lg bg-slate-700/30 border-slate-600/50">
+            <div className="mb-2 text-3xl font-light text-purple-400">${(projectedYear5Revenue / 1000000).toFixed(1)}M+</div>
+            <div className="text-sm text-slate-300">5-Year Projection</div>
+            <div className="text-xs text-slate-400">Conservative estimate</div>
           </div>
-          <div>
-            <div className="text-3xl font-bold text-orange-600">{affiliateTools.length}</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Partner Tools</div>
-            <div className="text-xs text-gray-500">Professional ecosystem</div>
+          <div className="p-4 border rounded-lg bg-slate-700/30 border-slate-600/50">
+            <div className="mb-2 text-3xl font-light text-orange-400">{affiliateTools.length}</div>
+            <div className="text-sm text-slate-300">Partner Tools</div>
+            <div className="text-xs text-slate-400">Professional ecosystem</div>
           </div>
         </div>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="tabs mb-6">
-        <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+      <div className="mb-6">
+        <div className="flex gap-1 p-1 border bg-slate-800/50 backdrop-blur-sm rounded-xl border-slate-700/50">
           {[
-            { key: 'overview', label: '📊 Overview' },
-            { key: 'tools', label: '🛠️ Partner Tools' },
-            { key: 'analytics', label: '📈 Analytics' }
+            { key: 'overview', label: 'Overview', icon: '📊' },
+            { key: 'tools', label: 'Partner Tools', icon: '🛠️' },
+            { key: 'analytics', label: 'Analytics', icon: '📈' }
           ].map(tab => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as any)}
-              className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
                 activeTab === tab.key
-                  ? 'bg-white dark:bg-gray-700 text-blue-600 shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
+                  ? 'bg-slate-700/50 text-blue-400 border border-blue-400/30'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-700/30'
               }`}
             >
-              {tab.label}
+              <span>{tab.icon}</span>
+              <span>{tab.label}</span>
             </button>
           ))}
         </div>
@@ -233,87 +225,120 @@ export function AffiliateRevenueManager() {
 
       {/* Tab Content */}
       {activeTab === 'overview' && (
-        <div className="overview-content space-y-6">
+        <div className="space-y-6">
           {/* Integration Status */}
-          <div className="integration-status grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="status-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-              <h3 className="font-semibold mb-4 flex items-center space-x-2">
-                <span className="text-green-500">✅</span>
-                <span>Active Integrations</span>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="p-6 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50">
+              <h3 className="flex items-center gap-3 mb-4 font-medium text-white">
+                <div className="flex items-center justify-center w-8 h-8 border rounded-full bg-green-500/20 border-green-400/30">
+                  <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                Active Integrations
               </h3>
-              <div className="text-2xl font-bold text-green-600 mb-2">{activeTools.length}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="mb-2 text-2xl font-light text-green-400">{activeTools.length}</div>
+              <div className="text-sm text-slate-300">
                 ${activeTools.reduce((sum, tool) => sum + tool.monthlyRevenue, 0).toLocaleString()}/month
               </div>
             </div>
 
-            <div className="status-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-              <h3 className="font-semibold mb-4 flex items-center space-x-2">
-                <span className="text-yellow-500">⏳</span>
-                <span>Pending Setup</span>
+            <div className="p-6 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50">
+              <h3 className="flex items-center gap-3 mb-4 font-medium text-white">
+                <div className="flex items-center justify-center w-8 h-8 border rounded-full bg-yellow-500/20 border-yellow-400/30">
+                  <svg className="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                Pending Setup
               </h3>
-              <div className="text-2xl font-bold text-yellow-600 mb-2">{pendingTools.length}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="mb-2 text-2xl font-light text-yellow-400">{pendingTools.length}</div>
+              <div className="text-sm text-slate-300">
                 +${pendingTools.reduce((sum, tool) => sum + tool.monthlyRevenue, 0).toLocaleString()}/month potential
               </div>
             </div>
 
-            <div className="status-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-              <h3 className="font-semibold mb-4 flex items-center space-x-2">
-                <span className="text-blue-500">📋</span>
-                <span>Planned</span>
+            <div className="p-6 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50">
+              <h3 className="flex items-center gap-3 mb-4 font-medium text-white">
+                <div className="flex items-center justify-center w-8 h-8 border rounded-full bg-blue-500/20 border-blue-400/30">
+                  <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                Planned
               </h3>
-              <div className="text-2xl font-bold text-blue-600 mb-2">{plannedTools.length}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="mb-2 text-2xl font-light text-blue-400">{plannedTools.length}</div>
+              <div className="text-sm text-slate-300">
                 +${plannedTools.reduce((sum, tool) => sum + tool.monthlyRevenue, 0).toLocaleString()}/month future
               </div>
             </div>
           </div>
 
           {/* Sustainability Model */}
-          <div className="sustainability-model bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
-            <h3 className="text-xl font-semibold mb-4">🌱 Sustainability Model</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-6 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50">
+            <h3 className="flex items-center gap-3 mb-6 text-xl font-medium text-white">
+              <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              Sustainability Model
+            </h3>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <h4 className="font-medium mb-3">Revenue Sources:</h4>
+                <h4 className="mb-3 font-medium text-blue-400">Revenue Sources:</h4>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-center space-x-2">
-                    <span className="text-green-500">•</span>
-                    <span>Professional tool upgrades (after graduation)</span>
+                  <li className="flex items-center gap-2">
+                    <svg className="flex-shrink-0 w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-300">Professional tool upgrades (after graduation)</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <span className="text-green-500">•</span>
-                    <span>Cloud services usage (AWS, Azure)</span>
+                  <li className="flex items-center gap-2">
+                    <svg className="flex-shrink-0 w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-300">Cloud services usage (AWS, Azure)</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <span className="text-green-500">•</span>
-                    <span>Enterprise team solutions</span>
+                  <li className="flex items-center gap-2">
+                    <svg className="flex-shrink-0 w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-300">Enterprise team solutions</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <span className="text-green-500">•</span>
-                    <span>Professional services partnerships</span>
+                  <li className="flex items-center gap-2">
+                    <svg className="flex-shrink-0 w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-300">Professional services partnerships</span>
                   </li>
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-medium mb-3">Free Forever Guarantee:</h4>
+                <h4 className="mb-3 font-medium text-purple-400">Free Forever Guarantee:</h4>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-center space-x-2">
-                    <span className="text-blue-500">•</span>
-                    <span>All learning content remains free</span>
+                  <li className="flex items-center gap-2">
+                    <svg className="flex-shrink-0 w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                    <span className="text-slate-300">All learning content remains free</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <span className="text-blue-500">•</span>
-                    <span>Student tiers of tools always free</span>
+                  <li className="flex items-center gap-2">
+                    <svg className="flex-shrink-0 w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                    <span className="text-slate-300">Student tiers of tools always free</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <span className="text-blue-500">•</span>
-                    <span>No paywalls on core features</span>
+                  <li className="flex items-center gap-2">
+                    <svg className="flex-shrink-0 w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                    <span className="text-slate-300">No paywalls on core features</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <span className="text-blue-500">•</span>
-                    <span>Transparent upgrade recommendations only</span>
+                  <li className="flex items-center gap-2">
+                    <svg className="flex-shrink-0 w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                    <span className="text-slate-300">Transparent upgrade recommendations only</span>
                   </li>
                 </ul>
               </div>
@@ -323,58 +348,60 @@ export function AffiliateRevenueManager() {
       )}
 
       {activeTab === 'tools' && (
-        <div className="tools-content">
-          <div className="tools-grid grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {affiliateTools.map((tool) => (
-              <div key={tool.id} className="tool-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+              <div key={tool.id} className="p-6 transition-all duration-300 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50 hover:border-blue-400/30">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold mb-2">{tool.name}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{tool.description}</p>
+                    <h3 className="mb-2 text-lg font-medium text-white">{tool.name}</h3>
+                    <p className="mb-3 text-sm text-slate-300">{tool.description}</p>
                     
-                    <div className="flex items-center space-x-2 mb-3">
-                      <span className={`text-xs px-2 py-1 rounded ${getStatusColor(tool.integrationStatus)}`}>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`text-xs px-3 py-1 rounded-full font-medium ${getStatusColor(tool.integrationStatus)}`}>
                         {tool.integrationStatus}
                       </span>
-                      <span className={`text-xs px-2 py-1 rounded ${getComplexityColor(tool.setupComplexity)}`}>
+                      <span className={`text-xs px-3 py-1 rounded-full font-medium ${getComplexityColor(tool.setupComplexity)}`}>
                         {tool.setupComplexity} Setup
                       </span>
-                      <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">
+                      <span className="px-3 py-1 text-xs font-medium rounded-full bg-slate-700/50 text-slate-300 border border-slate-600/50">
                         {tool.category}
                       </span>
                     </div>
                   </div>
                   
-                  <div className="text-right">
-                    <div className="text-lg font-bold text-green-600">
+                  <div className="ml-4 text-right">
+                    <div className="text-lg font-medium text-green-400">
                       ${tool.monthlyRevenue.toLocaleString()}
                     </div>
-                    <div className="text-xs text-gray-500">monthly</div>
+                    <div className="text-xs text-slate-400">monthly</div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 text-sm mb-4">
+                <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
                   <div>
-                    <span className="font-medium">Student:</span> {tool.studentPrice}
+                    <span className="font-medium text-blue-400">Student:</span> <span className="text-slate-300">{tool.studentPrice}</span>
                   </div>
                   <div>
-                    <span className="font-medium">Pro:</span> {tool.professionalPrice}
+                    <span className="font-medium text-purple-400">Pro:</span> <span className="text-slate-300">{tool.professionalPrice}</span>
                   </div>
                   <div>
-                    <span className="font-medium">Commission:</span> {tool.affiliateCommission}
+                    <span className="font-medium text-green-400">Commission:</span> <span className="text-slate-300">{tool.affiliateCommission}</span>
                   </div>
                   <div>
-                    <span className="font-medium">Conversions:</span> {tool.estimatedConversions}/month
+                    <span className="font-medium text-orange-400">Conversions:</span> <span className="text-slate-300">{tool.estimatedConversions}/month</span>
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="font-medium mb-2 text-sm">Key Benefits:</h4>
-                  <ul className="text-xs space-y-1">
+                  <h4 className="mb-2 text-sm font-medium text-yellow-400">Key Benefits:</h4>
+                  <ul className="space-y-1 text-xs">
                     {tool.benefits.map((benefit, index) => (
-                      <li key={index} className="flex items-center space-x-2">
-                        <span className="text-green-500">✓</span>
-                        <span>{benefit}</span>
+                      <li key={index} className="flex items-center gap-2">
+                        <svg className="flex-shrink-0 w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-slate-300">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -386,12 +413,17 @@ export function AffiliateRevenueManager() {
       )}
 
       {activeTab === 'analytics' && (
-        <div className="analytics-content">
-          <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <h3 className="text-xl font-semibold mb-4">📈 Revenue Analytics</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <div className="p-6 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50">
+            <h3 className="flex items-center gap-3 mb-6 text-xl font-medium text-white">
+              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+              Revenue Analytics
+            </h3>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <h4 className="font-medium mb-3">Monthly Revenue by Category:</h4>
+                <h4 className="mb-4 font-medium text-green-400">Monthly Revenue by Category:</h4>
                 <div className="space-y-3">
                   {['AI Development', 'Cloud Computing', 'Hosting & Deployment', 'Development Tools', 'Design Tools', 'Version Control', 'E-commerce'].map(category => {
                     const categoryRevenue = affiliateTools
@@ -401,9 +433,9 @@ export function AffiliateRevenueManager() {
                     if (categoryRevenue === 0) return null
                     
                     return (
-                      <div key={category} className="flex justify-between items-center">
-                        <span className="text-sm">{category}</span>
-                        <span className="font-medium">${categoryRevenue.toLocaleString()}</span>
+                      <div key={category} className="flex items-center justify-between p-3 border rounded-lg bg-slate-700/30 border-slate-600/50">
+                        <span className="text-sm text-slate-300">{category}</span>
+                        <span className="font-medium text-green-400">${categoryRevenue.toLocaleString()}</span>
                       </div>
                     )
                   })}
@@ -411,23 +443,23 @@ export function AffiliateRevenueManager() {
               </div>
               
               <div>
-                <h4 className="font-medium mb-3">Growth Projections:</h4>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
-                    <span>Year 1:</span>
-                    <span className="font-medium">${totalAnnualRevenue.toLocaleString()}</span>
+                <h4 className="mb-4 font-medium text-purple-400">Growth Projections:</h4>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 border rounded-lg bg-slate-700/30 border-slate-600/50">
+                    <span className="text-sm text-slate-300">Year 1:</span>
+                    <span className="font-medium text-blue-400">${totalAnnualRevenue.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Year 2:</span>
-                    <span className="font-medium">${(totalAnnualRevenue * 2.5).toLocaleString()}</span>
+                  <div className="flex items-center justify-between p-3 border rounded-lg bg-slate-700/30 border-slate-600/50">
+                    <span className="text-sm text-slate-300">Year 2:</span>
+                    <span className="font-medium text-purple-400">${(totalAnnualRevenue * 2.5).toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Year 3:</span>
-                    <span className="font-medium">${(totalAnnualRevenue * 4).toLocaleString()}</span>
+                  <div className="flex items-center justify-between p-3 border rounded-lg bg-slate-700/30 border-slate-600/50">
+                    <span className="text-sm text-slate-300">Year 3:</span>
+                    <span className="font-medium text-orange-400">${(totalAnnualRevenue * 4).toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Year 5:</span>
-                    <span className="font-medium">${(projectedYear5Revenue / 1000000).toFixed(1)}M+</span>
+                  <div className="flex items-center justify-between p-3 border rounded-lg bg-slate-700/30 border-slate-600/50">
+                    <span className="text-sm text-slate-300">Year 5:</span>
+                    <span className="font-medium text-green-400">${(projectedYear5Revenue / 1000000).toFixed(1)}M+</span>
                   </div>
                 </div>
               </div>
