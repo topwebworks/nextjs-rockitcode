@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { foundationCourse } from '@/data/foundation-course'
+import { renderIcon } from '@/components/icons'
 
 export const metadata: Metadata = {
   title: 'Foundation Course: Design to Code Fundamentals | RockitCode',
@@ -9,34 +10,53 @@ export const metadata: Metadata = {
 
 export default function FoundationCoursePage() {
   return (
-    <div className="min-h-screen py-12 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-4xl px-4 mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">
+      {/* Subtle Space Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+        {/* Subtle Stars */}
+        <div className="absolute w-1 h-1 rounded-full top-20 left-20 bg-white/60"></div>
+        <div className="absolute w-1 h-1 rounded-full top-40 right-32 bg-blue-200/40"></div>
+        <div className="absolute top-64 left-1/3 w-0.5 h-0.5 bg-white/50 rounded-full"></div>
+        <div className="absolute w-1 h-1 rounded-full bottom-40 right-20 bg-white/30"></div>
+        <div className="absolute bottom-64 left-16 w-0.5 h-0.5 bg-blue-100/40 rounded-full"></div>
+      </div>
+
+      <div className="relative max-w-7xl px-6 mx-auto py-20">
         {/* Course Header */}
-        <div className="mb-12 text-center">
-          <div className="inline-flex items-center px-4 py-2 mb-4 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-200">
-            Foundation Course
+        <div className="text-center mb-16">
+          {/* Professional Foundation Icon */}
+          <div className="flex justify-center mb-8">
+            <div className="relative">
+              {renderIcon('building', "w-16 h-16 text-blue-400")}
+              <div className="absolute w-3 h-3 rounded-full -top-1 -right-1 bg-green-400/80 animate-pulse"></div>
+            </div>
           </div>
           
-          <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-slate-700/50 inline-block mb-6">
+            <span className="text-slate-300 font-medium">Foundation Course</span>
+          </div>
+          
+          <h1 className="text-5xl font-light mb-6 text-white tracking-wide">
             {foundationCourse.title}
           </h1>
           
-          <p className="max-w-2xl mx-auto mb-8 text-xl text-gray-600 dark:text-gray-400">
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8 font-light">
             {foundationCourse.description}
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <div className="px-4 py-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-              <span className="text-sm text-gray-500">Duration:</span>
-              <span className="ml-2 font-semibold text-gray-900 dark:text-white">{foundationCourse.duration}</span>
+            <div className="bg-white/[0.08] backdrop-blur-xl rounded-xl px-6 py-3 border border-white/[0.12]">
+              <span className="text-slate-400 text-sm">Duration:</span>
+              <span className="ml-2 font-semibold text-white">{foundationCourse.duration}</span>
             </div>
-            <div className="px-4 py-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-              <span className="text-sm text-gray-500">Level:</span>
-              <span className="ml-2 font-semibold text-gray-900 capitalize dark:text-white">{foundationCourse.level}</span>
+            <div className="bg-white/[0.08] backdrop-blur-xl rounded-xl px-6 py-3 border border-white/[0.12]">
+              <span className="text-slate-400 text-sm">Level:</span>
+              <span className="ml-2 font-semibold text-white capitalize">{foundationCourse.level}</span>
             </div>
-            <div className="px-4 py-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-              <span className="text-sm text-gray-500">Lessons:</span>
-              <span className="ml-2 font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white/[0.08] backdrop-blur-xl rounded-xl px-6 py-3 border border-white/[0.12]">
+              <span className="text-slate-400 text-sm">Lessons:</span>
+              <span className="ml-2 font-semibold text-white">
                 {foundationCourse.milestones.reduce((total, milestone) => total + milestone.lessons.length, 0)}
               </span>
             </div>
@@ -44,31 +64,32 @@ export default function FoundationCoursePage() {
         </div>
         
         {/* Project Showcase */}
-        <div className="p-8 mb-12 text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl">
+        <div className="bg-white/[0.06] backdrop-blur-xl rounded-2xl border border-white/[0.1] p-12 mb-16 shadow-2xl">
           <div className="text-center">
-            <h2 className="mb-4 text-3xl font-bold">Build: {foundationCourse.project.name}</h2>
-            <p className="max-w-2xl mx-auto mb-6 text-lg text-blue-100">
+            <h2 className="text-4xl font-light text-white mb-6">Build: {foundationCourse.project.name}</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-8"></div>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed font-light">
               {foundationCourse.project.description}
             </p>
             
-            <div className="grid gap-6 text-left md:grid-cols-2">
-              <div className="p-6 rounded-lg bg-white/10">
-                <h3 className="mb-3 text-lg font-semibold">What You'll Build</h3>
-                <p className="text-blue-100">{foundationCourse.project.finalResult}</p>
+            <div className="grid gap-8 text-left md:grid-cols-2 mb-8">
+              <div className="bg-white/[0.08] backdrop-blur-xl rounded-xl p-8 border border-white/[0.12]">
+                <h3 className="text-xl font-semibold text-white mb-4">What You'll Build</h3>
+                <p className="text-slate-300 leading-relaxed">{foundationCourse.project.finalResult}</p>
               </div>
-              <div className="p-6 rounded-lg bg-white/10">
-                <h3 className="mb-3 text-lg font-semibold">Portfolio Value</h3>
-                <p className="text-blue-100">{foundationCourse.project.portfolioValue}</p>
+              <div className="bg-white/[0.08] backdrop-blur-xl rounded-xl p-8 border border-white/[0.12]">
+                <h3 className="text-xl font-semibold text-white mb-4">Portfolio Value</h3>
+                <p className="text-slate-300 leading-relaxed">{foundationCourse.project.portfolioValue}</p>
               </div>
             </div>
             
-            <div className="mt-6">
-              <h3 className="mb-3 text-lg font-semibold">Technologies You'll Master</h3>
-              <div className="flex flex-wrap justify-center gap-2">
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Technologies You'll Master</h3>
+              <div className="flex flex-wrap justify-center gap-3">
                 {foundationCourse.technologies.map((tech) => (
                   <span 
                     key={tech}
-                    className="px-3 py-1 text-sm font-medium text-white rounded-full bg-white/20"
+                    className="px-4 py-2 text-sm font-medium text-white bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50"
                   >
                     {tech}
                   </span>
