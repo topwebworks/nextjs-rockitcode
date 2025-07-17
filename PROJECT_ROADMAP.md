@@ -23,6 +23,56 @@
 - **Zero-Cost Learning**: Leverage GitHub free tier + student benefits
 - **AI-Powered Learning**: Rockit provides contextual guidance and progress tracking
 
+### **🎯 NEW STRATEGIC DIRECTION: CAREER-PROJECT-LEVEL ARCHITECTURE** ✅ **APPROVED**
+
+#### **Revolutionary Learning Model**
+**ELIMINATE TRADITIONAL COURSES** → **CAREER-FIRST PROJECT PROGRESSION**
+
+```
+🚀 Launch Pad (Entry Point)
+├── 💼 Career Paths (User Intent)
+│   ├── Frontend Developer
+│   ├── Full-Stack Developer  
+│   ├── Mobile Developer
+│   └── DevOps Engineer
+├── 🎯 Project Categories (Real-World Applications)
+│   ├── Portfolio & Personal Branding
+│   ├── E-commerce & Business Apps
+│   ├── SaaS & Web Applications
+│   └── Mobile & Desktop Apps
+└── 📈 Skill Levels (GitHub Repo Progression)
+    ├── Beginner: HTML/CSS foundation
+    ├── Intermediate: + JavaScript/Frameworks
+    └── Advanced: + Backend/Deployment
+```
+
+#### **GitHub Repository Strategy**
+- **3 Repos Per Project**: `project-beginner`, `project-intermediate`, `project-advanced`
+- **Jump-In Anywhere**: Students choose skill level entry point
+- **Real Developer Workflow**: Clone, modify, commit, deploy from day one
+- **Portfolio Building**: Every repo becomes showcase material
+- **Community Contributions**: Students can improve templates
+
+#### **Career-First Navigation Benefits**
+- **Job-Focused Learning**: "What career do you want?" vs "What language?"
+- **Immediate Relevance**: Every project maps to employment outcomes
+- **Professional Setup**: GitHub, VS Code, deployment pipeline from start
+- **Skill Progression**: Clear advancement path within chosen career
+
+#### **Competitive Differentiation**
+- **Only Platform** with career → project → level progression
+- **Real GitHub Integration** vs sandbox environments  
+- **Professional Workflow** from first lesson
+- **Multi-Technology Projects** vs single-language courses
+
+### **Content Architecture & Naming Conventions** ✅ **ESTABLISHED**
+- **Courses**: Major skill areas (e.g., "Foundation Course: Start From Zero")
+- **Lessons**: Individual learning modules within courses (e.g., "VSCode Getting Started")
+- **Chapters**: Pages/sections within lessons (e.g., "Chapter 1: Installation", "Chapter 2: Workspace Setup")
+- **Blocks**: Micro-learning components within chapters (interactive exercises, code samples, quizzes)
+- **Numbering**: All IDs start from 1 (not 0) for positive user experience
+- **Routes**: Reflect chapter numbering (e.g., `/foundation/chapter-1-vscode`, `/foundation/chapter-2-git`)
+
 ---
 
 ## 🤖 **ROCKIT AI ASSISTANT: PLATFORM-WIDE LEARNING COMPANION**
@@ -343,7 +393,35 @@ The platform will launch careers by providing not just education, but complete p
 
 ---
 
-## 🎨 **DESIGN SYSTEM DOCUMENTATION**
+## � **IMMEDIATE NEXT STEPS - CAREER-PROJECT-LEVEL IMPLEMENTATION**
+
+### **Phase 1: Architecture Foundation (Week 1-2)**
+- [ ] **Update Dashboard Interface**: Replace course/lesson metrics with career/project/level tracking
+- [ ] **Create Launch Pad Landing**: Career assessment + project selection interface
+- [ ] **Design Project Structure**: Define 3-5 career paths with 4-6 projects each
+- [ ] **GitHub Organization Setup**: Create template repositories for each project/level
+
+### **Phase 2: First Career Path (Week 3-4)**
+- [ ] **Frontend Developer Path**: Complete project definitions and GitHub repos
+- [ ] **Portfolio Project Implementation**: 3 levels (beginner/intermediate/advanced)
+- [ ] **Interactive Learning Components**: Adapt existing React components to project flow
+- [ ] **Progress Tracking System**: Career milestones instead of lesson completion
+
+### **Phase 3: Launch Pad Integration (Week 5-6)**
+- [ ] **Professional Setup Workflow**: GitHub, VS Code, Git integration
+- [ ] **Affiliate Tool Recommendations**: Strategic partnerships integration
+- [ ] **Repository Management**: Clone/fork workflow for students
+- [ ] **Deployment Pipeline**: GitHub Pages automation for portfolio projects
+
+### **Critical Design Decisions Needed:**
+1. **Career Path Selection**: Which 3-5 careers to launch with?
+2. **Project Scope**: How complex should beginner/intermediate/advanced levels be?
+3. **GitHub Strategy**: Template repos vs. starter branches vs. progressive forks?
+4. **Dashboard Metrics**: What should replace course completion tracking?
+
+---
+
+## �🎨 **DESIGN SYSTEM DOCUMENTATION**
 ### **Current Implementation Status - DO NOT CHANGE**
 
 ### **Icon Family: Authentic Lucide Icons**

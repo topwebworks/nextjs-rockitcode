@@ -46,13 +46,13 @@ function MobileNavigation({
   open: boolean;
   onClose: () => void;
 }) {
-  const { data: session } = useSession();
+  const { data: session } = useSession() || { data: null };
 
   return (
     <Dialog open={open} onClose={onClose} className="lg:hidden">
       <DialogBackdrop className="fixed inset-0 bg-gray-950/25" />
       <div className="fixed inset-0 flex justify-end pl-11">
-        <DialogPanel className="w-full max-w-2xs bg-white px-4 py-5 ring ring-gray-950/10 sm:px-6 dark:bg-gray-950 dark:ring-white/10">
+        <DialogPanel className="w-full px-4 py-5 bg-white max-w-2xs ring ring-gray-950/10 sm:px-6 dark:bg-gray-950 dark:ring-white/10">
           <div className="flex justify-end">
             <CloseButton as={IconButton} onClick={onClose}>
               <CloseIcon className="stroke-gray-950 dark:stroke-white" />
@@ -77,7 +77,7 @@ function MobileNavigation({
             </div>
             
             {/* Mobile Authentication */}
-            <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
+            <div className="pt-6 mt-6 border-t border-gray-200 dark:border-gray-700">
               {/* Theme Toggle */}
               <div className="px-4 mb-4">
                 <div className="flex items-center justify-between">
@@ -96,7 +96,7 @@ function MobileNavigation({
                         <img
                           src={session.user.image}
                           alt={session.user.name || 'User avatar'}
-                          className="h-8 w-8 rounded-full border border-gray-200 dark:border-gray-700"
+                          className="w-8 h-8 border border-gray-200 rounded-full dark:border-gray-700"
                         />
                       )}
                       <div>
@@ -115,20 +115,20 @@ function MobileNavigation({
                     <CloseButton
                       as={Link}
                       href="/dashboard"
-                      className="rounded-md px-4 py-1 text-sm/7 font-semibold text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
+                      className="px-4 py-1 font-semibold rounded-md text-sm/7 text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
                     >
                       🚀 Mission Control
                     </CloseButton>
                     <CloseButton
                       as={Link}
                       href="/settings"
-                      className="rounded-md px-4 py-1 text-sm/7 font-semibold text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
+                      className="px-4 py-1 font-semibold rounded-md text-sm/7 text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
                     >
                       ⚙️ Equipment Settings
                     </CloseButton>
                     <button
                       onClick={() => signOut({ callbackUrl: '/login' })}
-                      className="rounded-md px-4 py-1 text-left text-sm/7 font-semibold text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
+                      className="px-4 py-1 font-semibold text-left rounded-md text-sm/7 text-gray-950 hover:bg-gray-950/5 dark:text-white dark:hover:bg-white/5"
                     >
                       🔐 End Mission
                     </button>
@@ -136,7 +136,7 @@ function MobileNavigation({
                 </div>
               ) : (
                 <div className="px-4">
-                  <AuthButton variant="primary" size="sm" className="w-full justify-center" />
+                  <AuthButton variant="primary" size="sm" className="justify-center w-full" />
                 </div>
               )}
             </div>
@@ -149,7 +149,7 @@ function MobileNavigation({
 
 function SiteNavigation() {
   let [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { data: session } = useSession();
+  const { data: session } = useSession() || { data: null };
 
   return (
     <nav className="flex items-center">
@@ -182,10 +182,10 @@ function SiteNavigation() {
                   <img
                     src={session.user.image}
                     alt={session.user.name || 'Mission Specialist avatar'}
-                    className="h-6 w-6 rounded-full border border-gray-200 dark:border-gray-700"
+                    className="w-6 h-6 border border-gray-200 rounded-full dark:border-gray-700"
                   />
                 )}
-                <span className="max-w-24 truncate">{session.user.name}</span>
+                <span className="truncate max-w-24">{session.user.name}</span>
               </div>
               <ChevronDownIcon className="stroke-gray-950 dark:stroke-white" />
             </DropdownButton>

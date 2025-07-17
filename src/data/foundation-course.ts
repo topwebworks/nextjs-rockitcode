@@ -110,11 +110,142 @@ export const foundationCourse: Course = {
     description: 'Professional personal portfolio with modern design and perfect code implementation',
     finalResult: 'Static portfolio website with TailwindUI-quality design, perfect performance, and professional presentation',
     portfolioValue: 'Interview-ready portfolio that demonstrates design-to-code skills and modern web development practices',
-    techStack: ['Figma', 'HTML5', 'CSS3', 'JavaScript', 'TailwindCSS', 'Git', 'Vercel'],
+    techStack: ['VSCode', 'Figma', 'HTML5', 'CSS3', 'JavaScript', 'TailwindCSS', 'Git', 'Vercel'],
     liveDemo: 'https://yourname.vercel.app',
     githubRepo: 'https://github.com/yourname/portfolio'
   },
   milestones: [
+    {
+      id: 'chapter-1',
+      title: 'Chapter 1: Development Environment Setup',
+      description: 'Master VSCode, Git, and essential development tools before coding',
+      duration: '3-4 days',
+      lessons: [
+        {
+          id: 'lesson-1-vscode-basics',
+          title: 'Lesson 1: VSCode Getting Started',
+          description: 'Learn the fundamentals of the world\'s most popular code editor with beginner-friendly lessons',
+          duration: 45,
+          difficulty: 'beginner',
+          chapters: [
+            {
+              id: 'block-1-vscode-installation',
+              title: 'Block 1: Installing VSCode',
+              description: 'Download, install, and verify VSCode setup on your system',
+              videoTimestamp: 0,
+              duration: 300,
+              concepts: ['VSCode download', 'Installation process', 'System verification'],
+              learningObjectives: [
+                'Successfully install VSCode on your operating system',
+                'Verify installation and check version',
+                'Understand VSCode\'s role in web development'
+              ]
+            },
+            {
+              id: 'block-2-workspace-setup',
+              title: 'Block 2: Workspace Management',
+              description: 'Learn to organize projects and manage workspace settings',
+              videoTimestamp: 300,
+              duration: 400,
+              concepts: ['Project folders', 'Workspace settings', 'File navigation'],
+              learningObjectives: [
+                'Open and organize project folders effectively',
+                'Configure workspace-specific settings',
+                'Navigate large codebases efficiently'
+              ]
+            },
+            {
+              id: 'block-3-extensions-management',
+              title: 'Block 3: Essential Extensions',
+              description: 'Install and configure must-have extensions for web development',
+              videoTimestamp: 700,
+              duration: 500,
+              concepts: ['Extension marketplace', 'GitHub Copilot', 'Live Server', 'Prettier'],
+              learningObjectives: [
+                'Install essential development extensions',
+                'Configure GitHub Copilot for AI assistance',
+                'Set up Live Server for instant preview'
+              ]
+            },
+            {
+              id: 'block-4-terminal-basics',
+              title: 'Block 4: Integrated Terminal',
+              description: 'Master the built-in terminal for seamless development workflow',
+              videoTimestamp: 1200,
+              duration: 400,
+              concepts: ['Terminal basics', 'Multiple sessions', 'Shell integration'],
+              learningObjectives: [
+                'Use the integrated terminal effectively',
+                'Manage multiple terminal sessions',
+                'Run development commands efficiently'
+              ]
+            },
+            {
+              id: 'block-5-devtools-integration',
+              title: 'Block 5: Browser DevTools Integration',
+              description: 'Connect VSCode with browser developer tools for live development',
+              videoTimestamp: 1600,
+              duration: 300,
+              concepts: ['Live reload', 'DevTools connection', 'Debugging setup'],
+              learningObjectives: [
+                'Set up live development workflow',
+                'Connect browser DevTools with VSCode',
+                'Configure debugging environment'
+              ]
+            }
+          ],
+          codeProject: {
+            name: 'Development Environment Setup',
+            description: 'Configure a complete VSCode development environment',
+            initialCode: '',
+            targetCode: '// VSCode fully configured with extensions and settings',
+            instructions: [
+              'Install VSCode and verify installation',
+              'Install essential extensions (Live Server, Prettier, GitHub Copilot)',
+              'Create a test project and open in VSCode',
+              'Configure workspace settings',
+              'Test terminal integration and live preview'
+            ],
+            hints: [
+              'Use code --version to verify installation',
+              'Extensions can be installed via the marketplace or command line',
+              'Live Server enables instant preview of HTML files'
+            ],
+            successCriteria: [
+              'VSCode installed and verified',
+              'Essential extensions installed and configured',
+              'Test project opens correctly',
+              'Terminal and live preview working'
+            ],
+            portfolioComponent: 'Development environment ready for portfolio creation'
+          },
+          quiz: [
+            {
+              id: 'vscode-basics',
+              question: 'What is the keyboard shortcut to open the integrated terminal in VSCode?',
+              type: 'multiple-choice',
+              options: ['Ctrl+`', 'Ctrl+T', 'Ctrl+Shift+`', 'Ctrl+Alt+T'],
+              correctAnswer: 'Ctrl+`',
+              explanation: 'Ctrl+` (backtick) is the default shortcut to toggle the integrated terminal in VSCode.',
+              hints: ['Look for the backtick key, usually above Tab', 'This shortcut toggles the terminal open/closed'],
+              maxAttempts: 3
+            }
+          ]
+        }
+      ],
+      project: {
+        component: 'Complete Development Environment',
+        description: 'Fully configured VSCode workspace ready for professional web development',
+        buildInstructions: [
+          'Install and configure VSCode with essential extensions',
+          'Set up integrated terminal and shell integration',
+          'Configure live development workflow with Live Server',
+          'Test GitHub Copilot integration',
+          'Create template project structure'
+        ],
+        portfolioIntegration: 'Development environment serves as foundation for all subsequent portfolio work'
+      }
+    },
     {
       id: 'design-foundation',
       title: 'Design Foundation',
@@ -459,7 +590,7 @@ export const foundationCourse: Course = {
     }
     // Additional milestones would be defined here...
   ],
-  duration: '6 weeks',
+  duration: '7 weeks',
   level: 'foundation',
   technologies: ['Figma', 'HTML5', 'CSS3', 'JavaScript', 'TailwindCSS', 'Git', 'Vercel']
 }

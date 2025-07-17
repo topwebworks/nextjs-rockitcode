@@ -153,13 +153,21 @@ export default function FoundationCoursePage() {
                           {lesson.chapters.length} chapters • {lesson.quiz.length} quiz questions
                         </div>
                         
-                        {/* Demo lesson link */}
+                        {/* Demo lesson links */}
                         {lesson.id === 'portfolio-strategy' && (
                           <Link
                             href="/foundation/portfolio-strategy"
                             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                           >
                             Start Lesson
+                          </Link>
+                        )}
+                        {lesson.id === 'vscode-mastery' && (
+                          <Link
+                            href="/foundation/vscode-mastery"
+                            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                          >
+                            Start VSCode Lab
                           </Link>
                         )}
                       </div>

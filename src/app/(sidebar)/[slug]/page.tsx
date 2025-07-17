@@ -25,10 +25,6 @@ export default async function LessonPage({ params }: PageProps) {
         <InteractiveLessonRenderer 
           lesson={lesson.interactiveData}
           studentId="demo-student"
-          onProgressUpdate={(progress) => {
-            console.log('Progress updated:', progress)
-            // Here you would typically save to database
-          }}
         />
       </div>
     )
