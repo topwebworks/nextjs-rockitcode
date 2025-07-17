@@ -2,18 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { 
-  UsersIcon, 
-  DiscordIcon, 
-  ChatIcon, 
-  HeartIcon, 
-  TrophyIcon, 
-  ShieldIcon, 
-  StarIcon, 
-  LightningIcon,
-  RocketIcon,
-  CheckIcon
-} from '../../components/icons'
+import { renderIcon } from '@/components/icons'
 
 export default function CommunityPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -36,7 +25,7 @@ export default function CommunityPage() {
 
   const communityFeatures = [
     {
-      icon: DiscordIcon,
+      icon: 'discord',
       title: "Discord Server",
       description: "Real-time chat, voice channels, and instant help from peers worldwide.",
       href: "https://discord.gg/rockitcode",
@@ -44,7 +33,7 @@ export default function CommunityPage() {
       stats: "2,800+ members"
     },
     {
-      icon: ChatIcon,
+      icon: 'chat',
       title: "Study Groups",
       description: "Join focused groups working on the same projects and challenges.",
       href: "/community/study-groups",
@@ -52,7 +41,7 @@ export default function CommunityPage() {
       stats: "45+ active groups"
     },
     {
-      icon: TrophyIcon,
+      icon: 'trophy',
       title: "Code Reviews",
       description: "Get feedback on your code from experienced community members.",
       href: "/community/code-reviews",
@@ -60,7 +49,7 @@ export default function CommunityPage() {
       stats: "1,200+ reviews done"
     },
     {
-      icon: RocketIcon,
+      icon: 'rocket',
       title: "Project Showcase",
       description: "Share your creations and get inspired by others' amazing projects.",
       href: "/community/showcase",
@@ -68,7 +57,7 @@ export default function CommunityPage() {
       stats: "890+ projects shared"
     },
     {
-      icon: StarIcon,
+      icon: 'star',
       title: "Success Stories",
       description: "Read about community members who landed their dream jobs.",
       href: "/community/success-stories",
@@ -76,7 +65,7 @@ export default function CommunityPage() {
       stats: "156+ job placements"
     },
     {
-      icon: HeartIcon,
+      icon: 'heart',
       title: "Mentorship",
       description: "Connect with mentors or become one yourself to help others.",
       href: "/community/mentorship",
@@ -87,19 +76,19 @@ export default function CommunityPage() {
 
   const gamificationFeatures = [
     {
-      icon: ShieldIcon,
+      icon: 'shield',
       title: "Helper Badges",
       description: "Earn recognition for helping fellow learners",
       badges: ["First Helper", "Problem Solver", "Code Reviewer", "Mentor"]
     },
     {
-      icon: LightningIcon,
+      icon: 'lightning',
       title: "XP Points",
       description: "Gain experience points for community participation",
       activities: ["Answer questions", "Share projects", "Review code", "Help beginners"]
     },
     {
-      icon: TrophyIcon,
+      icon: 'trophy',
       title: "Leaderboards",
       description: "See top contributors and celebrate community heroes",
       categories: ["Most Helpful", "Best Projects", "Active Mentor", "Rising Star"]
@@ -108,96 +97,104 @@ export default function CommunityPage() {
 
   const communityRules = [
     {
-      icon: HeartIcon,
+      icon: 'heart',
       title: "Be Kind & Supportive",
       description: "Everyone was a beginner once. Treat others with respect and patience."
     },
     {
-      icon: ChatIcon,
+      icon: 'chat',
       title: "Share Knowledge Freely",
       description: "Help others learn by sharing your experiences and solutions."
     },
     {
-      icon: CheckIcon,
+      icon: 'check',
       title: "Quality over Quantity",
       description: "Focus on providing helpful, detailed answers rather than quick responses."
     },
     {
-      icon: UsersIcon,
+      icon: 'users',
       title: "Celebrate Success",
       description: "Cheer on others' achievements and share your own wins with the community."
     }
   ]
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.1),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(139,92,246,0.1),transparent_50%)]"></div>
-        
-        {/* Cursor Light Effect */}
-        <div 
-          className="absolute transition-all duration-300 ease-out rounded-full pointer-events-none w-96 h-96"
-          style={{
-            left: mousePosition.x - 192,
-            top: mousePosition.y - 192,
-            background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(59,130,246,0.1) 35%, transparent 70%)',
-          }}
-        />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">
+      {/* Subtle Space Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+        {/* Subtle Stars */}
+        <div className="absolute w-1 h-1 rounded-full top-20 left-20 bg-white/60"></div>
+        <div className="absolute w-1 h-1 rounded-full top-40 right-32 bg-blue-200/40"></div>
+        <div className="absolute top-64 left-1/3 w-0.5 h-0.5 bg-white/50 rounded-full"></div>
+        <div className="absolute w-1 h-1 rounded-full bottom-40 right-20 bg-white/30"></div>
+        <div className="absolute bottom-64 left-16 w-0.5 h-0.5 bg-blue-100/40 rounded-full"></div>
       </div>
 
       {/* Hero Section */}
-      <section className="relative px-6 pt-20 pb-16 sm:pt-32 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 mb-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-xl">
-            <UsersIcon className="w-10 h-10 text-white" />
-          </div>
-          
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-            Where <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Learners</span>
-            <br />
-            Teach <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Learners</span>
-          </h1>
-          
-          <p className="mt-6 text-lg leading-8 text-gray-300 max-w-2xl mx-auto">
-            Join a vibrant community where coding knowledge flows freely. Get help when you're stuck, 
-            share your victories, and help others on their journey. Because the best way to learn is together.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
-            <Link
-              href="https://discord.gg/rockitcode"
-              className="group inline-flex items-center rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:from-purple-700 hover:to-pink-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all duration-200 transform hover:scale-105"
-            >
-              <DiscordIcon className="w-5 h-5 mr-2" />
-              Join Discord Server
-              <span className="ml-2 opacity-75 group-hover:opacity-100 transition-opacity">→</span>
-            </Link>
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-800/30 to-transparent"></div>
+        <div className="relative max-w-7xl mx-auto px-6 py-20">
+          <div className="text-center">
+            {/* Professional Community Icon */}
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                {renderIcon('users', "w-16 h-16 text-blue-400")}
+                <div className="absolute w-3 h-3 rounded-full -top-1 -right-1 bg-green-400/80 animate-pulse"></div>
+              </div>
+            </div>
             
-            <Link
-              href="#features"
-              className="inline-flex items-center rounded-lg border border-gray-300 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-semibold text-gray-300 hover:text-white hover:border-gray-200 transition-all duration-200"
-            >
-              Explore Features
-            </Link>
+            <h1 className="text-5xl font-light mb-6 text-white tracking-wide">
+              Where <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Learners</span>
+              <br />
+              Teach <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Learners</span>
+            </h1>
+            
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8 font-light">
+              Join a vibrant community where coding knowledge flows freely. Get help when you're stuck, 
+              share your victories, and help others on their journey. Because the best way to learn is together.
+            </p>
+
+            <div className="flex justify-center">
+              <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-slate-700/50">
+                <span className="text-slate-300 font-medium">Community-Powered Learning Network</span>
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
+              <Link
+                href="https://discord.gg/rockitcode"
+                className="group inline-flex items-center rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:from-purple-700 hover:to-pink-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all duration-200 transform hover:scale-105"
+              >
+                {renderIcon('discord', "w-5 h-5 mr-2")}
+                Join Discord Server
+                <span className="ml-2 opacity-75 group-hover:opacity-100 transition-opacity">→</span>
+              </Link>
+              
+              <Link
+                href="#features"
+                className="inline-flex items-center rounded-lg border border-gray-300 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-semibold text-gray-300 hover:text-white hover:border-gray-200 transition-all duration-200"
+              >
+                Explore Features
+              </Link>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Community Stats */}
       <section className="relative px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
-              { label: "Active Members", value: stats.members.toLocaleString(), icon: UsersIcon },
-              { label: "Questions Answered", value: stats.questionsAnswered.toLocaleString(), icon: ChatIcon },
-              { label: "Projects Shared", value: stats.projectsShared.toLocaleString(), icon: RocketIcon },
-              { label: "Success Stories", value: stats.successStories.toLocaleString(), icon: TrophyIcon }
+              { label: "Active Members", value: stats.members.toLocaleString(), icon: 'users' },
+              { label: "Questions Answered", value: stats.questionsAnswered.toLocaleString(), icon: 'chat' },
+              { label: "Projects Shared", value: stats.projectsShared.toLocaleString(), icon: 'rocket' },
+              { label: "Success Stories", value: stats.successStories.toLocaleString(), icon: 'trophy' }
             ].map((stat, index) => (
               <div key={stat.label} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg">
-                  <stat.icon className="w-6 h-6 text-white" />
+                <div className="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 shadow-lg">
+                  {renderIcon(stat.icon, "w-6 h-6 text-blue-400")}
                 </div>
                 <div className="text-2xl font-bold text-white">{stat.value}</div>
                 <div className="text-sm text-gray-400">{stat.label}</div>
@@ -211,10 +208,11 @@ export default function CommunityPage() {
       <section id="features" className="relative px-6 py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-4xl font-light text-white mb-6">
               Community-Powered Support
             </h2>
-            <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-8"></div>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
               Experience support that never sleeps. Our global community provides help, encouragement, 
               and expertise around the clock.
             </p>
@@ -225,17 +223,17 @@ export default function CommunityPage() {
               <Link 
                 key={feature.title}
                 href={feature.href}
-                className="group relative rounded-xl bg-white/5 backdrop-blur-sm border border-gray-700/50 p-8 hover:bg-white/10 hover:border-gray-600/50 transition-all duration-300 transform hover:scale-[1.02]"
+                className="group relative bg-white/[0.08] backdrop-blur-xl rounded-xl p-8 border border-white/[0.12] hover:bg-white/[0.12] hover:border-white/[0.2] transition-all duration-300 transform hover:scale-[1.02] shadow-xl"
               >
                 <div className={`inline-flex items-center justify-center w-12 h-12 mb-6 rounded-lg bg-gradient-to-r ${feature.color} shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
-                  <feature.icon className="w-6 h-6 text-white" />
+                  {renderIcon(feature.icon, "w-6 h-6 text-white")}
                 </div>
                 
                 <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-blue-300 transition-colors duration-200">
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-300 mb-4 leading-relaxed">
+                <p className="text-slate-300 mb-4 leading-relaxed">
                   {feature.description}
                 </p>
                 
@@ -253,35 +251,37 @@ export default function CommunityPage() {
       </section>
 
       {/* Gamification Section */}
-      <section className="relative px-6 py-24 bg-gradient-to-r from-purple-900/20 to-pink-900/20 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+      <section className="relative px-6 py-24 lg:px-8">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 to-pink-900/10"></div>
+        <div className="relative mx-auto max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-4xl font-light text-white mb-6">
               Earn Recognition for Helping Others
             </h2>
-            <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-8"></div>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
               Our gamification system rewards community members who go above and beyond to help others succeed.
             </p>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-3">
             {gamificationFeatures.map((feature, index) => (
-              <div key={feature.title} className="rounded-xl bg-white/5 backdrop-blur-sm border border-gray-700/50 p-8">
+              <div key={feature.title} className="bg-white/[0.08] backdrop-blur-xl rounded-xl p-8 border border-white/[0.12] shadow-xl">
                 <div className="inline-flex items-center justify-center w-12 h-12 mb-6 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 shadow-lg">
-                  <feature.icon className="w-6 h-6 text-white" />
+                  {renderIcon(feature.icon, "w-6 h-6 text-white")}
                 </div>
                 
                 <h3 className="text-xl font-semibold text-white mb-3">
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-300 mb-6">
+                <p className="text-slate-300 mb-6">
                   {feature.description}
                 </p>
                 
                 <div className="space-y-2">
                   {(feature.badges || feature.activities || feature.categories)?.map((item, idx) => (
-                    <div key={idx} className="flex items-center text-sm text-gray-400">
+                    <div key={idx} className="flex items-center text-sm text-slate-400">
                       <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 mr-3"></div>
                       {item}
                     </div>
@@ -297,10 +297,11 @@ export default function CommunityPage() {
       <section className="relative px-6 py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-4xl font-light text-white mb-6">
               Our Community Values
             </h2>
-            <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-emerald-400 mx-auto mb-8"></div>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
               These principles guide our community and help create a supportive environment for everyone.
             </p>
           </div>
@@ -308,15 +309,15 @@ export default function CommunityPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {communityRules.map((rule, index) => (
               <div key={rule.title} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 shadow-lg">
-                  <rule.icon className="w-8 h-8 text-white" />
+                <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 shadow-lg">
+                  {renderIcon(rule.icon, "w-8 h-8 text-green-400")}
                 </div>
                 
                 <h3 className="text-lg font-semibold text-white mb-3">
                   {rule.title}
                 </h3>
                 
-                <p className="text-gray-300 text-sm leading-relaxed">
+                <p className="text-slate-300 text-sm leading-relaxed">
                   {rule.description}
                 </p>
               </div>
@@ -328,12 +329,12 @@ export default function CommunityPage() {
       {/* CTA Section */}
       <section className="relative px-6 py-24 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="rounded-2xl bg-gradient-to-r from-purple-900/50 to-pink-900/50 backdrop-blur-sm border border-purple-500/20 p-12">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
+          <div className="bg-white/[0.06] backdrop-blur-xl rounded-2xl border border-white/[0.1] p-12 shadow-2xl">
+            <h2 className="text-4xl font-light text-white mb-6">
               Ready to Join Our Community?
             </h2>
             
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed font-light">
               Start your coding journey with thousands of supportive peers. Ask questions, share projects, 
               and help others while building your skills.
             </p>
@@ -343,7 +344,7 @@ export default function CommunityPage() {
                 href="https://discord.gg/rockitcode"
                 className="inline-flex items-center rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:from-purple-700 hover:to-pink-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all duration-200 transform hover:scale-105"
               >
-                <DiscordIcon className="w-6 h-6 mr-3" />
+                {renderIcon('discord', "w-6 h-6 mr-3")}
                 Join Discord Now
               </Link>
               
@@ -351,7 +352,7 @@ export default function CommunityPage() {
                 href="/learn"
                 className="inline-flex items-center rounded-lg border border-gray-300 bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold text-gray-300 hover:text-white hover:border-gray-200 transition-all duration-200"
               >
-                <RocketIcon className="w-6 h-6 mr-3" />
+                {renderIcon('rocket', "w-6 h-6 mr-3")}
                 Start Learning
               </Link>
             </div>

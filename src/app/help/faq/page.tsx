@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
-import { HelpIcon, DiscordIcon, UsersIcon } from '../../../components/icons'
+import { renderIcon } from '@/components/icons'
 
 const faqData = [
   {
@@ -96,146 +96,156 @@ export default function FAQPage() {
   const categories = faqData.map(cat => cat.category)
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.1),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(139,92,246,0.1),transparent_50%)]"></div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">
+      {/* Subtle Space Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+        {/* Subtle Stars */}
+        <div className="absolute w-1 h-1 rounded-full top-20 left-20 bg-white/60"></div>
+        <div className="absolute w-1 h-1 rounded-full top-40 right-32 bg-blue-200/40"></div>
+        <div className="absolute top-64 left-1/3 w-0.5 h-0.5 bg-white/50 rounded-full"></div>
+        <div className="absolute w-1 h-1 rounded-full bottom-40 right-20 bg-white/30"></div>
+        <div className="absolute bottom-64 left-16 w-0.5 h-0.5 bg-blue-100/40 rounded-full"></div>
       </div>
 
       {/* Header */}
-      <section className="relative px-6 pt-20 pb-16 sm:pt-32 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 mb-8 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 shadow-xl">
-            <HelpIcon className="w-10 h-10 text-white" />
-          </div>
-          
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-            Community <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">FAQ</span>
-          </h1>
-          
-          <p className="mt-6 text-lg leading-8 text-gray-300 max-w-2xl mx-auto">
-            Answers to the most common questions, curated and refined by our community members. 
-            If you don't find what you're looking for, ask on Discord!
-          </p>
-        </div>
-      </section>
-
-      {/* Quick Links */}
-      <section className="relative px-6 pb-12 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                selectedCategory === null
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-              }`}
-            >
-              All Categories
-            </button>
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                  selectedCategory === category
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Content */}
-      <section className="relative px-6 pb-24 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          {filteredFAQ.map((category, categoryIndex) => (
-            <div key={category.category} className="mb-12">
-              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mr-3">
-                  <span className="text-white font-bold text-sm">{categoryIndex + 1}</span>
-                </div>
-                {category.category}
-              </h2>
-              
-              <div className="space-y-4">
-                {category.questions.map((faq, index) => {
-                  const itemId = `${category.category}-${index}`
-                  const isOpen = openItems.has(itemId)
-                  
-                  return (
-                    <div 
-                      key={itemId}
-                      className="rounded-xl bg-white/5 backdrop-blur-sm border border-gray-700/50 overflow-hidden transition-all duration-200 hover:bg-white/10"
-                    >
-                      <button
-                        onClick={() => toggleItem(itemId)}
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white/5 transition-colors duration-200"
-                      >
-                        <h3 className="text-lg font-medium text-white pr-4">
-                          {faq.question}
-                        </h3>
-                        <div className="flex-shrink-0">
-                          {isOpen ? (
-                            <ChevronUpIcon className="w-5 h-5 text-gray-400" />
-                          ) : (
-                            <ChevronDownIcon className="w-5 h-5 text-gray-400" />
-                          )}
-                        </div>
-                      </button>
-                      
-                      {isOpen && (
-                        <div className="px-6 pb-4">
-                          <div className="pt-2 border-t border-gray-700/30">
-                            <p className="text-gray-300 leading-relaxed">
-                              {faq.answer}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )
-                })}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-800/30 to-transparent"></div>
+        <div className="relative max-w-7xl mx-auto px-6 py-20">
+          <div className="text-center">
+            {/* Professional FAQ Icon */}
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                {renderIcon('help', 'w-16 h-16 text-blue-400')}
+                <div className="absolute w-3 h-3 rounded-full -top-1 -right-1 bg-green-400/80 animate-pulse"></div>
               </div>
             </div>
+            <h1 className="text-5xl font-light mb-6 text-white tracking-wide">
+              Community Knowledge Base
+            </h1>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8 font-light">
+              Answers to the most common questions, curated and refined by our community members. 
+              If you don't find what you're looking for, ask on Discord!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Links */}
+      <div className="relative max-w-4xl mx-auto px-6 pb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <button
+            onClick={() => setSelectedCategory(null)}
+            className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+              selectedCategory === null
+                ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                : 'backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] text-slate-300 hover:bg-white/[0.12] hover:text-white'
+            }`}
+          >
+            All Categories
+          </button>
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+                selectedCategory === category
+                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                  : 'backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] text-slate-300 hover:bg-white/[0.12] hover:text-white'
+              }`}
+            >
+              {category}
+            </button>
           ))}
         </div>
-      </section>
+      </div>
 
-      {/* Community CTA */}
-      <section className="relative px-6 pb-24 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="rounded-2xl bg-gradient-to-r from-purple-900/50 to-pink-900/50 backdrop-blur-sm border border-purple-500/20 p-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg">
-              <UsersIcon className="w-8 h-8 text-white" />
+      {/* FAQ Content */}
+      <div className="relative max-w-4xl mx-auto px-6 pb-24">
+        {filteredFAQ.map((category, categoryIndex) => (
+          <div key={category.category} className="mb-16">
+            <div className="flex items-center mb-8">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center mr-4 shadow-lg">
+                <span className="text-white font-medium text-lg">{categoryIndex + 1}</span>
+              </div>
+              <h2 className="text-3xl font-light text-white tracking-wide">
+                {category.category}
+              </h2>
             </div>
             
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
+            <div className="space-y-4">
+              {category.questions.map((faq, index) => {
+                const itemId = `${category.category}-${index}`
+                const isOpen = openItems.has(itemId)
+                
+                return (
+                  <div 
+                    key={itemId}
+                    className="backdrop-blur-xl bg-white/[0.06] border border-white/[0.1] rounded-xl overflow-hidden transition-all duration-300 hover:bg-white/[0.1] hover:border-white/[0.2]"
+                  >
+                    <button
+                      onClick={() => toggleItem(itemId)}
+                      className="w-full px-6 py-6 text-left flex items-center justify-between group transition-all duration-200"
+                    >
+                      <h3 className="text-lg font-light text-white pr-4 group-hover:text-blue-300 transition-colors">
+                        {faq.question}
+                      </h3>
+                      <div className="flex-shrink-0">
+                        {isOpen ? (
+                          <ChevronUpIcon className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
+                        ) : (
+                          <ChevronDownIcon className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
+                        )}
+                      </div>
+                    </button>
+                    
+                    {isOpen && (
+                      <div className="px-6 pb-6">
+                        <div className="pt-2 border-t border-white/[0.1]">
+                          <p className="text-slate-300 leading-relaxed">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Community CTA */}
+      <div className="relative max-w-4xl mx-auto px-6 pb-24">
+        <div className="text-center">
+          <div className="backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] rounded-2xl p-12">
+            <div className="flex justify-center mb-6">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg">
+                {renderIcon('users', 'w-8 h-8 text-white')}
+              </div>
+            </div>
+            
+            <h2 className="text-4xl font-light text-white mb-6 tracking-wide">
               Didn't Find Your Answer?
             </h2>
             
-            <p className="text-lg text-gray-300 mb-8">
+            <p className="text-xl text-slate-300 mb-8 leading-relaxed font-light">
               Our community is incredibly responsive and helpful. Ask your question and usually get answers within minutes!
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="https://discord.gg/rockitcode"
-                className="inline-flex items-center rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 transform hover:scale-105"
+                className="inline-flex items-center rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-medium text-white shadow-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105"
               >
-                <DiscordIcon className="w-6 h-6 mr-3" />
+                {renderIcon('discord', 'w-6 h-6 mr-3')}
                 Ask on Discord
               </a>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   )
 }

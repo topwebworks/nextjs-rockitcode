@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { renderIcon } from '@/components/icons';
 
 export const metadata: Metadata = {
   title: 'Contact - RockitCode',
@@ -11,164 +12,208 @@ export const revalidate = 86400 // Revalidate daily
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
-      <div className="max-w-4xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Get in Touch
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400">
-            We're here to help you succeed in your coding journey
-          </p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">
+      {/* Subtle Space Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+        {/* Subtle Stars */}
+        <div className="absolute w-1 h-1 rounded-full top-20 left-20 bg-white/60"></div>
+        <div className="absolute w-1 h-1 rounded-full top-40 right-32 bg-blue-200/40"></div>
+        <div className="absolute top-64 left-1/3 w-0.5 h-0.5 bg-white/50 rounded-full"></div>
+        <div className="absolute w-1 h-1 rounded-full bottom-40 right-20 bg-white/30"></div>
+        <div className="absolute bottom-64 left-16 w-0.5 h-0.5 bg-blue-100/40 rounded-full"></div>
+      </div>
 
+      {/* Header */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-800/30 to-transparent"></div>
+        <div className="relative max-w-7xl mx-auto px-6 py-20">
+          <div className="text-center">
+            {/* Professional Contact Icon */}
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                {renderIcon('chat', 'w-16 h-16 text-blue-400')}
+                <div className="absolute w-3 h-3 rounded-full -top-1 -right-1 bg-green-400/80 animate-pulse"></div>
+              </div>
+            </div>
+            <h1 className="text-5xl font-light mb-6 text-white tracking-wide">
+              Mission Control Communication
+            </h1>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8 font-light">
+              We're here to support your developer journey. Connect with our team and community for guidance, support, and collaboration.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-6 pb-20">
         {/* Contact Options */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
           {/* Email Support */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg border border-gray-200 dark:border-gray-700">
-            <div className="text-center">
-              <div className="text-4xl mb-4">📧</div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                Email Support
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
-                Get help with technical issues, course questions, or general inquiries
-              </p>
-              <a 
-                href="mailto:support@rockitcode.com"
-                className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-              >
-                support@rockitcode.com
-              </a>
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl blur opacity-60 group-hover:opacity-80 transition-opacity"></div>
+            <div className="relative bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 hover:border-slate-600/50 transition-all duration-300">
+              <div className="text-center">
+                <div className="flex justify-center mb-6">
+                  {renderIcon('help', 'w-12 h-12 text-blue-400')}
+                </div>
+                <h3 className="text-2xl font-light text-white mb-4 tracking-wide">
+                  Email Support
+                </h3>
+                <p className="text-slate-300 mb-8 leading-relaxed">
+                  Get help with technical issues, course questions, or general inquiries
+                </p>
+                <a 
+                  href="mailto:support@rockitcode.com"
+                  className="inline-flex items-center px-8 py-4 bg-blue-600/80 backdrop-blur-sm text-white rounded-lg hover:bg-blue-600 transition-all duration-300 font-medium tracking-wide border border-blue-500/30 hover:border-blue-400/50"
+                >
+                  support@rockitcode.com
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Community Discord */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg border border-gray-200 dark:border-gray-700">
-            <div className="text-center">
-              <div className="text-4xl mb-4">💬</div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                Community Discord
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
-                Join our community of learners, get instant help, and connect with peers
-              </p>
-              <a 
-                href="#"
-                className="inline-block bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium"
-              >
-                Join Discord
-              </a>
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl blur opacity-60 group-hover:opacity-80 transition-opacity"></div>
+            <div className="relative bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 hover:border-slate-600/50 transition-all duration-300">
+              <div className="text-center">
+                <div className="flex justify-center mb-6">
+                  {renderIcon('discord', 'w-12 h-12 text-purple-400')}
+                </div>
+                <h3 className="text-2xl font-light text-white mb-4 tracking-wide">
+                  Community Discord
+                </h3>
+                <p className="text-slate-300 mb-8 leading-relaxed">
+                  Join our community of learners, get instant help, and connect with peers
+                </p>
+                <a 
+                  href="#"
+                  className="inline-flex items-center px-8 py-4 bg-purple-600/80 backdrop-blur-sm text-white rounded-lg hover:bg-purple-600 transition-all duration-300 font-medium tracking-wide border border-purple-500/30 hover:border-purple-400/50"
+                >
+                  Join Discord
+                </a>
+              </div>
             </div>
           </div>
         </div>
-
         {/* Contact Form */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg border border-gray-200 dark:border-gray-700">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-            Send us a Message
-          </h2>
-          <form className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+        <div className="relative group mb-16">
+          <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-xl blur opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          <div className="relative bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 hover:border-slate-600/50 transition-all duration-300">
+            <div className="flex items-center mb-8">
+              {renderIcon('document', 'w-8 h-8 text-green-400 mr-4')}
+              <h2 className="text-3xl font-light text-white tracking-wide">
+                Send us a Message
+              </h2>
+            </div>
+            <form className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-3 tracking-wide">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="w-full px-4 py-4 bg-slate-800/50 backdrop-blur-sm border border-slate-600/50 rounded-lg focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-white placeholder:text-slate-400 transition-all duration-300"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-3 tracking-wide">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="w-full px-4 py-4 bg-slate-800/50 backdrop-blur-sm border border-slate-600/50 rounded-lg focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-white placeholder:text-slate-400 transition-all duration-300"
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+              
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Name
+                <label htmlFor="subject" className="block text-sm font-medium text-slate-300 mb-3 tracking-wide">
+                  Subject
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                  placeholder="Your name"
+                  id="subject"
+                  name="subject"
+                  className="w-full px-4 py-4 bg-slate-800/50 backdrop-blur-sm border border-slate-600/50 rounded-lg focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-white placeholder:text-slate-400 transition-all duration-300"
+                  placeholder="What can we help you with?"
                 />
               </div>
+              
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Email
+                <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-3 tracking-wide">
+                  Message
                 </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                  placeholder="your@email.com"
-                />
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={6}
+                  className="w-full px-4 py-4 bg-slate-800/50 backdrop-blur-sm border border-slate-600/50 rounded-lg focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-white placeholder:text-slate-400 transition-all duration-300 resize-none"
+                  placeholder="Tell us more about your question or issue..."
+                ></textarea>
               </div>
-            </div>
-            
-            <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                placeholder="What can we help you with?"
-              />
-            </div>
-            
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={6}
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                placeholder="Tell us more about your question or issue..."
-              ></textarea>
-            </div>
-            
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg"
-            >
-              Send Message
-            </button>
-          </form>
+              
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium text-lg tracking-wide border border-blue-500/30 hover:border-blue-400/50 backdrop-blur-sm"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
         </div>
 
         {/* FAQ Section */}
-        <div className="mt-12 bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg border border-gray-200 dark:border-gray-700">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                Is RockitCode really free?
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Yes! Our core platform is 100% free forever. We believe everyone should have access to quality coding education.
-              </p>
+        <div className="relative group">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-orange-500/20 rounded-xl blur opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          <div className="relative bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 hover:border-slate-600/50 transition-all duration-300">
+            <div className="flex items-center mb-8">
+              {renderIcon('star', 'w-8 h-8 text-orange-400 mr-4')}
+              <h2 className="text-3xl font-light text-white tracking-wide">
+                Frequently Asked Questions
+              </h2>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                Do I need any prior experience?
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Not at all! Our courses start from the absolute basics and guide you step-by-step to become a professional developer.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                How long does it take to complete a course?
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                It depends on your pace and the course. Most students complete our beginner courses in 2-4 weeks with consistent practice.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                Can I get a certificate?
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Yes! You'll receive a completion certificate for each course that you can add to your LinkedIn profile and resume.
-              </p>
+            <div className="space-y-8">
+              <div className="border-l-4 border-blue-400/50 pl-6">
+                <h3 className="text-xl font-medium text-white mb-3 tracking-wide">
+                  Is RockitCode really free?
+                </h3>
+                <p className="text-slate-300 leading-relaxed">
+                  Yes! Our core platform is 100% free forever. We believe everyone should have access to quality coding education.
+                </p>
+              </div>
+              <div className="border-l-4 border-purple-400/50 pl-6">
+                <h3 className="text-xl font-medium text-white mb-3 tracking-wide">
+                  Do I need any prior experience?
+                </h3>
+                <p className="text-slate-300 leading-relaxed">
+                  Not at all! Our courses start from the absolute basics and guide you step-by-step to become a professional developer.
+                </p>
+              </div>
+              <div className="border-l-4 border-green-400/50 pl-6">
+                <h3 className="text-xl font-medium text-white mb-3 tracking-wide">
+                  How long does it take to complete a course?
+                </h3>
+                <p className="text-slate-300 leading-relaxed">
+                  It depends on your pace and the course. Most students complete our beginner courses in 2-4 weeks with consistent practice.
+                </p>
+              </div>
+              <div className="border-l-4 border-orange-400/50 pl-6">
+                <h3 className="text-xl font-medium text-white mb-3 tracking-wide">
+                  Can I get a certificate?
+                </h3>
+                <p className="text-slate-300 leading-relaxed">
+                  Yes! You'll receive a completion certificate for each course that you can add to your LinkedIn profile and resume.
+                </p>
+              </div>
             </div>
           </div>
         </div>
