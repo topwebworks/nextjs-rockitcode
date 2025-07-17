@@ -162,9 +162,8 @@ function RockitLogo({ className }: { className?: string }) {
 }
 
 const navigation = [
-  { name: 'Courses', href: '/courses' },
-  { name: 'Why Us', href: '/about' },
-  { name: 'Careers', href: '/launch-pad' },
+  { name: '🚀 Launch Pad', href: '/launch-pad' },
+  { name: '🌟 About RockitCode', href: '/about' },
 ]
 
 // Simple theme toggle component
@@ -271,16 +270,8 @@ function UserDropdown() {
                 onClick={() => setIsOpen(false)}
               >
                 <ToolsIcon className="w-4 h-4 mr-3" />
-                Tools
-              </Link>
-              
-              <Link
-                href="/dashboard/subscriptions"
-                className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 group"
-                onClick={() => setIsOpen(false)}
-              >
-                <AIIcon className="w-4 h-4 mr-3" />
-                AI Connect
+                Pro Tools
+                <span className="ml-auto bg-gray-600 text-white text-xs px-2 py-0.5 rounded">$200k+</span>
               </Link>
               
               <div className="border-t border-gray-200 dark:border-gray-700 mt-1 pt-1">
@@ -456,15 +447,8 @@ export function GlobalHeader() {
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <ToolsIcon className="w-4 h-4 mr-3" />
-                        Tools
-                      </Link>
-                      <Link
-                        href="/dashboard/subscriptions"
-                        className="flex items-center px-3 py-2.5 text-base font-semibold text-gray-700 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 group"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <AIIcon className="w-4 h-4 mr-3" />
-                        AI Connect
+                        Pro Tools
+                        <span className="ml-auto bg-gray-600 text-white text-xs px-2 py-0.5 rounded">$200k+</span>
                       </Link>
                       <button
                         onClick={handleSignOut}

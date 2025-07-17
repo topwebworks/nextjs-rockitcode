@@ -4,24 +4,28 @@ import { useState } from 'react'
 import { useUser } from '@/contexts/UserContext'
 import Link from 'next/link'
 
-interface LessonProgress {
+interface ProjectProgress {
   id: string
   title: string
-  course: string
+  careerPath: string
+  level: 'Beginner' | 'Intermediate' | 'Advanced'
   progress: number
   timeSpent: string
   lastAccessed: string
-  difficulty: 'Beginner' | 'Intermediate' | 'Advanced'
+  githubRepo?: string
+  deploymentUrl?: string
   status: 'not-started' | 'in-progress' | 'completed'
 }
 
-interface CourseStats {
-  totalCourses: number
-  completedCourses: number
-  inProgressCourses: number
-  totalLessons: number
-  completedLessons: number
+interface CareerStats {
+  currentCareerPath: string
+  careerProgress: number
+  totalProjects: number
+  completedProjects: number
+  inProgressProjects: number
   totalTimeSpent: string
+  skillBadges: string[]
+  githubRepos: number
 }
 
 export default function EnhancedDashboard() {
@@ -29,54 +33,63 @@ export default function EnhancedDashboard() {
   const [selectedTimeframe, setSelectedTimeframe] = useState('week')
 
   // Mock data - in production this would come from your backend
-  const courseStats: CourseStats = {
-    totalCourses: 8,
-    completedCourses: 3,
-    inProgressCourses: 2,
-    totalLessons: 127,
-    completedLessons: 45,
-    totalTimeSpent: '23.5 hours'
+  const careerStats: CareerStats = {
+    currentCareerPath: 'Frontend Developer',
+    careerProgress: 65,
+    totalProjects: 6,
+    completedProjects: 3,
+    inProgressProjects: 2,
+    totalTimeSpent: '23.5 hours',
+    skillBadges: ['HTML/CSS', 'JavaScript', 'Git/GitHub'],
+    githubRepos: 4
   }
 
-  const recentLessons: LessonProgress[] = [
+  const recentProjects: ProjectProgress[] = [
     {
-      id: 'react-hooks',
-      title: 'React Hooks Deep Dive',
-      course: 'React Development',
+      id: 'portfolio-advanced',
+      title: 'Professional Portfolio',
+      careerPath: 'Frontend Developer',
+      level: 'Advanced',
       progress: 85,
       timeSpent: '2.5 hours',
       lastAccessed: '2 hours ago',
-      difficulty: 'Intermediate',
+      githubRepo: 'portfolio-advanced',
+      deploymentUrl: 'https://your-portfolio.vercel.app',
       status: 'in-progress'
     },
     {
-      id: 'css-grid',
-      title: 'CSS Grid Layout',
-      course: 'CSS Fundamentals',
+      id: 'ecommerce-beginner',
+      title: 'E-commerce Landing Page',
+      careerPath: 'Frontend Developer',
+      level: 'Beginner',
       progress: 100,
       timeSpent: '1.8 hours',
       lastAccessed: '1 day ago',
-      difficulty: 'Beginner',
+      githubRepo: 'ecommerce-beginner',
+      deploymentUrl: 'https://your-store.netlify.app',
       status: 'completed'
     },
     {
-      id: 'api-integration',
-      title: 'REST API Integration',
-      course: 'Full-Stack Development',
+      id: 'dashboard-intermediate',
+      title: 'Analytics Dashboard',
+      careerPath: 'Frontend Developer',
+      level: 'Intermediate',
       progress: 45,
       timeSpent: '3.2 hours',
       lastAccessed: '3 days ago',
-      difficulty: 'Advanced',
+      githubRepo: 'dashboard-intermediate',
       status: 'in-progress'
     },
     {
-      id: 'git-workflow',
-      title: 'Git Workflow & Collaboration',
-      course: 'Developer Tools',
+      id: 'portfolio-beginner',
+      title: 'Basic Portfolio Site',
+      careerPath: 'Frontend Developer',
+      level: 'Beginner',
       progress: 100,
       timeSpent: '1.5 hours',
       lastAccessed: '5 days ago',
-      difficulty: 'Beginner',
+      githubRepo: 'portfolio-beginner',
+      deploymentUrl: 'https://first-portfolio.github.io',
       status: 'completed'
     }
   ]
@@ -99,8 +112,8 @@ export default function EnhancedDashboard() {
     }
   }
 
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
+  const getLevelColor = (level: string) => {
+    switch (level) {
       case 'Beginner': return 'text-green-600'
       case 'Intermediate': return 'text-yellow-600'
       case 'Advanced': return 'text-red-600'
@@ -135,16 +148,10 @@ export default function EnhancedDashboard() {
               🎯 Missions
             </Link>
             <Link 
-              href="/dashboard/subscriptions"
-              className="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20"
-            >
-              🤖 AI Tools
-            </Link>
-            <Link 
               href="/dashboard/tools"
               className="px-4 py-2 text-purple-600 border border-purple-600 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20"
             >
-              🔧 Tools
+              🔧 Pro Tools
             </Link>
           </div>
         </div>
@@ -154,34 +161,34 @@ export default function EnhancedDashboard() {
       <div className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2 lg:grid-cols-4">
         <div className="p-6 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
           <div className="flex items-center gap-3 mb-2">
-            <div className="text-blue-600">📚</div>
-            <h3 className="font-semibold">Courses</h3>
+            <div className="text-blue-600">�</div>
+            <h3 className="font-semibold">Career Progress</h3>
           </div>
           <div className="text-2xl font-bold text-blue-600">
-            {courseStats.completedCourses}/{courseStats.totalCourses}
+            {careerStats.careerProgress}%
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Completed</div>
+          <div className="text-sm text-gray-600 dark:text-gray-400">{careerStats.currentCareerPath}</div>
           <div className="w-full h-2 mt-2 bg-gray-200 rounded-full">
             <div 
               className="h-2 bg-blue-600 rounded-full" 
-              style={{ width: `${(courseStats.completedCourses / courseStats.totalCourses) * 100}%` }}
+              style={{ width: `${careerStats.careerProgress}%` }}
             ></div>
           </div>
         </div>
 
         <div className="p-6 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
           <div className="flex items-center gap-3 mb-2">
-            <div className="text-green-600">✅</div>
-            <h3 className="font-semibold">Lessons</h3>
+            <div className="text-green-600">🎯</div>
+            <h3 className="font-semibold">Projects</h3>
           </div>
           <div className="text-2xl font-bold text-green-600">
-            {courseStats.completedLessons}/{courseStats.totalLessons}
+            {careerStats.completedProjects}/{careerStats.totalProjects}
           </div>
           <div className="text-sm text-gray-600 dark:text-gray-400">Completed</div>
           <div className="w-full h-2 mt-2 bg-gray-200 rounded-full">
             <div 
               className="h-2 bg-green-600 rounded-full" 
-              style={{ width: `${(courseStats.completedLessons / courseStats.totalLessons) * 100}%` }}
+              style={{ width: `${(careerStats.completedProjects / careerStats.totalProjects) * 100}%` }}
             ></div>
           </div>
         </div>
@@ -191,17 +198,17 @@ export default function EnhancedDashboard() {
             <div className="text-purple-600">⏱️</div>
             <h3 className="font-semibold">Time Spent</h3>
           </div>
-          <div className="text-2xl font-bold text-purple-600">{courseStats.totalTimeSpent}</div>
+          <div className="text-2xl font-bold text-purple-600">{careerStats.totalTimeSpent}</div>
           <div className="text-sm text-gray-600 dark:text-gray-400">Total learning</div>
         </div>
 
         <div className="p-6 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
           <div className="flex items-center gap-3 mb-2">
-            <div className="text-orange-600">🎯</div>
-            <h3 className="font-semibold">Streak</h3>
+            <div className="text-orange-600">�</div>
+            <h3 className="font-semibold">GitHub Repos</h3>
           </div>
-          <div className="text-2xl font-bold text-orange-600">7</div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Days active</div>
+          <div className="text-2xl font-bold text-orange-600">{careerStats.githubRepos}</div>
+          <div className="text-sm text-gray-600 dark:text-gray-400">Live projects</div>
         </div>
       </div>
 
@@ -230,45 +237,65 @@ export default function EnhancedDashboard() {
           </div>
         </div>
 
-        {/* Recent Lessons */}
+        {/* Recent Projects */}
         <div className="p-6 bg-white border border-gray-200 rounded-lg lg:col-span-2 dark:bg-gray-800 dark:border-gray-700">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-semibold">Recent Lessons</h3>
+            <h3 className="text-xl font-semibold">Recent Projects</h3>
             <Link 
-              href="/foundation" 
+              href="/launch-pad" 
               className="text-sm font-medium text-blue-600 hover:text-blue-700"
             >
               View all →
             </Link>
           </div>
           <div className="space-y-4">
-            {recentLessons.map((lesson) => (
-              <div key={lesson.id} className="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50">
+            {recentProjects.map((project) => (
+              <div key={project.id} className="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <h4 className="font-medium">{lesson.title}</h4>
-                    <span className={`text-xs px-2 py-1 rounded-full ${getDifficultyColor(lesson.difficulty)}`}>
-                      {lesson.difficulty}
+                    <h4 className="font-medium">{project.title}</h4>
+                    <span className={`text-xs px-2 py-1 rounded-full ${getLevelColor(project.level)}`}>
+                      {project.level}
                     </span>
+                    {project.githubRepo && (
+                      <a 
+                        href={`https://github.com/your-username/${project.githubRepo}`}
+                        className="px-2 py-1 text-xs text-white bg-gray-600 rounded-full hover:bg-gray-700"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        📁 Repo
+                      </a>
+                    )}
+                    {project.deploymentUrl && (
+                      <a 
+                        href={project.deploymentUrl}
+                        className="px-2 py-1 text-xs text-white bg-green-600 rounded-full hover:bg-green-700"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        🚀 Live
+                      </a>
+                    )}
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">
-                    {lesson.course} • {lesson.timeSpent} • {lesson.lastAccessed}
+                    {project.careerPath} • {project.timeSpent} • {project.lastAccessed}
                   </div>
                   <div className="mt-2">
                     <div className="flex items-center gap-2">
                       <div className="flex-1 h-2 bg-gray-200 rounded-full">
                         <div 
                           className="h-2 bg-blue-600 rounded-full" 
-                          style={{ width: `${lesson.progress}%` }}
+                          style={{ width: `${project.progress}%` }}
                         ></div>
                       </div>
-                      <span className="text-sm font-medium">{lesson.progress}%</span>
+                      <span className="text-sm font-medium">{project.progress}%</span>
                     </div>
                   </div>
                 </div>
                 <div className="ml-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(lesson.status)}`}>
-                    {lesson.status.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
+                    {project.status.replace('-', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}
                   </span>
                 </div>
               </div>
@@ -282,24 +309,24 @@ export default function EnhancedDashboard() {
         <h3 className="mb-4 text-xl font-semibold">Quick Actions</h3>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
           <Link 
-            href="/courses"
+            href="/launch-pad"
             className="flex items-center gap-3 p-4 transition-colors rounded-lg bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30"
           >
-            <div className="text-2xl">📚</div>
+            <div className="text-2xl">�</div>
             <div>
-              <div className="font-medium">Browse Courses</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Find new lessons</div>
+              <div className="font-medium">Launch Pad</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Start building</div>
             </div>
           </Link>
 
           <Link 
-            href="/launch-pad"
+            href="/launch-pad/career-paths"
             className="flex items-center gap-3 p-4 transition-colors rounded-lg bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30"
           >
-            <div className="text-2xl">🚀</div>
+            <div className="text-2xl">�</div>
             <div>
-              <div className="font-medium">Launch Pad</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Practice coding</div>
+              <div className="font-medium">Career Paths</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Choose direction</div>
             </div>
           </Link>
 
@@ -310,18 +337,18 @@ export default function EnhancedDashboard() {
             <div className="text-2xl">🎯</div>
             <div>
               <div className="font-medium">Missions</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Choose objectives</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Track goals</div>
             </div>
           </Link>
 
           <Link 
-            href="/dashboard/subscriptions"
+            href="/dashboard/tools"
             className="flex items-center gap-3 p-4 transition-colors rounded-lg bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30"
           >
             <div className="text-2xl">🤖</div>
             <div>
-              <div className="font-medium">AI Assistant</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Get help coding</div>
+              <div className="font-medium">AI Tools & Pro Setup</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Professional development tools</div>
             </div>
           </Link>
 

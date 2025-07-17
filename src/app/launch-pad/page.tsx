@@ -1,10 +1,10 @@
 import React from 'react'
-import { CareerLaunchPad } from '@/components/career-launch-pad'
+import { CareerLaunchPad } from '@/components/career-launch-pad-new'
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Career Launch Pad - RockitCode Mission Control',
-  description: 'Your mission control center for launching a successful developer career. Choose paths, complete missions, and level up your skills.',
+  title: 'Launch Pad - RockitCode Mission Control',
+  description: 'Your mission control center for launching a successful developer career. Professional setup, skill progression, and career tracking all in one place.',
 };
 
 // Force static generation for better Vercel performance

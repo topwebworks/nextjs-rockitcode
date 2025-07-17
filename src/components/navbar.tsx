@@ -61,9 +61,8 @@ function MobileNavigation({
           <div className="mt-4">
             <div className="flex flex-col gap-y-2">
               {[
-                ["Course", "/"],
-                ["Interviews", "/interviews"],
-                ["Resources", "/resources"],
+                ["🚀 Launch Pad", "/launch-pad"],
+                ["🌟 About RockitCode", "/about"],
               ].map(([title, href]) => (
                 <CloseButton
                   as={Link}
@@ -161,14 +160,11 @@ function SiteNavigation() {
         onClose={() => setMobileMenuOpen(false)}
       />
       <div className="flex items-center gap-x-6 text-sm/6 text-gray-950 max-lg:hidden dark:text-white">
-        <Link href="/" className="flex items-center gap-1">
-          🚀 <span>Launch Missions</span>
+        <Link href="/launch-pad" className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          🚀 <span>Launch Pad</span>
         </Link>
-        <Link href="/interviews" className="flex items-center gap-1">
-          🎯 <span>Mission Briefings</span>
-        </Link>
-        <Link href="/resources" className="flex items-center gap-1">
-          📋 <span>Equipment</span>
+        <Link href="/about" className="flex items-center gap-1 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+          🌟 <span>About RockitCode</span>
         </Link>
         
         {/* Theme toggle for desktop */}
