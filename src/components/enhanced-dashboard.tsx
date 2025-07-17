@@ -31,17 +31,6 @@ interface CareerStats {
 export default function EnhancedDashboard() {
   const { user, profile, isLoading } = useUser()
   const [selectedTimeframe, setSelectedTimeframe] = useState('week')
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-  // Mouse tracking for cursor light effect
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
 
   // Mock data - in production this would come from your backend
   const careerStats: CareerStats = {
@@ -146,17 +135,6 @@ export default function EnhancedDashboard() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.1),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(139,92,246,0.1),transparent_50%)]"></div>
-        
-        {/* Cursor Light Effect */}
-        <div 
-          className="absolute transition-all duration-300 ease-out rounded-full pointer-events-none w-96 h-96"
-          style={{
-            left: mousePosition.x - 192,
-            top: mousePosition.y - 192,
-            background: 'radial-gradient(circle, rgba(56,189,248,0.15) 0%, rgba(56,189,248,0.08) 30%, rgba(139,92,246,0.05) 60%, transparent 100%)',
-            filter: 'blur(40px)',
-          }}
-        />
         
         <div className="absolute inset-0">
           {Array.from({ length: 50 }).map((_, i) => (
