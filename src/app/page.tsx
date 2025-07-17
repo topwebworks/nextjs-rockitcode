@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import TabbedForm from '../components/TabbedForm'
@@ -9,6 +9,18 @@ import EnhancedDashboard from '../components/enhanced-dashboard'
 import { useUser } from '@/contexts/UserContext'
 
 function TabbedHero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  // Mouse tracking for cursor light effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
   const handleRocketClick = () => {
     const rocket = document.querySelector('.rocket-svg');
     if (rocket) {
@@ -24,8 +36,38 @@ function TabbedHero() {
   }
 
   return (
-    <div className="relative bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <AnimatedBackground />
+    <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(139,92,246,0.1),transparent_50%)]"></div>
+        
+        {/* Cursor Light Effect */}
+        <div 
+          className="absolute transition-all duration-300 ease-out rounded-full pointer-events-none w-96 h-96"
+          style={{
+            left: mousePosition.x - 192,
+            top: mousePosition.y - 192,
+            background: 'radial-gradient(circle, rgba(56,189,248,0.15) 0%, rgba(56,189,248,0.08) 30%, rgba(139,92,246,0.05) 60%, transparent 100%)',
+            filter: 'blur(40px)',
+          }}
+        />
+        
+        <div className="absolute inset-0">
+          {Array.from({ length: 50 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 rounded-full bg-blue-400/20 animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
+      </div>
       <div className="relative z-10 px-6 py-16 mx-auto max-w-7xl sm:py-24 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
           {/* Logo and Title */}
@@ -37,7 +79,7 @@ function TabbedHero() {
               <svg 
                 viewBox="0 0 24 24" 
                 fill="none" 
-                className="h-16 w-16 text-blue-600 dark:text-blue-400 drop-shadow-sm transition-all duration-500 hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.6)] group-hover:scale-110 group-hover:-translate-y-2 group-hover:rotate-12 rocket-svg"
+                className="h-16 w-16 text-blue-400 drop-shadow-sm transition-all duration-500 hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.6)] group-hover:scale-110 group-hover:-translate-y-2 group-hover:rotate-12 rocket-svg"
                 style={{
                   filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.3))',
                 }}
@@ -79,10 +121,10 @@ function TabbedHero() {
                 {/* Gradient definitions removed since no flames */}
               </svg>
             </div>
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+            <h1 className="text-5xl font-light tracking-wide text-white sm:text-6xl">
               Launch Your Dev Career
             </h1>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+            <p className="mt-4 text-xl text-slate-300 font-light">
               Interactive coding lessons, AI assistance, and live deployment tools
             </p>
           </div>
@@ -97,6 +139,17 @@ function TabbedHero() {
 
 export default function HomePage() {
   const { user } = useUser()
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  // Mouse tracking for cursor light effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
 
   // If user is logged in, show dashboard content
   if (user) {
@@ -106,61 +159,99 @@ export default function HomePage() {
   // If not logged in, show marketing homepage
 
   return (
-    <div className="bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(139,92,246,0.1),transparent_50%)]"></div>
+        
+        {/* Cursor Light Effect */}
+        <div 
+          className="absolute transition-all duration-300 ease-out rounded-full pointer-events-none w-96 h-96"
+          style={{
+            left: mousePosition.x - 192,
+            top: mousePosition.y - 192,
+            background: 'radial-gradient(circle, rgba(56,189,248,0.15) 0%, rgba(56,189,248,0.08) 30%, rgba(139,92,246,0.05) 60%, transparent 100%)',
+            filter: 'blur(40px)',
+          }}
+        />
+        
+        <div className="absolute inset-0">
+          {Array.from({ length: 50 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 rounded-full bg-blue-400/20 animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
       {/* Hero with Tabbed Form */}
       <TabbedHero />
 
       {/* Feature Highlights */}
-      <div className="py-16 sm:py-24">
+      <div className="relative py-16 sm:py-24">
         <div className="px-6 mx-auto max-w-7xl lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 className="text-4xl font-light tracking-wide text-white sm:text-5xl">
               Everything You Need to Become a Professional Developer
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
+            <p className="mt-6 text-xl leading-8 text-slate-300 font-light">
               From zero to deployed projects. Learn with interactive lessons, AI guidance, and real-world tools.
             </p>
           </div>
           <div className="max-w-2xl mx-auto mt-16 sm:mt-20 lg:mt-24 lg:max-w-none">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
               <div className="flex flex-col">
-                <div className="flex items-center justify-center w-12 h-12 mb-6 bg-blue-600 rounded-lg">
-                  <svg className="h-6 w-6 text-white drop-shadow-sm transition-all duration-200 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
+                <div className="p-6 transition-all duration-300 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50 hover:border-blue-400/30">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="flex items-center justify-center w-12 h-12 border rounded-full bg-slate-700/50 border-slate-600/50">
+                      <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-medium text-white">Interactive Code Editor</h3>
+                  </div>
+                  <p className="text-slate-300 leading-7">
+                    Write and test code directly in the browser with our Monaco-powered editor. Real-time feedback and syntax highlighting.
+                  </p>
                 </div>
-                <dt className="flex items-center text-base font-semibold leading-7 text-gray-900 gap-x-3 dark:text-white">
-                  Interactive Code Editor
-                </dt>
-                <dd className="flex flex-col flex-auto mt-4 text-base leading-7 text-gray-600 dark:text-gray-400">
-                  <p className="flex-auto">Write and test code directly in the browser with our Monaco-powered editor. Real-time feedback and syntax highlighting.</p>
-                </dd>
               </div>
               <div className="flex flex-col">
-                <div className="flex items-center justify-center w-12 h-12 mb-6 bg-purple-600 rounded-lg">
-                  <svg className="h-6 w-6 text-white drop-shadow-sm transition-all duration-200 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                  </svg>
+                <div className="p-6 transition-all duration-300 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50 hover:border-purple-400/30">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="flex items-center justify-center w-12 h-12 border rounded-full bg-slate-700/50 border-slate-600/50">
+                      <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-medium text-white">AI-Powered Assistant</h3>
+                  </div>
+                  <p className="text-slate-300 leading-7">
+                    Get instant help with coding problems, explanations, and personalized guidance powered by advanced AI.
+                  </p>
                 </div>
-                <dt className="flex items-center text-base font-semibold leading-7 text-gray-900 gap-x-3 dark:text-white">
-                  AI-Powered Assistant
-                </dt>
-                <dd className="flex flex-col flex-auto mt-4 text-base leading-7 text-gray-600 dark:text-gray-400">
-                  <p className="flex-auto">Get instant help with coding problems, explanations, and personalized guidance powered by advanced AI.</p>
-                </dd>
               </div>
               <div className="flex flex-col">
-                <div className="flex items-center justify-center w-12 h-12 mb-6 bg-green-600 rounded-lg">
-                  <svg className="h-6 w-6 text-white drop-shadow-sm transition-all duration-200 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 00-8.862 12.872M12.75 3.031a9 9 0 016.69 14.036m0 0l-.177-.529A2.25 2.25 0 0017.128 15H16.5l-.324-.324a1.453 1.453 0 00-2.328.377l-.036.073a1.586 1.586 0 01-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 01-5.276 3.67m0 0a9 9 0 01-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
-                  </svg>
+                <div className="p-6 transition-all duration-300 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50 hover:border-green-400/30">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="flex items-center justify-center w-12 h-12 border rounded-full bg-slate-700/50 border-slate-600/50">
+                      <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 00-8.862 12.872M12.75 3.031a9 9 0 016.69 14.036m0 0l-.177-.529A2.25 2.25 0 0017.128 15H16.5l-.324-.324a1.453 1.453 0 00-2.328.377l-.036.073a1.586 1.586 0 01-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 01-5.276 3.67m0 0a9 9 0 01-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-medium text-white">Live Deployment</h3>
+                  </div>
+                  <p className="text-slate-300 leading-7">
+                    Deploy your projects live to the web instantly. Build a professional portfolio while you learn.
+                  </p>
                 </div>
-                <dt className="flex items-center text-base font-semibold leading-7 text-gray-900 gap-x-3 dark:text-white">
-                  Live Deployment
-                </dt>
-                <dd className="flex flex-col flex-auto mt-4 text-base leading-7 text-gray-600 dark:text-gray-400">
-                  <p className="flex-auto">Deploy your projects live to the web instantly. Build a professional portfolio while you learn.</p>
-                </dd>
               </div>
             </dl>
           </div>
@@ -168,13 +259,13 @@ export default function HomePage() {
       </div>
 
       {/* Course Preview */}
-      <div className="py-16 bg-gray-50 dark:bg-gray-800 sm:py-24">
+      <div className="relative py-16 sm:py-24">
         <div className="px-6 mx-auto max-w-7xl lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 className="text-4xl font-light tracking-wide text-white sm:text-5xl">
               Start With These Popular Courses
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
+            <p className="mt-6 text-xl leading-8 text-slate-300 font-light">
               Structured learning paths designed to take you from beginner to job-ready developer.
             </p>
           </div>
@@ -186,7 +277,7 @@ export default function HomePage() {
                 lessons: "12 lessons",
                 duration: "~3 hours",
                 level: "Beginner",
-                color: "bg-blue-600",
+                color: "bg-blue-500/20 text-blue-400 border-blue-400/30",
                 href: "/learn/html-css"
               },
               {
@@ -195,7 +286,7 @@ export default function HomePage() {
                 lessons: "18 lessons", 
                 duration: "~6 hours",
                 level: "Beginner",
-                color: "bg-yellow-600",
+                color: "bg-yellow-500/20 text-yellow-400 border-yellow-400/30",
                 href: "/courses"
               },
               {
@@ -204,28 +295,28 @@ export default function HomePage() {
                 lessons: "24 lessons",
                 duration: "~10 hours", 
                 level: "Intermediate",
-                color: "bg-purple-600",
+                color: "bg-purple-500/20 text-purple-400 border-purple-400/30",
                 href: "/courses"
               }
             ].map((course, index) => (
-              <article key={index} className="flex flex-col items-start justify-between max-w-xl p-6 transition-shadow duration-200 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600 hover:shadow-md">
+              <article key={index} className="flex flex-col items-start justify-between p-6 transition-all duration-300 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50 hover:border-blue-400/30">
                 <div className="flex items-center text-xs gap-x-4">
-                  <span className={`inline-flex items-center rounded-full ${course.color} px-2 py-1 text-xs font-medium text-white`}>
+                  <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-medium border ${course.color}`}>
                     {course.level}
                   </span>
-                  <span className="text-gray-500 dark:text-gray-400">{course.lessons}</span>
-                  <span className="text-gray-500 dark:text-gray-400">{course.duration}</span>
+                  <span className="text-slate-400">{course.lessons}</span>
+                  <span className="text-slate-400">{course.duration}</span>
                 </div>
                 <div className="relative group">
-                  <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 transition-colors duration-200 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                  <h3 className="mt-3 text-xl font-medium leading-6 text-white transition-colors duration-200 group-hover:text-blue-400">
                     <Link href={course.href} className="relative">
                       <span className="absolute inset-0" />
                       {course.title}
                       {/* Animated underline */}
-                      <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full" />
+                      <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full" />
                     </Link>
                   </h3>
-                  <p className="mt-5 text-sm leading-6 text-gray-600 line-clamp-3 dark:text-gray-400">{course.description}</p>
+                  <p className="mt-5 text-sm leading-6 text-slate-300 line-clamp-3">{course.description}</p>
                 </div>
               </article>
             ))}
@@ -233,39 +324,40 @@ export default function HomePage() {
           <div className="mt-10 text-center">
             <Link
               href="/courses"
-              className="relative inline-block text-base font-semibold leading-7 text-blue-600 transition-colors duration-200 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 group"
+              className="relative inline-block text-lg font-medium leading-7 text-blue-400 transition-colors duration-200 hover:text-blue-300 group"
             >
               View all courses <span aria-hidden="true">→</span>
               {/* Animated underline */}
-              <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full" />
+              <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full" />
             </Link>
           </div>
         </div>
       </div>
 
       {/* Social Proof & CTA */}
-      <div className="py-16 sm:py-24">
+      <div className="relative py-16 sm:py-24">
         <div className="px-6 mx-auto max-w-7xl lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 className="text-4xl font-light tracking-wide text-white sm:text-5xl">
               Join Thousands of Successful Developers
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
+            <p className="mt-6 text-xl leading-8 text-slate-300 font-light">
               Our students have landed jobs at top companies and built amazing projects. You could be next.
             </p>
             <div className="flex items-center justify-center mt-10 gap-x-6">
               <Link
                 href="/launch-pad"
-                className="relative inline-block px-6 py-3 overflow-hidden text-lg font-semibold text-white transition-all duration-300 bg-blue-600 rounded-md shadow-sm hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 group"
+                className="relative inline-flex items-center gap-2 px-8 py-4 text-lg font-medium text-white transition-all duration-300 border rounded-lg bg-slate-800/50 hover:bg-slate-700/50 border-slate-600/50 hover:border-blue-400/30 group"
               >
-                {/* Subtle shine effect */}
-                <span className="absolute inset-0 transition-transform duration-700 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:translate-x-full" />
+                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
                 <span className="relative">Start Your Journey</span>
               </Link>
-              <Link href="/about" className="relative inline-block text-lg font-semibold leading-6 text-gray-900 transition-colors duration-200 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 group">
+              <Link href="/about" className="relative inline-block text-lg font-medium leading-6 text-slate-300 transition-colors duration-200 hover:text-blue-400 group">
                 Learn more <span aria-hidden="true">→</span>
                 {/* Animated underline */}
-                <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full" />
               </Link>
             </div>
           </div>
