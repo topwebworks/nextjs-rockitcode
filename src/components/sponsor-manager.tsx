@@ -8,11 +8,11 @@ interface Sponsor {
   name: string
   logo: string
   website?: string
-  tier: 'champion' | 'learning' | 'community'
+  tier: 'basic' | 'premium' // $50/mo basic, $100/mo premium
   isActive: boolean
   joinedDate: string
   lastPayment?: string
-  monthlyAmount: number
+  monthlyAmount: number // $50 for basic, $100 for premium
 }
 
 export default function SponsorManager() {
@@ -41,22 +41,22 @@ export default function SponsorManager() {
           name: 'TechCorp Industries',
           logo: '/api/placeholder/200/100',
           website: 'https://techcorp.com',
-          tier: 'champion',
+          tier: 'premium',
           isActive: true,
           joinedDate: '2024-01-15',
           lastPayment: '2024-07-01',
-          monthlyAmount: 150
+          monthlyAmount: 100
         },
         {
           id: '2',
           name: 'Learning Foundation',
           logo: '/api/placeholder/200/100',
           website: 'https://learningfound.org',
-          tier: 'learning',
+          tier: 'basic',
           isActive: true,
           joinedDate: '2024-02-10',
           lastPayment: '2024-07-01',
-          monthlyAmount: 75
+          monthlyAmount: 50
         }
       ]
       
@@ -118,7 +118,7 @@ export default function SponsorManager() {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-white mb-2">Sponsor Management</h1>
-          <p className="text-slate-400">Manage sponsor logos and display settings</p>
+          <p className="text-slate-400">Manage sponsor logos and display settings • Basic $50/mo (sponsors page only) • Premium $100/mo (site-wide)</p>
         </div>
         <button
           onClick={() => setShowAddForm(true)}
@@ -160,11 +160,9 @@ export default function SponsorManager() {
                   <h3 className="text-lg font-semibold text-white">{sponsor.name}</h3>
                   <div className="flex items-center gap-4 text-sm text-slate-400">
                     <span className={`px-2 py-1 rounded-full text-xs ${
-                      sponsor.tier === 'champion' 
-                        ? 'bg-yellow-600/20 text-yellow-400'
-                        : sponsor.tier === 'learning'
+                      sponsor.tier === 'premium' 
                         ? 'bg-blue-600/20 text-blue-400'
-                        : 'bg-orange-600/20 text-orange-400'
+                        : 'bg-green-600/20 text-green-400'
                     }`}>
                       {sponsor.tier} • ${sponsor.monthlyAmount}/month
                     </span>

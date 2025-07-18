@@ -6,7 +6,6 @@ import Link from 'next/link'
 import TabbedForm from '../components/TabbedForm'
 import AnimatedBackground from '../components/AnimatedBackground'
 import EnhancedDashboard from '../components/enhanced-dashboard'
-import SponsorCarousel from '../components/sponsor-carousel'
 import { useUser } from '@/contexts/UserContext'
 
 function TabbedHero() {
@@ -344,23 +343,6 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Sponsors Section */}
-      <div className="relative py-6 border-t border-slate-700/50">
-        <div className="px-6 mx-auto max-w-7xl lg:px-8">
-          <div className="text-center mb-4">
-            <Link
-              href="/contributors#sponsors"
-              className="inline-block text-white font-medium text-sm px-4 py-2 rounded-lg bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50 transition-all duration-200"
-            >
-              We ❤️ our sponsors
-            </Link>
-          </div>
-          
-          {/* Single Row Sponsor Display */}
-          <SponsorCarousel tier="all" />
         </div>
       </div>
     </div>

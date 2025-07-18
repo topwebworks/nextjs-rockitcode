@@ -8,17 +8,17 @@ interface Sponsor {
   name: string
   logo: string
   website?: string
-  tier: 'champion' | 'learning' | 'community'
+  tier: 'basic' | 'premium' // $50/mo basic, $100/mo premium
   isActive: boolean
   joinedDate: string
 }
 
 interface SponsorCarouselProps {
-  tier?: 'champion' | 'learning' | 'all'
+  tier?: 'basic' | 'premium' | 'all'
   className?: string
 }
 
-export default function SponsorCarousel({ tier = 'all', className = '' }: SponsorCarouselProps) {
+export default function SponsorCarousel({ tier = 'premium', className = '' }: SponsorCarouselProps) {
   const [sponsors, setSponsors] = useState<Sponsor[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -29,7 +29,7 @@ export default function SponsorCarousel({ tier = 'all', className = '' }: Sponso
       name: 'Vercel',
       logo: 'https://www.vectorlogo.zone/logos/vercel/vercel-ar21.svg',
       website: 'https://vercel.com',
-      tier: 'champion',
+      tier: 'premium',
       isActive: true,
       joinedDate: '2024-01-15'
     },
@@ -38,7 +38,7 @@ export default function SponsorCarousel({ tier = 'all', className = '' }: Sponso
       name: 'GitHub',
       logo: 'https://www.vectorlogo.zone/logos/github/github-ar21.svg',
       website: 'https://github.com',
-      tier: 'learning',
+      tier: 'premium',
       isActive: true,
       joinedDate: '2024-02-10'
     },
@@ -47,7 +47,7 @@ export default function SponsorCarousel({ tier = 'all', className = '' }: Sponso
       name: 'Netlify',
       logo: 'https://www.vectorlogo.zone/logos/netlify/netlify-ar21.svg',
       website: 'https://netlify.com',
-      tier: 'learning',
+      tier: 'basic',
       isActive: true,
       joinedDate: '2024-03-05'
     }
@@ -90,7 +90,7 @@ export default function SponsorCarousel({ tier = 'all', className = '' }: Sponso
     return (
       <div className={`text-center py-8 ${className}`}>
         <p className="text-sm text-slate-400">
-          {tier === 'champion' ? 'Be our first champion sponsor!' : 'Be our first sponsor!'}
+          {tier === 'premium' ? 'Be our first premium sponsor!' : tier === 'basic' ? 'Be our first basic sponsor!' : 'Be our first sponsor!'}
         </p>
         <Link 
           href="/contributors#sponsors"

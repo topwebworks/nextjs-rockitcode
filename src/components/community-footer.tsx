@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import SponsorCarousel from './sponsor-carousel'
 import { DiscordIcon } from './icons'
 
 const social = [
@@ -70,21 +71,40 @@ export default function CommunityFooter() {
   }
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-800">
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+    <>
+      {/* Sponsors Section - Visually above footer but part of footer component */}
+      <div className="border-t bg-slate-900 border-slate-800/50">
+        <div className="px-6 py-8 mx-auto max-w-7xl lg:px-8">
+          <div className="mb-6 text-center">
+            <Link
+              href="/contributors#sponsors"
+              className="inline-block px-4 py-2 text-sm font-medium text-white transition-all duration-200 border rounded-lg bg-slate-800/50 hover:bg-slate-700/50 border-slate-600/30 hover:border-slate-500/50"
+            >
+              We ❤️ our sponsors
+            </Link>
+          </div>
+          
+          {/* Sponsor Carousel - Only Premium Sponsors ($100/mo) */}
+          <SponsorCarousel tier="premium" />
+        </div>
+      </div>
+
+      {/* Main Footer */}
+      <footer className="border-t bg-slate-950 border-slate-800">
+        <div className="px-6 py-12 mx-auto max-w-7xl lg:px-8">
         
         {/* Main Content */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
           
           {/* Brand Section */}
           <div className="lg:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-6 h-6 rounded bg-blue-600 flex items-center justify-center">
-                <span className="text-white font-bold text-xs">RC</span>
+            <div className="flex items-center mb-4 space-x-2">
+              <div className="flex items-center justify-center w-6 h-6 bg-blue-600 rounded">
+                <span className="text-xs font-bold text-white">RC</span>
               </div>
               <span className="text-lg font-semibold text-white">RockitCode</span>
             </div>
-            <p className="text-sm text-gray-400 mb-6 max-w-xs">
+            <p className="max-w-xs mb-6 text-sm text-gray-400">
               A community-driven platform where learners teach learners through real projects and peer collaboration.
             </p>
             
@@ -94,26 +114,26 @@ export default function CommunityFooter() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-400 hover:text-white transition-colors duration-200"
+                  className="text-gray-400 transition-colors duration-200 hover:text-white"
                 >
                   <span className="sr-only">{item.name}</span>
-                  <item.icon className="h-5 w-5" />
+                  <item.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
           </div>
 
           {/* Navigation Sections */}
-          <div className="lg:col-span-3 grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 lg:col-span-3 md:grid-cols-4">
             {navigation.map((section) => (
               <div key={section.name}>
-                <h3 className="text-sm font-medium text-white mb-4">{section.name}</h3>
+                <h3 className="mb-4 text-sm font-medium text-white">{section.name}</h3>
                 <ul className="space-y-3">
                   {section.items.map((item) => (
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                        className="text-sm text-gray-400 transition-colors duration-200 hover:text-white"
                       >
                         {item.name}
                       </Link>
@@ -126,27 +146,27 @@ export default function CommunityFooter() {
         </div>
 
         {/* Newsletter Section */}
-        <div className="mt-12 pt-8 border-t border-slate-800">
+        <div className="pt-8 mt-12 border-t border-slate-800">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
             <div className="mb-6 lg:mb-0">
-              <h3 className="text-sm font-medium text-white mb-2">Stay updated</h3>
-              <p className="text-sm text-gray-400 max-w-md">
+              <h3 className="mb-2 text-sm font-medium text-white">Stay updated</h3>
+              <p className="max-w-md text-sm text-gray-400">
                 Get the latest tutorials and community highlights delivered to your inbox.
               </p>
             </div>
             
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="px-4 py-2 text-sm bg-slate-900 border border-slate-700 rounded text-white placeholder:text-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:w-64"
+                className="px-4 py-2 text-sm text-white border rounded bg-slate-900 border-slate-700 placeholder:text-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:w-64"
                 required
               />
               <button
                 type="submit"
-                className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded transition-colors duration-200"
+                className="px-6 py-2 text-sm font-medium text-white transition-colors duration-200 bg-blue-600 rounded hover:bg-blue-700"
               >
                 Subscribe
               </button>
@@ -155,20 +175,21 @@ export default function CommunityFooter() {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col pt-6 mt-8 border-t border-slate-800 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-gray-500">
             &copy; 2025 RockitCode. Built by the community, for the community.
           </p>
-          <div className="mt-4 sm:mt-0 flex space-x-6">
-            <Link href="/legal/privacy" className="text-xs text-gray-500 hover:text-gray-400 transition-colors duration-200">
+          <div className="flex mt-4 space-x-6 sm:mt-0">
+            <Link href="/legal/privacy" className="text-xs text-gray-500 transition-colors duration-200 hover:text-gray-400">
               Privacy
             </Link>
-            <Link href="/legal/terms" className="text-xs text-gray-500 hover:text-gray-400 transition-colors duration-200">
+            <Link href="/legal/terms" className="text-xs text-gray-500 transition-colors duration-200 hover:text-gray-400">
               Terms
             </Link>
           </div>
         </div>
-      </div>
-    </footer>
+        </div>
+      </footer>
+    </>
   )
 }

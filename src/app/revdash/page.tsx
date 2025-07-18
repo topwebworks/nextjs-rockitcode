@@ -2,8 +2,9 @@
 
 import { useUser } from '@/contexts/UserContext'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import AffiliateRevenueManager from '@/components/affiliate-revenue-manager'
+import SponsorImpactReport from '@/components/sponsor-impact-report'
 
 /**
  * Admin Dashboard - Admin Only
@@ -14,6 +15,7 @@ import AffiliateRevenueManager from '@/components/affiliate-revenue-manager'
 export default function RevenueDashboardPage() {
   const { user, isLoading } = useUser()
   const router = useRouter()
+  const [activeTab, setActiveTab] = useState('affiliate')
 
   // Admin check - same logic as in affiliate-link-manager
   const isAdmin = user?.email?.includes('topwebworks') || 
@@ -158,11 +160,44 @@ export default function RevenueDashboardPage() {
           </div>
           <div className="text-center">
             <h1 className="mb-6 text-5xl font-light tracking-wide text-white">
-              Admin Dashboard
+              Revenue Dashboard
             </h1>
             <p className="max-w-3xl mx-auto mb-8 text-xl font-light leading-relaxed text-slate-300">
-              Administrative panel for revenue analytics and mentor management
+              Comprehensive revenue analytics, sponsor management, and impact reporting
             </p>
+            
+            {/* Tab Navigation */}
+            <div className="flex justify-center mb-8">
+              <div className="backdrop-blur-xl bg-white/[0.06] border border-white/[0.1] rounded-xl p-2 inline-flex">
+                <button
+                  onClick={() => setActiveTab('affiliate')}
+                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+                    activeTab === 'affiliate'
+                      ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg'
+                      : 'text-slate-300 hover:text-white hover:bg-white/[0.05]'
+                  }`}
+                >
+                  <svg className="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  </svg>
+                  Affiliate Revenue
+                </button>
+                <button
+                  onClick={() => setActiveTab('sponsors')}
+                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+                    activeTab === 'sponsors'
+                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                      : 'text-slate-300 hover:text-white hover:bg-white/[0.05]'
+                  }`}
+                >
+                  <svg className="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                  </svg>
+                  Sponsor Reports
+                </button>
+              </div>
+            </div>
+            
             <div className="flex justify-center">
               <div className="px-6 py-3 border bg-slate-800/50 backdrop-blur-sm rounded-xl border-slate-700/50">
                 <div className="flex items-center gap-3">
@@ -176,7 +211,9 @@ export default function RevenueDashboardPage() {
           </div>
         </div>
         
-        <AffiliateRevenueManager />
+        {/* Tab Content */}
+        {activeTab === 'affiliate' && <AffiliateRevenueManager />}
+        {activeTab === 'sponsors' && <SponsorImpactReport />}
       </div>
     </div>
   )
