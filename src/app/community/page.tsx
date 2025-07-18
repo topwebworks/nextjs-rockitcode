@@ -74,27 +74,6 @@ export default function CommunityPage() {
     }
   ]
 
-  const gamificationFeatures = [
-    {
-      icon: 'shield',
-      title: "Helper Badges",
-      description: "Earn recognition for helping fellow learners",
-      badges: ["First Helper", "Problem Solver", "Code Reviewer", "Mentor"]
-    },
-    {
-      icon: 'lightning',
-      title: "XP Points",
-      description: "Gain experience points for community participation",
-      activities: ["Answer questions", "Share projects", "Review code", "Help beginners"]
-    },
-    {
-      icon: 'trophy',
-      title: "Leaderboards",
-      description: "See top contributors and celebrate community heroes",
-      categories: ["Most Helpful", "Best Projects", "Active Mentor", "Rising Star"]
-    }
-  ]
-
   const communityRules = [
     {
       icon: 'heart',
@@ -250,45 +229,235 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* Gamification Section */}
+
+
+      {/* Discord Community Mission */}
       <section className="relative px-6 py-24 lg:px-8">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 to-pink-900/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 via-indigo-900/10 to-blue-900/10"></div>
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center mb-16">
+            <div className="flex justify-center mb-8">
+              {renderIcon('discord', "w-16 h-16 text-purple-400")}
+            </div>
             <h2 className="text-4xl font-light text-white mb-6">
-              Earn Recognition for Helping Others
+              Discord Community Mission
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-8"></div>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              Our gamification system rewards community members who go above and beyond to help others succeed.
+            <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-blue-400 mx-auto mb-8"></div>
+            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
+              Our Discord server is designed to be a self-sustaining ecosystem where every member contributes to collective growth. 
+              Here's the awesome why you'll find and how our structured mentorship creates lasting connections.
             </p>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-3">
-            {gamificationFeatures.map((feature, index) => (
-              <div key={feature.title} className="bg-white/[0.08] backdrop-blur-xl rounded-xl p-8 border border-white/[0.12] shadow-xl">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-6 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 shadow-lg">
-                  {renderIcon(feature.icon, "w-6 h-6 text-white")}
+          {/* Mission Core Values */}
+          <div className="grid gap-8 lg:grid-cols-3 mb-16">
+            <div className="bg-white/[0.08] backdrop-blur-xl rounded-xl p-8 border border-white/[0.12] shadow-xl">
+              <div className="inline-flex items-center justify-center w-12 h-12 mb-6 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-500 shadow-lg">
+                {renderIcon('users', "w-6 h-6 text-white")}
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-4">Learning Together</h3>
+              <p className="text-slate-300 leading-relaxed mb-4">
+                Every question is welcomed, every success celebrated. Our community believes that explaining concepts to others 
+                deepens your own understanding while helping fellow learners overcome obstacles.
+              </p>
+              <div className="text-purple-400 font-medium text-sm">
+                "Teaching is the best way to learn" - Community Principle
+              </div>
+            </div>
+
+            <div className="bg-white/[0.08] backdrop-blur-xl rounded-xl p-8 border border-white/[0.12] shadow-xl">
+              <div className="inline-flex items-center justify-center w-12 h-12 mb-6 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 shadow-lg">
+                {renderIcon('rocket', "w-6 h-6 text-white")}
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-4">Growth Through Action</h3>
+              <p className="text-slate-300 leading-relaxed mb-4">
+                We encourage project sharing, code reviews, and collaborative problem-solving. Real learning happens when 
+                you apply knowledge and receive constructive feedback from peers who understand the journey.
+              </p>
+              <div className="text-blue-400 font-medium text-sm">
+                "Code together, grow together" - Community Motto
+              </div>
+            </div>
+
+            <div className="bg-white/[0.08] backdrop-blur-xl rounded-xl p-8 border border-white/[0.12] shadow-xl">
+              <div className="inline-flex items-center justify-center w-12 h-12 mb-6 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 shadow-lg">
+                {renderIcon('heart', "w-6 h-6 text-white")}
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-4">Respectful Environment</h3>
+              <p className="text-slate-300 leading-relaxed mb-4">
+                We maintain a welcoming space where everyone feels safe to ask questions, share struggles, and celebrate 
+                wins. Patience, kindness, and constructive communication are the foundation of our interactions.
+              </p>
+              <div className="text-green-400 font-medium text-sm">
+                "Kindness scales infinitely" - Community Value
+              </div>
+            </div>
+          </div>
+
+          {/* Channel Structure */}
+          <div className="mb-16">
+            <h3 className="text-3xl font-light text-white mb-8 text-center">Smart Channel Organization</h3>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  category: "Learning Channels",
+                  color: "from-blue-500 to-cyan-500",
+                  channels: [
+                    { name: "🤔 help-general", purpose: "Quick questions and general coding help" },
+                    { name: "💡 help-specific", purpose: "Detailed debugging and complex problems" },
+                    { name: "📚 resources-share", purpose: "Useful tutorials, tools, and learning materials" },
+                    { name: "🎯 daily-goals", purpose: "Share learning objectives and progress updates" }
+                  ]
+                },
+                {
+                  category: "Project Channels",
+                  color: "from-purple-500 to-pink-500",
+                  channels: [
+                    { name: "🚀 project-showcase", purpose: "Show off completed projects and get feedback" },
+                    { name: "🔧 work-in-progress", purpose: "Share ongoing projects and collaborate" },
+                    { name: "👥 find-team", purpose: "Connect with others for group projects" },
+                    { name: "💼 portfolio-review", purpose: "Get feedback on portfolios and resumes" }
+                  ]
+                },
+                {
+                  category: "Community Channels",
+                  color: "from-green-500 to-emerald-500",
+                  channels: [
+                    { name: "🎉 celebrations", purpose: "Share wins, job offers, and milestones" },
+                    { name: "☕ casual-chat", purpose: "Off-topic discussions and community bonding" },
+                    { name: "📢 announcements", purpose: "Important updates and community events" },
+                    { name: "🎮 study-together", purpose: "Virtual co-working and study sessions" }
+                  ]
+                }
+              ].map((section, index) => (
+                <div key={section.category} className="bg-white/[0.06] backdrop-blur-xl rounded-lg p-6 border border-white/[0.1]">
+                  <div className={`inline-flex items-center justify-center w-10 h-10 mb-4 rounded-lg bg-gradient-to-r ${section.color} shadow-lg`}>
+                    {renderIcon(index === 0 ? 'chat' : index === 1 ? 'rocket' : 'users', "w-5 h-5 text-white")}
+                  </div>
+                  <h4 className="text-lg font-semibold text-white mb-4">{section.category}</h4>
+                  <div className="space-y-3">
+                    {section.channels.map((channel, idx) => (
+                      <div key={idx} className="border-l-2 border-slate-600 pl-3">
+                        <div className="text-sm font-medium text-blue-300">{channel.name}</div>
+                        <div className="text-xs text-slate-400">{channel.purpose}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                
-                <h3 className="text-xl font-semibold text-white mb-3">
-                  {feature.title}
-                </h3>
-                
-                <p className="text-slate-300 mb-6">
-                  {feature.description}
+              ))}
+            </div>
+          </div>
+
+          {/* Mentorship Structure */}
+          <div className="mb-16">
+            <h3 className="text-3xl font-light text-white mb-8 text-center">Structured Mentorship Program</h3>
+            <div className="grid gap-8 lg:grid-cols-2">
+              <div className="bg-white/[0.08] backdrop-blur-xl rounded-xl p-8 border border-white/[0.12] shadow-xl">
+                <div className="flex items-center mb-6">
+                  <div className="inline-flex items-center justify-center w-12 h-12 mr-4 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 shadow-lg">
+                    {renderIcon('star', "w-6 h-6 text-white")}
+                  </div>
+                  <h4 className="text-xl font-semibold text-white">Peer Mentorship</h4>
+                </div>
+                <p className="text-slate-300 mb-6 leading-relaxed">
+                  Students who've progressed help those just starting. This creates a natural learning ladder where 
+                  recent learners provide the most relatable guidance.
                 </p>
-                
-                <div className="space-y-2">
-                  {(feature.badges || feature.activities || feature.categories)?.map((item, idx) => (
-                    <div key={idx} className="flex items-center text-sm text-slate-400">
-                      <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 mr-3"></div>
+                <div className="space-y-3">
+                  {[
+                    "Study buddy matching based on learning goals",
+                    "Beginner-friendly explanations from recent learners",
+                    "Project collaboration opportunities",
+                    "Regular check-ins and progress accountability"
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center text-sm text-slate-300">
+                      <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 mr-3"></div>
                       {item}
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
+
+              <div className="bg-white/[0.08] backdrop-blur-xl rounded-xl p-8 border border-white/[0.12] shadow-xl">
+                <div className="flex items-center mb-6">
+                  <div className="inline-flex items-center justify-center w-12 h-12 mr-4 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 shadow-lg">
+                    {renderIcon('trophy', "w-6 h-6 text-white")}
+                  </div>
+                  <h4 className="text-xl font-semibold text-white">Expert Guidance</h4>
+                </div>
+                <p className="text-slate-300 mb-6 leading-relaxed">
+                  Experienced developers and industry professionals provide advanced insights, career guidance, 
+                  and technical expertise for complex challenges.
+                </p>
+                <div className="space-y-3">
+                  {[
+                    "Weekly office hours with industry professionals",
+                    "Code review sessions for advanced projects",
+                    "Career path guidance and interview preparation",
+                    "Technical deep-dives and best practices"
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center text-sm text-slate-300">
+                      <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mr-3"></div>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Self-Running Community Guidelines */}
+          <div className="bg-gradient-to-r from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl p-8 border border-white/[0.1] shadow-2xl">
+            <h3 className="text-3xl font-light text-white mb-8 text-center">How to Be a Great Community Member</h3>
+            <div className="grid gap-8 md:grid-cols-2">
+              <div>
+                <h4 className="text-xl font-semibold text-white mb-4 flex items-center">
+                  <div className="w-3 h-3 rounded-full bg-green-400 mr-3"></div>
+                  When Asking for Help
+                </h4>
+                <div className="space-y-4 text-slate-300">
+                  <div className="border-l-4 border-green-400 pl-4">
+                    <div className="font-medium text-white">Provide Context</div>
+                    <div className="text-sm">Share your code, error messages, and what you've already tried</div>
+                  </div>
+                  <div className="border-l-4 border-blue-400 pl-4">
+                    <div className="font-medium text-white">Use the Right Channel</div>
+                    <div className="text-sm">Post general questions in help-general, complex issues in help-specific</div>
+                  </div>
+                  <div className="border-l-4 border-purple-400 pl-4">
+                    <div className="font-medium text-white">Be Patient & Grateful</div>
+                    <div className="text-sm">Give helpers time to respond and always thank those who help you</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-xl font-semibold text-white mb-4 flex items-center">
+                  <div className="w-3 h-3 rounded-full bg-purple-400 mr-3"></div>
+                  When Helping Others
+                </h4>
+                <div className="space-y-4 text-slate-300">
+                  <div className="border-l-4 border-purple-400 pl-4">
+                    <div className="font-medium text-white">Explain, Don't Just Give Answers</div>
+                    <div className="text-sm">Help others understand the "why" behind your solution</div>
+                  </div>
+                  <div className="border-l-4 border-yellow-400 pl-4">
+                    <div className="font-medium text-white">Be Encouraging</div>
+                    <div className="text-sm">Remember everyone was a beginner once - guide with patience and kindness</div>
+                  </div>
+                  <div className="border-l-4 border-cyan-400 pl-4">
+                    <div className="font-medium text-white">Share Your Experience</div>
+                    <div className="text-sm">Mention similar challenges you faced and how you overcame them</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-8 text-center">
+              <p className="text-slate-300 italic">
+                "Great communities are built when learners help learners. Every question answered and every project shared makes us all stronger."
+              </p>
+            </div>
           </div>
         </div>
       </section>

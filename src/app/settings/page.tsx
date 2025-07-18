@@ -1,17 +1,29 @@
 'use client'
 
 import { useUser } from '@/contexts/UserContext'
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
+import MentorSettings from '@/components/mentor-settings'
 
 /**
  * Account Settings Page - User Profile Management
  * 
  * Allows all users to manage their profile, preferences, and account settings.
- * This is separate from admin functions which are in the revenue dashboard.
+ * This is separate from admin functions which are in the admin dashboard.
  */
-export default function AccountSettingsPage() {
+
+function SettingsContent() {
   const { user } = useUser()
-  const [activeTab, setActiveTab] = useState<'profile' | 'preferences' | 'privacy'>('profile')
+  const searchParams = useSearchParams()
+  const [activeTab, setActiveTab] = useState<'profile' | 'preferences' | 'privacy' | 'mentor'>('profile')
+
+  // Check for tab parameter in URL
+  useEffect(() => {
+    const tabParam = searchParams.get('tab')
+    if (tabParam && ['profile', 'preferences', 'privacy', 'mentor'].includes(tabParam)) {
+      setActiveTab(tabParam as 'profile' | 'preferences' | 'privacy' | 'mentor')
+    }
+  }, [searchParams])
 
   const tabs = [
     { id: 'profile' as const, name: 'Profile', icon: (
@@ -28,6 +40,11 @@ export default function AccountSettingsPage() {
     { id: 'privacy' as const, name: 'Privacy', icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 0h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      </svg>
+    )},
+    { id: 'mentor' as const, name: 'Discord Mentor', icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
     )}
   ]
@@ -334,8 +351,20 @@ export default function AccountSettingsPage() {
               </div>
             </div>
           )}
+
+          {activeTab === 'mentor' && (
+            <MentorSettings />
+          )}
         </div>
       </div>
     </div>
+  )
+}
+
+export default function AccountSettingsPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <SettingsContent />
+    </Suspense>
   )
 }

@@ -39,7 +39,7 @@ const navigation = [
     items: [
       { name: 'Discord Server', href: 'https://discord.gg/rockitcode' },
       { name: 'Community Hub', href: '/community' },
-      { name: 'Contributors', href: '/community/contributors' },
+      { name: 'Contributors', href: '/contributors' },
     ],
   },
   {
@@ -55,7 +55,6 @@ const navigation = [
     items: [
       { name: 'About', href: '/about' },
       { name: 'Blog', href: '/blog' },
-      { name: 'Careers', href: '/careers' },
     ],
   },
 ]

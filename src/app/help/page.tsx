@@ -135,7 +135,7 @@ export default function HelpCenterPage() {
       {/* Header */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-slate-800/30 to-transparent"></div>
-        <div className="relative max-w-7xl mx-auto px-6 py-20">
+        <div className="relative px-6 py-20 mx-auto max-w-7xl">
           <div className="text-center">
             {/* Professional Help Icon */}
             <div className="flex justify-center mb-8">
@@ -144,10 +144,10 @@ export default function HelpCenterPage() {
                 <div className="absolute w-3 h-3 rounded-full -top-1 -right-1 bg-green-400/80 animate-pulse"></div>
               </div>
             </div>
-            <h1 className="text-5xl font-light mb-6 text-white tracking-wide">
+            <h1 className="mb-6 text-5xl font-light tracking-wide text-white">
               Mission Control Support Center
             </h1>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8 font-light">
+            <p className="max-w-3xl mx-auto mb-8 text-xl font-light leading-relaxed text-slate-300">
               Find answers, get community support, or dive into our comprehensive guides. 
               Our community-driven help system ensures you're never stuck for long.
             </p>
@@ -170,10 +170,10 @@ export default function HelpCenterPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="relative max-w-7xl mx-auto px-6 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-light text-white mb-4">Need Help Right Now?</h2>
-          <p className="text-slate-300 font-light">Choose the fastest way to get assistance</p>
+      <div className="relative px-6 py-16 mx-auto max-w-7xl">
+        <div className="mb-12 text-center">
+          <h2 className="mb-4 text-3xl font-light text-white">Need Help Right Now?</h2>
+          <p className="font-light text-slate-300">Choose the fastest way to get assistance</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -186,22 +186,22 @@ export default function HelpCenterPage() {
               }`}
             >
               {action.urgent && (
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
+                <div className="absolute w-3 h-3 bg-yellow-400 rounded-full -top-1 -right-1 animate-pulse"></div>
               )}
               
               <div className={`inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ${action.color} shadow-lg`}>
                 {renderIcon(action.icon, 'w-6 h-6 text-white')}
               </div>
               
-              <h3 className="text-lg font-light text-white mb-2 group-hover:text-blue-300 transition-colors">
+              <h3 className="mb-2 text-lg font-light text-white transition-colors group-hover:text-blue-300">
                 {action.title}
               </h3>
               
-              <p className="text-sm text-slate-300 leading-relaxed">
+              <p className="text-sm leading-relaxed text-slate-300">
                 {action.description}
               </p>
 
-              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <div className="absolute transition-opacity duration-200 opacity-0 top-4 right-4 group-hover:opacity-100">
                 <span className="text-blue-400">→</span>
               </div>
             </Link>
@@ -209,13 +209,135 @@ export default function HelpCenterPage() {
         </div>
       </div>
 
+      {/* GitHub Copilot - Primary Coding Support */}
+      <div className="relative px-6 py-16 mx-auto max-w-7xl">
+        <div className="p-8 border backdrop-blur-xl bg-gradient-to-r from-green-500/10 to-blue-500/10 border-green-400/20 rounded-2xl lg:p-12">
+          <div className="flex items-start gap-8 mb-8">
+            <div className="flex-shrink-0">
+              <div className="p-4 bg-green-500/20 rounded-xl">
+                {renderIcon('robot', 'w-10 h-10 text-green-400')}
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-4">
+                <h2 className="text-3xl font-light tracking-wide text-white">
+                  GitHub Copilot - Your AI Coding Partner
+                </h2>
+                <span className="px-3 py-1 text-sm font-medium text-green-300 rounded-full bg-green-500/20">
+                  Recommended
+                </span>
+              </div>
+              <p className="mb-8 text-xl leading-relaxed text-slate-300">
+                Our #1 recommended coding support tool. GitHub Copilot provides instant, intelligent assistance 
+                for developers at every level - available 24/7 right in your code editor.
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid gap-8 lg:grid-cols-2">
+            <div>
+              <h3 className="flex items-center gap-2 mb-6 text-xl font-light text-white">
+                {renderIcon('star', 'w-5 h-5 text-yellow-400')}
+                Why We Recommend Copilot
+              </h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  {renderIcon('check', 'w-5 h-5 text-green-400 mt-0.5 flex-shrink-0')}
+                  <div>
+                    <span className="font-medium text-white">Instant Help:</span>
+                    <span className="ml-2 text-slate-300">Get coding assistance 24/7 without waiting for forum responses</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  {renderIcon('check', 'w-5 h-5 text-green-400 mt-0.5 flex-shrink-0')}
+                  <div>
+                    <span className="font-medium text-white">Learn By Example:</span>
+                    <span className="ml-2 text-slate-300">See well-structured code patterns and best practices in real-time</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  {renderIcon('check', 'w-5 h-5 text-green-400 mt-0.5 flex-shrink-0')}
+                  <div>
+                    <span className="font-medium text-white">Context Aware:</span>
+                    <span className="ml-2 text-slate-300">Understands your project and provides relevant suggestions</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  {renderIcon('check', 'w-5 h-5 text-green-400 mt-0.5 flex-shrink-0')}
+                  <div>
+                    <span className="font-medium text-white">Productivity Boost:</span>
+                    <span className="ml-2 text-slate-300">Write code faster while learning new techniques</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="flex items-center gap-2 mb-6 text-xl font-light text-white">
+                {renderIcon('lightbulb', 'w-5 h-5 text-yellow-400')}
+                Best Practices & Important Notes
+              </h3>
+              
+              <div className="p-4 mb-6 border rounded-lg bg-yellow-500/10 border-yellow-500/30">
+                <p className="text-sm leading-relaxed text-yellow-200">
+                  <strong>⚠️ Tool, Not Replacement:</strong> Copilot is your coding assistant, not a substitute 
+                  for understanding fundamentals. Always review and understand the code it suggests.
+                </p>
+              </div>
+
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  {renderIcon('lightbulb', 'w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0')}
+                  <span className="text-slate-300">Great for learning new syntax and language patterns</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  {renderIcon('lightbulb', 'w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0')}
+                  <span className="text-slate-300">Excellent for boilerplate code and repetitive tasks</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  {renderIcon('lightbulb', 'w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0')}
+                  <span className="text-slate-300">Most effective when combined with human mentorship</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  {renderIcon('lightbulb', 'w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0')}
+                  <span className="text-slate-300">Perfect complement to our Discord community support</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-6 mt-8 border-t border-white/10">
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
+              <Link
+                href="https://github.com/features/copilot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 font-medium text-white transition-colors duration-200 bg-green-600 rounded-lg hover:bg-green-700"
+              >
+                {renderIcon('rocket', 'w-5 h-5 mr-2')}
+                Get GitHub Copilot
+              </Link>
+              <Link
+                href="https://docs.github.com/en/copilot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 text-white transition-colors duration-200 border rounded-lg bg-white/10 hover:bg-white/20 border-white/20"
+              >
+                {renderIcon('book', 'w-5 h-5 mr-2')}
+                View Documentation
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Help Categories */}
-      <div className="relative max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-light text-white mb-6 tracking-wide">
+      <div className="relative px-6 py-24 mx-auto max-w-7xl">
+        <div className="mb-16 text-center">
+          <h2 className="mb-6 text-4xl font-light tracking-wide text-white">
             Browse by Category
           </h2>
-          <p className="text-xl text-slate-300 font-light">
+          <p className="text-xl font-light text-slate-300">
             Find detailed guides and tutorials organized by topic
           </p>
         </div>
@@ -230,11 +352,11 @@ export default function HelpCenterPage() {
                 {renderIcon(category.icon, 'w-6 h-6 text-white')}
               </div>
               
-              <h3 className="text-xl font-light text-white mb-3 group-hover:text-blue-300 transition-colors">
+              <h3 className="mb-3 text-xl font-light text-white transition-colors group-hover:text-blue-300">
                 {category.name}
               </h3>
               
-              <p className="text-slate-300 mb-6 leading-relaxed">
+              <p className="mb-6 leading-relaxed text-slate-300">
                 {category.description}
               </p>
               
@@ -243,21 +365,21 @@ export default function HelpCenterPage() {
                   <Link
                     key={idx}
                     href={`/help/${category.id}/${article.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors duration-200 group/item"
+                    className="flex items-center text-sm transition-colors duration-200 text-slate-400 hover:text-blue-400 group/item"
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3 opacity-0 group-hover/item:opacity-100 transition-opacity"></div>
                     {article}
-                    <span className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity">→</span>
+                    <span className="ml-auto transition-opacity opacity-0 group-hover/item:opacity-100">→</span>
                   </Link>
                 ))}
               </div>
               
               <Link
                 href={`/help/${category.id}`}
-                className="inline-flex items-center mt-6 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                className="inline-flex items-center mt-6 text-sm font-medium text-blue-400 transition-colors duration-200 hover:text-blue-300"
               >
                 View all articles
-                <span className="ml-1 transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                <span className="ml-1 transition-transform duration-200 transform group-hover:translate-x-1">→</span>
               </Link>
             </div>
           ))}
@@ -265,12 +387,12 @@ export default function HelpCenterPage() {
       </div>
 
       {/* Featured Articles */}
-      <div className="relative max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-light text-white mb-6 tracking-wide">
+      <div className="relative px-6 py-24 mx-auto max-w-7xl">
+        <div className="mb-16 text-center">
+          <h2 className="mb-6 text-4xl font-light tracking-wide text-white">
             Most Helpful Articles
           </h2>
-          <p className="text-xl text-slate-300 font-light">
+          <p className="text-xl font-light text-slate-300">
             Top-rated content from our community-driven knowledge base
           </p>
         </div>
@@ -283,17 +405,17 @@ export default function HelpCenterPage() {
               className="group backdrop-blur-xl bg-white/[0.06] border border-white/[0.1] rounded-xl p-6 hover:bg-white/[0.1] hover:border-white/[0.2] transition-all duration-300 transform hover:scale-[1.02]"
             >
               <div className="flex items-center justify-between mb-4">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 border border-blue-400/20">
+                <span className="inline-flex items-center px-3 py-1 text-xs font-medium text-blue-300 border rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-blue-400/20">
                   {article.category}
                 </span>
                 <span className="text-xs text-slate-400">{article.readTime}</span>
               </div>
               
-              <h3 className="text-lg font-light text-white mb-3 group-hover:text-blue-300 transition-colors duration-200">
+              <h3 className="mb-3 text-lg font-light text-white transition-colors duration-200 group-hover:text-blue-300">
                 {article.title}
               </h3>
               
-              <p className="text-slate-300 mb-4 line-clamp-2 leading-relaxed">
+              <p className="mb-4 leading-relaxed text-slate-300 line-clamp-2">
                 {article.description}
               </p>
               
@@ -302,7 +424,7 @@ export default function HelpCenterPage() {
                   {renderIcon('heart', 'w-4 h-4 mr-1 text-red-400')}
                   {article.helpful} found helpful
                 </div>
-                <span className="text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <span className="text-blue-400 transition-opacity duration-200 opacity-0 group-hover:opacity-100">
                   Read more →
                 </span>
               </div>
@@ -312,20 +434,20 @@ export default function HelpCenterPage() {
       </div>
 
       {/* Community Support CTA */}
-      <div className="relative max-w-4xl mx-auto px-6 py-24">
+      <div className="relative max-w-4xl px-6 py-24 mx-auto">
         <div className="text-center">
           <div className="backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] rounded-2xl p-12">
             <div className="flex justify-center mb-6">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full shadow-lg bg-gradient-to-r from-purple-500 to-pink-500">
                 {renderIcon('users', 'w-8 h-8 text-white')}
               </div>
             </div>
             
-            <h2 className="text-4xl font-light text-white mb-6 tracking-wide">
+            <h2 className="mb-6 text-4xl font-light tracking-wide text-white">
               Still Need Help?
             </h2>
             
-            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed font-light">
+            <p className="max-w-2xl mx-auto mb-8 text-xl font-light leading-relaxed text-slate-300">
               Our community is here 24/7. Join thousands of helpful learners who are ready to assist you 
               on your coding journey.
             </p>
@@ -333,7 +455,7 @@ export default function HelpCenterPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="https://discord.gg/rockitcode"
-                className="inline-flex items-center rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-medium text-white shadow-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105"
+                className="inline-flex items-center px-8 py-4 text-lg font-medium text-white transition-all duration-200 transform rounded-lg shadow-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 hover:scale-105"
               >
                 {renderIcon('discord', 'w-6 h-6 mr-3')}
                 Ask on Discord

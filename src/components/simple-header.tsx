@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useUser } from '@/contexts/UserContext'
+import { renderIcon } from '@/components/icons'
 
 // Authentic Lucide icon family with elegant styling and subtle glows
 function MenuIcon({ className }: { className?: string }) {
@@ -138,8 +139,21 @@ function RockitLogo({ className }: { className?: string }) {
 }
 
 const navigation = [
-  { name: '🚀 Launch Pad', href: '/launch-pad' },
-  { name: '🌟 About RockitCode', href: '/about' },
+  { 
+    name: 'Launch Pad', 
+    href: '/launch-pad',
+    icon: 'launch-pad'
+  },
+  { 
+    name: 'About RockitCode', 
+    href: '/about',
+    icon: 'sparkle'
+  },
+  { 
+    name: 'Contributors', 
+    href: '/contributors',
+    icon: 'heart'
+  },
 ]
 
 // User dropdown component
@@ -215,7 +229,7 @@ function UserDropdown() {
                 Account Settings
               </Link>
 
-              {/* Admin-only Revenue Dashboard */}
+              {/* Admin-only Admin Dashboard */}
               {(user?.email?.includes('topwebworks') || 
                 user?.email?.includes('@yourcompany.com') || 
                 user?.email === 'admin@rockitcode.com') && (
@@ -225,7 +239,7 @@ function UserDropdown() {
                   onClick={() => setIsOpen(false)}
                 >
                   <AIIcon className="w-4 h-4 mr-3" />
-                  Revenue Dashboard
+                  Admin Dashboard
                 </Link>
               )}
               
@@ -342,8 +356,9 @@ export function GlobalHeader() {
             <Link 
               key={item.name} 
               href={item.href} 
-              className="text-lg font-medium text-gray-700 transition-colors duration-200 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+              className="flex items-center gap-2 text-lg font-medium text-gray-700 transition-colors duration-200 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
             >
+              {renderIcon(item.icon, "w-5 h-5")}
               {item.name}
             </Link>
           ))}
@@ -397,9 +412,10 @@ export function GlobalHeader() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="block px-3 py-2 -mx-3 text-base font-semibold leading-7 text-gray-900 transition-colors duration-200 rounded-lg dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800"
+                      className="flex items-center gap-3 px-3 py-2 -mx-3 text-base font-semibold leading-7 text-gray-900 transition-colors duration-200 rounded-lg dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800"
                       onClick={() => setMobileMenuOpen(false)}
                     >
+                      {renderIcon(item.icon, "w-5 h-5")}
                       {item.name}
                     </Link>
                   ))}

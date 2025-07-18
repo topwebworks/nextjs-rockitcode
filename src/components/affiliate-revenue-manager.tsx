@@ -1,6 +1,19 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+interface MentorApplication {
+  user_id: string
+  full_name: string | null
+  username: string | null
+  avatar_url: string | null
+  discord_username: string | null
+  mentor_bio: string | null
+  mentor_specialties: string[]
+  mentor_application_reason: string | null
+  created_at: string
+  updated_at: string
+}
 
 interface AffiliateTool {
   id: string
@@ -19,7 +32,80 @@ interface AffiliateTool {
 }
 
 export function AffiliateRevenueManager() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'tools' | 'analytics'>('overview')
+  const [activeTab, setActiveTab] = useState<'overview' | 'tools' | 'analytics' | 'mentors'>('overview')
+  
+  // Mentor management state
+  const [applications, setApplications] = useState<MentorApplication[]>([])
+  const [mentorLoading, setMentorLoading] = useState(true)
+  const [processingIds, setProcessingIds] = useState<Set<string>>(new Set())
+  const [mentorError, setMentorError] = useState('')
+  const [mentorSuccess, setMentorSuccess] = useState('')
+
+  // Fetch mentor applications
+  const fetchApplications = async () => {
+    try {
+      setMentorLoading(true)
+      const response = await fetch('/api/mentors/manage')
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to fetch applications')
+      }
+
+      setApplications(data.applications || [])
+    } catch (err) {
+      console.error('Error fetching applications:', err)
+      setMentorError(err instanceof Error ? err.message : 'Failed to load applications')
+    } finally {
+      setMentorLoading(false)
+    }
+  }
+
+  const processApplication = async (userId: string, action: 'approve' | 'reject') => {
+    try {
+      setProcessingIds(prev => new Set(prev).add(userId))
+      setMentorError('')
+      setMentorSuccess('')
+
+      const response = await fetch('/api/mentors/manage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId,
+          action
+        })
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || `Failed to ${action} application`)
+      }
+
+      setMentorSuccess(`Application ${action}ed successfully`)
+      
+      // Remove from applications list
+      setApplications(prev => prev.filter(app => app.user_id !== userId))
+
+    } catch (err) {
+      console.error(`Error ${action}ing application:`, err)
+      setMentorError(err instanceof Error ? err.message : `Failed to ${action} application`)
+    } finally {
+      setProcessingIds(prev => {
+        const newSet = new Set(prev)
+        newSet.delete(userId)
+        return newSet
+      })
+    }
+  }
+
+  useEffect(() => {
+    if (activeTab === 'mentors') {
+      fetchApplications()
+    }
+  }, [activeTab])
 
   const affiliateTools: AffiliateTool[] = [
     {
@@ -205,7 +291,8 @@ export function AffiliateRevenueManager() {
           {[
             { key: 'overview', label: 'Overview', icon: '📊' },
             { key: 'tools', label: 'Partner Tools', icon: '🛠️' },
-            { key: 'analytics', label: 'Analytics', icon: '📈' }
+            { key: 'analytics', label: 'Analytics', icon: '📈' },
+            { key: 'mentors', label: 'Mentors', icon: '👥' }
           ].map(tab => (
             <button
               key={tab.key}
@@ -464,6 +551,136 @@ export function AffiliateRevenueManager() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'mentors' && (
+        <div>
+          <div className="p-6 border bg-slate-800/30 backdrop-blur-sm rounded-xl border-slate-700/50">
+            <h3 className="flex items-center gap-3 mb-6 text-xl font-medium text-white">
+              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+              </svg>
+              Mentor Applications Management
+            </h3>
+
+            {mentorError && (
+              <div className="p-4 mb-6 border bg-red-900/20 border-red-500/30 rounded-lg">
+                <p className="text-red-400">{mentorError}</p>
+              </div>
+            )}
+
+            {mentorSuccess && (
+              <div className="p-4 mb-6 border bg-green-900/20 border-green-500/30 rounded-lg">
+                <p className="text-green-400">{mentorSuccess}</p>
+              </div>
+            )}
+
+            {mentorLoading ? (
+              <div className="flex items-center justify-center py-12">
+                <div className="w-8 h-8 border-2 border-blue-400 rounded-full border-t-transparent animate-spin"></div>
+              </div>
+            ) : applications.length === 0 ? (
+              <div className="py-12 text-center">
+                <svg className="w-16 h-16 mx-auto mb-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                </svg>
+                <h4 className="mb-2 text-lg font-medium text-slate-300">No Pending Applications</h4>
+                <p className="text-slate-400">All mentor applications have been processed.</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {applications.map((application) => (
+                  <div key={application.user_id} className="p-6 border bg-slate-700/30 border-slate-600/50 rounded-xl">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0">
+                          {application.avatar_url ? (
+                            <img 
+                              src={application.avatar_url} 
+                              alt={application.full_name || 'User'} 
+                              className="w-12 h-12 rounded-full border border-slate-600"
+                            />
+                          ) : (
+                            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-slate-600 border border-slate-500">
+                              <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-medium text-white">
+                            {application.full_name || application.username || 'Unknown User'}
+                          </h4>
+                          <p className="text-sm text-slate-400">@{application.username}</p>
+                          {application.discord_username && (
+                            <p className="text-sm text-blue-400">Discord: {application.discord_username}</p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => processApplication(application.user_id, 'approve')}
+                          disabled={processingIds.has(application.user_id)}
+                          className="px-4 py-2 text-sm font-medium text-white bg-green-600 border border-green-500 rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        >
+                          {processingIds.has(application.user_id) ? 'Processing...' : 'Approve'}
+                        </button>
+                        <button
+                          onClick={() => processApplication(application.user_id, 'reject')}
+                          disabled={processingIds.has(application.user_id)}
+                          className="px-4 py-2 text-sm font-medium text-white bg-red-600 border border-red-500 rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        >
+                          {processingIds.has(application.user_id) ? 'Processing...' : 'Reject'}
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div>
+                        <h5 className="text-sm font-medium text-slate-300 mb-2">Bio</h5>
+                        <p className="text-sm text-slate-400 bg-slate-800/50 p-3 rounded-lg">
+                          {application.mentor_bio || 'No bio provided'}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h5 className="text-sm font-medium text-slate-300 mb-2">Specialties</h5>
+                        <div className="flex flex-wrap gap-2">
+                          {application.mentor_specialties.map((specialty, index) => (
+                            <span 
+                              key={index}
+                              className="px-3 py-1 text-xs font-medium text-blue-400 bg-blue-400/20 border border-blue-400/30 rounded-full"
+                            >
+                              {specialty}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h5 className="text-sm font-medium text-slate-300 mb-2">Application Reason</h5>
+                        <p className="text-sm text-slate-400 bg-slate-800/50 p-3 rounded-lg">
+                          {application.mentor_application_reason || 'No reason provided'}
+                        </p>
+                      </div>
+
+                      <div className="text-xs text-slate-500">
+                        Applied: {new Date(application.created_at).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

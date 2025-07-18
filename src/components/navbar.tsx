@@ -175,11 +175,11 @@ function SiteNavigation() {
             <DropdownMenu anchor="bottom end">
               <DropdownItem href="/dashboard">🚀 Mission Control</DropdownItem>
               <DropdownItem href="/settings">⚙️ Account Settings</DropdownItem>
-              {/* Admin-only Revenue Dashboard */}
+              {/* Admin-only Admin Dashboard */}
               {(session.user.email?.includes('topwebworks') || 
                 session.user.email?.includes('@yourcompany.com') || 
                 session.user.email === 'admin@rockitcode.com') && (
-                <DropdownItem href="/revdash">📊 Revenue Dashboard</DropdownItem>
+                <DropdownItem href="/revdash">📊 Admin Dashboard</DropdownItem>
               )}
               <DropdownItem href="/foundation">📚 My Courses</DropdownItem>
               <DropdownItem href="/launch-pad">🎯 Career Launch Pad</DropdownItem>

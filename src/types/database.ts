@@ -22,6 +22,22 @@ export interface Database {
           join_date: string
           last_active: string
           is_premium: boolean
+          // Mentor-specific fields
+          is_mentor: boolean
+          mentor_status: 'pending' | 'approved' | 'declined' | null
+          discord_username: string | null
+          mentor_bio: string | null
+          mentor_specialties: string[] | null
+          students_helped_this_week: number
+          hours_mentored_this_week: number
+          total_students_helped: number
+          total_hours_mentored: number
+          mentor_rating: number
+          mentor_application_reason: string | null
+          mentor_approved_at: string | null
+          mentor_approved_by: string | null
+          mentor_active_status: 'active' | 'away' | 'retired'
+          user_role: 'student' | 'mentor' | 'admin' | 'super_admin'
           created_at: string
           updated_at: string
         }
@@ -42,6 +58,22 @@ export interface Database {
           join_date?: string
           last_active?: string
           is_premium?: boolean
+          // Mentor-specific fields
+          is_mentor?: boolean
+          mentor_status?: 'pending' | 'approved' | 'declined' | null
+          discord_username?: string | null
+          mentor_bio?: string | null
+          mentor_specialties?: string[] | null
+          students_helped_this_week?: number
+          hours_mentored_this_week?: number
+          total_students_helped?: number
+          total_hours_mentored?: number
+          mentor_rating?: number
+          mentor_application_reason?: string | null
+          mentor_approved_at?: string | null
+          mentor_approved_by?: string | null
+          mentor_active_status?: 'active' | 'away' | 'retired'
+          user_role?: 'student' | 'mentor' | 'admin' | 'super_admin'
           created_at?: string
           updated_at?: string
         }
@@ -62,6 +94,22 @@ export interface Database {
           join_date?: string
           last_active?: string
           is_premium?: boolean
+          // Mentor-specific fields
+          is_mentor?: boolean
+          mentor_status?: 'pending' | 'approved' | 'declined' | null
+          discord_username?: string | null
+          mentor_bio?: string | null
+          mentor_specialties?: string[] | null
+          students_helped_this_week?: number
+          hours_mentored_this_week?: number
+          total_students_helped?: number
+          total_hours_mentored?: number
+          mentor_rating?: number
+          mentor_application_reason?: string | null
+          mentor_approved_at?: string | null
+          mentor_approved_by?: string | null
+          mentor_active_status?: 'active' | 'away' | 'retired'
+          user_role?: 'student' | 'mentor' | 'admin' | 'super_admin'
           created_at?: string
           updated_at?: string
         }
@@ -367,6 +415,60 @@ export interface Database {
         }
         Returns: boolean
       }
+      get_mentor_leaderboard: {
+        Args: {
+          period_type?: 'weekly' | 'monthly' | 'all_time'
+        }
+        Returns: {
+          user_id: string
+          full_name: string | null
+          username: string | null
+          avatar_url: string | null
+          discord_username: string | null
+          mentor_bio: string | null
+          mentor_specialties: string[]
+          students_helped: number
+          hours_mentored: number
+          mentor_rating: number
+          mentor_active_status: string
+          rank_position: number
+        }[]
+      }
+      update_mentor_stats: {
+        Args: {
+          p_user_id: string
+          p_students_helped_week?: number
+          p_hours_mentored_week?: number
+        }
+        Returns: boolean
+      }
+      retire_mentor: {
+        Args: {
+          p_user_id: string
+        }
+        Returns: boolean
+      }
+      get_pending_mentor_applications: {
+        Args: {}
+        Returns: {
+          user_id: string
+          full_name: string | null
+          username: string | null
+          avatar_url: string | null
+          discord_username: string | null
+          mentor_application_reason: string | null
+          mentor_specialties: string[]
+          created_at: string
+        }[]
+      }
+      process_mentor_application: {
+        Args: {
+          p_user_id: string
+          p_action: 'approve' | 'reject'
+          p_admin_id: string
+        }
+        Returns: boolean
+      }
     }
   }
 }
@@ -511,3 +613,71 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
     points: 25
   }
 ]
+
+// Mentor-specific types
+export interface MentorProfile {
+  id: string
+  user_id: string
+  full_name: string | null
+  username: string | null
+  avatar_url: string | null
+  discord_username: string | null
+  mentor_bio: string | null
+  mentor_specialties: string[]
+  students_helped_this_week: number
+  hours_mentored_this_week: number
+  total_students_helped: number
+  total_hours_mentored: number
+  mentor_rating: number
+  mentor_status: 'approved'
+  mentor_approved_at: string
+  mentor_active_status: 'active' | 'away' | 'retired'
+  user_role: 'mentor' | 'admin' | 'super_admin'
+  is_mentor: true
+}
+
+export interface MentorApplication {
+  user_id: string
+  full_name: string | null
+  username: string | null
+  avatar_url: string | null
+  discord_username: string | null
+  mentor_application_reason: string
+  mentor_specialties: string[]
+  mentor_status: 'pending'
+  created_at: string
+}
+
+export interface MentorStats {
+  user_id: string
+  students_helped_this_week: number
+  hours_mentored_this_week: number
+  total_students_helped: number
+  total_hours_mentored: number
+  mentor_rating: number
+  rank_this_week: number
+  rank_all_time: number
+}
+
+export interface MentorLeaderboard {
+  weekly: MentorProfile[]
+  monthly: MentorProfile[]
+  allTime: MentorProfile[]
+}
+
+export type MentorSpecialty = 
+  | 'Frontend Development'
+  | 'Backend Development'
+  | 'Full Stack'
+  | 'Mobile Development'
+  | 'DevOps'
+  | 'UI/UX Design'
+  | 'Data Science'
+  | 'Machine Learning'
+  | 'Game Development'
+  | 'Career Guidance'
+  | 'Interview Prep'
+  | 'Code Review'
+  | 'Project Planning'
+  | 'Debugging'
+  | 'Architecture'

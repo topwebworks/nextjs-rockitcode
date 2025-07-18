@@ -1,12 +1,10 @@
 -- Week 5: Sample Data and Development Setup
 -- This migration adds sample data for development and testing
 
--- Insert sample achievements that users can earn
-INSERT INTO user_achievements (user_id, achievement_type, achievement_id, title, description, icon, rarity, points, metadata) VALUES
--- These will be inserted when users actually earn them, this is just the schema
+-- Note: Sample achievements will be inserted when users actually earn them
 -- The actual achievement awarding will be handled by the application logic
 
--- For now, let's create a function to award achievements
+-- Create a function to award achievements
 CREATE OR REPLACE FUNCTION award_achievement(
     p_user_id UUID,
     p_achievement_id TEXT,

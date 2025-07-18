@@ -328,6 +328,24 @@ export const HeartIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => (
   </svg>
 )
 
+// Launch Pad Icon - for launch pad page (replaces 🚀)
+export const LaunchPadIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
+      d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09zM12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
+      d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+  </svg>
+)
+
+// Info Circle Icon - for about page (replaces 🌟)
+export const InfoIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
+      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+)
+
 // Shield/Badge Icon - for achievements/gamification
 export const ShieldIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -341,6 +359,21 @@ export const HelpIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
       d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+)
+
+// GitHub Sponsors Icon - for sponsorship/funding
+export const GitHubSponsorsIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+  </svg>
+)
+
+// Coffee Icon - for buy me a coffee / donations
+export const CoffeeIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
+      d="M17.5 6.5h.5a2 2 0 012 2v5a2 2 0 01-2 2h-.5M6 8.5h7.5v7H6v-7zM6 8.5C6 7.12 7.12 6 8.5 6S11 7.12 11 8.5M6 8.5v7m0 0v2.5c0 1.38 1.12 2.5 2.5 2.5H16" />
   </svg>
 )
 
@@ -427,10 +460,18 @@ export const renderIcon = (iconName: string, className?: string) => {
       return <ChatIcon className={iconClass} />
     case 'heart':
       return <HeartIcon className={iconClass} />
+    case 'launch-pad':
+      return <LaunchPadIcon className={iconClass} />
+    case 'info':
+      return <InfoIcon className={iconClass} />
     case 'shield':
       return <ShieldIcon className={iconClass} />
     case 'help':
       return <HelpIcon className={iconClass} />
+    case 'github-sponsors':
+      return <GitHubSponsorsIcon className={iconClass} />
+    case 'coffee':
+      return <CoffeeIcon className={iconClass} />
     default:
       return null
   }

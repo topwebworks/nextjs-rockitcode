@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import AffiliateRevenueManager from '@/components/affiliate-revenue-manager'
 
 /**
- * Revenue Dashboard - Admin Only
+ * Admin Dashboard - Admin Only
  * 
  * Comprehensive affiliate revenue analytics and management system.
  * Only accessible to users with admin email addresses.
@@ -121,7 +121,7 @@ export default function RevenueDashboardPage() {
     )
   }
 
-  // Render the full revenue dashboard for admins
+  // Render the full admin dashboard for admins
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -158,10 +158,10 @@ export default function RevenueDashboardPage() {
           </div>
           <div className="text-center">
             <h1 className="mb-6 text-5xl font-light tracking-wide text-white">
-              Revenue Dashboard
+              Admin Dashboard
             </h1>
             <p className="max-w-3xl mx-auto mb-8 text-xl font-light leading-relaxed text-slate-300">
-              Admin-only affiliate revenue analytics and management system
+              Administrative panel for revenue analytics and mentor management
             </p>
             <div className="flex justify-center">
               <div className="px-6 py-3 border bg-slate-800/50 backdrop-blur-sm rounded-xl border-slate-700/50">
@@ -169,7 +169,7 @@ export default function RevenueDashboardPage() {
                   <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span className="font-medium text-slate-300">Administrative Revenue Analytics</span>
+                  <span className="font-medium text-slate-300">Administrative Dashboard</span>
                 </div>
               </div>
             </div>
