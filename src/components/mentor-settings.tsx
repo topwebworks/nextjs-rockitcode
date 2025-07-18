@@ -45,29 +45,39 @@ export default function MentorSettings() {
 
   const loadMentorData = async () => {
     try {
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select(`
-          is_mentor,
-          mentor_status,
-          mentor_bio,
-          mentor_specialties,
-          mentor_application_reason,
-          discord_username,
-          mentor_rating,
-          students_helped_this_week,
-          hours_mentored_this_week,
-          total_students_helped,
-          total_hours_mentored,
-          mentor_active_status
-        `)
-        .eq('user_id', user?.id)
-        .single()
+      // Use the API endpoint which handles missing profiles properly
+      const response = await fetch('/api/mentors/apply', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
 
-      if (error) throw error
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to load mentor data')
+      }
 
-      if (data) {
-        setMentorData(data)
+      const data = await response.json()
+
+      setMentorData({
+        is_mentor: data.is_mentor || false,
+        mentor_status: data.mentor_status,
+        mentor_bio: data.mentor_bio || '',
+        mentor_specialties: data.mentor_specialties || [],
+        mentor_application_reason: data.mentor_application_reason || '',
+        discord_username: data.discord_username || '',
+        mentor_rating: data.mentor_rating || 0,
+        students_helped_this_week: data.students_helped_this_week || 0,
+        hours_mentored_this_week: data.hours_mentored_this_week || 0,
+        total_students_helped: data.total_students_helped || 0,
+        total_hours_mentored: data.total_hours_mentored || 0,
+        mentor_active_status: data.mentor_active_status || 'active'
+      })
+
+      // Only populate form fields if not pending (to keep forms clear after submission)
+      // OR if they're an approved mentor (so they can edit their profile)
+      if (data.mentor_status !== 'pending' || (data.is_mentor && data.mentor_status === 'approved')) {
         setFormData({
           mentorBio: data.mentor_bio || '',
           mentorSpecialties: (data.mentor_specialties || []).join(', '),
@@ -77,6 +87,7 @@ export default function MentorSettings() {
       }
     } catch (err) {
       console.error('Error loading mentor data:', err)
+      setError(err instanceof Error ? err.message : 'Failed to load mentor data')
     } finally {
       setLoading(false)
     }
@@ -89,26 +100,54 @@ export default function MentorSettings() {
     setSuccess('')
 
     try {
-      const response = await fetch('/api/mentors/apply', {
+      // Determine if this is an application or profile update
+      const isProfileUpdate = mentorData.is_mentor && mentorData.mentor_status === 'approved'
+      const endpoint = isProfileUpdate ? '/api/mentors/update' : '/api/mentors/apply'
+      
+      // Prepare request body based on type
+      const requestBody = isProfileUpdate 
+        ? {
+            mentorBio: formData.mentorBio,
+            mentorSpecialties: formData.mentorSpecialties.split(',').map(s => s.trim()).filter(Boolean),
+            discordUsername: formData.discordUsername
+          }
+        : {
+            mentorBio: formData.mentorBio,
+            mentorSpecialties: formData.mentorSpecialties.split(',').map(s => s.trim()).filter(Boolean),
+            applicationReason: formData.applicationReason,
+            discordUsername: formData.discordUsername
+          }
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          mentorBio: formData.mentorBio,
-          mentorSpecialties: formData.mentorSpecialties.split(',').map(s => s.trim()).filter(Boolean),
-          applicationReason: formData.applicationReason,
-          discordUsername: formData.discordUsername
-        })
+        body: JSON.stringify(requestBody)
       })
 
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to submit application')
+        throw new Error(data.error || `Failed to ${isProfileUpdate ? 'update profile' : 'submit application'}`)
       }
 
-      setSuccess('Application submitted successfully! We\'ll review it soon.')
+      const successMessage = isProfileUpdate 
+        ? 'Profile updated successfully!'
+        : 'Application submitted successfully! We\'ll review it soon.'
+      
+      setSuccess(successMessage)
+      
+      // Clear form fields only for new applications, not profile updates
+      if (!isProfileUpdate) {
+        setFormData({
+          mentorBio: '',
+          mentorSpecialties: '',
+          applicationReason: '',
+          discordUsername: ''
+        })
+      }
+      
       await loadMentorData() // Reload data to show updated status
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong')
@@ -162,8 +201,8 @@ export default function MentorSettings() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          students_helped_week: studentsHelped,
-          hours_mentored_week: hoursSpent
+          studentsHelped: studentsHelped,
+          hoursLogged: hoursSpent
         })
       })
 
@@ -174,6 +213,39 @@ export default function MentorSettings() {
       }
 
       setSuccess('Stats updated successfully!')
+      await loadMentorData()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const handleStatusChange = async (newStatus: 'active' | 'away' | 'retired') => {
+    if (newStatus === 'retired' && !confirm('Are you sure you want to retire? This will remove you from the leaderboard and you\'ll need to reapply to become a mentor again.')) {
+      return
+    }
+
+    setSubmitting(true)
+    setError('')
+    setSuccess('')
+
+    try {
+      const response = await fetch('/api/mentors/status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus })
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to update status')
+      }
+
+      setSuccess(`Status updated to ${newStatus}!`)
       await loadMentorData()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong')
@@ -218,23 +290,28 @@ export default function MentorSettings() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
+      {/* Messages at the top for better visibility */}
+      {error && (
+        <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
+          <p className="text-red-300 text-sm">{error}</p>
+        </div>
+      )}
+
+      {success && (
+        <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
+          <p className="text-green-300 text-sm">{success}</p>
+        </div>
+      )}
+
       {/* Status Overview */}
-      <div className="bg-slate-800 rounded-lg p-6">
+      <div className="bg-slate-800 rounded-lg p-6 relative z-10">
         <h3 className="text-xl font-semibold text-white mb-4">Mentor Status</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <div>
-            <p className="text-sm text-slate-400">Application Status</p>
             <p className={`font-medium ${getStatusColor(mentorData.mentor_status)}`}>
               {getStatusText(mentorData.mentor_status)}
             </p>
-          </div>
-          <div>
-            <p className="text-sm text-slate-400">Mentor Rating</p>
-            <div className="flex items-center gap-1">
-              <span className="text-yellow-400 text-lg">★</span>
-              <span className="text-white font-medium">{mentorData.mentor_rating.toFixed(1)}</span>
-            </div>
           </div>
         </div>
       </div>
@@ -249,7 +326,9 @@ export default function MentorSettings() {
               <div className="text-sm text-slate-400">Students This Week</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-400">{mentorData.hours_mentored_this_week}</div>
+              <div className="text-2xl font-bold text-green-400">
+                {(mentorData.hours_mentored_this_week || 0).toFixed(1)}
+              </div>
               <div className="text-sm text-slate-400">Hours This Week</div>
             </div>
             <div className="text-center">
@@ -257,7 +336,9 @@ export default function MentorSettings() {
               <div className="text-sm text-slate-400">Total Students</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-400">{mentorData.total_hours_mentored}</div>
+              <div className="text-2xl font-bold text-orange-400">
+                {(mentorData.total_hours_mentored || 0).toFixed(1)}
+              </div>
               <div className="text-sm text-slate-400">Total Hours</div>
             </div>
           </div>
@@ -277,12 +358,16 @@ export default function MentorSettings() {
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-400 mb-2">Hours Mentored This Week</label>
+                <label className="block text-sm text-slate-400 mb-2">
+                  Hours Mentored This Week
+                </label>
                 <input
                   type="number"
                   min="0"
+                  step="0.25"
+                  placeholder="1.5"
                   defaultValue={mentorData.hours_mentored_this_week}
-                  className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white"
+                  className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400"
                   id="hours-mentored"
                 />
               </div>
@@ -291,7 +376,7 @@ export default function MentorSettings() {
               onClick={() => {
                 const studentsEl = document.getElementById('students-helped') as HTMLInputElement
                 const hoursEl = document.getElementById('hours-mentored') as HTMLInputElement
-                handleUpdateStats(parseInt(studentsEl.value) || 0, parseInt(hoursEl.value) || 0)
+                handleUpdateStats(parseInt(studentsEl.value) || 0, parseFloat(hoursEl.value) || 0)
               }}
               disabled={submitting}
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
@@ -300,41 +385,61 @@ export default function MentorSettings() {
             </button>
           </div>
 
-          {/* Retire Option */}
+          {/* Status Management */}
           <div className="border-t border-slate-700 pt-6 mt-6">
-            <h4 className="text-lg font-medium text-white mb-2">Retire as Mentor</h4>
-            <p className="text-sm text-slate-400 mb-4">
-              If you need to step back from mentoring, you can retire your mentor status. You can reapply later if you change your mind.
+            <h4 className="text-lg font-medium text-white mb-4">Mentor Status</h4>
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              <button
+                onClick={() => handleStatusChange('active')}
+                disabled={submitting}
+                className={`px-4 py-2 rounded text-sm font-medium transition-all ${
+                  mentorData.mentor_active_status === 'active'
+                    ? 'bg-green-600 text-white'
+                    : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                }`}
+              >
+                🟢 Active
+              </button>
+              <button
+                onClick={() => handleStatusChange('away')}
+                disabled={submitting}
+                className={`px-4 py-2 rounded text-sm font-medium transition-all ${
+                  mentorData.mentor_active_status === 'away'
+                    ? 'bg-yellow-600 text-white'
+                    : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                }`}
+              >
+                🟡 Away
+              </button>
+              <button
+                onClick={() => handleStatusChange('retired')}
+                disabled={submitting}
+                className={`px-4 py-2 rounded text-sm font-medium transition-all ${
+                  mentorData.mentor_active_status === 'retired'
+                    ? 'bg-red-600 text-white'
+                    : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                }`}
+              >
+                🔴 Retired
+              </button>
+            </div>
+            <p className="text-xs text-slate-400">
+              <strong>Active:</strong> Appear on leaderboard and available for mentoring<br/>
+              <strong>Away:</strong> Temporarily unavailable but still a mentor<br/>
+              <strong>Retired:</strong> No longer mentoring, removed from leaderboard
             </p>
-            <button
-              onClick={handleRetireMentor}
-              disabled={submitting}
-              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
-            >
-              {submitting ? 'Processing...' : 'Retire as Mentor'}
-            </button>
           </div>
         </div>
       )}
 
-      {/* Application Form (if not a mentor or application was declined) */}
-      {(!mentorData.is_mentor || mentorData.mentor_status === 'declined') && (
+      {/* Edit Profile Form (if approved mentor) */}
+      {mentorData.is_mentor && mentorData.mentor_status === 'approved' && (
         <div className="bg-slate-800 rounded-lg p-6">
-          <h3 className="text-xl font-semibold text-white mb-4">
-            {mentorData.mentor_status === 'declined' ? 'Reapply to Become a Mentor' : 'Apply to Become a Discord Mentor'}
-          </h3>
+          <h3 className="text-xl font-semibold text-white mb-4">Update Mentor Profile</h3>
           
-          {mentorData.mentor_status === 'declined' && (
-            <div className="mb-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-              <p className="text-yellow-300 text-sm">
-                Your previous application was declined. You can submit a new application with updated information.
-              </p>
-            </div>
-          )}
-
-          <form onSubmit={handleSubmitApplication} className="space-y-6">
+          <form onSubmit={handleSubmitApplication} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-slate-300 mb-1">
                 Discord Username *
               </label>
               <input
@@ -344,30 +449,27 @@ export default function MentorSettings() {
                 onChange={handleChange}
                 placeholder="your_username"
                 required
-                className="w-full p-3 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
+                className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
               />
-              <p className="text-xs text-slate-400 mt-1">
-                Your Discord username so we can connect with you
-              </p>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-slate-300 mb-1">
                 Mentor Bio *
               </label>
               <textarea
                 name="mentorBio"
                 value={formData.mentorBio}
                 onChange={handleChange}
-                placeholder="Tell us about your coding experience, what you're passionate about, and how you'd like to help students..."
+                placeholder="Tell us about your coding experience and how you help students..."
                 required
-                rows={4}
-                className="w-full p-3 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
+                rows={3}
+                className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-slate-300 mb-1">
                 Specialties *
               </label>
               <input
@@ -377,7 +479,85 @@ export default function MentorSettings() {
                 onChange={handleChange}
                 placeholder="JavaScript, React, Node.js, Python, Web Development..."
                 required
-                className="w-full p-3 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
+                className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
+              />
+              <p className="text-xs text-slate-400 mt-1">
+                Separate multiple specialties with commas
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+            >
+              {submitting ? 'Updating...' : 'Update Profile'}
+            </button>
+          </form>
+        </div>
+      )}
+
+      {/* Application Form (if not a mentor or application was declined) */}
+      {(!mentorData.is_mentor || mentorData.mentor_status === 'declined') && (
+        <div className="bg-slate-800 rounded-lg p-6">
+          <h3 className="text-xl font-semibold text-white mb-4">
+            {mentorData.mentor_status === 'declined' ? 'Reapply to Become a Mentor' : 'Apply to Become a Mentor'}
+          </h3>
+          
+          {mentorData.mentor_status === 'declined' && (
+            <div className="mb-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+              <p className="text-yellow-300 text-sm">
+                Your previous application was declined - please review your entry and try again with updated information.
+              </p>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmitApplication} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">
+                Discord Username *
+              </label>
+              <input
+                type="text"
+                name="discordUsername"
+                value={formData.discordUsername}
+                onChange={handleChange}
+                placeholder="your_username"
+                required
+                className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
+              />
+              <p className="text-xs text-slate-400 mt-1">
+                Your Discord username so we can connect with you
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">
+                Mentor Bio *
+              </label>
+              <textarea
+                name="mentorBio"
+                value={formData.mentorBio}
+                onChange={handleChange}
+                placeholder="Tell us about your coding experience, what you're passionate about, and how you'd like to help students..."
+                required
+                rows={3}
+                className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">
+                Specialties *
+              </label>
+              <input
+                type="text"
+                name="mentorSpecialties"
+                value={formData.mentorSpecialties}
+                onChange={handleChange}
+                placeholder="JavaScript, React, Node.js, Python, Web Development..."
+                required
+                className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
               />
               <p className="text-xs text-slate-400 mt-1">
                 Separate multiple specialties with commas
@@ -385,7 +565,7 @@ export default function MentorSettings() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-slate-300 mb-1">
                 Why do you want to become a mentor? *
               </label>
               <textarea
@@ -394,15 +574,15 @@ export default function MentorSettings() {
                 onChange={handleChange}
                 placeholder="Share your motivation for mentoring and how you plan to contribute to the community..."
                 required
-                rows={4}
-                className="w-full p-3 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
+                rows={3}
+                className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
               />
             </div>
 
             <button
               type="submit"
               disabled={submitting}
-              className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
               {submitting ? 'Submitting...' : 'Submit Application'}
             </button>
@@ -434,20 +614,11 @@ export default function MentorSettings() {
               <p className="text-sm text-slate-400">Specialties</p>
               <p className="text-white">{mentorData.mentor_specialties?.join(', ')}</p>
             </div>
+            <div>
+              <p className="text-sm text-slate-400">Application Reason</p>
+              <p className="text-white">{mentorData.mentor_application_reason}</p>
+            </div>
           </div>
-        </div>
-      )}
-
-      {/* Messages */}
-      {error && (
-        <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
-          <p className="text-red-300 text-sm">{error}</p>
-        </div>
-      )}
-
-      {success && (
-        <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
-          <p className="text-green-300 text-sm">{success}</p>
         </div>
       )}
     </div>

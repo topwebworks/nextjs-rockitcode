@@ -1,13 +1,18 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+import { createServerSupabaseClient } from '@/lib/supabase'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import type { Database } from '@/types/database'
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient<Database>({ 
-      cookies: () => cookies() 
-    })
+    const supabase = await createServerSupabaseClient()
+    
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'Database connection failed' },
+        { status: 500 }
+      )
+    }
 
     // Check if user is authenticated
     const { data: { user }, error: authError } = await supabase.auth.getUser()
@@ -18,14 +23,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if user is admin
-    const { data: adminProfile } = await supabase
-      .from('user_profiles')
-      .select('user_role')
-      .eq('user_id', user.id)
-      .single()
+    // Check if user is admin (using email-based check like the frontend)
+    const isAdmin = user.email?.includes('topwebworks') || 
+                    user.email?.includes('@yourcompany.com') || 
+                    user.email === 'admin@rockitcode.com'
 
-    if (!adminProfile?.user_role || !['admin', 'super_admin'].includes(adminProfile.user_role)) {
+    if (!isAdmin) {
       return NextResponse.json(
         { error: 'Admin access required' },
         { status: 403 }
@@ -57,17 +60,15 @@ export async function POST(request: NextRequest) {
         hours_mentored_this_week: 0,
         total_students_helped: 0,
         total_hours_mentored: 0,
-        mentor_rating: 5.0
+        mentor_rating: 5.0,
+        mentor_active_status: 'active' // Set as active by default
       }
     } else {
-      // Reject - clear mentor application data
+      // Reject - set status to declined with feedback
       updateData = {
         ...updateData,
-        mentor_status: null,
-        mentor_application_reason: null,
-        mentor_bio: null,
-        mentor_specialties: [],
-        discord_username: null
+        mentor_status: 'declined'
+        // Keep application data so they can review and improve it
       }
     }
 
@@ -101,26 +102,35 @@ export async function POST(request: NextRequest) {
 // Get pending mentor applications (admin only)
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient<Database>({ 
-      cookies: () => cookies() 
-    })
+    const supabase = await createServerSupabaseClient()
+    
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'Database connection failed' },
+        { status: 500 }
+      )
+    }
 
     // Check if user is authenticated and admin
     const { data: { user }, error: authError } = await supabase.auth.getUser()
     if (authError || !user) {
+      console.log('Auth error or no user:', authError, user)
       return NextResponse.json(
         { error: 'Authentication required' },
         { status: 401 }
       )
     }
 
-    const { data: adminProfile } = await supabase
-      .from('user_profiles')
-      .select('user_role')
-      .eq('user_id', user.id)
-      .single()
+    console.log('User email for admin check:', user.email)
+    
+    // Check if user is admin (using email-based check like the frontend)
+    const isAdmin = user.email?.includes('topwebworks') || 
+                    user.email?.includes('@yourcompany.com') || 
+                    user.email === 'admin@rockitcode.com'
 
-    if (!adminProfile?.user_role || !['admin', 'super_admin'].includes(adminProfile.user_role)) {
+    console.log('Is admin check result:', isAdmin)
+
+    if (!isAdmin) {
       return NextResponse.json(
         { error: 'Admin access required' },
         { status: 403 }

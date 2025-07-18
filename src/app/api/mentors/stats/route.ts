@@ -1,4 +1,4 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+import { createServerSupabaseClient } from '@/lib/supabase'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import type { Database } from '@/types/database'
@@ -6,9 +6,14 @@ import type { Database } from '@/types/database'
 // Update mentor stats (honor system - mentors self-report)
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient<Database>({ 
-      cookies: () => cookies() 
-    })
+    const supabase = await createServerSupabaseClient()
+    
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'Database connection failed' },
+        { status: 500 }
+      )
+    }
 
     // Check if user is authenticated
     const { data: { user }, error: authError } = await supabase.auth.getUser()
@@ -38,15 +43,18 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { studentsHelped, hoursLogged } = body
 
+    console.log('Stats update request:', { studentsHelped, hoursLogged, userId: user.id })
+
     if (typeof studentsHelped !== 'number' || typeof hoursLogged !== 'number' ||
         studentsHelped < 0 || hoursLogged < 0) {
+      console.log('Invalid stats validation failed:', { studentsHelped, hoursLogged, types: { students: typeof studentsHelped, hours: typeof hoursLogged } })
       return NextResponse.json(
         { error: 'Invalid stats data' },
         { status: 400 }
       )
     }
 
-    // Get current stats
+    // Get current stats to calculate total differences
     const { data: currentStats } = await supabase
       .from('user_profiles')
       .select(`
@@ -58,11 +66,20 @@ export async function POST(request: NextRequest) {
       .eq('user_id', user.id)
       .single()
 
+    // Calculate the difference for total stats
+    const currentWeeklyStudents = currentStats?.students_helped_this_week || 0
+    const currentWeeklyHours = currentStats?.hours_mentored_this_week || 0
+    
+    const studentsDiff = studentsHelped - currentWeeklyStudents
+    const hoursDiff = hoursLogged - currentWeeklyHours
+
     const updatedStats = {
-      students_helped_this_week: (currentStats?.students_helped_this_week || 0) + studentsHelped,
-      hours_mentored_this_week: (currentStats?.hours_mentored_this_week || 0) + hoursLogged,
-      total_students_helped: (currentStats?.total_students_helped || 0) + studentsHelped,
-      total_hours_mentored: (currentStats?.total_hours_mentored || 0) + hoursLogged,
+      // Set weekly stats to the new values (not add to them)
+      students_helped_this_week: studentsHelped,
+      hours_mentored_this_week: hoursLogged,
+      // Adjust total stats by the difference
+      total_students_helped: Math.max(0, (currentStats?.total_students_helped || 0) + studentsDiff),
+      total_hours_mentored: Math.max(0, (currentStats?.total_hours_mentored || 0) + hoursDiff),
       updated_at: new Date().toISOString()
     }
 
@@ -73,8 +90,10 @@ export async function POST(request: NextRequest) {
 
     if (updateError) {
       console.error('Error updating mentor stats:', updateError)
+      console.error('Updated stats data:', updatedStats)
+      console.error('User ID:', user.id)
       return NextResponse.json(
-        { error: 'Failed to update stats' },
+        { error: `Failed to update stats: ${updateError.message}` },
         { status: 500 }
       )
     }
@@ -96,9 +115,14 @@ export async function POST(request: NextRequest) {
 // Get mentor leaderboard
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient<Database>({ 
-      cookies: () => cookies() 
-    })
+    const supabase = await createServerSupabaseClient()
+    
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'Database connection failed' },
+        { status: 500 }
+      )
+    }
 
     const url = new URL(request.url)
     const period = url.searchParams.get('period') || 'weekly'
@@ -140,7 +164,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Add rankings
-    const rankedMentors = mentors?.map((mentor, index) => ({
+    const rankedMentors = mentors?.map((mentor: any, index: number) => ({
       ...mentor,
       rank: index + 1
     })) || []

@@ -186,9 +186,9 @@ export default function ContributorsPage() {
         {/* Financial Sponsors */}
         <section className="mb-24">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-light text-white mb-6 tracking-wide">Financial Supporters</h2>
+            <h2 className="text-4xl font-light text-white mb-6 tracking-wide">Community Supporters</h2>
             <p className="text-xl text-slate-300 font-light">
-              Organizations and individuals who believe in making quality coding education accessible
+              People and organizations helping kids learn to code for free - no strings attached
             </p>
           </div>
           
@@ -198,11 +198,11 @@ export default function ContributorsPage() {
                 {renderIcon('heart', 'w-8 h-8 text-white')}
               </div>
               <h3 className="text-3xl font-light text-white mb-4 tracking-wide">
-                Supporting Our Mission
+                Helping Kids Learn for Free
               </h3>
               <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                Organizations and individuals who believe in making quality coding education 
-                accessible to everyone.
+                Your donation directly supports free coding education for children. 
+                In return, we offer recognition and the joy of knowing you're making a difference.
               </p>
             </div>
 
@@ -213,20 +213,24 @@ export default function ContributorsPage() {
                   <div className="inline-flex items-center justify-center w-12 h-12 mb-6 rounded-full shadow-lg bg-gradient-to-r from-yellow-500 to-orange-500">
                     {renderIcon('star', 'w-6 h-6 text-white')}
                   </div>
-                  <h4 className="text-xl font-light text-white mb-3">Gold Sponsors</h4>
-                  <p className="text-yellow-200 text-sm mb-6 font-light">$500+ monthly</p>
+                  <h4 className="text-xl font-light text-white mb-3">Champion Sponsors</h4>
+                  <p className="text-yellow-200 text-sm mb-6 font-light">$100+ monthly</p>
                   <ul className="text-yellow-200 text-sm space-y-2 font-light">
                     <li className="flex items-center gap-2">
                       {renderIcon('check', 'w-3 h-3 text-yellow-400')}
-                      <span>Premium Discord features</span>
+                      <span>Featured sponsor spotlight</span>
                     </li>
                     <li className="flex items-center gap-2">
                       {renderIcon('check', 'w-3 h-3 text-yellow-400')}
-                      <span>Server infrastructure</span>
+                      <span>Logo in champion carousel</span>
                     </li>
                     <li className="flex items-center gap-2">
                       {renderIcon('check', 'w-3 h-3 text-yellow-400')}
-                      <span>Content creation tools</span>
+                      <span>Monthly impact report</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      {renderIcon('check', 'w-3 h-3 text-yellow-400')}
+                      <span>Students helped count</span>
                     </li>
                   </ul>
                 </div>
@@ -237,20 +241,24 @@ export default function ContributorsPage() {
                   <div className="inline-flex items-center justify-center w-12 h-12 mb-6 rounded-full shadow-lg bg-gradient-to-r from-gray-400 to-gray-600">
                     {renderIcon('shield', 'w-6 h-6 text-white')}
                   </div>
-                  <h4 className="text-xl font-light text-white mb-3">Silver Sponsors</h4>
-                  <p className="text-gray-200 text-sm mb-6 font-light">$100+ monthly</p>
+                  <h4 className="text-xl font-light text-white mb-3">Learning Sponsors</h4>
+                  <p className="text-gray-200 text-sm mb-6 font-light">$50+ monthly</p>
                   <ul className="text-gray-200 text-sm space-y-2 font-light">
                     <li className="flex items-center gap-2">
                       {renderIcon('check', 'w-3 h-3 text-gray-400')}
-                      <span>Community moderation</span>
+                      <span>Logo in sponsors carousel</span>
                     </li>
                     <li className="flex items-center gap-2">
                       {renderIcon('check', 'w-3 h-3 text-gray-400')}
-                      <span>Learning resources</span>
+                      <span>Quarterly impact updates</span>
                     </li>
                     <li className="flex items-center gap-2">
                       {renderIcon('check', 'w-3 h-3 text-gray-400')}
-                      <span>Event hosting</span>
+                      <span>Footer sponsor credits</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      {renderIcon('check', 'w-3 h-3 text-gray-400')}
+                      <span>Success story mentions</span>
                     </li>
                   </ul>
                 </div>
@@ -266,15 +274,19 @@ export default function ContributorsPage() {
                   <ul className="text-orange-200 text-sm space-y-2 font-light">
                     <li className="flex items-center gap-2">
                       {renderIcon('check', 'w-3 h-3 text-orange-400')}
-                      <span>Basic operations</span>
+                      <span>Name on supporters wall</span>
                     </li>
                     <li className="flex items-center gap-2">
                       {renderIcon('check', 'w-3 h-3 text-orange-400')}
-                      <span>Discord server costs</span>
+                      <span>Thank you in updates</span>
                     </li>
                     <li className="flex items-center gap-2">
                       {renderIcon('check', 'w-3 h-3 text-orange-400')}
-                      <span>Educational materials</span>
+                      <span>Impact story access</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      {renderIcon('check', 'w-3 h-3 text-orange-400')}
+                      <span>Community recognition</span>
                     </li>
                   </ul>
                 </div>

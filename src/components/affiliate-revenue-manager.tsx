@@ -292,12 +292,12 @@ export function AffiliateRevenueManager() {
             { key: 'overview', label: 'Overview', icon: '📊' },
             { key: 'tools', label: 'Partner Tools', icon: '🛠️' },
             { key: 'analytics', label: 'Analytics', icon: '📈' },
-            { key: 'mentors', label: 'Mentors', icon: '👥' }
+            { key: 'mentors', label: 'Mentors', icon: '👥', badge: applications.length }
           ].map(tab => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as any)}
-              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 relative ${
                 activeTab === tab.key
                   ? 'bg-slate-700/50 text-blue-400 border border-blue-400/30'
                   : 'text-slate-300 hover:text-white hover:bg-slate-700/30'
@@ -305,6 +305,11 @@ export function AffiliateRevenueManager() {
             >
               <span>{tab.icon}</span>
               <span>{tab.label}</span>
+              {tab.badge && tab.badge > 0 && (
+                <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full">
+                  {tab.badge}
+                </span>
+              )}
             </button>
           ))}
         </div>

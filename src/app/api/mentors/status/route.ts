@@ -1,4 +1,4 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+import { createServerSupabaseClient } from '@/lib/supabase'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import type { Database } from '@/types/database'
@@ -6,9 +6,14 @@ import type { Database } from '@/types/database'
 // Update mentor status (active, away, retired)
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient<Database>({ 
-      cookies: () => cookies() 
-    })
+    const supabase = await createServerSupabaseClient()
+    
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'Database connection failed' },
+        { status: 500 }
+      )
+    }
 
     // Check if user is authenticated
     const { data: { user }, error: authError } = await supabase.auth.getUser()
@@ -44,12 +49,23 @@ export async function POST(request: NextRequest) {
     }
 
     // Update mentor status
+    let updateData: any = {
+      mentor_active_status: status,
+      updated_at: new Date().toISOString()
+    }
+
+    // If retiring, remove mentor privileges but keep historical data
+    if (status === 'retired') {
+      updateData = {
+        ...updateData,
+        is_mentor: false,
+        mentor_status: null
+      }
+    }
+
     const { error: updateError } = await supabase
       .from('user_profiles')
-      .update({
-        mentor_active_status: status,
-        updated_at: new Date().toISOString()
-      })
+      .update(updateData)
       .eq('user_id', user.id)
 
     if (updateError) {
@@ -77,9 +93,14 @@ export async function POST(request: NextRequest) {
 // Get mentor status
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient<Database>({ 
-      cookies: () => cookies() 
-    })
+    const supabase = await createServerSupabaseClient()
+    
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'Database connection failed' },
+        { status: 500 }
+      )
+    }
 
     // Check if user is authenticated
     const { data: { user }, error: authError } = await supabase.auth.getUser()
