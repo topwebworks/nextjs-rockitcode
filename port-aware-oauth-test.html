@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Port-Aware GitHub OAuth Test</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        button { 
+            padding: 12px 24px; 
+            font-size: 16px; 
+            background: #0066cc; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            margin: 10px 5px; 
+        }
+        button:hover { background: #0052a3; }
+        .status { 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 8px; 
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .success { background: #d4edda; color: #155724; border: 2px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 2px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 2px solid #bee5eb; }
+        .warning { background: #fff3cd; color: #856404; border: 2px solid #ffeaa7; }
+        pre { background: #f8f9fa; padding: 15px; border-radius: 6px; overflow-x: auto; font-size: 12px; }
+        .port-section { margin: 20px 0; padding: 15px; background: #f8f9fa; border-left: 4px solid #0066cc; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Port-Aware GitHub OAuth Test</h1>
+        <p>This tool automatically detects the correct port and tests OAuth.</p>
+        
+        <div class="port-section">
+            <h3>🌐 Port Detection</h3>
+            <p><strong>Current Page Port:</strong> <span id="currentPort">Detecting...</span></p>
+            <p><strong>Target Callback URL:</strong> <span id="callbackUrl">Calculating...</span></p>
+        </div>
+
+        <div class="port-section">
+            <h3>🎯 OAuth Tests</h3>
+            <button onclick="testOAuthPort3000()">Test OAuth → Port 3000</button>
+            <button onclick="testOAuthPort3001()">Test OAuth → Port 3001</button>
+            <button onclick="testOAuthCurrentPort()">Test OAuth → Current Port</button>
+        </div>
+
+        <div class="port-section">
+            <h3>🔍 Debugging</h3>
+            <button onclick="checkSession()">Check Current Session</button>
+            <button onclick="checkCurrentURL()">Check Current URL</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+        <div id="status"></div>
+    </div>
+    
+    <script>
+        const supabase = window.supabase.createClient(
+            'https://lkntrrjnwbbuueqluqou.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxrbnRycmpud2JidXVlcWx1cW91Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MDIzMTQsImV4cCI6MjA2ODA3ODMxNH0.dBCtXEuuHsY9js47ScVFNsrg3eh76Mb07u8CpxTxeaU'
+        )
+        
+        let currentPort = window.location.port || (window.location.protocol === 'https:' ? '443' : '80')
+        let detectedPort = '3001' // Default to 3001 based on server output
+        
+        function setStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status')
+            const timestamp = new Date().toLocaleTimeString()
+            statusDiv.innerHTML += `<div class="status ${type}">[${timestamp}] ${message}</div>`
+            statusDiv.scrollTop = statusDiv.scrollHeight
+        }
+
+        function updatePortDisplay() {
+            document.getElementById('currentPort').textContent = currentPort
+            document.getElementById('callbackUrl').textContent = `http://localhost:${detectedPort}/auth/callback`
+        }
+
+        async function testOAuth(port, description) {
+            setStatus(`🔄 Testing GitHub OAuth → ${description}...`, 'info')
+            
+            try {
+                const redirectUrl = `http://localhost:${port}/auth/callback`
+                setStatus(`Using callback URL: ${redirectUrl}`, 'info')
+                
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: 'github',
+                    options: {
+                        redirectTo: redirectUrl
+                    }
+                })
+                
+                if (error) {
+                    setStatus(`❌ OAuth Error (${description}): ${error.message}`, 'error')
+                    console.error('OAuth error:', error)
+                } else {
+                    setStatus(`✅ OAuth initiated successfully (${description}). Redirecting to GitHub...`, 'success')
+                    console.log('OAuth data:', data)
+                    // The page will redirect automatically
+                }
+            } catch (err) {
+                setStatus(`❌ Exception (${description}): ${err.message}`, 'error')
+                console.error('Exception:', err)
+            }
+        }
+
+        async function testOAuthPort3000() {
+            await testOAuth('3000', 'Port 3000')
+        }
+
+        async function testOAuthPort3001() {
+            await testOAuth('3001', 'Port 3001')
+        }
+
+        async function testOAuthCurrentPort() {
+            await testOAuth(detectedPort, `Current Port ${detectedPort}`)
+        }
+
+        async function checkSession() {
+            setStatus('🔍 Checking session...', 'info')
+            
+            try {
+                const { data: { session }, error } = await supabase.auth.getSession()
+                
+                if (error) {
+                    setStatus(`❌ Session Error: ${error.message}`, 'error')
+                } else if (session) {
+                    setStatus(`✅ Session found!
+User: ${session.user.email}
+Provider: ${session.user.app_metadata.provider}
+Expires: ${new Date(session.expires_at * 1000).toLocaleString()}
+                    `, 'success')
+                } else {
+                    setStatus('ℹ️ No active session found', 'info')
+                }
+            } catch (err) {
+                setStatus(`❌ Exception: ${err.message}`, 'error')
+            }
+        }
+
+        async function checkCurrentURL() {
+            setStatus('🔍 Checking current URL for OAuth parameters...', 'info')
+            
+            const url = new URL(window.location.href)
+            const params = new URLSearchParams(url.search)
+            
+            setStatus(`Current URL: ${window.location.href}`, 'info')
+            
+            if (params.has('error')) {
+                setStatus(`❌ OAuth Error in URL: ${params.get('error')}`, 'error')
+                if (params.has('error_description')) {
+                    setStatus(`Error Description: ${params.get('error_description')}`, 'error')
+                }
+            }
+            
+            if (params.has('code')) {
+                setStatus(`✅ OAuth Code found in URL: ${params.get('code').substring(0, 20)}...`, 'success')
+            }
+            
+            if (params.has('state')) {
+                setStatus(`State parameter: ${params.get('state')}`, 'info')
+            }
+        }
+
+        async function logout() {
+            setStatus('🔄 Logging out...', 'info')
+            
+            try {
+                const { error } = await supabase.auth.signOut()
+                
+                if (error) {
+                    setStatus(`❌ Logout Error: ${error.message}`, 'error')
+                } else {
+                    setStatus('✅ Logged out successfully', 'success')
+                }
+            } catch (err) {
+                setStatus(`❌ Exception: ${err.message}`, 'error')
+            }
+        }
+
+        window.onload = function() {
+            updatePortDisplay()
+            setStatus('🌐 Port-Aware OAuth Tool Loaded', 'info')
+            setStatus(`Detected environment: Port ${currentPort}`, 'info')
+            setStatus('Will use port 3001 for callback based on server output.', 'info')
+            
+            // Auto-check URL for errors
+            setTimeout(checkCurrentURL, 500)
+            
+            // Auto-check session
+            setTimeout(checkSession, 1000)
+            
+            // Listen for auth state changes
+            supabase.auth.onAuthStateChange((event, session) => {
+                console.log('Auth state change:', event, session)
+                if (event === 'SIGNED_IN') {
+                    setStatus(`🎉 Authentication successful! Welcome ${session.user.email}`, 'success')
+                } else if (event === 'SIGNED_OUT') {
+                    setStatus('👋 Signed out', 'info')
+                } else if (event === 'TOKEN_REFRESHED') {
+                    setStatus('🔄 Token refreshed', 'info')
+                }
+            })
+        }
+    </script>
+</body>
+</html>

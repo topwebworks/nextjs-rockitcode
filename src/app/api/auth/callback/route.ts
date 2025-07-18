@@ -9,28 +9,56 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     const code = searchParams.get('code')
-    const next = searchParams.get('redirectTo') ?? searchParams.get('next') ?? '/'
+    const error = searchParams.get('error')
+    const errorDescription = searchParams.get('error_description')
+    const next = searchParams.get('next') ?? '/'
+
+    // Handle OAuth errors
+    if (error) {
+      console.error('OAuth error:', error, errorDescription)
+      const errorUrl = new URL('/', request.url)
+      errorUrl.searchParams.set('error', 'auth_failed')
+      errorUrl.searchParams.set('message', errorDescription || error)
+      return NextResponse.redirect(errorUrl)
+    }
 
     if (code) {
       const cookieStore = await cookies()
       const supabase = await createServerSupabaseClient()
       
       if (!supabase) {
-        return NextResponse.redirect(new URL('/error', request.url))
+        const errorUrl = new URL('/', request.url)
+        errorUrl.searchParams.set('error', 'server_error')
+        return NextResponse.redirect(errorUrl)
       }
       
-      const { error } = await supabase.auth.exchangeCodeForSession(code)
+      // Exchange the code for a session
+      const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
       
-      if (!error) {
+      if (!exchangeError && data.session) {
         // Successful authentication - redirect to intended page
-        return NextResponse.redirect(new URL(next, request.url))
+        const successUrl = new URL(next, request.url)
+        return NextResponse.redirect(successUrl)
+      }
+      
+      if (exchangeError) {
+        console.error('Token exchange error:', exchangeError)
+        const errorUrl = new URL('/', request.url)
+        errorUrl.searchParams.set('error', 'token_exchange_failed')
+        errorUrl.searchParams.set('message', exchangeError.message)
+        return NextResponse.redirect(errorUrl)
       }
     }
 
-    // Return the user to an error page with some instructions
-    return NextResponse.redirect(new URL('/auth/auth-code-error', request.url))
+    // No code parameter - redirect with error
+    const errorUrl = new URL('/', request.url)
+    errorUrl.searchParams.set('error', 'no_authorization_code')
+    return NextResponse.redirect(errorUrl)
+    
   } catch (error) {
     console.error('Auth callback error:', error)
-    return NextResponse.redirect(new URL('/auth/auth-code-error', request.url))
+    const errorUrl = new URL('/', request.url)
+    errorUrl.searchParams.set('error', 'callback_error')
+    return NextResponse.redirect(errorUrl)
   }
 }

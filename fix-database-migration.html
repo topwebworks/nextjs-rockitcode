@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Apply Database Migration - Fix User Profiles</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        button { 
+            padding: 12px 24px; 
+            font-size: 16px; 
+            background: #0066cc; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            margin: 10px 5px; 
+        }
+        button:hover { background: #0052a3; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .status { 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 8px; 
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .success { background: #d4edda; color: #155724; border: 2px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 2px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 2px solid #bee5eb; }
+        .warning { background: #fff3cd; color: #856404; border: 2px solid #ffeaa7; }
+        pre { background: #f8f9fa; padding: 15px; border-radius: 6px; overflow-x: auto; font-size: 12px; }
+        .step { margin: 20px 0; padding: 15px; background: #f8f9fa; border-left: 4px solid #0066cc; }
+        .critical { 
+            background: #ffebee; 
+            border: 2px solid #f44336; 
+            color: #c62828; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Database Migration Fix</h1>
+        <p>This tool will fix the missing <code>user_profiles</code> table that's preventing new user signups.</p>
+        
+        <div class="critical">
+            <h3>⚠️ CRITICAL ISSUE DETECTED</h3>
+            <p><strong>Error:</strong> <code>relation "user_profiles" does not exist</code></p>
+            <p><strong>Impact:</strong> New GitHub OAuth users cannot sign up</p>
+            <p><strong>Cause:</strong> Database trigger tries to insert into missing table</p>
+            <p><strong>Solution:</strong> Apply the missing database migration</p>
+        </div>
+
+        <div class="step">
+            <h3>Step 1: Check Current Database State</h3>
+            <button onclick="checkDatabaseState()">Check Database Tables</button>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Apply Missing Migration</h3>
+            <button onclick="applyMigration()" id="migrationBtn">Apply User Profiles Migration</button>
+        </div>
+
+        <div class="step">
+            <h3>Step 3: Test New User Creation</h3>
+            <button onclick="testUserCreation()">Test User Creation Function</button>
+        </div>
+
+        <div class="step">
+            <h3>Step 4: Verify OAuth Flow</h3>
+            <button onclick="testOAuth()">Test GitHub OAuth</button>
+        </div>
+
+        <div id="status"></div>
+    </div>
+    
+    <script>
+        const supabase = window.supabase.createClient(
+            'https://lkntrrjnwbbuueqluqou.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxrbnRycmpud2JidXVlcWx1cW91Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MDIzMTQsImV4cCI6MjA2ODA3ODMxNH0.dBCtXEuuHsY9js47ScVFNsrg3eh76Mb07u8CpxTxeaU'
+        )
+        
+        function setStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status')
+            const timestamp = new Date().toLocaleTimeString()
+            statusDiv.innerHTML += `<div class="status ${type}">[${timestamp}] ${message}</div>`
+            statusDiv.scrollTop = statusDiv.scrollHeight
+        }
+
+        async function checkDatabaseState() {
+            setStatus('🔍 Checking database state...', 'info')
+            
+            try {
+                // Try to query user_profiles table
+                const { data, error } = await supabase
+                    .from('user_profiles')
+                    .select('count')
+                    .limit(1)
+                
+                if (error) {
+                    if (error.message.includes('relation "user_profiles" does not exist')) {
+                        setStatus('❌ CONFIRMED: user_profiles table does not exist!', 'error')
+                        setStatus('This is why new user signups are failing.', 'error')
+                    } else {
+                        setStatus(`❌ Database Error: ${error.message}`, 'error')
+                    }
+                } else {
+                    setStatus('✅ user_profiles table exists!', 'success')
+                    setStatus('Migration may already be applied. Let\'s check the trigger...', 'info')
+                }
+                
+                // Check if trigger exists
+                const { data: triggerData, error: triggerError } = await supabase.rpc('check_trigger_exists')
+                if (triggerError) {
+                    setStatus(`Trigger check: ${triggerError.message}`, 'warning')
+                }
+                
+            } catch (err) {
+                setStatus(`❌ Exception: ${err.message}`, 'error')
+            }
+        }
+
+        async function applyMigration() {
+            setStatus('🚀 Applying user_profiles migration...', 'info')
+            document.getElementById('migrationBtn').disabled = true
+            
+            try {
+                // Create the user_profiles table
+                const createTableSQL = `
+                    CREATE TABLE IF NOT EXISTS user_profiles (
+                        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+                        user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+                        full_name TEXT,
+                        username TEXT UNIQUE,
+                        avatar_url TEXT,
+                        github_username TEXT,
+                        github_id INTEGER,
+                        learning_streak INTEGER DEFAULT 0,
+                        total_lessons_completed INTEGER DEFAULT 0,
+                        current_level TEXT DEFAULT 'beginner',
+                        preferred_language TEXT DEFAULT 'javascript',
+                        timezone TEXT DEFAULT 'UTC',
+                        daily_goal_minutes INTEGER DEFAULT 30,
+                        join_date DATE DEFAULT CURRENT_DATE,
+                        last_active TIMESTAMPTZ DEFAULT NOW(),
+                        is_premium BOOLEAN DEFAULT FALSE,
+                        created_at TIMESTAMPTZ DEFAULT NOW(),
+                        updated_at TIMESTAMPTZ DEFAULT NOW()
+                    );
+                `
+                
+                const { data, error } = await supabase.rpc('exec_sql', { sql: createTableSQL })
+                
+                if (error) {
+                    setStatus(`❌ Migration Error: ${error.message}`, 'error')
+                    setStatus('You may need to apply this migration manually in the Supabase SQL editor.', 'warning')
+                } else {
+                    setStatus('✅ user_profiles table created successfully!', 'success')
+                    
+                    // Now enable RLS
+                    await supabase.rpc('exec_sql', { 
+                        sql: 'ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;'
+                    })
+                    
+                    setStatus('✅ Row Level Security enabled!', 'success')
+                    setStatus('🎉 Migration applied! New users should now be able to sign up.', 'success')
+                }
+                
+            } catch (err) {
+                setStatus(`❌ Exception: ${err.message}`, 'error')
+                setStatus('MANUAL SOLUTION: Go to Supabase > SQL Editor and run the migration from fix-user-profiles-table.sql', 'warning')
+            }
+            
+            document.getElementById('migrationBtn').disabled = false
+        }
+
+        async function testUserCreation() {
+            setStatus('🧪 Testing user creation function...', 'info')
+            
+            try {
+                // Check if we can insert into user_profiles
+                const { data, error } = await supabase
+                    .from('user_profiles')
+                    .select('count')
+                    .limit(1)
+                
+                if (error) {
+                    setStatus(`❌ Table still missing: ${error.message}`, 'error')
+                } else {
+                    setStatus('✅ user_profiles table is accessible!', 'success')
+                    setStatus('New user creation should now work.', 'success')
+                }
+                
+            } catch (err) {
+                setStatus(`❌ Exception: ${err.message}`, 'error')
+            }
+        }
+
+        async function testOAuth() {
+            setStatus('🔐 Testing GitHub OAuth flow...', 'info')
+            
+            try {
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: 'github',
+                    options: {
+                        redirectTo: 'http://localhost:3000/auth/callback'
+                    }
+                })
+                
+                if (error) {
+                    setStatus(`❌ OAuth Error: ${error.message}`, 'error')
+                } else {
+                    setStatus('✅ OAuth initiated successfully!', 'success')
+                    setStatus('If you\'re not redirected, the migration worked and you can now test with a new GitHub account.', 'success')
+                }
+                
+            } catch (err) {
+                setStatus(`❌ Exception: ${err.message}`, 'error')
+            }
+        }
+
+        window.onload = function() {
+            setStatus('🌐 Database Migration Tool Loaded', 'info')
+            setStatus('Ready to fix the missing user_profiles table issue.', 'info')
+            setStatus('Start by checking the current database state.', 'info')
+        }
+    </script>
+</body>
+</html>

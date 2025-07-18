@@ -2,7 +2,7 @@
 // /api/sponsors/send-reports.ts
 
 import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
+import { createOAuth2Transporter } from '../../../../oauth2-gmail-setup'
 
 interface SponsorContact {
   id: string
@@ -19,16 +19,8 @@ export async function POST(request: NextRequest) {
     // Get all active sponsors
     const sponsors = await getActiveSponsors()
     
-    // Configure email transporter
-    const transporter = nodemailer.createTransporter({
-      host: process.env.SMTP_HOST,
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    })
+    // Configure email transporter (OAuth2 Gmail)
+    const transporter = await createOAuth2Transporter()
 
     const results = []
 
@@ -37,9 +29,10 @@ export async function POST(request: NextRequest) {
         // Generate PDF report for this sponsor
         const reportPDF = await generateSponsorReportPDF(sponsor.id)
         
-        // Send email with attachment
+        // Send email with attachment - Universal contact approach
         const emailResult = await transporter.sendMail({
-          from: '"RockitCode Impact Team" <impact@rockitcode.com>',
+          from: `"RockitCode Team" <${process.env.SMTP_USER}>`, // Universal sender
+          replyTo: `"RockitCode Partnerships" <${process.env.SMTP_USER}>`, // Same email, different display
           to: sponsor.email,
           subject: `Your ${sponsor.tier} Sponsorship Impact Report - ${new Date().toLocaleDateString()}`,
           html: generateEmailTemplate(sponsor),
@@ -66,7 +59,7 @@ export async function POST(request: NextRequest) {
         results.push({
           sponsor: sponsor.name,
           status: 'error',
-          error: error.message
+          error: error instanceof Error ? error.message : 'Unknown error'
         })
       }
     }

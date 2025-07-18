@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Direct GitHub OAuth Test</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        button { padding: 12px 24px; font-size: 16px; background: #0066cc; color: white; border: none; border-radius: 6px; cursor: pointer; margin: 10px 0; }
+        button:hover { background: #0052a3; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 6px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🚀 GitHub OAuth Direct Test</h1>
+    <p>This bypasses your API route and tests Supabase OAuth directly.</p>
+    
+    <button onclick="testDirectOAuth()">Login with GitHub (Direct Supabase)</button>
+    <button onclick="checkSession()">Check Current Session</button>
+    <button onclick="logout()">Logout</button>
+    
+    <div id="status"></div>
+    
+    <script>
+        const supabase = window.supabase.createClient(
+            'https://lkntrrjnwbbuueqluqou.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxrbnRycmpud2JidXVlcWx1cW91Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MDIzMTQsImV4cCI6MjA2ODA3ODMxNH0.dBCtXEuuHsY9js47ScVFNsrg3eh76Mb07u8CpxTxeaU'
+        )
+        
+        function setStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status')
+            statusDiv.innerHTML = `<div class="${type}">${message}</div>`
+        }
+        
+        async function testDirectOAuth() {
+            setStatus('🔄 Initiating GitHub OAuth...', 'info')
+            
+            try {
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: 'github',
+                    options: {
+                        redirectTo: 'http://localhost:3000/auth/callback'
+                        // Back to port 3000 - server is now running on correct port
+                    }
+                })
+                
+                if (error) {
+                    setStatus(`❌ OAuth Error: ${error.message}`, 'error')
+                    console.error('OAuth error:', error)
+                } else {
+                    setStatus(`✅ OAuth initiated successfully. Redirecting to GitHub...`, 'success')
+                    console.log('OAuth data:', data)
+                    // The page will redirect automatically
+                }
+            } catch (err) {
+                setStatus(`❌ Exception: ${err.message}`, 'error')
+                console.error('Exception:', err)
+            }
+        }
+        
+        async function checkSession() {
+            setStatus('🔍 Checking session...', 'info')
+            
+            try {
+                const { data: { session }, error } = await supabase.auth.getSession()
+                
+                if (error) {
+                    setStatus(`❌ Session Error: ${error.message}`, 'error')
+                } else if (session) {
+                    setStatus(`✅ Session found!<br>
+                        <strong>User:</strong> ${session.user.email}<br>
+                        <strong>Provider:</strong> ${session.user.app_metadata.provider}<br>
+                        <strong>Expires:</strong> ${new Date(session.expires_at * 1000).toLocaleString()}
+                        <pre>${JSON.stringify(session.user, null, 2)}</pre>`, 'success')
+                } else {
+                    setStatus('ℹ️ No active session found', 'info')
+                }
+            } catch (err) {
+                setStatus(`❌ Exception: ${err.message}`, 'error')
+            }
+        }
+        
+        async function logout() {
+            setStatus('🔄 Logging out...', 'info')
+            
+            try {
+                const { error } = await supabase.auth.signOut()
+                
+                if (error) {
+                    setStatus(`❌ Logout Error: ${error.message}`, 'error')
+                } else {
+                    setStatus('✅ Logged out successfully', 'success')
+                }
+            } catch (err) {
+                setStatus(`❌ Exception: ${err.message}`, 'error')
+            }
+        }
+        
+        // Check for session on page load
+        window.onload = function() {
+            setStatus('🌐 Page loaded. Ready to test OAuth.', 'info')
+            
+            // Auto-check session
+            setTimeout(checkSession, 1000)
+            
+            // Listen for auth state changes
+            supabase.auth.onAuthStateChange((event, session) => {
+                console.log('Auth state change:', event, session)
+                if (event === 'SIGNED_IN') {
+                    setStatus(`🎉 Authentication successful! Welcome ${session.user.email}`, 'success')
+                } else if (event === 'SIGNED_OUT') {
+                    setStatus('👋 Signed out', 'info')
+                }
+            })
+        }
+    </script>
+</body>
+</html>

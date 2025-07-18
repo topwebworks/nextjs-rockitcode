@@ -54,18 +54,27 @@ function TabbedHero() {
         />
         
         <div className="absolute inset-0">
-          {Array.from({ length: 50 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 rounded-full bg-blue-400/20 animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
-              }}
-            />
-          ))}
+          {Array.from({ length: 50 }).map((_, i) => {
+            // Use deterministic pseudo-random values based on index to prevent hydration mismatch  
+            const seed = (i + 100) * 9301 + 49297; // Offset by 100 to differentiate from main page
+            const rnd1 = (seed % 233280) / 233280;
+            const rnd2 = ((seed + 1) % 233280) / 233280;
+            const rnd3 = ((seed + 2) % 233280) / 233280;
+            const rnd4 = ((seed + 3) % 233280) / 233280;
+            
+            return (
+              <div
+                key={i}
+                className="absolute w-1 h-1 rounded-full bg-blue-400/20 animate-pulse"
+                style={{
+                  left: `${rnd1 * 100}%`,
+                  top: `${rnd2 * 100}%`,
+                  animationDelay: `${rnd3 * 3}s`,
+                  animationDuration: `${2 + rnd4 * 2}s`
+                }}
+              />
+            );
+          })}
         </div>
       </div>
       <div className="relative z-10 px-6 py-16 mx-auto max-w-7xl sm:py-24 lg:px-8">
@@ -177,18 +186,27 @@ export default function HomePage() {
         />
         
         <div className="absolute inset-0">
-          {Array.from({ length: 50 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 rounded-full bg-blue-400/20 animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
-              }}
-            />
-          ))}
+          {Array.from({ length: 50 }).map((_, i) => {
+            // Use deterministic pseudo-random values based on index to prevent hydration mismatch
+            const seed = i * 9301 + 49297;
+            const rnd1 = (seed % 233280) / 233280;
+            const rnd2 = ((seed + 1) % 233280) / 233280;
+            const rnd3 = ((seed + 2) % 233280) / 233280;
+            const rnd4 = ((seed + 3) % 233280) / 233280;
+            
+            return (
+              <div
+                key={i}
+                className="absolute w-1 h-1 rounded-full bg-blue-400/20 animate-pulse"
+                style={{
+                  left: `${rnd1 * 100}%`,
+                  top: `${rnd2 * 100}%`,
+                  animationDelay: `${rnd3 * 3}s`,
+                  animationDuration: `${2 + rnd4 * 2}s`
+                }}
+              />
+            );
+          })}
         </div>
       </div>
 

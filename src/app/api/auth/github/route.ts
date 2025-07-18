@@ -8,20 +8,17 @@ import { cookies } from 'next/headers'
 // POST /api/auth/github - Initiate GitHub OAuth flow
 export async function POST(request: NextRequest) {
   try {
-    const cookieStore = await cookies()
     const supabase = await createServerSupabaseClient()
     
     if (!supabase) {
       return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
     }
     
-    const { redirectTo } = await request.json()
-
+    // Simplified OAuth request without custom redirectTo
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: redirectTo || `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
-        scopes: 'user:email'
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`
       }
     })
 
