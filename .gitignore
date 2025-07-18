@@ -42,3 +42,14 @@ next-env.d.ts
 
 # local backup files
 old-files/
+
+# development and debugging files
+*debug*.js
+*debug*.html
+*test*.js
+*test*.html
+*migration*.sql
+*debug*.sql
+build-output.txt
+validate-*.js
+apply-*.js
