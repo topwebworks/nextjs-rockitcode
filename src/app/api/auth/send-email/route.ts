@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createOAuth2Transporter } from '../../../../../oauth2-gmail-setup'
+import { createOAuth2Transporter } from '../../../../lib/oauth2-gmail'
 
 // Custom Supabase Email API using OAuth2 Gmail
 // Handles all authentication emails with professional templates

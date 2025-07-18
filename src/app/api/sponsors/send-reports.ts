@@ -2,7 +2,7 @@
 // /api/sponsors/send-reports.ts
 
 import { NextRequest, NextResponse } from 'next/server'
-import { createOAuth2Transporter } from '../../../../oauth2-gmail-setup'
+import { createOAuth2Transporter } from '../../../lib/oauth2-gmail'
 
 interface SponsorContact {
   id: string
