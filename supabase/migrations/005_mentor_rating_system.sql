@@ -201,7 +201,7 @@ BEGIN
     IF NOT can_review THEN
         RETURN json_build_object(
             'success', false,
-            'error', 'You can only review mentors who have helped you in a completed session'
+            'error', 'To leave a review, you need to have completed a mentoring session first. Ask your mentor to log your session in their dashboard, then you can review them!'
         );
     END IF;
     

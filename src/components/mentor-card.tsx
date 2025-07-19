@@ -178,28 +178,40 @@ export default function MentorCard({ mentor, isOpen, onClose }: MentorCardProps)
     return Array.from({ length: 5 }, (_, i) => (
       <span
         key={i}
-        className={`text-lg ${i < rating ? 'text-yellow-400' : 'text-slate-600'}`}
+        className={`text-lg ${i < rating ? 'text-yellow-400' : 'text-gray-400'}`}
       >
-        ⭐
+        {i < rating ? '★' : '☆'}
       </span>
     ))
   }
 
   const renderInteractiveStars = (rating: number, onChange: (rating: number) => void) => {
     return (
-      <div className="flex gap-1">
+      <div className="flex items-center gap-1">
         {Array.from({ length: 5 }, (_, i) => (
           <button
             key={i}
             type="button"
-            onClick={() => onChange(i + 1)}
-            className={`text-2xl transition-colors hover:text-yellow-300 ${
-              i < rating ? 'text-yellow-400' : 'text-slate-600 hover:text-yellow-500'
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              console.log(`Star ${i + 1} clicked!`) // Debug log
+              onChange(i + 1)
+            }}
+            onMouseEnter={() => console.log(`Hovering star ${i + 1}`)} // Debug log
+            className={`text-3xl transition-all duration-200 cursor-pointer select-none hover:scale-110 ${
+              i < rating 
+                ? 'text-yellow-400 hover:text-yellow-300' 
+                : 'text-gray-500 hover:text-yellow-200'
             }`}
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
-            ⭐
+            {i < rating ? '★' : '☆'}
           </button>
         ))}
+        <span className="text-sm text-slate-400 ml-3">
+          {rating} star{rating !== 1 ? 's' : ''}
+        </span>
       </div>
     )
   }
@@ -388,7 +400,10 @@ export default function MentorCard({ mentor, isOpen, onClose }: MentorCardProps)
                         type="date"
                         value={reviewForm.sessionDate}
                         onChange={(e) => setReviewForm(prev => ({ ...prev, sessionDate: e.target.value }))}
-                        className="w-full p-2 bg-slate-800/50 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
+                        className="w-full p-2 bg-slate-800/50 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm [color-scheme:dark]"
+                        style={{
+                          colorScheme: 'dark'
+                        }}
                       />
                     </div>
                   </div>
