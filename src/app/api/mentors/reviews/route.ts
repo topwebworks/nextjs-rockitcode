@@ -1,5 +1,4 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+import { createServerSupabaseClient } from '@/lib/supabase'
 import { NextRequest, NextResponse } from 'next/server'
 
 /**
@@ -10,7 +9,11 @@ import { NextRequest, NextResponse } from 'next/server'
 // GET: Fetch mentor reviews
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient({ cookies })
+    const supabase = await createServerSupabaseClient()
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 500 })
+    }
+    
     const { searchParams } = new URL(request.url)
     const mentorId = searchParams.get('mentorId')
     const limit = parseInt(searchParams.get('limit') || '10')
@@ -43,7 +46,11 @@ export async function GET(request: NextRequest) {
 // POST: Submit a mentor review
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient({ cookies })
+    const supabase = await createServerSupabaseClient()
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 500 })
+    }
+    
     const body = await request.json()
     const { mentorId, rating, reviewText, sessionTopic, sessionDate } = body
 
